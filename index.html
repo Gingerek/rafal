@@ -284,88 +284,90 @@
 
   <script>
     const galleries = {
-  "portraits": [
-    "A7407707.jpg",
-    "DSC_5379.avif",
-    "DSC03914.avif",
-    "DSC04580.avif",
-    "DSC05313-Enhanced-NR.avif",
-    "DSC05317.avif",
-    "A7407652.jpg",
-    "A7407724.jpg"
-  ],
-  "bw": [
-    "A7407052.jpg",
-    "A7407802.jpg",
-    "A7407252-2.jpg",
-    "A7407409.jpg",
-    "A7407402.jpg",
-    "A7407373.jpg"
-  ],
-  "animals": [
-    "A7407839.jpg",
-    "A7406653.avif",
-    "DSCF3455.jpg"
-  ],
-  "macro": [
-    "A7403102.avif",
-    "DSC_0057.jpg",
-    "DSC_0485.jpg",
-    "DSC_4824.avif",
-    "DSCF0976.jpg",
-    "DSC_0352.jpg"
-  ],
-  "botanical": [
-    "DSC04815.avif",
-    "A7400567.png",
-    "DSCF3854-2.jpg",
-    "A7407521.png"
-  ],
-  "places": [
-    "A7406608.jpg",
-    "A7406611.avif",
-    "A7406616.avif",
-    "A7408390.avif",
-    "DSC_2985.avif",
-    "A7407223.jpg",
-    "A7408846.avif",
-    "A7409171.avif",
-    "DSC_0029-2.png",
-    "A7407366.jpg"
-  ]
-};
+      "portraits": [
+        "A7407707.jpg",
+        "DSC_5379.avif",
+        "DSC03914.avif",
+        "DSC04580.avif",
+        "DSC05313-Enhanced-NR.avif",
+        "DSC05317.avif",
+        "A7407652.jpg",
+        "A7407724.jpg"
+      ],
+      "bw": [
+        "A7407052.jpg",
+        "A7407802.jpg",
+        "A7407252-2.jpg",
+        "A7407409.jpg",
+        "A7407402.jpg",
+        "A7407373.jpg"
+      ],
+      "animals": [
+        "A7407839.jpg",
+        "A7406653.avif",
+        "DSCF3455.jpg"
+      ],
+      "macro": [
+        "A7403102.avif",
+        "DSC_0057.jpg",
+        "DSC_0485.jpg",
+        "DSC_4824.avif",
+        "DSCF0976.jpg",
+        "DSC_0352.jpg"
+      ],
+      "botanical": [
+        "DSC04815.avif",
+        "A7400567.png",
+        "DSCF3854-2.jpg",
+        "A7407521.png"
+      ],
+      "places": [
+        "A7406608.jpg",
+        "A7406611.avif",
+        "A7406616.avif",
+        "A7408390.avif",
+        "DSC_2985.avif",
+        "A7407223.jpg",
+        "A7408846.avif",
+        "A7409171.avif",
+        "DSC_0029-2.png",
+        "A7407366.jpg"
+      ]
+    };
+
     const labels = {
-  "portraits": {
-    "nl": "Portretten",
-    "en": "Portraits",
-    "pl": "Portrety"
-  },
-  "bw": {
-    "nl": "Zwart-wit",
-    "en": "Black & White",
-    "pl": "Czarno-białe"
-  },
-  "animals": {
-    "nl": "Dieren",
-    "en": "Animals",
-    "pl": "Zwierzęta"
-  },
-  "macro": {
-    "nl": "Macro",
-    "en": "Macro",
-    "pl": "Makro"
-  },
-  "botanical": {
-    "nl": "Botanisch",
-    "en": "Botanical",
-    "pl": "Botanika"
-  },
-  "places": {
-    "nl": "Plaatsen & sfeer",
-    "en": "Places & Atmosphere",
-    "pl": "Miejsca i klimat"
-  }
-};
+      "portraits": {
+        "nl": "Portretten",
+        "en": "Portraits",
+        "pl": "Portrety"
+      },
+      "bw": {
+        "nl": "Zwart-wit",
+        "en": "Black & White",
+        "pl": "Czarno-białe"
+      },
+      "animals": {
+        "nl": "Dieren",
+        "en": "Animals",
+        "pl": "Zwierzęta"
+      },
+      "macro": {
+        "nl": "Macro",
+        "en": "Macro",
+        "pl": "Makro"
+      },
+      "botanical": {
+        "nl": "Botanisch",
+        "en": "Botanical",
+        "pl": "Botanika"
+      },
+      "places": {
+        "nl": "Plaatsen & sfeer",
+        "en": "Places & Atmosphere",
+        "pl": "Miejsca i klimat"
+      }
+    };
+
     const translations = {
       nl: {
         "navCollections": "Collecties",
@@ -386,7 +388,7 @@
         "label_macro": "Macro",
         "label_botanical": "Botanisch",
         "label_places": "Plaatsen & sfeer"
-},
+      },
       en: {
         "navCollections": "Collections",
         "navAbout": "About",
@@ -406,7 +408,7 @@
         "label_macro": "Macro",
         "label_botanical": "Botanical",
         "label_places": "Places & Atmosphere"
-},
+      },
       pl: {
         "navCollections": "Kolekcje",
         "navAbout": "O mnie",
@@ -426,7 +428,7 @@
         "label_macro": "Makro",
         "label_botanical": "Botanika",
         "label_places": "Miejsca i klimat"
-}
+      }
     };
 
     const sectionOrder = ["portraits","bw","animals","macro","botanical","places"];
@@ -456,8 +458,8 @@
           </div>
           <div class="collection-grid">
             ${galleries[key].map(file => `
-              <figure class="collection-item" data-full="images/photos/${file}">
-                <img src="images/photos/${file}" alt="${file}" loading="lazy" />
+              <figure class="collection-item" data-full="images/${file}">
+                <img src="images/${file}" alt="${file}" loading="lazy" />
               </figure>
             `).join("")}
           </div>
