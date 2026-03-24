@@ -72,7 +72,7 @@
       min-height: calc(100vh - 70px); padding: 18px 0 54px; display: flex; align-items: flex-start; justify-content: flex-start;
     }
     .hero-copy {
-      max-width: 390px; padding-top: 8px; padding-left: 2px; text-shadow: 0 8px 24px rgba(0,0,0,.65); position: relative;
+      max-width: 520px; padding-top: 8px; padding-left: 2px; text-shadow: 0 8px 24px rgba(0,0,0,.65); position: relative;
     }
     .hero-copy::before {
       content: ""; position: absolute; left: -18px; top: 6px; width: 2px; height: 108px;
@@ -84,7 +84,7 @@
     }
     .eyebrow { font-size: .76rem; text-transform: uppercase; letter-spacing: .18em; color: rgba(255,255,255,.78); margin-bottom: 10px; }
     h1 { margin: 0; font-size: clamp(2.6rem, 6vw, 5.4rem); line-height: .94; letter-spacing: -.04em; }
-    .hero-copy p { margin: 12px 0 0; color: rgba(255,255,255,.80); font-size: 0.98rem; max-width: 34ch; }
+    .hero-copy p { margin: 12px 0 0; color: rgba(255,255,255,.82); font-size: 1rem; max-width: 42ch; line-height: 1.6; }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
     .btn {
       display: inline-flex; align-items: center; justify-content: center; padding: 12px 17px; border-radius: 999px;
@@ -144,7 +144,7 @@
       content: ""; position: absolute; inset: auto 0 0 0; height: 30%;
       background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.30)); z-index: 1; pointer-events: none;
     }
-    .about-copy { color: var(--muted); font-size: 1.02rem; max-width: 70ch; }
+    .about-copy { color: var(--muted); font-size: 1.02rem; max-width: 70ch; line-height: 1.8; }
     .contact-stack { display: grid; gap: 12px; }
     .contact-link {
       display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 16px 18px;
@@ -173,7 +173,7 @@
       .quick-links { display: none; }
       .hero { min-height: auto; }
       .hero-inner { min-height: calc(100vh - 70px); padding: 12px 0 30px; }
-      .hero-copy { max-width: 300px; }
+      .hero-copy { max-width: 320px; }
       .hero-copy::before, .hero-copy::after { display: none; }
       h1 { font-size: clamp(2.2rem, 10vw, 3.6rem); }
       .hero-copy p { font-size: .92rem; }
@@ -204,7 +204,7 @@
       <div class="hero-copy">
         <div class="eyebrow" data-i18n="heroEyebrow">Photography Portfolio</div>
         <h1>Rafal Wilk</h1>
-        <p data-i18n="heroText">Een rustige, op fotografie gerichte homepage waarin het achtergrondbeeld volledig zichtbaar blijft.</p>
+        <p data-i18n="heroText">Fotografie is voor mij een vorm van aandacht. Het vraagt om geduld, gevoeligheid en het vermogen om een vluchtig moment om te zetten in een beeld met blijvende betekenis.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#collections" data-i18n="heroPrimary">Bekijk collecties</a>
           <a class="btn" href="#contact" data-i18n="heroSecondary">Neem contact op</a>
@@ -234,7 +234,7 @@
             </div>
           </div>
           <div class="about-copy" data-i18n="aboutText">
-            Ik ben Rafal Wilk. Mijn fotografie draait om sfeer, licht, ritme en beelden die blijven hangen. Deze website is bewust rustig opgebouwd, zodat de foto’s centraal blijven staan en elke collectie haar eigen ruimte krijgt.
+            Ik ben Rafal Wilk. Fotografie is voor mij meer dan het vastleggen van een moment. Het is een manier van kijken die rust, discipline en verbeelding samenbrengt. Ik zoek naar beelden waarin licht, stilte, structuur en emotie elkaar ontmoeten. Soms vraagt dat om precisie, soms om intuïtie, maar altijd om geduld. In die spanning tussen techniek en gevoel ontstaat voor mij de echte waarde van een foto: niet alleen als registratie, maar als beeld met karakter, diepte en zeggingskracht.
           </div>
         </div>
 
@@ -300,7 +300,8 @@
         "A7407252-2.jpg",
         "A7407409.jpg",
         "A7407402.jpg",
-        "A7407373.jpg"
+        "A7407373.jpg",
+        "DSC_0372.jpg"
       ],
       "animals": [
         "A7407839.jpg",
@@ -332,15 +333,6 @@
         "A7409171.avif",
         "DSC_0029-2.png",
         "A7407366.jpg"
-        "bw": 
-  "A7407052.jpg",
-  "A7407802.jpg",
-  "A7407252-2.jpg",
-  "A7407409.jpg",
-  "A7407402.jpg",
-  "A7407373.jpg",
-  "DSC_0372.jpg"
-],
       ]
     };
 
@@ -383,12 +375,12 @@
         "navAbout": "Over mij",
         "navContact": "Contact",
         "heroEyebrow": "Photography Portfolio",
-        "heroText": "Een rustige, op fotografie gerichte homepage waarin het achtergrondbeeld volledig zichtbaar blijft.",
+        "heroText": "Fotografie is voor mij een vorm van aandacht. Het vraagt om geduld, gevoeligheid en het vermogen om een vluchtig moment om te zetten in een beeld met blijvende betekenis.",
         "heroPrimary": "Bekijk collecties",
         "heroSecondary": "Neem contact op",
         "collectionsTitle": "Collecties",
         "aboutTitle": "Over mij",
-        "aboutText": "Ik ben Rafal Wilk. Mijn fotografie draait om sfeer, licht, ritme en beelden die blijven hangen. Deze website is bewust rustig opgebouwd, zodat de foto’s centraal blijven staan en elke collectie haar eigen ruimte krijgt.",
+        "aboutText": "Ik ben Rafal Wilk. Fotografie is voor mij meer dan het vastleggen van een moment. Het is een manier van kijken die rust, discipline en verbeelding samenbrengt. Ik zoek naar beelden waarin licht, stilte, structuur en emotie elkaar ontmoeten. Soms vraagt dat om precisie, soms om intuïtie, maar altijd om geduld. In die spanning tussen techniek en gevoel ontstaat voor mij de echte waarde van een foto: niet alleen als registratie, maar als beeld met karakter, diepte en zeggingskracht.",
         "contactTitle": "Contact",
         "footerText": "Alle beelden op deze website zijn beschermd. Gebruik, opslag of verdere verwerking is niet toegestaan zonder voorafgaande toestemming.",
         "label_portraits": "Portretten",
@@ -403,12 +395,12 @@
         "navAbout": "About",
         "navContact": "Contact",
         "heroEyebrow": "Photography Portfolio",
-        "heroText": "A calm, photography-led homepage where the background image remains fully visible.",
+        "heroText": "Photography, for me, is a form of attention. It demands patience, sensitivity and the ability to turn a fleeting moment into an image with lasting meaning.",
         "heroPrimary": "View collections",
         "heroSecondary": "Get in touch",
         "collectionsTitle": "Collections",
         "aboutTitle": "About",
-        "aboutText": "My name is Rafal Wilk. My photography is about atmosphere, light, rhythm and images that stay with the viewer. This website is intentionally calm, so the photographs remain central and each collection has room to breathe.",
+        "aboutText": "My name is Rafal Wilk. Photography is more to me than capturing a moment. It is a way of seeing that brings together calm, discipline and imagination. I look for images in which light, silence, structure and emotion meet. Sometimes that requires precision, sometimes intuition, but always patience. In that tension between technique and feeling, I find the real value of a photograph: not only as a record, but as an image with character, depth and expressive force.",
         "contactTitle": "Contact",
         "footerText": "All images on this website are protected. Any use, storage or further processing is not allowed without prior permission.",
         "label_portraits": "Portraits",
@@ -423,12 +415,12 @@
         "navAbout": "O mnie",
         "navContact": "Kontakt",
         "heroEyebrow": "Portfolio fotograficzne",
-        "heroText": "Spokojna, oparta na fotografii strona główna, na której zdjęcie w tle pozostaje w całości widoczne.",
+        "heroText": "Fotografia jest dla mnie formą uważności. Wymaga cierpliwości, wrażliwości i umiejętności zamienienia ulotnej chwili w obraz o trwałym znaczeniu.",
         "heroPrimary": "Zobacz kolekcje",
         "heroSecondary": "Skontaktuj się",
         "collectionsTitle": "Kolekcje",
         "aboutTitle": "O mnie",
-        "aboutText": "Nazywam się Rafal Wilk. Moja fotografia opiera się na klimacie, świetle, rytmie i kadrach, które zostają w pamięci. Ta strona jest celowo spokojna, żeby zdjęcia były najważniejsze i każda kolekcja miała własną przestrzeń.",
+        "aboutText": "Nazywam się Rafal Wilk. Fotografia to dla mnie coś więcej niż zapis chwili. To sposób patrzenia, w którym spotykają się spokój, dyscyplina i wyobraźnia. Szukam obrazów, w których światło, cisza, struktura i emocja tworzą jedną całość. Czasem wymaga to precyzji, czasem intuicji, ale zawsze cierpliwości. W tym napięciu między techniką a wrażliwością powstaje dla mnie prawdziwa wartość zdjęcia: nie tylko jako rejestracji, lecz jako obrazu z charakterem, głębią i siłą wyrazu.",
         "contactTitle": "Kontakt",
         "footerText": "Wszystkie zdjęcia na tej stronie są chronione. Użycie, przechowywanie lub dalsze przetwarzanie bez wcześniejszej zgody nie jest dozwolone.",
         "label_portraits": "Portrety",
