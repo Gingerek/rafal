@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rafal Wilk Photography Portfolio</title>
+  <title>Rafal Wilk | Photography</title>
   <meta name="description" content="Photography portfolio of Rafal Wilk" />
   <style>
     :root {
@@ -31,35 +31,86 @@
     img { display: block; width: 100%; }
     button { font: inherit; }
     .wrap { width: min(calc(100% - 32px), var(--maxw)); margin: 0 auto; }
+
     .topbar {
-      position: sticky; top: 0; z-index: 40; background: rgba(8,8,8,0.46);
-      backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(8,8,8,0.46);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       box-shadow: 0 8px 30px rgba(0,0,0,0.16);
     }
     .topbar-inner {
-      width: min(calc(100% - 32px), var(--maxw)); min-height: 70px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      width: min(calc(100% - 32px), var(--maxw));
+      min-height: 70px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
-    .quick-links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .quick-link, .collection-pill, .lang-btn, .btn, .contact-link { position: relative; overflow: hidden; }
+    .quick-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .quick-link, .collection-pill, .lang-btn, .btn, .contact-link {
+      position: relative;
+      overflow: hidden;
+    }
     .quick-link {
-      padding: 9px 14px; border: 1px solid var(--border); border-radius: 999px;
-      background: rgba(255,255,255,0.03); color: var(--muted); font-size: 0.92rem; transition: .2s ease;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-size: 0.92rem;
+      transition: .2s ease;
     }
-    .quick-link:hover { background: rgba(255,255,255,0.08); color: var(--text); }
-    .lang-switch { display: flex; gap: 8px; }
+    .quick-link:hover {
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+    }
     .lang-btn {
-      border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text);
-      padding: 9px 13px; border-radius: 999px; cursor: pointer; transition: .2s ease;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 9px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: .2s ease;
     }
-    .lang-btn.active, .lang-btn:hover { background: rgba(255,255,255,0.14); transform: translateY(-1px); }
-    .hero { min-height: calc(100vh - 70px); position: relative; background: #040404; overflow: hidden; }
+    .lang-btn.active, .lang-btn:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      min-height: calc(100vh - 70px);
+      position: relative;
+      background: #040404;
+      overflow: hidden;
+    }
     .hero-bg {
-      position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%;
-      object-fit: contain; object-position: center center; transform: scale(1.01);
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      transform: scale(1.01);
     }
     .hero-shade {
-      position: absolute; inset: 0; z-index: 2;
+      position: absolute;
+      inset: 0;
+      z-index: 2;
       background:
         radial-gradient(circle at 53% 42%, rgba(255,255,255,.12), transparent 16%),
         radial-gradient(circle at 48% 40%, rgba(180,220,255,.05), transparent 22%),
@@ -68,112 +119,342 @@
       pointer-events: none;
     }
     .hero-inner {
-      position: relative; z-index: 3; width: min(calc(100% - 32px), var(--maxw)); margin: 0 auto;
-      min-height: calc(100vh - 70px); padding: 18px 0 54px; display: flex; align-items: flex-start; justify-content: flex-start;
+      position: relative;
+      z-index: 3;
+      width: min(calc(100% - 32px), var(--maxw));
+      margin: 0 auto;
+      min-height: calc(100vh - 70px);
+      padding: 18px 0 54px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
     }
     .hero-copy {
-      max-width: 520px; padding-top: 8px; padding-left: 2px; text-shadow: 0 8px 24px rgba(0,0,0,.65); position: relative;
+      max-width: 560px;
+      padding-top: 8px;
+      padding-left: 2px;
+      text-shadow: 0 8px 24px rgba(0,0,0,.65);
+      position: relative;
     }
     .hero-copy::before {
-      content: ""; position: absolute; left: -18px; top: 6px; width: 2px; height: 108px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0)); border-radius: 999px; opacity: 0.8;
+      content: "";
+      position: absolute;
+      left: -18px;
+      top: 6px;
+      width: 2px;
+      height: 108px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0));
+      border-radius: 999px;
+      opacity: 0.8;
     }
     .hero-copy::after {
-      content: ""; position: absolute; left: -7px; top: 18px; width: 14px; height: 14px;
-      border: 1px solid rgba(255,255,255,0.22); border-radius: 999px; background: rgba(255,255,255,0.05); box-shadow: 0 0 24px rgba(255,255,255,0.07);
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 18px;
+      width: 14px;
+      height: 14px;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 0 24px rgba(255,255,255,0.07);
     }
-    .eyebrow { font-size: .76rem; text-transform: uppercase; letter-spacing: .18em; color: rgba(255,255,255,.78); margin-bottom: 10px; }
-    h1 { margin: 0; font-size: clamp(2.6rem, 6vw, 5.4rem); line-height: .94; letter-spacing: -.04em; }
-    .hero-copy p { margin: 12px 0 0; color: rgba(255,255,255,.82); font-size: 1rem; max-width: 42ch; line-height: 1.6; }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+
+    .eyebrow {
+      font-size: .76rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: rgba(255,255,255,.78);
+      margin-bottom: 10px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 5.4rem);
+      line-height: .94;
+      letter-spacing: -.04em;
+    }
+    .hero-copy p {
+      margin: 16px 0 0;
+      color: rgba(255,255,255,.82);
+      font-size: 1rem;
+      max-width: 44ch;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; padding: 12px 17px; border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16); background: rgba(0,0,0,0.14); backdrop-filter: blur(6px); transition: .2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 17px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,0.14);
+      backdrop-filter: blur(6px);
+      transition: .2s ease;
     }
-    .btn:hover { background: rgba(255,255,255,0.10); transform: translateY(-1px); }
-    .btn.primary { background: rgba(255,255,255,0.12); }
-    main { padding: 34px 0 64px; position: relative; }
-    section + section { margin-top: 28px; }
-    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
+    .btn:hover {
+      background: rgba(255,255,255,0.10);
+      transform: translateY(-1px);
+    }
+    .btn.primary {
+      background: rgba(255,255,255,0.12);
+    }
+
+    main {
+      padding: 34px 0 64px;
+      position: relative;
+    }
+    section + section {
+      margin-top: 28px;
+    }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
     .section-head h2 {
-      margin: 0; font-size: clamp(1.6rem, 2.6vw, 2.3rem); letter-spacing: -.02em; position: relative; padding-left: 16px;
+      margin: 0;
+      font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+      letter-spacing: -.02em;
+      position: relative;
+      padding-left: 16px;
     }
     .section-head h2::before {
-      content: ""; position: absolute; left: 0; top: 0.28em; width: 6px; height: 6px;
-      border-radius: 999px; background: rgba(255,255,255,0.52); box-shadow: 0 0 16px rgba(255,255,255,0.16);
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.28em;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.52);
+      box-shadow: 0 0 16px rgba(255,255,255,0.16);
     }
+
     .panel {
       background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.014)), rgba(10,10,10,0.68);
-      border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow);
-      position: relative; overflow: hidden; backdrop-filter: blur(4px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(4px);
     }
     .panel::before {
-      content: ""; position: absolute; inset: 0 auto auto 0; width: 180px; height: 1px;
-      background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0)); opacity: 0.7;
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 180px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
+      opacity: 0.7;
     }
-    .collection-nav { display: flex; flex-wrap: wrap; gap: 10px; }
-    .collection-pill { padding: 11px 16px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text); transition: .2s ease; }
-    .collection-pill:hover { background: rgba(255,255,255,0.1); }
-    .collection-section { scroll-margin-top: 90px; }
-    .collection-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+
+    .collection-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .collection-pill {
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      transition: .2s ease;
+    }
+    .collection-pill:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .collection-section {
+      scroll-margin-top: 90px;
+    }
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
     .collection-item {
-      position: relative; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 20px; border: 1px solid rgba(255,255,255,0.08);
-      background: #111; cursor: pointer; box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #111;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
     }
-    .collection-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease, filter .45s ease; filter: saturate(0.96) contrast(1.02); }
-    .collection-item:hover img { transform: scale(1.035); filter: saturate(1.02) contrast(1.04); }
-    .about-grid { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(320px,420px); gap: 20px; align-items: start; }
-    .about-side { display: grid; gap: 16px; }
+    .collection-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease, filter .45s ease;
+      filter: saturate(0.96) contrast(1.02);
+    }
+    .collection-item:hover img {
+      transform: scale(1.035);
+      filter: saturate(1.02) contrast(1.04);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1.05fr) minmax(320px,420px);
+      gap: 20px;
+      align-items: start;
+    }
+    .about-side {
+      display: grid;
+      gap: 16px;
+    }
     .about-portrait {
-      position: relative; aspect-ratio: 4 / 5; border-radius: 24px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.10); box-shadow: 0 18px 40px rgba(0,0,0,0.28);
-      background: #0b0b0b; isolation: isolate;
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+      background: #0b0b0b;
+      isolation: isolate;
     }
     .about-portrait img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center top;
-      filter: brightness(0.98) contrast(1.04); transform: scale(1.005);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: brightness(0.98) contrast(1.04);
+      transform: scale(1.005);
     }
     .about-portrait::before {
-      content: ""; position: absolute; inset: 0;
+      content: "";
+      position: absolute;
+      inset: 0;
       background:
         radial-gradient(circle at 50% 24%, rgba(255,255,255,0.08), transparent 20%),
         linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.10) 56%, rgba(0,0,0,0.24) 100%);
-      z-index: 1; pointer-events: none;
+      z-index: 1;
+      pointer-events: none;
     }
     .about-portrait::after {
-      content: ""; position: absolute; inset: auto 0 0 0; height: 30%;
-      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.30)); z-index: 1; pointer-events: none;
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 30%;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.30));
+      z-index: 1;
+      pointer-events: none;
     }
-    .about-copy { color: var(--muted); font-size: 1.02rem; max-width: 70ch; line-height: 1.8; }
-    .contact-stack { display: grid; gap: 12px; }
+    .about-copy {
+      color: var(--muted);
+      font-size: 1.02rem;
+      max-width: 74ch;
+      line-height: 1.85;
+    }
+
+    .contact-stack {
+      display: grid;
+      gap: 12px;
+    }
     .contact-link {
-      display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 16px 18px;
-      border-radius: 18px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.03)); transition: .22s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.03));
+      transition: .22s ease;
     }
-    .contact-link:hover { background: rgba(255,255,255,0.08); }
-    .contact-label { font-size: .84rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
-    .contact-value { text-align: right; word-break: break-word; }
-    footer { width: min(calc(100% - 32px), var(--maxw)); margin: 16px auto 28px; color: rgba(255,255,255,0.62); font-size: .92rem; }
-    .lightbox { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; padding: 26px; background: rgba(0,0,0,.94); z-index: 70; }
-    .lightbox.open { display: flex; }
-    .lightbox-inner { width: min(1180px, 100%); position: relative; }
+    .contact-link:hover {
+      background: rgba(255,255,255,0.08);
+    }
+    .contact-label {
+      font-size: .84rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.62);
+    }
+    .contact-value {
+      text-align: right;
+      word-break: break-word;
+    }
+
+    footer {
+      width: min(calc(100% - 32px), var(--maxw));
+      margin: 16px auto 28px;
+      color: rgba(255,255,255,0.62);
+      font-size: .92rem;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 26px;
+      background: rgba(0,0,0,.94);
+      z-index: 70;
+    }
+    .lightbox.open {
+      display: flex;
+    }
+    .lightbox-inner {
+      width: min(1180px, 100%);
+      position: relative;
+    }
     .lightbox-close {
-      position: absolute; top: -52px; right: 0; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.08);
-      color: white; border-radius: 999px; padding: 10px 14px; cursor: pointer;
+      position: absolute;
+      top: -52px;
+      right: 0;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: white;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
     }
-    .lightbox-image { width: 100%; max-height: 82vh; object-fit: contain; border-radius: 18px; border: 1px solid rgba(255,255,255,.12); background: #111; }
+    .lightbox-image {
+      width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: #111;
+    }
+
     @media (max-width: 1080px) {
       .about-grid { grid-template-columns: 1fr; }
       .about-side { max-width: 520px; }
       .collection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .hero-inner { padding-top: 16px; }
     }
+
     @media (max-width: 760px) {
-      .topbar-inner { min-height: auto; padding: 14px 0; flex-direction: column; align-items: flex-start; }
+      .topbar-inner {
+        min-height: auto;
+        padding: 14px 0;
+        flex-direction: column;
+        align-items: flex-start;
+      }
       .quick-links { display: none; }
       .hero { min-height: auto; }
-      .hero-inner { min-height: calc(100vh - 70px); padding: 12px 0 30px; }
-      .hero-copy { max-width: 320px; }
+      .hero-inner {
+        min-height: calc(100vh - 70px);
+        padding: 12px 0 30px;
+      }
+      .hero-copy {
+        max-width: 320px;
+      }
       .hero-copy::before, .hero-copy::after { display: none; }
       h1 { font-size: clamp(2.2rem, 10vw, 3.6rem); }
       .hero-copy p { font-size: .92rem; }
@@ -204,7 +485,7 @@
       <div class="hero-copy">
         <div class="eyebrow" data-i18n="heroEyebrow">Photography Portfolio</div>
         <h1>Rafal Wilk</h1>
-        <p data-i18n="heroText">Fotografie is voor mij een vorm van aandacht. Het vraagt om geduld, gevoeligheid en het vermogen om een vluchtig moment om te zetten in een beeld met blijvende betekenis.</p>
+        <p data-i18n="heroText">Fotografie is voor mij geen haast, maar aandacht. Ze vraagt om geduld, discipline en het vermogen om in stilte precies dat ene moment te herkennen dat iets blijvends wordt.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#collections" data-i18n="heroPrimary">Bekijk collecties</a>
           <a class="btn" href="#contact" data-i18n="heroSecondary">Neem contact op</a>
@@ -234,7 +515,7 @@
             </div>
           </div>
           <div class="about-copy" data-i18n="aboutText">
-            Ik ben Rafal Wilk. Fotografie is voor mij meer dan het vastleggen van een moment. Het is een manier van kijken die rust, discipline en verbeelding samenbrengt. Ik zoek naar beelden waarin licht, stilte, structuur en emotie elkaar ontmoeten. Soms vraagt dat om precisie, soms om intuïtie, maar altijd om geduld. In die spanning tussen techniek en gevoel ontstaat voor mij de echte waarde van een foto: niet alleen als registratie, maar als beeld met karakter, diepte en zeggingskracht.
+            Ik ben Rafal Wilk. Fotografie is voor mij meer dan het vastleggen van een onderwerp. Het is een manier van kijken waarin aandacht, geduld en gevoeligheid samenkomen. Ik zoek naar beelden met rust, spanning, ritme en betekenis — beelden waarin licht niet alleen verlicht, maar ook richting geeft. Soms ontstaat een foto in een fractie van een seconde, soms pas na lang wachten. Juist in die combinatie van techniek, intuïtie en tijd ligt voor mij de essentie van fotografie als kunstvorm.
           </div>
         </div>
 
@@ -306,7 +587,7 @@
       "animals": [
         "A7407839.jpg",
         "A7406653.avif",
-        "DSCF3455.jpg"
+        "DSCF3455.jpg",
         "DSCF4010.jpg"
       ],
       "macro": [
@@ -376,12 +657,12 @@
         "navAbout": "Over mij",
         "navContact": "Contact",
         "heroEyebrow": "Photography Portfolio",
-        "heroText": "Fotografie is voor mij een vorm van aandacht. Het vraagt om geduld, gevoeligheid en het vermogen om een vluchtig moment om te zetten in een beeld met blijvende betekenis.",
+        "heroText": "Fotografie is voor mij geen haast, maar aandacht. Ze vraagt om geduld, discipline en het vermogen om in stilte precies dat ene moment te herkennen dat iets blijvends wordt.",
         "heroPrimary": "Bekijk collecties",
         "heroSecondary": "Neem contact op",
         "collectionsTitle": "Collecties",
         "aboutTitle": "Over mij",
-        "aboutText": "Ik ben Rafal Wilk. Fotografie is voor mij meer dan het vastleggen van een moment. Het is een manier van kijken die rust, discipline en verbeelding samenbrengt. Ik zoek naar beelden waarin licht, stilte, structuur en emotie elkaar ontmoeten. Soms vraagt dat om precisie, soms om intuïtie, maar altijd om geduld. In die spanning tussen techniek en gevoel ontstaat voor mij de echte waarde van een foto: niet alleen als registratie, maar als beeld met karakter, diepte en zeggingskracht.",
+        "aboutText": "Ik ben Rafal Wilk. Fotografie is voor mij meer dan het vastleggen van een onderwerp. Het is een manier van kijken waarin aandacht, geduld en gevoeligheid samenkomen. Ik zoek naar beelden met rust, spanning, ritme en betekenis — beelden waarin licht niet alleen verlicht, maar ook richting geeft. Soms ontstaat een foto in een fractie van een seconde, soms pas na lang wachten. Juist in die combinatie van techniek, intuïtie en tijd ligt voor mij de essentie van fotografie als kunstvorm.",
         "contactTitle": "Contact",
         "footerText": "Alle beelden op deze website zijn beschermd. Gebruik, opslag of verdere verwerking is niet toegestaan zonder voorafgaande toestemming.",
         "label_portraits": "Portretten",
@@ -396,12 +677,12 @@
         "navAbout": "About",
         "navContact": "Contact",
         "heroEyebrow": "Photography Portfolio",
-        "heroText": "Photography, for me, is a form of attention. It demands patience, sensitivity and the ability to turn a fleeting moment into an image with lasting meaning.",
+        "heroText": "Photography, for me, is not haste but attention. It requires patience, discipline and the ability to recognise, in silence, the one moment that becomes something lasting.",
         "heroPrimary": "View collections",
         "heroSecondary": "Get in touch",
         "collectionsTitle": "Collections",
         "aboutTitle": "About",
-        "aboutText": "My name is Rafal Wilk. Photography is more to me than capturing a moment. It is a way of seeing that brings together calm, discipline and imagination. I look for images in which light, silence, structure and emotion meet. Sometimes that requires precision, sometimes intuition, but always patience. In that tension between technique and feeling, I find the real value of a photograph: not only as a record, but as an image with character, depth and expressive force.",
+        "aboutText": "My name is Rafal Wilk. Photography is more to me than recording a subject. It is a way of seeing in which attention, patience and sensitivity come together. I look for images with calm, tension, rhythm and meaning — images in which light does not simply illuminate, but also guides. Sometimes a photograph appears in a fraction of a second, sometimes only after long waiting. In that combination of technique, intuition and time, I find the essence of photography as an art form.",
         "contactTitle": "Contact",
         "footerText": "All images on this website are protected. Any use, storage or further processing is not allowed without prior permission.",
         "label_portraits": "Portraits",
@@ -416,12 +697,12 @@
         "navAbout": "O mnie",
         "navContact": "Kontakt",
         "heroEyebrow": "Portfolio fotograficzne",
-        "heroText": "Fotografia jest dla mnie formą uważności. Wymaga cierpliwości, wrażliwości i umiejętności zamienienia ulotnej chwili w obraz o trwałym znaczeniu.",
+        "heroText": "Fotografia nie jest dla mnie pośpiechem, lecz uważnością. Wymaga cierpliwości, dyscypliny i umiejętności rozpoznania w ciszy tego jednego momentu, który staje się czymś trwałym.",
         "heroPrimary": "Zobacz kolekcje",
         "heroSecondary": "Skontaktuj się",
         "collectionsTitle": "Kolekcje",
         "aboutTitle": "O mnie",
-        "aboutText": "Nazywam się Rafal Wilk. Fotografia to dla mnie coś więcej niż zapis chwili. To sposób patrzenia, w którym spotykają się spokój, dyscyplina i wyobraźnia. Szukam obrazów, w których światło, cisza, struktura i emocja tworzą jedną całość. Czasem wymaga to precyzji, czasem intuicji, ale zawsze cierpliwości. W tym napięciu między techniką a wrażliwością powstaje dla mnie prawdziwa wartość zdjęcia: nie tylko jako rejestracji, lecz jako obrazu z charakterem, głębią i siłą wyrazu.",
+        "aboutText": "Nazywam się Rafal Wilk. Fotografia to dla mnie coś więcej niż rejestrowanie tematu. To sposób patrzenia, w którym spotykają się uwaga, cierpliwość i wrażliwość. Szukam obrazów mających spokój, napięcie, rytm i znaczenie — obrazów, w których światło nie tylko oświetla, ale także prowadzi. Czasem zdjęcie powstaje w ułamku sekundy, a czasem dopiero po długim czekaniu. Właśnie w tym połączeniu techniki, intuicji i czasu odnajduję istotę fotografii jako sztuki.",
         "contactTitle": "Kontakt",
         "footerText": "Wszystkie zdjęcia na tej stronie są chronione. Użycie, przechowywanie lub dalsze przetwarzanie bez wcześniejszej zgody nie jest dozwolone.",
         "label_portraits": "Portrety",
@@ -460,8 +741,8 @@
           </div>
           <div class="collection-grid">
             ${galleries[key].map(file => `
-              <figure class="collection-item" data-full="images/${file}">
-                <img src="images/${file}" alt="${file}" loading="lazy" />
+              <figure class="collection-item" data-full="images/photos/${file}">
+                <img src="images/photos/${file}" alt="${file}" loading="lazy" />
               </figure>
             `).join("")}
           </div>
