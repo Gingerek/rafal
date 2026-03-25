@@ -16,7 +16,6 @@
       --muted:rgba(245,239,230,.76);
       --muted-2:rgba(245,239,230,.50);
       --accent:#d3b17c;
-      --accent-soft:rgba(211,177,124,.16);
       --shadow:0 28px 90px rgba(0,0,0,.45);
       --radius-xl:32px;
       --radius-lg:24px;
@@ -223,17 +222,6 @@
       background:
         linear-gradient(90deg, rgba(0,0,0,.76) 0%, rgba(0,0,0,.50) 40%, rgba(0,0,0,.18) 100%),
         linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.24));
-      pointer-events:none;
-    }
-
-    .hero-focus{
-      position:absolute;
-      inset:0;
-      z-index:2;
-      background:
-        radial-gradient(circle at 22% 30%, rgba(255,255,255,.18), transparent 12%),
-        radial-gradient(circle at 76% 18%, rgba(211,177,124,.10), transparent 24%);
-      mix-blend-mode:screen;
       pointer-events:none;
     }
 
@@ -549,7 +537,7 @@
 
     .about-layout{
       display:grid;
-      grid-template-columns:minmax(0,1.12fr) 390px;
+      grid-template-columns:minmax(0,1.12fr);
       gap:22px;
       align-items:start;
     }
@@ -563,21 +551,6 @@
 
     .about-copy p{
       margin:0 0 16px;
-    }
-
-    .portrait-card{
-      border-radius:28px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
-      box-shadow:var(--shadow);
-    }
-
-    .portrait-card img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      aspect-ratio:4/5;
     }
 
     .contact-grid{
@@ -652,7 +625,7 @@
     .lightbox.open{display:flex}
 
     .lightbox-inner{
-      width:min(1440px,100%);
+      width:min(1480px,100%);
       height:min(92vh,100%);
       position:relative;
       display:flex;
@@ -706,9 +679,6 @@
     @media (max-width:1200px){
       .section-grid{
         grid-template-columns:repeat(3,minmax(0,1fr));
-      }
-      .about-layout{
-        grid-template-columns:1fr;
       }
     }
 
@@ -804,7 +774,6 @@
     <div class="hero-shell">
       <img class="hero-bg" src="images/hero.jpg" alt="" />
       <div class="hero-darken"></div>
-      <div class="hero-focus"></div>
 
       <div class="hero-inner">
         <div class="hero-copy">
@@ -837,7 +806,6 @@
           </div>
 
           <div class="collection-cards" id="collectionCards"></div>
-
           <div class="sections-stack" id="sectionsStack"></div>
         </div>
       </div>
@@ -863,10 +831,6 @@
                   Juist in die combinatie van techniek, intuïtie en tijd ligt voor mij de essentie van fotografie als kunstvorm.
                 </p>
               </div>
-            </div>
-
-            <div class="portrait-card">
-              <img src="images/about-portrait.jpg" alt="Rafal Wilk" />
             </div>
           </div>
         </div>
@@ -919,14 +883,11 @@
 
   <script>
     /*
-      Jak dodawać nowe zdjęcia:
-      1. Wrzuć plik do folderu images/photos/
-      2. Dopisz nazwę BEZ rozszerzenia do odpowiedniej kategorii niżej
-         np. "NOWEZDJECIE"
-      3. Zapisz index.html i odśwież stronę
-
-      Kod sam próbuje znaleźć:
-      .jpg .JPG .jpeg .JPEG .png .PNG .avif .AVIF .webp .WEBP
+      Dodawanie nowych zdjęć:
+      1. wrzuć plik do images/photos/
+      2. dopisz nazwę do odpowiedniej kategorii niżej
+      3. możesz wpisać nazwę z rozszerzeniem albo bez
+      4. zapisz index.html i odśwież stronę
     */
 
     const galleries = {
@@ -984,6 +945,13 @@
         "DSC_2708",
         "DSC_2985"
       ]
+    };
+
+    const aliases = {
+      DSCF4010: ["DSCF4010", "DSCF_4010"],
+      DSC_4824: ["DSC_4824", "DSC4824"],
+      DSC_02526: ["DSC_02526", "DSC02526", "DSC_02526jpg", "DSC02526jpg"],
+      DSC_2708: ["DSC_2708", "DSC2708"]
     };
 
     const translations = {
@@ -1102,20 +1070,52 @@
       return name.replace(/\.[^/.]+$/, "");
     }
 
-    function buildCandidates(name) {
+    function makeBaseVariants(name) {
       const clean = stripExtension(name);
-      return commonExtensions.map(ext => `images/photos/${clean}.${ext}`);
+      const set = new Set();
+
+      set.add(clean);
+
+      if (aliases[clean]) {
+        aliases[clean].forEach(v => set.add(v));
+      }
+
+      if (clean.endsWith("jpg")) {
+        set.add(clean.slice(0, -3));
+      }
+      if (clean.endsWith("jpeg")) {
+        set.add(clean.slice(0, -4));
+      }
+      if (clean.includes("_")) {
+        set.add(clean.replace(/_/g, ""));
+      }
+
+      return [...set];
+    }
+
+    function buildCandidates(name) {
+      const baseVariants = makeBaseVariants(name);
+      const candidates = [];
+
+      baseVariants.forEach((base) => {
+        candidates.push(`images/photos/${base}`);
+        commonExtensions.forEach((ext) => {
+          candidates.push(`images/photos/${base}.${ext}`);
+        });
+      });
+
+      return [...new Set(candidates)];
     }
 
     function resolveImage(name) {
-      const clean = stripExtension(name);
+      const key = stripExtension(name);
 
-      if (resolvedCache.has(clean)) {
-        return resolvedCache.get(clean);
+      if (resolvedCache.has(key)) {
+        return resolvedCache.get(key);
       }
 
       const promise = new Promise((resolve) => {
-        const candidates = buildCandidates(clean);
+        const candidates = buildCandidates(name);
         let index = 0;
 
         function tryNext() {
@@ -1134,7 +1134,7 @@
         tryNext();
       });
 
-      resolvedCache.set(clean, promise);
+      resolvedCache.set(key, promise);
       return promise;
     }
 
