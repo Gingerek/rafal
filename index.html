@@ -68,7 +68,7 @@
       right:-110px;
       top:18%;
       width:min(44vw, 620px);
-      aspect-ratio: 4 / 3;
+      aspect-ratio:4/3;
       z-index:0;
       pointer-events:none;
       opacity:.06;
@@ -170,6 +170,14 @@
       margin-top:2px;
     }
 
+    .nav-wrap{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
     .nav{
       display:flex;
       gap:10px;
@@ -177,7 +185,8 @@
       justify-content:flex-end;
     }
 
-    .nav a{
+    .nav a,
+    .lang-btn{
       padding:10px 15px;
       border-radius:999px;
       border:1px solid var(--border);
@@ -187,10 +196,24 @@
       font-size:.94rem;
     }
 
-    .nav a:hover{
+    .nav a:hover,
+    .lang-btn:hover,
+    .lang-btn.active{
       background:rgba(255,255,255,.08);
       color:var(--text);
       transform:translateY(-1px);
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .lang-btn{
+      cursor:pointer;
+      min-width:48px;
+      text-align:center;
     }
 
     .hero{
@@ -219,7 +242,7 @@
       height:100%;
       object-fit:cover;
       object-position:center center;
-      filter:brightness(.44) contrast(1.05) saturate(.9);
+      filter:brightness(.47) contrast(1.07) saturate(.92);
       transform:scale(1.02);
       z-index:1;
     }
@@ -229,8 +252,8 @@
       inset:0;
       z-index:2;
       background:
-        radial-gradient(circle at 43% 33%, rgba(255,255,255,.14), transparent 12%),
-        radial-gradient(circle at 52% 34%, rgba(255,255,255,.10), transparent 11%),
+        radial-gradient(circle at 43% 33%, rgba(255,255,255,.16), transparent 12%),
+        radial-gradient(circle at 52% 34%, rgba(255,255,255,.12), transparent 11%),
         radial-gradient(circle at 80% 16%, rgba(211,177,124,.12), transparent 20%),
         linear-gradient(90deg, rgba(0,0,0,.84) 0%, rgba(0,0,0,.58) 40%, rgba(0,0,0,.18) 100%);
       pointer-events:none;
@@ -847,6 +870,9 @@
         align-items:flex-start;
         padding:14px 0;
       }
+      .nav-wrap{
+        width:100%;
+      }
       .nav{
         width:100%;
       }
@@ -880,6 +906,12 @@
       .floating-rings{
         display:none;
       }
+      .lang-switch{
+        width:100%;
+      }
+      .lang-btn{
+        flex:1 1 auto;
+      }
     }
   </style>
 </head>
@@ -893,15 +925,23 @@
         <div class="brand-mark"></div>
         <div class="brand-text">
           <strong>Rafal Wilk</strong>
-          <span>Fotografie • Licht • Sfeer • Detail</span>
+          <span data-i18n="brandSubtitle">Fotografie • Licht • Sfeer • Detail</span>
         </div>
       </a>
 
-      <nav class="nav">
-        <a href="#collections">Collecties</a>
-        <a href="#about">Over mij</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="nav-wrap">
+        <nav class="nav">
+          <a href="#collections" data-i18n="navCollections">Collecties</a>
+          <a href="#about" data-i18n="navAbout">Over mij</a>
+          <a href="#contact" data-i18n="navContact">Contact</a>
+        </nav>
+
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-btn active" type="button" data-lang-btn="nl">NL</button>
+          <button class="lang-btn" type="button" data-lang-btn="en">EN</button>
+          <button class="lang-btn" type="button" data-lang-btn="pl">PL</button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -914,38 +954,36 @@
 
       <div class="hero-inner">
         <div class="hero-copy">
-          <div class="eyebrow">Photography Portfolio</div>
-          <h1>Beelden met rust, aandacht en karakter.</h1>
-          <p class="hero-lead">
-            Fotografie is voor mij geen snelle registratie, maar een manier van kijken. Ik zoek naar beelden waarin licht,
-            timing, stilte en detail samenkomen. Van portret tot sfeerbeeld draait alles om aandacht, geduld en een heldere visuele stijl.
+          <div class="eyebrow" data-i18n="heroEyebrow">Photography Portfolio</div>
+          <h1 data-i18n="heroTitle">Beelden met rust, aandacht en karakter.</h1>
+          <p class="hero-lead" data-i18n="heroLead">
+            Fotografie is voor mij geen snelle registratie, maar een manier van kijken. Ik zoek naar beelden waarin licht, timing, stilte en detail samenkomen. Van portret tot sfeerbeeld draait alles om aandacht, geduld en een heldere visuele stijl.
           </p>
 
           <div class="hero-actions">
-            <a class="btn primary" href="#collections">Bekijk portfolio</a>
-            <a class="btn" href="#about">Lees meer</a>
+            <a class="btn primary" href="#collections" data-i18n="heroPrimary">Bekijk portfolio</a>
+            <a class="btn" href="#about" data-i18n="heroSecondary">Lees meer</a>
           </div>
         </div>
 
         <aside class="hero-card">
-          <div class="hero-card-title">Visuele signatuur</div>
-          <p>
-            Een premium portfolio met subtiele diepte, fotografische sfeer en een rustige, moderne opbouw.
-            De eerste indruk laat meteen zien dat dit de website van een fotograaf is.
+          <div class="hero-card-title" data-i18n="heroCardTitle">Visuele signatuur</div>
+          <p data-i18n="heroCardText">
+            Een premium portfolio met subtiele diepte, fotografische sfeer en een rustige, moderne opbouw. De eerste indruk laat meteen zien dat dit de website van een fotograaf is.
           </p>
 
           <div class="hero-meta">
             <div class="item">
-              <strong>Portret</strong>
-              <span>karakter en emotie</span>
+              <strong data-i18n="meta1Title">Portret</strong>
+              <span data-i18n="meta1Text">karakter en emotie</span>
             </div>
             <div class="item">
-              <strong>Detail</strong>
-              <span>licht en textuur</span>
+              <strong data-i18n="meta2Title">Detail</strong>
+              <span data-i18n="meta2Text">licht en textuur</span>
             </div>
             <div class="item">
-              <strong>Sfeer</strong>
-              <span>rust en timing</span>
+              <strong data-i18n="meta3Title">Sfeer</strong>
+              <span data-i18n="meta3Text">rust en timing</span>
             </div>
           </div>
         </aside>
@@ -959,10 +997,9 @@
         <div class="panel-body">
           <div class="section-head">
             <div>
-              <h2>Collecties</h2>
-              <p>
-                Hieronder staan mijn verschillende fotografische richtingen. Elke collectie heeft een eigen ritme,
-                maar samen vormen ze één consistente visuele taal.
+              <h2 data-i18n="collectionsTitle">Collecties</h2>
+              <p data-i18n="collectionsIntro">
+                Hieronder staan mijn verschillende fotografische richtingen. Elke collectie heeft een eigen ritme, maar samen vormen ze één consistente visuele taal.
               </p>
             </div>
           </div>
@@ -972,68 +1009,68 @@
           <div class="collections-layout">
             <div class="collections-side">
               <div class="side-card">
-                <small>Werkwijze</small>
-                <p>
+                <small data-i18n="side1Title">Werkwijze</small>
+                <p data-i18n="side1Text">
                   Ik werk met aandacht voor compositie, natuurlijk licht, structuur en timing. Niet alles hoeft luid te zijn om visueel sterk te blijven.
                 </p>
               </div>
 
               <div class="side-card">
-                <small>Visie</small>
-                <p>
+                <small data-i18n="side2Title">Visie</small>
+                <p data-i18n="side2Text">
                   Ik zoek naar beelden met rust, spanning, textuur en betekenis. Beelden die niet alleen tonen wat er is, maar ook laten voelen wat er gebeurt.
                 </p>
               </div>
 
               <div class="collections-nav">
-                <a class="collection-pill" href="#portraits">Portretten</a>
-                <a class="collection-pill" href="#bw">Zwart-wit</a>
-                <a class="collection-pill" href="#animals">Dieren</a>
-                <a class="collection-pill" href="#macro">Macro</a>
-                <a class="collection-pill" href="#botanical">Botanisch</a>
-                <a class="collection-pill" href="#places">Plaatsen & sfeer</a>
+                <a class="collection-pill" href="#portraits" data-i18n="pillPortraits">Portretten</a>
+                <a class="collection-pill" href="#bw" data-i18n="pillBW">Zwart-wit</a>
+                <a class="collection-pill" href="#animals" data-i18n="pillAnimals">Dieren</a>
+                <a class="collection-pill" href="#macro" data-i18n="pillMacro">Macro</a>
+                <a class="collection-pill" href="#botanical" data-i18n="pillBotanical">Botanisch</a>
+                <a class="collection-pill" href="#places" data-i18n="pillPlaces">Plaatsen & sfeer</a>
               </div>
             </div>
 
             <div class="sections-stack">
               <section id="portraits" class="panel collection-section">
                 <div class="panel-body">
-                  <div class="section-head"><div><h2>Portretten</h2></div></div>
+                  <div class="section-head"><div><h2 data-collection-heading="portraits">Portretten</h2></div></div>
                   <div class="collection-grid" data-gallery="portraits"></div>
                 </div>
               </section>
 
               <section id="bw" class="panel collection-section">
                 <div class="panel-body">
-                  <div class="section-head"><div><h2>Zwart-wit</h2></div></div>
+                  <div class="section-head"><div><h2 data-collection-heading="bw">Zwart-wit</h2></div></div>
                   <div class="collection-grid" data-gallery="bw"></div>
                 </div>
               </section>
 
               <section id="animals" class="panel collection-section">
                 <div class="panel-body">
-                  <div class="section-head"><div><h2>Dieren</h2></div></div>
+                  <div class="section-head"><div><h2 data-collection-heading="animals">Dieren</h2></div></div>
                   <div class="collection-grid" data-gallery="animals"></div>
                 </div>
               </section>
 
               <section id="macro" class="panel collection-section">
                 <div class="panel-body">
-                  <div class="section-head"><div><h2>Macro</h2></div></div>
+                  <div class="section-head"><div><h2 data-collection-heading="macro">Macro</h2></div></div>
                   <div class="collection-grid" data-gallery="macro"></div>
                 </div>
               </section>
 
               <section id="botanical" class="panel collection-section">
                 <div class="panel-body">
-                  <div class="section-head"><div><h2>Botanisch</h2></div></div>
+                  <div class="section-head"><div><h2 data-collection-heading="botanical">Botanisch</h2></div></div>
                   <div class="collection-grid" data-gallery="botanical"></div>
                 </div>
               </section>
 
               <section id="places" class="panel collection-section">
                 <div class="panel-body">
-                  <div class="section-head"><div><h2>Plaatsen & sfeer</h2></div></div>
+                  <div class="section-head"><div><h2 data-collection-heading="places">Plaatsen & sfeer</h2></div></div>
                   <div class="collection-grid" data-gallery="places"></div>
                 </div>
               </section>
@@ -1049,19 +1086,17 @@
           <div class="about-layout">
             <div>
               <div class="section-head">
-                <div><h2>Over mij</h2></div>
+                <div><h2 data-i18n="aboutTitle">Over mij</h2></div>
               </div>
 
               <div class="about-copy">
-                <p>
-                  Ik ben Rafal Wilk. Fotografie is voor mij meer dan het vastleggen van een onderwerp. Het is een manier van kijken waarin aandacht,
-                  geduld en gevoeligheid samenkomen.
+                <p data-i18n="aboutP1">
+                  Ik ben Rafal Wilk. Fotografie is voor mij meer dan het vastleggen van een onderwerp. Het is een manier van kijken waarin aandacht, geduld en gevoeligheid samenkomen.
                 </p>
-                <p>
-                  Ik zoek naar beelden waarin licht niet alleen verlicht, maar richting geeft. Soms ontstaat een sterk beeld in een fractie van een seconde.
-                  Soms pas na lang wachten.
+                <p data-i18n="aboutP2">
+                  Ik zoek naar beelden waarin licht niet alleen verlicht, maar richting geeft. Soms ontstaat een sterk beeld in een fractie van een seconde. Soms pas na lang wachten.
                 </p>
-                <p>
+                <p data-i18n="aboutP3">
                   Juist in die combinatie van techniek, intuïtie en tijd ligt voor mij de essentie van fotografie als kunstvorm.
                 </p>
               </div>
@@ -1080,24 +1115,24 @@
         <div class="panel-body">
           <div class="section-head">
             <div>
-              <h2>Contact</h2>
-              <p>Voor samenwerkingen, vragen of direct contact.</p>
+              <h2 data-i18n="contactTitle">Contact</h2>
+              <p data-i18n="contactIntro">Voor samenwerkingen, vragen of direct contact.</p>
             </div>
           </div>
 
           <div class="contact-grid">
             <a class="contact-item" href="mailto:fotodisogno@gmail.com">
-              <small>Email</small>
+              <small data-i18n="contactEmailLabel">Email</small>
               <strong>fotodisogno@gmail.com</strong>
             </a>
 
             <a class="contact-item" href="https://www.instagram.com/fotodisogno/" target="_blank" rel="noopener noreferrer">
-              <small>Instagram</small>
+              <small data-i18n="contactInstagramLabel">Instagram</small>
               <strong>@fotodisogno</strong>
             </a>
 
             <a class="contact-item" href="https://wa.me/31644747733" target="_blank" rel="noopener noreferrer">
-              <small>WhatsApp</small>
+              <small data-i18n="contactWhatsappLabel">WhatsApp</small>
               <strong>+31 644 747 733</strong>
             </a>
           </div>
@@ -1106,45 +1141,18 @@
     </section>
   </main>
 
-  <footer>
+  <footer data-i18n="footerText">
     Alle beelden op deze website zijn beschermd. Gebruik, opslag of verdere verwerking is niet toegestaan zonder voorafgaande toestemming.
   </footer>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lightbox-inner">
-      <button class="lightbox-close" id="lightboxClose" type="button">Sluiten</button>
+      <button class="lightbox-close" id="lightboxClose" type="button" data-i18n="closeText">Sluiten</button>
       <img class="lightbox-image" id="lightboxImage" alt="Portfolio preview" />
     </div>
   </div>
 
   <script>
-    const collectionInfo = {
-      portraits: {
-        title: "Portretten",
-        text: "Portretten met aanwezigheid, rust en subtiele emotie."
-      },
-      bw: {
-        title: "Zwart-wit",
-        text: "Beelden waarin vorm, contrast en stilte centraal staan."
-      },
-      animals: {
-        title: "Dieren",
-        text: "Observatie, timing en detail in natuurlijke expressie."
-      },
-      macro: {
-        title: "Macro",
-        text: "Kleine vormen, texturen en details die groot mogen voelen."
-      },
-      botanical: {
-        title: "Botanisch",
-        text: "Lijnen, kleur, structuur en zachte ritmes uit de natuur."
-      },
-      places: {
-        title: "Plaatsen & sfeer",
-        text: "Ruimte, licht en sfeer in beelden met een kalme opbouw."
-      }
-    };
-
     const galleries = {
       portraits: [
         "A7407707.jpg",
@@ -1199,38 +1207,256 @@
       ]
     };
 
+    const collectionInfo = {
+      nl: {
+        portraits: {
+          title: "Portretten",
+          text: "Portretten met aanwezigheid, rust en subtiele emotie."
+        },
+        bw: {
+          title: "Zwart-wit",
+          text: "Beelden waarin vorm, contrast en stilte centraal staan."
+        },
+        animals: {
+          title: "Dieren",
+          text: "Observatie, timing en detail in natuurlijke expressie."
+        },
+        macro: {
+          title: "Macro",
+          text: "Kleine vormen, texturen en details die groot mogen voelen."
+        },
+        botanical: {
+          title: "Botanisch",
+          text: "Lijnen, kleur, structuur en zachte ritmes uit de natuur."
+        },
+        places: {
+          title: "Plaatsen & sfeer",
+          text: "Ruimte, licht en sfeer in beelden met een kalme opbouw."
+        }
+      },
+      en: {
+        portraits: {
+          title: "Portraits",
+          text: "Portraits with presence, calm and subtle emotion."
+        },
+        bw: {
+          title: "Black & White",
+          text: "Images where form, contrast and silence take the lead."
+        },
+        animals: {
+          title: "Animals",
+          text: "Observation, timing and detail in natural expression."
+        },
+        macro: {
+          title: "Macro",
+          text: "Small forms, textures and details that deserve scale."
+        },
+        botanical: {
+          title: "Botanical",
+          text: "Lines, colour, structure and soft rhythms from nature."
+        },
+        places: {
+          title: "Places & Atmosphere",
+          text: "Space, light and atmosphere with a calm visual structure."
+        }
+      },
+      pl: {
+        portraits: {
+          title: "Portrety",
+          text: "Portrety z obecnością, spokojem i subtelną emocją."
+        },
+        bw: {
+          title: "Czarno-białe",
+          text: "Obrazy, w których najważniejsze są forma, kontrast i cisza."
+        },
+        animals: {
+          title: "Zwierzęta",
+          text: "Obserwacja, timing i detal w naturalnej ekspresji."
+        },
+        macro: {
+          title: "Makro",
+          text: "Małe formy, faktury i detale, które zasługują na uwagę."
+        },
+        botanical: {
+          title: "Botanika",
+          text: "Linie, kolor, struktura i miękki rytm natury."
+        },
+        places: {
+          title: "Miejsca i klimat",
+          text: "Przestrzeń, światło i klimat w spokojnej kompozycji."
+        }
+      }
+    };
+
+    const translations = {
+      nl: {
+        brandSubtitle: "Fotografie • Licht • Sfeer • Detail",
+        navCollections: "Collecties",
+        navAbout: "Over mij",
+        navContact: "Contact",
+        heroEyebrow: "Photography Portfolio",
+        heroTitle: "Beelden met rust, aandacht en karakter.",
+        heroLead: "Fotografie is voor mij geen snelle registratie, maar een manier van kijken. Ik zoek naar beelden waarin licht, timing, stilte en detail samenkomen. Van portret tot sfeerbeeld draait alles om aandacht, geduld en een heldere visuele stijl.",
+        heroPrimary: "Bekijk portfolio",
+        heroSecondary: "Lees meer",
+        heroCardTitle: "Visuele signatuur",
+        heroCardText: "Een premium portfolio met subtiele diepte, fotografische sfeer en een rustige, moderne opbouw. De eerste indruk laat meteen zien dat dit de website van een fotograaf is.",
+        meta1Title: "Portret",
+        meta1Text: "karakter en emotie",
+        meta2Title: "Detail",
+        meta2Text: "licht en textuur",
+        meta3Title: "Sfeer",
+        meta3Text: "rust en timing",
+        collectionsTitle: "Collecties",
+        collectionsIntro: "Hieronder staan mijn verschillende fotografische richtingen. Elke collectie heeft een eigen ritme, maar samen vormen ze één consistente visuele taal.",
+        side1Title: "Werkwijze",
+        side1Text: "Ik werk met aandacht voor compositie, natuurlijk licht, structuur en timing. Niet alles hoeft luid te zijn om visueel sterk te blijven.",
+        side2Title: "Visie",
+        side2Text: "Ik zoek naar beelden met rust, spanning, textuur en betekenis. Beelden die niet alleen tonen wat er is, maar ook laten voelen wat er gebeurt.",
+        pillPortraits: "Portretten",
+        pillBW: "Zwart-wit",
+        pillAnimals: "Dieren",
+        pillMacro: "Macro",
+        pillBotanical: "Botanisch",
+        pillPlaces: "Plaatsen & sfeer",
+        aboutTitle: "Over mij",
+        aboutP1: "Ik ben Rafal Wilk. Fotografie is voor mij meer dan het vastleggen van een onderwerp. Het is een manier van kijken waarin aandacht, geduld en gevoeligheid samenkomen.",
+        aboutP2: "Ik zoek naar beelden waarin licht niet alleen verlicht, maar richting geeft. Soms ontstaat een sterk beeld in een fractie van een seconde. Soms pas na lang wachten.",
+        aboutP3: "Juist in die combinatie van techniek, intuïtie en tijd ligt voor mij de essentie van fotografie als kunstvorm.",
+        contactTitle: "Contact",
+        contactIntro: "Voor samenwerkingen, vragen of direct contact.",
+        contactEmailLabel: "Email",
+        contactInstagramLabel: "Instagram",
+        contactWhatsappLabel: "WhatsApp",
+        footerText: "Alle beelden op deze website zijn beschermd. Gebruik, opslag of verdere verwerking is niet toegestaan zonder voorafgaande toestemming.",
+        closeText: "Sluiten"
+      },
+      en: {
+        brandSubtitle: "Photography • Light • Atmosphere • Detail",
+        navCollections: "Collections",
+        navAbout: "About",
+        navContact: "Contact",
+        heroEyebrow: "Photography Portfolio",
+        heroTitle: "Images with calm, attention and character.",
+        heroLead: "Photography is not a quick record for me. It is a way of seeing. I look for images in which light, timing, silence and detail come together. From portrait to atmosphere, everything is built on attention, patience and a clear visual style.",
+        heroPrimary: "View portfolio",
+        heroSecondary: "Read more",
+        heroCardTitle: "Visual signature",
+        heroCardText: "A premium portfolio with subtle depth, photographic atmosphere and a calm modern structure. The first impression should immediately show that this is a photographer’s website.",
+        meta1Title: "Portrait",
+        meta1Text: "character and emotion",
+        meta2Title: "Detail",
+        meta2Text: "light and texture",
+        meta3Title: "Atmosphere",
+        meta3Text: "calm and timing",
+        collectionsTitle: "Collections",
+        collectionsIntro: "Below are my different photographic directions. Each collection has its own rhythm, yet together they form one consistent visual language.",
+        side1Title: "Approach",
+        side1Text: "I work with attention to composition, natural light, structure and timing. Not everything needs to be loud to remain visually strong.",
+        side2Title: "Vision",
+        side2Text: "I look for images with calm, tension, texture and meaning. Images that do not only show what is there, but also let you feel what is happening.",
+        pillPortraits: "Portraits",
+        pillBW: "Black & White",
+        pillAnimals: "Animals",
+        pillMacro: "Macro",
+        pillBotanical: "Botanical",
+        pillPlaces: "Places & Atmosphere",
+        aboutTitle: "About",
+        aboutP1: "My name is Rafal Wilk. Photography is more than recording a subject for me. It is a way of seeing in which attention, patience and sensitivity come together.",
+        aboutP2: "I look for images in which light does more than illuminate. It gives direction. Sometimes a strong image appears in a fraction of a second. Sometimes only after long waiting.",
+        aboutP3: "For me, the essence of photography as an art form lives in that combination of technique, intuition and time.",
+        contactTitle: "Contact",
+        contactIntro: "For collaborations, questions or direct contact.",
+        contactEmailLabel: "Email",
+        contactInstagramLabel: "Instagram",
+        contactWhatsappLabel: "WhatsApp",
+        footerText: "All images on this website are protected. Use, storage or further processing is not allowed without prior permission.",
+        closeText: "Close"
+      },
+      pl: {
+        brandSubtitle: "Fotografia • Światło • Klimat • Detal",
+        navCollections: "Kolekcje",
+        navAbout: "O mnie",
+        navContact: "Kontakt",
+        heroEyebrow: "Portfolio fotograficzne",
+        heroTitle: "Obrazy z charakterem, spokojem i uwagą.",
+        heroLead: "Fotografia nie jest dla mnie szybkim zapisem. To sposób patrzenia. Szukam obrazów, w których spotykają się światło, timing, cisza i detal. Od portretu po klimat, wszystko opiera się na uważności, cierpliwości i czytelnym stylu wizualnym.",
+        heroPrimary: "Zobacz portfolio",
+        heroSecondary: "Czytaj więcej",
+        heroCardTitle: "Język wizualny",
+        heroCardText: "To premium portfolio z subtelną głębią, fotograficznym klimatem i spokojnym nowoczesnym układem. Pierwsze wrażenie ma od razu pokazywać, że to strona fotografa.",
+        meta1Title: "Portret",
+        meta1Text: "charakter i emocja",
+        meta2Title: "Detal",
+        meta2Text: "światło i faktura",
+        meta3Title: "Klimat",
+        meta3Text: "spokój i timing",
+        collectionsTitle: "Kolekcje",
+        collectionsIntro: "Poniżej znajdują się moje różne kierunki fotograficzne. Każda kolekcja ma własny rytm, ale razem tworzą jeden spójny język wizualny.",
+        side1Title: "Podejście",
+        side1Text: "Pracuję z uwagą na kompozycję, naturalne światło, strukturę i timing. Nie wszystko musi być głośne, żeby było wizualnie mocne.",
+        side2Title: "Wizja",
+        side2Text: "Szukam obrazów, które mają spokój, napięcie, fakturę i znaczenie. Obrazów, które nie tylko pokazują, co jest, ale także pozwalają poczuć, co się dzieje.",
+        pillPortraits: "Portrety",
+        pillBW: "Czarno-białe",
+        pillAnimals: "Zwierzęta",
+        pillMacro: "Makro",
+        pillBotanical: "Botanika",
+        pillPlaces: "Miejsca i klimat",
+        aboutTitle: "O mnie",
+        aboutP1: "Nazywam się Rafal Wilk. Fotografia to dla mnie coś więcej niż zapis tematu. To sposób patrzenia, w którym spotykają się uwaga, cierpliwość i wrażliwość.",
+        aboutP2: "Szukam obrazów, w których światło robi więcej niż tylko oświetla. Ono nadaje kierunek. Czasem mocne zdjęcie powstaje w ułamku sekundy. Czasem dopiero po długim czekaniu.",
+        aboutP3: "Właśnie w tym połączeniu techniki, intuicji i czasu odnajduję istotę fotografii jako sztuki.",
+        contactTitle: "Kontakt",
+        contactIntro: "Do współpracy, pytań lub bezpośredniego kontaktu.",
+        contactEmailLabel: "Email",
+        contactInstagramLabel: "Instagram",
+        contactWhatsappLabel: "WhatsApp",
+        footerText: "Wszystkie zdjęcia na tej stronie są chronione. Użycie, przechowywanie lub dalsze przetwarzanie bez wcześniejszej zgody nie jest dozwolone.",
+        closeText: "Zamknij"
+      }
+    };
+
+    let currentLang = "nl";
+
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightboxImage");
     const lightboxClose = document.getElementById("lightboxClose");
 
-    function renderCards() {
+    function renderCards(lang) {
       const container = document.getElementById("collectionCards");
       const order = ["portraits","bw","animals","macro","botanical","places"];
 
       container.innerHTML = order.map((key) => {
         const files = galleries[key] || [];
         const cover = files[0] ? `images/photos/${files[0]}` : "";
+        const info = collectionInfo[lang][key];
         return `
           <a class="collection-card" href="#${key}">
-            <img src="${cover}" alt="${collectionInfo[key].title}" loading="lazy" />
+            <img src="${cover}" alt="${info.title}" loading="lazy" />
             <div class="collection-card-content">
-              <small>${files.length} beelden</small>
-              <strong>${collectionInfo[key].title}</strong>
-              <span>${collectionInfo[key].text}</span>
+              <small>${files.length} ${lang === "pl" ? "zdjęć" : lang === "en" ? "images" : "beelden"}</small>
+              <strong>${info.title}</strong>
+              <span>${info.text}</span>
             </div>
           </a>
         `;
       }).join("");
     }
 
-    function renderGalleries() {
+    function renderGalleries(lang) {
+      document.querySelectorAll("[data-collection-heading]").forEach(el => {
+        const key = el.getAttribute("data-collection-heading");
+        el.textContent = collectionInfo[lang][key].title;
+      });
+
       document.querySelectorAll("[data-gallery]").forEach(grid => {
         const key = grid.getAttribute("data-gallery");
         const files = galleries[key] || [];
 
         grid.innerHTML = files.map(file => `
           <figure class="collection-item" data-full="images/photos/${file}">
-            <img src="images/photos/${file}" alt="${file}" loading="lazy" />
+            <img src="images/photos/${file}" alt="${collectionInfo[lang][key].title}" loading="lazy" />
           </figure>
         `).join("");
       });
@@ -1244,11 +1470,35 @@
       });
     }
 
+    function applyLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang];
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) el.textContent = dict[key];
+      });
+
+      document.querySelectorAll("[data-lang-btn]").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-lang-btn") === lang);
+      });
+
+      renderCards(lang);
+      renderGalleries(lang);
+    }
+
     function closeLightbox() {
       lightbox.classList.remove("open");
       lightbox.setAttribute("aria-hidden", "true");
       lightboxImage.src = "";
     }
+
+    document.querySelectorAll("[data-lang-btn]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        applyLanguage(btn.getAttribute("data-lang-btn"));
+      });
+    });
 
     lightboxClose.addEventListener("click", closeLightbox);
     lightbox.addEventListener("click", (e) => {
@@ -1258,8 +1508,7 @@
       if (e.key === "Escape") closeLightbox();
     });
 
-    renderCards();
-    renderGalleries();
+    applyLanguage("nl");
   </script>
 </body>
 </html>
