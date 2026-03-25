@@ -300,9 +300,9 @@
       z-index:3;
       min-height:790px;
       display:grid;
-      grid-template-columns:minmax(0,1.08fr) minmax(320px,430px);
+      grid-template-columns:1fr;
       gap:28px;
-      align-items:end;
+      align-items:center;
       padding:46px;
     }
 
@@ -383,71 +383,6 @@
       border-color:rgba(211,177,124,.28);
       background:linear-gradient(135deg, rgba(211,177,124,.24), rgba(255,255,255,.08));
       box-shadow:0 8px 30px rgba(0,0,0,.24);
-    }
-
-    .hero-card{
-      align-self:end;
-      justify-self:end;
-      width:min(100%, 430px);
-      padding:26px;
-      border-radius:26px;
-      border:1px solid rgba(255,255,255,.10);
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      backdrop-filter:blur(14px);
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-card::before{
-      content:"";
-      position:absolute;
-      inset:0 auto auto 0;
-      width:180px;
-      height:1px;
-      background:linear-gradient(90deg, rgba(211,177,124,.62), transparent);
-    }
-
-    .hero-card-title{
-      font-size:.78rem;
-      color:var(--muted-2);
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      margin-bottom:12px;
-    }
-
-    .hero-card p{
-      margin:0;
-      color:rgba(255,255,255,.86);
-      line-height:1.82;
-      font-size:.98rem;
-    }
-
-    .hero-meta{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:10px;
-      margin-top:18px;
-    }
-
-    .hero-meta .item{
-      padding:14px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.04);
-    }
-
-    .hero-meta strong{
-      display:block;
-      margin-bottom:4px;
-      font-size:1rem;
-      font-family:Georgia,"Times New Roman",serif;
-      font-weight:600;
-    }
-
-    .hero-meta span{
-      color:var(--muted-2);
-      font-size:.82rem;
     }
 
     .section{
@@ -876,10 +811,6 @@
       .about-layout{
         grid-template-columns:1fr;
       }
-      .hero-card{
-        width:100%;
-        justify-self:stretch;
-      }
       .collections-side{
         grid-template-columns:repeat(2,minmax(0,1fr));
       }
@@ -931,8 +862,7 @@
       .collections-side,
       .collection-cards,
       .collection-grid,
-      .contact-grid,
-      .hero-meta{
+      .contact-grid{
         grid-template-columns:1fr;
       }
       .hero-camera{
@@ -1011,28 +941,6 @@
             <a class="btn" href="#about" data-i18n="heroSecondary">Lees meer</a>
           </div>
         </div>
-
-        <aside class="hero-card">
-          <div class="hero-card-title" data-i18n="heroCardTitle">Visuele signatuur</div>
-          <p data-i18n="heroCardText">
-            Een premium portfolio met subtiele diepte, fotografische sfeer en een rustige, moderne opbouw. De eerste indruk laat meteen zien dat dit de website van een fotograaf is.
-          </p>
-
-          <div class="hero-meta">
-            <div class="item">
-              <strong data-i18n="meta1Title">Portret</strong>
-              <span data-i18n="meta1Text">karakter en emotie</span>
-            </div>
-            <div class="item">
-              <strong data-i18n="meta2Title">Detail</strong>
-              <span data-i18n="meta2Text">licht en textuur</span>
-            </div>
-            <div class="item">
-              <strong data-i18n="meta3Title">Sfeer</strong>
-              <span data-i18n="meta3Text">rust en timing</span>
-            </div>
-          </div>
-        </aside>
       </div>
     </div>
   </section>
@@ -1264,14 +1172,6 @@
         heroLead: "Fotografie is voor mij geen snelle registratie, maar een manier van kijken. Ik zoek naar beelden waarin licht, timing, stilte en detail samenkomen. Van portret tot sfeerbeeld draait alles om aandacht, geduld en een heldere visuele stijl.",
         heroPrimary: "Bekijk portfolio",
         heroSecondary: "Lees meer",
-        heroCardTitle: "Visuele signatuur",
-        heroCardText: "Een premium portfolio met subtiele diepte, fotografische sfeer en een rustige, moderne opbouw. De eerste indruk laat meteen zien dat dit de website van een fotograaf is.",
-        meta1Title: "Portret",
-        meta1Text: "karakter en emotie",
-        meta2Title: "Detail",
-        meta2Text: "licht en textuur",
-        meta3Title: "Sfeer",
-        meta3Text: "rust en timing",
         collectionsTitle: "Collecties",
         collectionsIntro: "Hieronder staan mijn verschillende fotografische richtingen. Elke collectie heeft een eigen ritme, maar samen vormen ze één consistente visuele taal.",
         side1Title: "Werkwijze",
@@ -1306,14 +1206,6 @@
         heroLead: "Photography is not a quick record for me. It is a way of seeing. I look for images in which light, timing, silence and detail come together. From portrait to atmosphere, everything is built on attention, patience and a clear visual style.",
         heroPrimary: "View portfolio",
         heroSecondary: "Read more",
-        heroCardTitle: "Visual signature",
-        heroCardText: "A premium portfolio with subtle depth, photographic atmosphere and a calm modern structure. The first impression should immediately show that this is a photographer’s website.",
-        meta1Title: "Portrait",
-        meta1Text: "character and emotion",
-        meta2Title: "Detail",
-        meta2Text: "light and texture",
-        meta3Title: "Atmosphere",
-        meta3Text: "calm and timing",
         collectionsTitle: "Collections",
         collectionsIntro: "Below are my different photographic directions. Each collection has its own rhythm, yet together they form one consistent visual language.",
         side1Title: "Approach",
@@ -1348,14 +1240,6 @@
         heroLead: "Fotografia nie jest dla mnie szybkim zapisem. To sposób patrzenia. Szukam obrazów, w których spotykają się światło, timing, cisza i detal. Od portretu po klimat, wszystko opiera się na uważności, cierpliwości i czytelnym stylu wizualnym.",
         heroPrimary: "Zobacz portfolio",
         heroSecondary: "Czytaj więcej",
-        heroCardTitle: "Język wizualny",
-        heroCardText: "To premium portfolio z subtelną głębią, fotograficznym klimatem i spokojnym nowoczesnym układem. Pierwsze wrażenie ma od razu pokazywać, że to strona fotografa.",
-        meta1Title: "Portret",
-        meta1Text: "charakter i emocja",
-        meta2Title: "Detal",
-        meta2Text: "światło i faktura",
-        meta3Title: "Klimat",
-        meta3Text: "spokój i timing",
         collectionsTitle: "Kolekcje",
         collectionsIntro: "Poniżej znajdują się moje różne kierunki fotograficzne. Każda kolekcja ma własny rytm, ale razem tworzą jeden spójny język wizualny.",
         side1Title: "Podejście",
