@@ -486,6 +486,7 @@
       z-index:1;
       filter:brightness(.56) contrast(1.05) saturate(.92);
       transition:transform .45s ease, filter .45s ease;
+      background:#0f0f0f;
     }
 
     .collection-card::after{
@@ -632,6 +633,7 @@
       transform:scale(1.18);
       transition:transform .45s ease, filter .45s ease;
       z-index:1;
+      background-color:#101010;
     }
 
     .thumb-overlay{
@@ -664,6 +666,7 @@
       object-position:center center;
       transition:transform .45s ease;
       filter:drop-shadow(0 12px 28px rgba(0,0,0,.28));
+      background:#0e0e0e;
     }
 
     .collection-item:hover .thumb-bg{
@@ -1125,13 +1128,13 @@
         "A7407409.jpg",
         "A7407402.jpg",
         "A7407373.jpg",
-        
+        "DSC_0372.jpg"
       ],
       animals: [
         "A7407839.jpg",
         "A7406653.avif",
         "DSCF3455.jpg",
-        
+        "DSCF4010.jpg"
       ],
       macro: [
         "A7403102.avif",
@@ -1147,20 +1150,19 @@
         "DSCF3854-2.jpg",
         "A7407521.png"
       ],
-  
-        places: [
-  "A7406608.jpg",
-  "A7406611.avif",
-  "A7406616.avif",
-  "A7408390.avif",
-  "DSC_2985.avif",
-  "A7407223.jpg",
-  "A7408846.avif",
-  "A7409171.avif",
-  "DSC_0029-2.png",
-  "A7407366.jpg",
-  "DSC_02526.jpg"
-]
+      places: [
+        "A7406608.jpg",
+        "A7406611.avif",
+        "A7406616.avif",
+        "A7408390.avif",
+        "DSC_2985.avif",
+        "A7407223.jpg",
+        "A7408846.avif",
+        "A7409171.avif",
+        "DSC_0029-2.png",
+        "A7407366.jpg",
+        "DSC_02526"
+      ]
     };
 
     const translations = {
@@ -1299,17 +1301,91 @@
     const lightboxImage = document.getElementById("lightboxImage");
     const lightboxClose = document.getElementById("lightboxClose");
 
+    function splitName(file){
+      const lastDot = file.lastIndexOf(".");
+      if (lastDot === -1) {
+        return { base:file, ext:"" };
+      }
+      return {
+        base:file.slice(0, lastDot),
+        ext:file.slice(lastDot + 1)
+      };
+    }
+
+    function buildCandidates(file){
+      const { base, ext } = splitName(file);
+      const exts = ext
+        ? [ext, ext.toLowerCase(), ext.toUpperCase(), ext === "jpg" ? "JPG" : ext === "JPG" ? "jpg" : ext]
+        : ["jpg","JPG","jpeg","JPEG","png","PNG","avif","AVIF","webp","WEBP"];
+
+      return [...new Set(exts.map(e => `images/photos/${base}.${e}`))];
+    }
+
+    function findWorkingImage(file){
+      const candidates = buildCandidates(file);
+
+      return new Promise((resolve) => {
+        let index = 0;
+
+        function tryNext(){
+          if (index >= candidates.length) {
+            resolve(null);
+            return;
+          }
+
+          const src = candidates[index++];
+          const img = new Image();
+
+          img.onload = () => resolve(src);
+          img.onerror = tryNext;
+          img.src = src;
+        }
+
+        tryNext();
+      });
+    }
+
+    async function hydrateImages() {
+      const imageNodes = [...document.querySelectorAll("[data-file]")];
+      await Promise.all(imageNodes.map(async (node) => {
+        const file = node.getAttribute("data-file");
+        const resolved = await findWorkingImage(file);
+        if (resolved) {
+          node.src = resolved;
+          node.style.visibility = "visible";
+        }
+      }));
+
+      const bgNodes = [...document.querySelectorAll("[data-bg-file]")];
+      await Promise.all(bgNodes.map(async (node) => {
+        const file = node.getAttribute("data-bg-file");
+        const resolved = await findWorkingImage(file);
+        if (resolved) {
+          node.style.backgroundImage = `url('${resolved}')`;
+        }
+      }));
+
+      document.querySelectorAll(".collection-item").forEach(async (item) => {
+        const file = item.getAttribute("data-full-file");
+        const resolved = await findWorkingImage(file);
+        if (resolved) {
+          item.setAttribute("data-full", resolved);
+        }
+      });
+    }
+
     function renderCards(lang) {
       const container = document.getElementById("collectionCards");
       const order = ["portraits","bw","animals","macro","botanical","places"];
 
       container.innerHTML = order.map((key) => {
         const files = galleries[key] || [];
-        const cover = files[0] ? `images/photos/${files[0]}` : "";
+        const cover = files[0] || "";
         const info = collectionInfo[lang][key];
+
         return `
           <a class="collection-card" href="#${key}">
-            <img src="${cover}" alt="${info.title}" loading="lazy" />
+            <img data-file="${cover}" alt="${info.title}" loading="lazy" style="visibility:hidden;" />
             <div class="collection-card-content">
               <small>${files.length} ${lang === "pl" ? "zdjęć" : lang === "en" ? "images" : "beelden"}</small>
               <strong>${info.title}</strong>
@@ -1320,12 +1396,12 @@
       }).join("");
     }
 
-    function createThumbMarkup(src, alt) {
+    function createThumbMarkup(file, alt) {
       return `
-        <div class="thumb-bg" style="background-image:url('${src}')"></div>
+        <div class="thumb-bg" data-bg-file="${file}"></div>
         <div class="thumb-overlay"></div>
         <div class="thumb-frame">
-          <img class="thumb-image" src="${src}" alt="${alt}" loading="lazy" />
+          <img class="thumb-image" data-file="${file}" alt="${alt}" loading="lazy" style="visibility:hidden;" />
         </div>
       `;
     }
@@ -1341,11 +1417,10 @@
         const files = galleries[key] || [];
 
         grid.innerHTML = files.map(file => {
-          const src = `images/photos/${file}`;
           const alt = collectionInfo[lang][key].title;
           return `
-            <figure class="collection-item" data-full="${src}">
-              ${createThumbMarkup(src, alt)}
+            <figure class="collection-item" data-full-file="${file}">
+              ${createThumbMarkup(file, alt)}
             </figure>
           `;
         }).join("");
@@ -1353,14 +1428,16 @@
 
       document.querySelectorAll(".collection-item").forEach(item => {
         item.addEventListener("click", () => {
-          lightboxImage.src = item.getAttribute("data-full");
+          const full = item.getAttribute("data-full");
+          if (!full) return;
+          lightboxImage.src = full;
           lightbox.classList.add("open");
           lightbox.setAttribute("aria-hidden", "false");
         });
       });
     }
 
-    function applyLanguage(lang) {
+    async function applyLanguage(lang) {
       document.documentElement.lang = lang;
 
       const dict = translations[lang];
@@ -1375,6 +1452,7 @@
 
       renderCards(lang);
       renderGalleries(lang);
+      await hydrateImages();
     }
 
     function closeLightbox() {
