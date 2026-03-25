@@ -4,24 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rafal Wilk | Fotografie</title>
-  <meta name="description" content="Portfolio van Rafal Wilk — fotografie met aandacht voor licht, sfeer en detail." />
+  <meta name="description" content="Portfolio van Rafal Wilk — fotografie met aandacht voor licht, sfeer, detail en karakter." />
   <style>
     :root{
-      --bg:#060606;
-      --bg-soft:#0b0b0b;
+      --bg:#070707;
+      --bg-soft:#0d0d0d;
       --panel:rgba(255,255,255,.05);
-      --panel-2:rgba(255,255,255,.03);
+      --panel-soft:rgba(255,255,255,.03);
       --border:rgba(255,255,255,.09);
-      --text:#f6f1e8;
-      --muted:rgba(246,241,232,.76);
-      --muted-2:rgba(246,241,232,.48);
-      --gold:#d5b17a;
-      --gold-soft:rgba(213,177,122,.18);
-      --shadow:0 24px 80px rgba(0,0,0,.42);
-      --radius-xl:30px;
-      --radius-lg:22px;
-      --radius-md:16px;
-      --maxw:1400px;
+      --text:#f5efe6;
+      --muted:rgba(245,239,230,.76);
+      --muted-2:rgba(245,239,230,.48);
+      --accent:#d3b17c;
+      --accent-soft:rgba(211,177,124,.16);
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+      --radius-xl:32px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --maxw:1420px;
     }
 
     *{box-sizing:border-box}
@@ -31,9 +31,9 @@
       font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 12% 8%, rgba(255,255,255,.04), transparent 16%),
-        radial-gradient(circle at 84% 0%, rgba(213,177,122,.08), transparent 18%),
-        linear-gradient(180deg,#040404 0%, #090909 40%, #050505 100%);
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.04), transparent 16%),
+        radial-gradient(circle at 90% 0%, rgba(211,177,124,.06), transparent 18%),
+        linear-gradient(180deg, #040404 0%, #0a0a0a 40%, #050505 100%);
       overflow-x:hidden;
       position:relative;
     }
@@ -43,24 +43,22 @@
       position:fixed;
       inset:0;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
-        url("images/camera-texture.jpg") center center / cover no-repeat;
-      opacity:.11;
+        radial-gradient(circle at 78% 12%, rgba(211,177,124,.08), transparent 16%),
+        radial-gradient(circle at 14% 76%, rgba(255,255,255,.03), transparent 18%);
       pointer-events:none;
       z-index:-2;
-      filter:blur(1px) saturate(.9);
     }
 
     body::after{
       content:"";
       position:fixed;
       inset:0;
+      opacity:.04;
       background-image:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,.6) 0.7px, transparent 0.8px),
-        radial-gradient(circle at 70% 60%, rgba(255,255,255,.45) 0.7px, transparent 0.8px),
-        radial-gradient(circle at 50% 90%, rgba(255,255,255,.35) 0.7px, transparent 0.8px);
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.8) .8px, transparent .9px),
+        radial-gradient(circle at 72% 60%, rgba(255,255,255,.65) .8px, transparent .9px),
+        radial-gradient(circle at 50% 85%, rgba(255,255,255,.4) .8px, transparent .9px);
       background-size:180px 180px;
-      opacity:.045;
       pointer-events:none;
       z-index:-1;
     }
@@ -82,7 +80,7 @@
     .topbar-inner{
       width:min(calc(100% - 32px), var(--maxw));
       margin:0 auto;
-      min-height:76px;
+      min-height:78px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -102,11 +100,11 @@
       border-radius:15px;
       border:1px solid var(--border);
       background:
-        linear-gradient(135deg, rgba(213,177,122,.22), rgba(255,255,255,.04)),
+        linear-gradient(135deg, rgba(211,177,124,.22), rgba(255,255,255,.04)),
         rgba(255,255,255,.04);
-      box-shadow:var(--shadow);
       display:grid;
       place-items:center;
+      box-shadow:var(--shadow);
       flex:0 0 auto;
     }
 
@@ -123,9 +121,9 @@
     .brand-text strong{
       display:block;
       font-family:Georgia,"Times New Roman",serif;
-      font-size:1.02rem;
-      letter-spacing:-.02em;
+      font-size:1.03rem;
       font-weight:600;
+      letter-spacing:-.02em;
     }
 
     .brand-text span{
@@ -167,11 +165,11 @@
       margin:0 auto;
       position:relative;
       overflow:hidden;
-      min-height:760px;
-      border-radius:36px;
+      min-height:780px;
+      border-radius:38px;
       border:1px solid rgba(255,255,255,.08);
       background:#090909;
-      box-shadow:0 28px 90px rgba(0,0,0,.45);
+      box-shadow:0 30px 90px rgba(0,0,0,.46);
       isolation:isolate;
     }
 
@@ -182,7 +180,7 @@
       height:100%;
       object-fit:cover;
       object-position:center center;
-      filter:brightness(.38) contrast(1.08) saturate(.88);
+      filter:brightness(.38) contrast(1.05) saturate(.9);
       transform:scale(1.02);
       z-index:1;
     }
@@ -192,38 +190,52 @@
       inset:0;
       z-index:2;
       background:
-        radial-gradient(circle at 74% 18%, rgba(213,177,122,.18), transparent 22%),
-        radial-gradient(circle at 62% 72%, rgba(213,177,122,.10), transparent 20%),
-        linear-gradient(90deg, rgba(0,0,0,.84) 0%, rgba(0,0,0,.60) 40%, rgba(0,0,0,.22) 100%);
+        radial-gradient(circle at 76% 16%, rgba(211,177,124,.13), transparent 20%),
+        linear-gradient(90deg, rgba(0,0,0,.84) 0%, rgba(0,0,0,.58) 40%, rgba(0,0,0,.20) 100%);
       pointer-events:none;
     }
 
-    .hero-glow{
+    .hero-camera{
+      position:absolute;
+      right:-4%;
+      bottom:-4%;
+      width:min(56vw, 880px);
+      opacity:.18;
+      z-index:2;
+      filter:brightness(.95) contrast(1.08) saturate(.9) blur(.5px);
+      transform:rotate(-6deg);
+      pointer-events:none;
+      mix-blend-mode:screen;
+    }
+
+    .hero-grain{
       position:absolute;
       inset:0;
       z-index:2;
+      opacity:.05;
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(255,255,255,.85) .7px, transparent .8px),
+        radial-gradient(circle at 70% 36%, rgba(255,255,255,.65) .7px, transparent .8px),
+        radial-gradient(circle at 42% 88%, rgba(255,255,255,.45) .7px, transparent .8px);
+      background-size:180px 180px;
       pointer-events:none;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.03), transparent 15%, transparent 85%, rgba(255,255,255,.02)),
-        radial-gradient(circle at 18% 18%, rgba(255,255,255,.05), transparent 20%);
-      mix-blend-mode:screen;
     }
 
     .hero-inner{
       position:relative;
       z-index:3;
-      min-height:760px;
+      min-height:780px;
       display:grid;
-      grid-template-columns:minmax(0,1.15fr) minmax(320px,430px);
+      grid-template-columns:minmax(0,1.14fr) minmax(320px,430px);
       gap:28px;
       align-items:end;
-      padding:44px;
+      padding:46px;
     }
 
     .hero-copy{
       align-self:center;
-      max-width:740px;
-      padding-top:26px;
+      max-width:760px;
+      padding-top:18px;
     }
 
     .eyebrow{
@@ -246,25 +258,25 @@
       width:7px;
       height:7px;
       border-radius:999px;
-      background:var(--gold);
-      box-shadow:0 0 18px rgba(213,177,122,.55);
+      background:var(--accent);
+      box-shadow:0 0 18px rgba(211,177,124,.55);
     }
 
     h1{
       margin:0;
       font-family:Georgia,"Times New Roman",serif;
       font-weight:500;
-      font-size:clamp(2.9rem, 6vw, 6.1rem);
-      line-height:.95;
-      letter-spacing:-.045em;
-      max-width:10ch;
+      font-size:clamp(3rem, 6vw, 6.3rem);
+      line-height:.94;
+      letter-spacing:-.05em;
+      max-width:9.5ch;
     }
 
     .hero-lead{
       margin:22px 0 0;
-      color:rgba(246,241,232,.82);
-      font-size:1.06rem;
-      line-height:1.9;
+      color:rgba(245,239,230,.82);
+      font-size:1.07rem;
+      line-height:1.92;
       max-width:60ch;
     }
 
@@ -294,16 +306,16 @@
     }
 
     .btn.primary{
-      border-color:rgba(213,177,122,.28);
-      background:linear-gradient(135deg, rgba(213,177,122,.24), rgba(255,255,255,.08));
-      box-shadow:0 8px 30px rgba(0,0,0,.25);
+      border-color:rgba(211,177,124,.28);
+      background:linear-gradient(135deg, rgba(211,177,124,.24), rgba(255,255,255,.08));
+      box-shadow:0 8px 30px rgba(0,0,0,.24);
     }
 
     .hero-card{
       align-self:end;
       justify-self:end;
       width:min(100%, 430px);
-      padding:24px;
+      padding:26px;
       border-radius:26px;
       border:1px solid rgba(255,255,255,.10);
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
@@ -319,7 +331,7 @@
       inset:0 auto auto 0;
       width:180px;
       height:1px;
-      background:linear-gradient(90deg, rgba(213,177,122,.6), transparent);
+      background:linear-gradient(90deg, rgba(211,177,124,.62), transparent);
     }
 
     .hero-card-title{
@@ -385,7 +397,22 @@
       inset:0 auto auto 0;
       width:220px;
       height:1px;
-      background:linear-gradient(90deg, rgba(213,177,122,.45), transparent);
+      background:linear-gradient(90deg, rgba(211,177,124,.46), transparent);
+    }
+
+    .panel::after{
+      content:"";
+      position:absolute;
+      right:-8%;
+      top:0;
+      width:min(40vw, 520px);
+      height:100%;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
+        url("images/fuji-xt4-overlay.jpg") center center / cover no-repeat;
+      opacity:.05;
+      filter:blur(2px) grayscale(.15);
+      pointer-events:none;
     }
 
     .panel-body{
@@ -405,7 +432,7 @@
     .section-head h2{
       margin:0;
       font-family:Georgia,"Times New Roman",serif;
-      font-size:clamp(1.8rem,3vw,2.7rem);
+      font-size:clamp(1.9rem,3vw,2.8rem);
       font-weight:500;
       letter-spacing:-.03em;
     }
@@ -413,13 +440,13 @@
     .section-head p{
       margin:10px 0 0;
       color:var(--muted);
-      max-width:70ch;
-      line-height:1.85;
+      max-width:72ch;
+      line-height:1.88;
     }
 
     .collections-layout{
       display:grid;
-      grid-template-columns:350px minmax(0,1fr);
+      grid-template-columns:360px minmax(0,1fr);
       gap:20px;
     }
 
@@ -443,8 +470,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:
-        radial-gradient(circle at 88% 10%, rgba(213,177,122,.10), transparent 22%);
+      background:radial-gradient(circle at 88% 12%, rgba(211,177,124,.10), transparent 22%);
       pointer-events:none;
     }
 
@@ -459,7 +485,7 @@
     .side-card p{
       margin:0;
       color:var(--muted);
-      line-height:1.85;
+      line-height:1.86;
     }
 
     .collections-nav{
@@ -488,7 +514,7 @@
     }
 
     .collection-section{
-      scroll-margin-top:98px;
+      scroll-margin-top:100px;
     }
 
     .collection-grid{
@@ -513,7 +539,7 @@
       height:100%;
       object-fit:cover;
       transition:transform .45s ease, filter .45s ease;
-      filter:brightness(.95) saturate(.95);
+      filter:brightness(.95) saturate(.96);
     }
 
     .collection-item:hover img{
@@ -525,14 +551,13 @@
       content:"";
       position:absolute;
       inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.22) 100%);
+      background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.22) 100%);
       pointer-events:none;
     }
 
     .about-layout{
       display:grid;
-      grid-template-columns:minmax(0,1.1fr) 390px;
+      grid-template-columns:minmax(0,1.12fr) 390px;
       gap:22px;
       align-items:start;
     }
@@ -588,7 +613,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:radial-gradient(circle at 86% 12%, rgba(213,177,122,.10), transparent 24%);
+      background:radial-gradient(circle at 86% 12%, rgba(211,177,124,.10), transparent 24%);
       pointer-events:none;
     }
 
@@ -671,6 +696,11 @@
       .collections-side{
         grid-template-columns:repeat(2,minmax(0,1fr));
       }
+      .hero-camera{
+        width:min(78vw, 760px);
+        right:-12%;
+        bottom:-8%;
+      }
     }
 
     @media (max-width:920px){
@@ -709,6 +739,12 @@
       .hero-meta{
         grid-template-columns:1fr;
       }
+      .hero-camera{
+        width:110vw;
+        right:-28%;
+        bottom:-12%;
+        opacity:.14;
+      }
       h1{
         max-width:none;
       }
@@ -736,9 +772,10 @@
 
   <section class="hero">
     <div class="hero-shell">
-      <img class="hero-bg" src="images/hero-camera.jpg" alt="Fujifilm X-T4 background" />
+      <img class="hero-bg" src="images/hero.jpg" alt="Hero background" />
+      <img class="hero-camera" src="images/fuji-xt4-overlay.jpg" alt="Fujifilm X-T4 visual" />
       <div class="hero-overlay"></div>
-      <div class="hero-glow"></div>
+      <div class="hero-grain"></div>
 
       <div class="hero-inner">
         <div class="hero-copy">
