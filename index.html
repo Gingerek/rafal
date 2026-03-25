@@ -53,7 +53,7 @@
       content:"";
       position:fixed;
       inset:0;
-      opacity:.035;
+      opacity:.03;
       background-image:
         radial-gradient(circle at 20% 30%, rgba(255,255,255,.85) .8px, transparent .9px),
         radial-gradient(circle at 72% 56%, rgba(255,255,255,.65) .8px, transparent .9px),
@@ -65,13 +65,13 @@
 
     .floating-camera{
       position:fixed;
-      right:-110px;
+      right:-100px;
       top:18%;
-      width:min(44vw, 620px);
+      width:min(42vw, 600px);
       aspect-ratio:4/3;
       z-index:0;
       pointer-events:none;
-      opacity:.06;
+      opacity:.05;
       filter:blur(.2px);
       background:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 480' fill='none' stroke='%23d3b17c' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='90' y='150' width='460' height='220' rx='36'/%3E%3Cpath d='M190 150l35-50h190l35 50'/%3E%3Ccircle cx='320' cy='260' r='76'/%3E%3Ccircle cx='320' cy='260' r='34'/%3E%3Ccircle cx='470' cy='205' r='10' fill='%23d3b17c' stroke='none'/%3E%3C/svg%3E")
@@ -87,7 +87,7 @@
       aspect-ratio:1;
       z-index:0;
       pointer-events:none;
-      opacity:.05;
+      opacity:.045;
       border-radius:50%;
       border:1px solid rgba(211,177,124,.45);
       box-shadow:
@@ -110,7 +110,7 @@
       top:0;
       z-index:100;
       backdrop-filter:blur(16px);
-      background:rgba(8,8,8,.72);
+      background:rgba(8,8,8,.74);
       border-bottom:1px solid rgba(255,255,255,.06);
     }
 
@@ -227,7 +227,7 @@
       margin:0 auto;
       position:relative;
       overflow:hidden;
-      min-height:780px;
+      min-height:790px;
       border-radius:38px;
       border:1px solid rgba(255,255,255,.08);
       background:#090909;
@@ -241,33 +241,45 @@
       width:100%;
       height:100%;
       object-fit:cover;
-      object-position:center center;
-      filter:brightness(.47) contrast(1.07) saturate(.92);
+      object-position:center 34%;
+      filter:brightness(.62) contrast(1.06) saturate(.95);
       transform:scale(1.02);
       z-index:1;
     }
 
-    .hero-overlay{
+    .hero-darken{
       position:absolute;
       inset:0;
       z-index:2;
       background:
-        radial-gradient(circle at 43% 33%, rgba(255,255,255,.16), transparent 12%),
-        radial-gradient(circle at 52% 34%, rgba(255,255,255,.12), transparent 11%),
-        radial-gradient(circle at 80% 16%, rgba(211,177,124,.12), transparent 20%),
-        linear-gradient(90deg, rgba(0,0,0,.84) 0%, rgba(0,0,0,.58) 40%, rgba(0,0,0,.18) 100%);
+        linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.44) 40%, rgba(0,0,0,.16) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.20));
       pointer-events:none;
     }
 
+    .hero-focus{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      background:
+        radial-gradient(circle at 42.5% 30.5%, rgba(255,255,255,.20), transparent 8%),
+        radial-gradient(circle at 51.3% 31.2%, rgba(255,255,255,.18), transparent 7%),
+        radial-gradient(circle at 80% 16%, rgba(211,177,124,.10), transparent 20%);
+      mix-blend-mode:screen;
+      pointer-events:none;
+    }
+
+    .hero    }
+
     .hero-camera{
       position:absolute;
-      right:-4%;
-      bottom:-5%;
-      width:min(56vw, 880px);
-      opacity:.17;
+      right:-2%;
+      bottom:-6%;
+      width:min(48vw, 700px);
+      opacity:.11;
       z-index:2;
-      filter:brightness(.95) contrast(1.08) saturate(.9) blur(.4px);
-      transform:rotate(-6deg);
+      filter:brightness(.95) contrast(1.08) saturate(.9) blur(.3px);
+      transform:rotate(-5deg);
       pointer-events:none;
       mix-blend-mode:screen;
     }
@@ -288,9 +300,9 @@
     .hero-inner{
       position:relative;
       z-index:3;
-      min-height:780px;
+      min-height:790px;
       display:grid;
-      grid-template-columns:minmax(0,1.12fr) minmax(320px,430px);
+      grid-template-columns:minmax(0,1.08fr) minmax(320px,430px);
       gap:28px;
       align-items:end;
       padding:46px;
@@ -330,10 +342,10 @@
       margin:0;
       font-family:Georgia,"Times New Roman",serif;
       font-weight:500;
-      font-size:clamp(3rem, 6vw, 6.3rem);
+      font-size:clamp(3rem, 6vw, 6.2rem);
       line-height:.94;
       letter-spacing:-.05em;
-      max-width:9.4ch;
+      max-width:9.6ch;
     }
 
     .hero-lead{
@@ -984,7 +996,8 @@
     <div class="hero-shell">
       <img class="hero-bg" src="images/hero.jpg" alt="Hero background" />
       <img class="hero-camera" src="images/fuji-xt4-overlay.jpg" alt="Fujifilm X-T4 visual" />
-      <div class="hero-overlay"></div>
+      <div class="hero-darken"></div>
+      <div class="hero-focus"></div>
       <div class="hero-grain"></div>
 
       <div class="hero-inner">
@@ -1244,82 +1257,28 @@
 
     const collectionInfo = {
       nl: {
-        portraits: {
-          title: "Portretten",
-          text: "Portretten met aanwezigheid, rust en subtiele emotie."
-        },
-        bw: {
-          title: "Zwart-wit",
-          text: "Beelden waarin vorm, contrast en stilte centraal staan."
-        },
-        animals: {
-          title: "Dieren",
-          text: "Observatie, timing en detail in natuurlijke expressie."
-        },
-        macro: {
-          title: "Macro",
-          text: "Kleine vormen, texturen en details die groot mogen voelen."
-        },
-        botanical: {
-          title: "Botanisch",
-          text: "Lijnen, kleur, structuur en zachte ritmes uit de natuur."
-        },
-        places: {
-          title: "Plaatsen & sfeer",
-          text: "Ruimte, licht en sfeer in beelden met een kalme opbouw."
-        }
+        portraits: { title: "Portretten", text: "Portretten met aanwezigheid, rust en subtiele emotie." },
+        bw: { title: "Zwart-wit", text: "Beelden waarin vorm, contrast en stilte centraal staan." },
+        animals: { title: "Dieren", text: "Observatie, timing en detail in natuurlijke expressie." },
+        macro: { title: "Macro", text: "Kleine vormen, texturen en details die groot mogen voelen." },
+        botanical: { title: "Botanisch", text: "Lijnen, kleur, structuur en zachte ritmes uit de natuur." },
+        places: { title: "Plaatsen & sfeer", text: "Ruimte, licht en sfeer in beelden met een kalme opbouw." }
       },
       en: {
-        portraits: {
-          title: "Portraits",
-          text: "Portraits with presence, calm and subtle emotion."
-        },
-        bw: {
-          title: "Black & White",
-          text: "Images where form, contrast and silence take the lead."
-        },
-        animals: {
-          title: "Animals",
-          text: "Observation, timing and detail in natural expression."
-        },
-        macro: {
-          title: "Macro",
-          text: "Small forms, textures and details that deserve scale."
-        },
-        botanical: {
-          title: "Botanical",
-          text: "Lines, colour, structure and soft rhythms from nature."
-        },
-        places: {
-          title: "Places & Atmosphere",
-          text: "Space, light and atmosphere with a calm visual structure."
-        }
+        portraits: { title: "Portraits", text: "Portraits with presence, calm and subtle emotion." },
+        bw: { title: "Black & White", text: "Images where form, contrast and silence take the lead." },
+        animals: { title: "Animals", text: "Observation, timing and detail in natural expression." },
+        macro: { title: "Macro", text: "Small forms, textures and details that deserve scale." },
+        botanical: { title: "Botanical", text: "Lines, colour, structure and soft rhythms from nature." },
+        places: { title: "Places & Atmosphere", text: "Space, light and atmosphere with a calm visual structure." }
       },
       pl: {
-        portraits: {
-          title: "Portrety",
-          text: "Portrety z obecnością, spokojem i subtelną emocją."
-        },
-        bw: {
-          title: "Czarno-białe",
-          text: "Obrazy, w których najważniejsze są forma, kontrast i cisza."
-        },
-        animals: {
-          title: "Zwierzęta",
-          text: "Obserwacja, timing i detal w naturalnej ekspresji."
-        },
-        macro: {
-          title: "Makro",
-          text: "Małe formy, faktury i detale, które zasługują na uwagę."
-        },
-        botanical: {
-          title: "Botanika",
-          text: "Linie, kolor, struktura i miękki rytm natury."
-        },
-        places: {
-          title: "Miejsca i klimat",
-          text: "Przestrzeń, światło i klimat w spokojnej kompozycji."
-        }
+        portraits: { title: "Portrety", text: "Portrety z obecnością, spokojem i subtelną emocją." },
+        bw: { title: "Czarno-białe", text: "Obrazy, w których najważniejsze są forma, kontrast i cisza." },
+        animals: { title: "Zwierzęta", text: "Obserwacja, timing i detal w naturalnej ekspresji." },
+        macro: { title: "Makro", text: "Małe formy, faktury i detale, które zasługują na uwagę." },
+        botanical: { title: "Botanika", text: "Linie, kolor, struktura i miękki rytm natury." },
+        places: { title: "Miejsca i klimat", text: "Przestrzeń, światło i klimat w spokojnej kompozycji." }
       }
     };
 
@@ -1452,7 +1411,32 @@
       }
     };
 
-    let currentLang = "nl";
+    const collectionInfo = {
+      nl: {
+        portraits: { title: "Portretten", text: "Portretten met aanwezigheid, rust en subtiele emotie." },
+        bw: { title: "Zwart-wit", text: "Beelden waarin vorm, contrast en stilte centraal staan." },
+        animals: { title: "Dieren", text: "Observatie, timing en detail in natuurlijke expressie." },
+        macro: { title: "Macro", text: "Kleine vormen, texturen en details die groot mogen voelen." },
+        botanical: { title: "Botanisch", text: "Lijnen, kleur, structuur en zachte ritmes uit de natuur." },
+        places: { title: "Plaatsen & sfeer", text: "Ruimte, licht en sfeer in beelden met een kalme opbouw." }
+      },
+      en: {
+        portraits: { title: "Portraits", text: "Portraits with presence, calm and subtle emotion." },
+        bw: { title: "Black & White", text: "Images where form, contrast and silence take the lead." },
+        animals: { title: "Animals", text: "Observation, timing and detail in natural expression." },
+        macro: { title: "Macro", text: "Small forms, textures and details that deserve scale." },
+        botanical: { title: "Botanical", text: "Lines, colour, structure and soft rhythms from nature." },
+        places: { title: "Places & Atmosphere", text: "Space, light and atmosphere with a calm visual structure." }
+      },
+      pl: {
+        portraits: { title: "Portrety", text: "Portrety z obecnością, spokojem i subtelną emocją." },
+        bw: { title: "Czarno-białe", text: "Obrazy, w których najważniejsze są forma, kontrast i cisza." },
+        animals: { title: "Zwierzęta", text: "Obserwacja, timing i detal w naturalnej ekspresji." },
+        macro: { title: "Makro", text: "Małe formy, faktury i detale, które zasługują na uwagę." },
+        botanical: { title: "Botanika", text: "Linie, kolor, struktura i miękki rytm natury." },
+        places: { title: "Miejsca i klimat", text: "Przestrzeń, światło i klimat w spokojnej kompozycji." }
+      }
+    };
 
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightboxImage");
@@ -1520,7 +1504,6 @@
     }
 
     function applyLanguage(lang) {
-      currentLang = lang;
       document.documentElement.lang = lang;
 
       const dict = translations[lang];
