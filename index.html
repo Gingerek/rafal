@@ -675,27 +675,59 @@
       box-shadow:0 14px 34px rgba(0,0,0,.28);
       cursor:pointer;
       aspect-ratio:1/1;
+      isolation:isolate;
     }
 
-    .collection-item img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      transition:transform .45s ease, filter .45s ease;
-      filter:brightness(.95) saturate(.96);
-    }
-
-    .collection-item:hover img{
-      transform:scale(1.045);
-      filter:brightness(1) saturate(1.02);
-    }
-
-    .collection-item::after{
-      content:"";
+    .thumb-bg{
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.22) 100%);
+      background-size:cover;
+      background-position:center center;
+      filter:blur(18px) brightness(.36) saturate(.8);
+      transform:scale(1.18);
+      transition:transform .45s ease, filter .45s ease;
+      z-index:1;
+    }
+
+    .thumb-overlay{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.18)),
+        radial-gradient(circle at 82% 16%, rgba(211,177,124,.14), transparent 22%);
       pointer-events:none;
+    }
+
+    .thumb-frame{
+      position:absolute;
+      inset:10px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,.10);
+      border:1px solid rgba(255,255,255,.06);
+      z-index:3;
+      overflow:hidden;
+    }
+
+    .thumb-image{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center center;
+      transition:transform .45s ease;
+      filter:drop-shadow(0 12px 28px rgba(0,0,0,.28));
+    }
+
+    .collection-item:hover .thumb-bg{
+      transform:scale(1.24);
+      filter:blur(18px) brightness(.42) saturate(.9);
+    }
+
+    .collection-item:hover .thumb-image{
+      transform:scale(1.02);
     }
 
     .about-layout{
@@ -911,6 +943,9 @@
       }
       .lang-btn{
         flex:1 1 auto;
+      }
+      .thumb-frame{
+        inset:8px;
       }
     }
   </style>
@@ -1444,6 +1479,16 @@
       }).join("");
     }
 
+    function createThumbMarkup(src, alt) {
+      return `
+        <div class="thumb-bg" style="background-image:url('${src}')"></div>
+        <div class="thumb-overlay"></div>
+        <div class="thumb-frame">
+          <img class="thumb-image" src="${src}" alt="${alt}" loading="lazy" />
+        </div>
+      `;
+    }
+
     function renderGalleries(lang) {
       document.querySelectorAll("[data-collection-heading]").forEach(el => {
         const key = el.getAttribute("data-collection-heading");
@@ -1454,11 +1499,15 @@
         const key = grid.getAttribute("data-gallery");
         const files = galleries[key] || [];
 
-        grid.innerHTML = files.map(file => `
-          <figure class="collection-item" data-full="images/photos/${file}">
-            <img src="images/photos/${file}" alt="${collectionInfo[lang][key].title}" loading="lazy" />
-          </figure>
-        `).join("");
+        grid.innerHTML = files.map(file => {
+          const src = `images/photos/${file}`;
+          const alt = collectionInfo[lang][key].title;
+          return `
+            <figure class="collection-item" data-full="${src}">
+              ${createThumbMarkup(src, alt)}
+            </figure>
+          `;
+        }).join("");
       });
 
       document.querySelectorAll(".collection-item").forEach(item => {
