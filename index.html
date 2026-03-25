@@ -4,20 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rafal Wilk | Fotografie</title>
-  <meta name="description" content="Portfolio van Rafal Wilk — fotografie met aandacht voor licht, sfeer, detail en karakter." />
+  <meta name="description" content="Portfolio van Rafal Wilk. Fotografie met aandacht voor licht, sfeer, detail en compositie." />
   <style>
     :root{
-      --bg:#070707;
-      --bg-soft:#0d0d0d;
+      --bg:#060606;
+      --bg-2:#0b0b0b;
       --panel:rgba(255,255,255,.05);
       --panel-soft:rgba(255,255,255,.03);
       --border:rgba(255,255,255,.09);
       --text:#f5efe6;
       --muted:rgba(245,239,230,.76);
-      --muted-2:rgba(245,239,230,.48);
+      --muted-2:rgba(245,239,230,.50);
       --accent:#d3b17c;
       --accent-soft:rgba(211,177,124,.16);
-      --shadow:0 24px 80px rgba(0,0,0,.45);
+      --shadow:0 28px 90px rgba(0,0,0,.45);
       --radius-xl:32px;
       --radius-lg:24px;
       --radius-md:18px;
@@ -32,8 +32,8 @@
       color:var(--text);
       background:
         radial-gradient(circle at 10% 10%, rgba(255,255,255,.04), transparent 16%),
-        radial-gradient(circle at 90% 0%, rgba(211,177,124,.06), transparent 18%),
-        linear-gradient(180deg, #040404 0%, #0a0a0a 40%, #050505 100%);
+        radial-gradient(circle at 86% 0%, rgba(211,177,124,.07), transparent 18%),
+        linear-gradient(180deg, #040404 0%, #090909 42%, #050505 100%);
       overflow-x:hidden;
       position:relative;
     }
@@ -43,30 +43,67 @@
       position:fixed;
       inset:0;
       background:
-        radial-gradient(circle at 78% 12%, rgba(211,177,124,.08), transparent 16%),
-        radial-gradient(circle at 14% 76%, rgba(255,255,255,.03), transparent 18%);
+        radial-gradient(circle at 16% 72%, rgba(255,255,255,.03), transparent 18%),
+        radial-gradient(circle at 82% 18%, rgba(211,177,124,.08), transparent 18%);
       pointer-events:none;
-      z-index:-2;
+      z-index:-3;
     }
 
     body::after{
       content:"";
       position:fixed;
       inset:0;
-      opacity:.04;
+      opacity:.035;
       background-image:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,.8) .8px, transparent .9px),
-        radial-gradient(circle at 72% 60%, rgba(255,255,255,.65) .8px, transparent .9px),
-        radial-gradient(circle at 50% 85%, rgba(255,255,255,.4) .8px, transparent .9px);
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.85) .8px, transparent .9px),
+        radial-gradient(circle at 72% 56%, rgba(255,255,255,.65) .8px, transparent .9px),
+        radial-gradient(circle at 48% 86%, rgba(255,255,255,.45) .8px, transparent .9px);
       background-size:180px 180px;
       pointer-events:none;
-      z-index:-1;
+      z-index:-2;
+    }
+
+    .floating-camera{
+      position:fixed;
+      right:-110px;
+      top:18%;
+      width:min(44vw, 620px);
+      aspect-ratio: 4 / 3;
+      z-index:0;
+      pointer-events:none;
+      opacity:.06;
+      filter:blur(.2px);
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 480' fill='none' stroke='%23d3b17c' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='90' y='150' width='460' height='220' rx='36'/%3E%3Cpath d='M190 150l35-50h190l35 50'/%3E%3Ccircle cx='320' cy='260' r='76'/%3E%3Ccircle cx='320' cy='260' r='34'/%3E%3Ccircle cx='470' cy='205' r='10' fill='%23d3b17c' stroke='none'/%3E%3C/svg%3E")
+        center center / contain no-repeat;
+      transform:rotate(-10deg);
+    }
+
+    .floating-rings{
+      position:fixed;
+      left:-120px;
+      bottom:8%;
+      width:min(34vw, 500px);
+      aspect-ratio:1;
+      z-index:0;
+      pointer-events:none;
+      opacity:.05;
+      border-radius:50%;
+      border:1px solid rgba(211,177,124,.45);
+      box-shadow:
+        0 0 0 56px rgba(211,177,124,.03),
+        0 0 0 112px rgba(211,177,124,.02);
     }
 
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
     button{font:inherit}
-    .wrap{width:min(calc(100% - 32px), var(--maxw));margin:0 auto}
+    .wrap{
+      width:min(calc(100% - 32px), var(--maxw));
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+    }
 
     .topbar{
       position:sticky;
@@ -121,7 +158,7 @@
     .brand-text strong{
       display:block;
       font-family:Georgia,"Times New Roman",serif;
-      font-size:1.03rem;
+      font-size:1.04rem;
       font-weight:600;
       letter-spacing:-.02em;
     }
@@ -158,6 +195,8 @@
 
     .hero{
       padding:24px 0 18px;
+      position:relative;
+      z-index:1;
     }
 
     .hero-shell{
@@ -180,7 +219,7 @@
       height:100%;
       object-fit:cover;
       object-position:center center;
-      filter:brightness(.38) contrast(1.05) saturate(.9);
+      filter:brightness(.44) contrast(1.05) saturate(.9);
       transform:scale(1.02);
       z-index:1;
     }
@@ -190,19 +229,21 @@
       inset:0;
       z-index:2;
       background:
-        radial-gradient(circle at 76% 16%, rgba(211,177,124,.13), transparent 20%),
-        linear-gradient(90deg, rgba(0,0,0,.84) 0%, rgba(0,0,0,.58) 40%, rgba(0,0,0,.20) 100%);
+        radial-gradient(circle at 43% 33%, rgba(255,255,255,.14), transparent 12%),
+        radial-gradient(circle at 52% 34%, rgba(255,255,255,.10), transparent 11%),
+        radial-gradient(circle at 80% 16%, rgba(211,177,124,.12), transparent 20%),
+        linear-gradient(90deg, rgba(0,0,0,.84) 0%, rgba(0,0,0,.58) 40%, rgba(0,0,0,.18) 100%);
       pointer-events:none;
     }
 
     .hero-camera{
       position:absolute;
       right:-4%;
-      bottom:-4%;
+      bottom:-5%;
       width:min(56vw, 880px);
-      opacity:.18;
+      opacity:.17;
       z-index:2;
-      filter:brightness(.95) contrast(1.08) saturate(.9) blur(.5px);
+      filter:brightness(.95) contrast(1.08) saturate(.9) blur(.4px);
       transform:rotate(-6deg);
       pointer-events:none;
       mix-blend-mode:screen;
@@ -226,7 +267,7 @@
       z-index:3;
       min-height:780px;
       display:grid;
-      grid-template-columns:minmax(0,1.14fr) minmax(320px,430px);
+      grid-template-columns:minmax(0,1.12fr) minmax(320px,430px);
       gap:28px;
       align-items:end;
       padding:46px;
@@ -269,7 +310,7 @@
       font-size:clamp(3rem, 6vw, 6.3rem);
       line-height:.94;
       letter-spacing:-.05em;
-      max-width:9.5ch;
+      max-width:9.4ch;
     }
 
     .hero-lead{
@@ -378,6 +419,8 @@
 
     .section{
       padding:18px 0;
+      position:relative;
+      z-index:1;
     }
 
     .panel{
@@ -403,16 +446,17 @@
     .panel::after{
       content:"";
       position:absolute;
-      right:-8%;
-      top:0;
-      width:min(40vw, 520px);
-      height:100%;
+      right:-10%;
+      top:8%;
+      width:min(34vw, 420px);
+      aspect-ratio:4/3;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
-        url("images/fuji-xt4-overlay.jpg") center center / cover no-repeat;
-      opacity:.05;
-      filter:blur(2px) grayscale(.15);
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 480' fill='none' stroke='%23d3b17c' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='90' y='150' width='460' height='220' rx='36'/%3E%3Cpath d='M190 150l35-50h190l35 50'/%3E%3Ccircle cx='320' cy='260' r='76'/%3E%3Ccircle cx='320' cy='260' r='34'/%3E%3Ccircle cx='470' cy='205' r='10' fill='%23d3b17c' stroke='none'/%3E%3C/svg%3E")
+        center center / contain no-repeat;
+      opacity:.04;
+      filter:blur(.2px);
       pointer-events:none;
+      transform:rotate(-9deg);
     }
 
     .panel-body{
@@ -442,6 +486,82 @@
       color:var(--muted);
       max-width:72ch;
       line-height:1.88;
+    }
+
+    .collection-cards{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-bottom:22px;
+    }
+
+    .collection-card{
+      position:relative;
+      overflow:hidden;
+      min-height:220px;
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#101010;
+      box-shadow:0 14px 34px rgba(0,0,0,.26);
+      display:flex;
+      align-items:flex-end;
+      padding:18px;
+      isolation:isolate;
+    }
+
+    .collection-card img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:1;
+      filter:brightness(.56) contrast(1.05) saturate(.92);
+      transition:transform .45s ease, filter .45s ease;
+    }
+
+    .collection-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:2;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.68)),
+        radial-gradient(circle at 84% 16%, rgba(211,177,124,.14), transparent 20%);
+    }
+
+    .collection-card:hover img{
+      transform:scale(1.04);
+      filter:brightness(.62) contrast(1.08) saturate(.96);
+    }
+
+    .collection-card-content{
+      position:relative;
+      z-index:3;
+    }
+
+    .collection-card small{
+      display:block;
+      color:rgba(255,255,255,.68);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      margin-bottom:8px;
+      font-size:.74rem;
+    }
+
+    .collection-card strong{
+      display:block;
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:1.5rem;
+      font-weight:500;
+      margin-bottom:8px;
+    }
+
+    .collection-card span{
+      color:rgba(255,255,255,.78);
+      font-size:.94rem;
+      line-height:1.65;
+      max-width:34ch;
     }
 
     .collections-layout{
@@ -642,6 +762,8 @@
       margin:10px auto 34px;
       color:var(--muted-2);
       font-size:.9rem;
+      position:relative;
+      z-index:1;
     }
 
     .lightbox{
@@ -703,7 +825,8 @@
       }
     }
 
-    @media (max-width:920px){
+    @media (max-width:980px){
+      .collection-cards,
       .collection-grid,
       .contact-grid{
         grid-template-columns:repeat(2,minmax(0,1fr));
@@ -711,6 +834,10 @@
       .hero-shell,
       .hero-inner{
         min-height:unset;
+      }
+      .floating-camera,
+      .floating-rings{
+        opacity:.03;
       }
     }
 
@@ -734,13 +861,14 @@
         padding:22px;
       }
       .collections-side,
+      .collection-cards,
       .collection-grid,
       .contact-grid,
       .hero-meta{
         grid-template-columns:1fr;
       }
       .hero-camera{
-        width:110vw;
+        width:112vw;
         right:-28%;
         bottom:-12%;
         opacity:.14;
@@ -748,10 +876,17 @@
       h1{
         max-width:none;
       }
+      .floating-camera,
+      .floating-rings{
+        display:none;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="floating-camera" aria-hidden="true"></div>
+  <div class="floating-rings" aria-hidden="true"></div>
+
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="#">
@@ -796,7 +931,7 @@
           <div class="hero-card-title">Visuele signatuur</div>
           <p>
             Een premium portfolio met subtiele diepte, fotografische sfeer en een rustige, moderne opbouw.
-            De eerste indruk moet meteen laten zien dat dit de website van een fotograaf is.
+            De eerste indruk laat meteen zien dat dit de website van een fotograaf is.
           </p>
 
           <div class="hero-meta">
@@ -832,6 +967,8 @@
             </div>
           </div>
 
+          <div class="collection-cards" id="collectionCards"></div>
+
           <div class="collections-layout">
             <div class="collections-side">
               <div class="side-card">
@@ -844,7 +981,7 @@
               <div class="side-card">
                 <small>Visie</small>
                 <p>
-                  Ik zoek naar beelden met rust, spanning, textuur en betekenis — beelden die niet alleen tonen wat er is, maar ook laten voelen wat er gebeurt.
+                  Ik zoek naar beelden met rust, spanning, textuur en betekenis. Beelden die niet alleen tonen wat er is, maar ook laten voelen wat er gebeurt.
                 </p>
               </div>
 
@@ -921,8 +1058,8 @@
                   geduld en gevoeligheid samenkomen.
                 </p>
                 <p>
-                  Ik zoek naar beelden waarin licht niet alleen verlicht, maar richting geeft. Soms ontstaat een sterk beeld in een fractie van een seconde,
-                  soms pas na lang wachten.
+                  Ik zoek naar beelden waarin licht niet alleen verlicht, maar richting geeft. Soms ontstaat een sterk beeld in een fractie van een seconde.
+                  Soms pas na lang wachten.
                 </p>
                 <p>
                   Juist in die combinatie van techniek, intuïtie en tijd ligt voor mij de essentie van fotografie als kunstvorm.
@@ -981,6 +1118,33 @@
   </div>
 
   <script>
+    const collectionInfo = {
+      portraits: {
+        title: "Portretten",
+        text: "Portretten met aanwezigheid, rust en subtiele emotie."
+      },
+      bw: {
+        title: "Zwart-wit",
+        text: "Beelden waarin vorm, contrast en stilte centraal staan."
+      },
+      animals: {
+        title: "Dieren",
+        text: "Observatie, timing en detail in natuurlijke expressie."
+      },
+      macro: {
+        title: "Macro",
+        text: "Kleine vormen, texturen en details die groot mogen voelen."
+      },
+      botanical: {
+        title: "Botanisch",
+        text: "Lijnen, kleur, structuur en zachte ritmes uit de natuur."
+      },
+      places: {
+        title: "Plaatsen & sfeer",
+        text: "Ruimte, licht en sfeer in beelden met een kalme opbouw."
+      }
+    };
+
     const galleries = {
       portraits: [
         "A7407707.jpg",
@@ -1039,6 +1203,26 @@
     const lightboxImage = document.getElementById("lightboxImage");
     const lightboxClose = document.getElementById("lightboxClose");
 
+    function renderCards() {
+      const container = document.getElementById("collectionCards");
+      const order = ["portraits","bw","animals","macro","botanical","places"];
+
+      container.innerHTML = order.map((key) => {
+        const files = galleries[key] || [];
+        const cover = files[0] ? `images/photos/${files[0]}` : "";
+        return `
+          <a class="collection-card" href="#${key}">
+            <img src="${cover}" alt="${collectionInfo[key].title}" loading="lazy" />
+            <div class="collection-card-content">
+              <small>${files.length} beelden</small>
+              <strong>${collectionInfo[key].title}</strong>
+              <span>${collectionInfo[key].text}</span>
+            </div>
+          </a>
+        `;
+      }).join("");
+    }
+
     function renderGalleries() {
       document.querySelectorAll("[data-gallery]").forEach(grid => {
         const key = grid.getAttribute("data-gallery");
@@ -1074,6 +1258,7 @@
       if (e.key === "Escape") closeLightbox();
     });
 
+    renderCards();
     renderGalleries();
   </script>
 </body>
