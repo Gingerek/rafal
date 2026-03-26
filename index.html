@@ -1,742 +1,254 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rafał Wilk | Fotografie</title>
-  <meta name="description" content="Portfolio van Rafał Wilk. Fotografie met focus op licht, detail, sfeer en compositie." />
+  <title>Moja strona | Rafał Wilk</title>
+  <meta name="description" content="Portfolio fotograficzne Rafała Wilka." />
   <style>
-    :root {
-      --bg: #040404;
-      --bg-soft: #0b0b0c;
-      --panel: rgba(255,255,255,0.045);
-      --panel-strong: rgba(255,255,255,0.07);
-      --border: rgba(255,255,255,0.08);
-      --text: #f3ede3;
-      --muted: rgba(243,237,227,0.74);
-      --accent: #d1b384;
-      --shadow: 0 18px 60px rgba(0,0,0,0.42);
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --radius-md: 18px;
-      --container: 1240px;
-      --transition: 220ms ease;
-      font-synthesis-weight: none;
+    :root{
+      --bg:#050505;
+      --panel:rgba(255,255,255,.05);
+      --border:rgba(255,255,255,.08);
+      --text:#f3ede4;
+      --muted:rgba(243,237,228,.72);
+      --accent:#d1b384;
+      --shadow:0 18px 50px rgba(0,0,0,.35);
     }
-
-    * {
-      box-sizing: border-box;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,Arial,sans-serif;
+      background:radial-gradient(circle at top, rgba(209,179,132,.08), transparent 22%), var(--bg);
+      color:var(--text);
+      line-height:1.55;
     }
-
-    html {
-      scroll-behavior: smooth;
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .header{
+      position:sticky;top:0;z-index:10;
+      background:rgba(5,5,5,.78);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.05)
     }
-
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, rgba(209,179,132,0.09), transparent 22%), var(--bg);
-      color: var(--text);
-      line-height: 1.55;
-      overflow-x: hidden;
+    .header-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;flex-wrap:wrap}
+    .brand{font-weight:700;letter-spacing:.04em}
+    .nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .nav a,.lang button{
+      padding:10px 14px;border-radius:999px;background:transparent;border:1px solid transparent;color:var(--muted);cursor:pointer;font:inherit
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(var(--container), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .site-header {
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(to bottom, rgba(4,4,4,0.84), rgba(4,4,4,0.18));
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 16px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
-
-    .brand-mark {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 20px rgba(209,179,132,0.8);
-    }
-
-    .nav-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a,
-    .lang-btn {
-      padding: 10px 14px;
-      border-radius: 999px;
-      color: var(--muted);
-      transition: color var(--transition), background var(--transition), transform var(--transition);
-      border: 1px solid transparent;
-      background: transparent;
-      cursor: pointer;
-      font: inherit;
-    }
-
-    .nav-links a:hover,
-    .lang-btn:hover,
-    .lang-btn.active {
-      color: var(--text);
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.08);
-    }
-
-    .lang-switch {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      display: grid;
-      align-items: end;
-      overflow: hidden;
-      background-image:
-        linear-gradient(90deg, rgba(4,4,4,0.86) 0%, rgba(4,4,4,0.66) 34%, rgba(4,4,4,0.18) 58%, rgba(4,4,4,0.36) 100%),
-        linear-gradient(to top, rgba(4,4,4,0.84) 0%, rgba(4,4,4,0.38) 35%, rgba(4,4,4,0.1) 64%, rgba(4,4,4,0.26) 100%),
-        url("data:image/jpeg;base64,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");
-      background-size: cover;
-      background-position: center 26%;
-      background-repeat: no-repeat;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 170px;
-      background: linear-gradient(to top, var(--bg), transparent);
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      position: relative;
-      z-index: 1;
-      padding: 140px 0 90px;
-      display: grid;
-      grid-template-columns: minmax(0, 640px) 1fr;
-      gap: 30px;
-      align-items: end;
-    }
-
-    .hero-copy {
-      max-width: 620px;
-      padding: 0;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(10,10,10,0.4);
-      color: rgba(243,237,227,0.82);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 0.77rem;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 {
-      font-size: clamp(3.6rem, 9vw, 7.5rem);
-      line-height: 0.94;
-      letter-spacing: -0.06em;
-      margin: 0 0 24px;
-      max-width: 8ch;
-      text-wrap: balance;
-    }
-
-    .hero p {
-      max-width: 22ch;
-      font-size: clamp(1.05rem, 1.8vw, 1.52rem);
-      color: var(--muted);
-      margin: 0 0 30px;
-      text-wrap: pretty;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 16px 24px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      transition: transform var(--transition), background var(--transition), border-color var(--transition), box-shadow var(--transition);
-      box-shadow: var(--shadow);
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(209,179,132,0.3);
-      background: rgba(255,255,255,0.08);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, rgba(209,179,132,0.26), rgba(255,255,255,0.04));
-      border-color: rgba(209,179,132,0.28);
-    }
-
-    .section {
-      position: relative;
-      padding: 84px 0;
-    }
-
-    .section-head {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 30px;
-      max-width: 760px;
-    }
-
-    .section-head span {
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 0.78rem;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(2.4rem, 5vw, 4.4rem);
-      line-height: 0.96;
-      letter-spacing: -0.05em;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 52ch;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 26px;
-      align-items: stretch;
-    }
-
-    .about-photo,
-    .about-copy {
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.03));
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .about-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      min-height: 540px;
-      filter: brightness(0.7) saturate(0.82);
-    }
-
-    .about-copy {
-      padding: 34px;
-      display: grid;
-      gap: 22px;
-      align-content: start;
-    }
-
-    .about-copy h3 {
-      margin: 0;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      letter-spacing: -0.04em;
-      line-height: 1.02;
-    }
-
-    .about-copy p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.03rem;
-      max-width: 58ch;
-    }
-
-    .about-points {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .about-point {
-      padding: 18px;
-      border-radius: var(--radius-md);
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .about-point strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.03rem;
-    }
-
-    .about-point span {
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-
-    .folders-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .folder-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      min-height: 100%;
-      padding: 18px;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.08);
+    .nav a:hover,.lang button:hover,.lang button.active{background:rgba(255,255,255,.05);border-color:var(--border);color:var(--text)}
+    .lang{display:flex;gap:6px;padding:4px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+    .hero{padding:92px 0 56px}
+    .hero-box{
+      min-height:68svh;border:1px solid var(--border);border-radius:30px;padding:42px;
       background:
-        radial-gradient(circle at top right, rgba(209,179,132,0.16), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.028));
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-      text-align: left;
-      overflow: hidden;
+        linear-gradient(140deg, rgba(5,5,5,.9), rgba(5,5,5,.55)),
+        radial-gradient(circle at top right, rgba(209,179,132,.18), transparent 26%),
+        linear-gradient(135deg, #0f0f10, #050505);
+      box-shadow:var(--shadow);
+      display:grid;align-items:end
     }
-
-    .folder-card:hover,
-    .folder-card:focus-visible {
-      transform: translateY(-3px);
-      border-color: rgba(209,179,132,0.34);
-      box-shadow: 0 22px 52px rgba(0,0,0,0.42);
-      outline: none;
-    }
-
-    .folder-card span {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .folder-card strong {
-      display: block;
-      font-size: clamp(1.35rem, 2vw, 1.72rem);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-
-    .folder-card p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 28ch;
-    }
-
-    .folder-copy {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .folder-preview-wrap {
-      margin-top: auto;
-      aspect-ratio: 1 / 1 !important;
-      border-radius: 20px;
-      overflow: hidden !important;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .folder-preview {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      display: block !important;
-      transition: transform 220ms ease;
-    }
-
-    .folder-card:hover .folder-preview,
-    .folder-card:focus-visible .folder-preview {
-      transform: scale(1.03);
-    }
-
-    .folder-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 90;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: rgba(0,0,0,0.80);
-      backdrop-filter: blur(14px);
-    }
-
-    .folder-modal.open,
-    .lightbox.open {
-      display: flex;
-    }
-
-    .folder-modal-shell,
-    .lightbox-inner {
-      width: min(1320px, 100%);
-      max-height: calc(100vh - 48px);
-      overflow: auto;
-      padding: 26px;
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background:
-        radial-gradient(circle at top right, rgba(209,179,132,0.12), transparent 20%),
-        linear-gradient(180deg, rgba(10,10,10,0.96), rgba(6,6,6,0.98));
-      box-shadow: 0 28px 90px rgba(0,0,0,0.56);
-    }
-
-    .folder-modal-bar {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 22px;
-    }
-
-    .folder-modal-kicker {
-      display: inline-block;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 12px;
-      margin-bottom: 10px;
-    }
-
-    .folder-modal-copy h3 {
-      margin: 0 0 8px 0;
-      font-size: clamp(1.8rem, 3vw, 2.7rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-    }
-
-    .folder-modal-copy p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 56ch;
-    }
-
-    .folder-modal-close,
-    .lightbox-close {
-      width: 50px;
-      height: 50px;
-      flex: 0 0 auto;
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      cursor: pointer;
-      font-size: 30px;
-      line-height: 1;
-      color: var(--text);
-      transition: background 180ms ease, transform 180ms ease;
-    }
-
-    .folder-modal-close:hover,
-    .lightbox-close:hover {
-      background: rgba(255,255,255,0.10);
-      transform: scale(1.04);
-    }
-
-    .folder-modal-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .folder-thumb {
-      position: relative;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      aspect-ratio: 1 / 1 !important;
-      border-radius: 20px;
-      overflow: hidden !important;
-      box-shadow: 0 14px 34px rgba(0,0,0,0.32);
-    }
-
-    .folder-thumb img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      display: block !important;
-      transition: transform 220ms ease, filter 220ms ease;
-    }
-
-    .folder-thumb:hover img {
-      transform: scale(1.03);
-      filter: brightness(1.04);
-    }
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: rgba(0,0,0,0.92);
-      backdrop-filter: blur(14px);
-    }
-
-    .lightbox-inner {
-      position: relative;
-      width: min(96vw, 1680px);
-      height: min(94vh, 1080px);
-      padding: 18px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-    }
-
-    .lightbox-image {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 18px;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      z-index: 2;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .contact-card {
-      padding: 24px;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.028));
-      box-shadow: var(--shadow);
-      transition: transform var(--transition), border-color var(--transition);
-    }
-
-    .contact-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(209,179,132,0.25);
-    }
-
-    .contact-card strong {
-      display: block;
-      font-size: 1.06rem;
-      margin-bottom: 8px;
-    }
-
-    .contact-card span {
-      color: var(--muted);
-      display: block;
-      margin-bottom: 16px;
-    }
-
-    .footer {
-      padding: 36px 0 54px;
-      color: rgba(243,237,227,0.48);
-      font-size: 0.95rem;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 600ms ease, transform 600ms ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 1080px) {
-      .hero-grid,
-      .about-grid,
-      .folders-grid,
-      .folder-modal-grid,
-      .contact-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero {
-        background-position: center 22%;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .container {
-        width: min(calc(100% - 24px), var(--container));
-      }
-      .header-row {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .nav-row {
-        width: 100%;
-        justify-content: space-between;
-      }
-      .hero {
-        background-position: 60% 20%;
-      }
-      .hero-grid {
-        padding: 124px 0 62px;
-      }
-      .hero h1 {
-        max-width: 7ch;
-      }
-      .hero p {
-        max-width: 24ch;
-      }
-      .section {
-        padding: 66px 0;
-      }
-      .about-grid,
-      .folders-grid,
-      .folder-modal-grid,
-      .contact-grid,
-      .about-points {
-        grid-template-columns: 1fr;
-      }
-      .folder-modal,
-      .lightbox {
-        padding: 12px;
-      }
-      .folder-modal-shell,
-      .lightbox-inner {
-        padding: 18px;
-        max-height: calc(100vh - 24px);
-      }
-      .about-photo img {
-        min-height: 420px;
-      }
-    }
+    .eyebrow{display:inline-block;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:var(--muted);letter-spacing:.16em;text-transform:uppercase;font-size:.78rem;margin-bottom:22px}
+    h1{font-size:clamp(3rem,8vw,6.4rem);line-height:.94;letter-spacing:-.06em;max-width:8ch;margin:0 0 22px}
+    .hero p{font-size:clamp(1.05rem,1.8vw,1.4rem);max-width:32ch;color:var(--muted);margin:0 0 28px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 22px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.04);box-shadow:var(--shadow)}
+    .btn.primary{background:linear-gradient(135deg, rgba(209,179,132,.24), rgba(255,255,255,.04));border-color:rgba(209,179,132,.28)}
+    section{padding:40px 0}
+    .head{max-width:740px;margin-bottom:24px}
+    .head span{display:block;color:var(--accent);letter-spacing:.16em;text-transform:uppercase;font-size:.78rem;margin-bottom:12px}
+    .head h2{font-size:clamp(2.1rem,4vw,4rem);line-height:.96;letter-spacing:-.05em;margin:0 0 10px}
+    .head p{margin:0;color:var(--muted)}
+    .about,.categories,.contact-grid{display:grid;gap:18px}
+    .about{grid-template-columns:1fr 1.1fr}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.028));border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow)}
+    .photo-placeholder{min-height:420px;display:grid;place-items:center;padding:32px;background:radial-gradient(circle at top, rgba(209,179,132,.16), transparent 25%), linear-gradient(135deg, #0e0e10, #060606);color:var(--muted);text-align:center}
+    .copy{padding:28px}
+    .copy h3{margin:0 0 16px;font-size:clamp(1.6rem,2.8vw,2.4rem);line-height:1.02;letter-spacing:-.04em}
+    .copy p{margin:0 0 14px;color:var(--muted)}
+    .categories{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .cat{padding:22px;display:grid;gap:12px}
+    .thumb{aspect-ratio:1/1;border-radius:18px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(135deg, rgba(209,179,132,.18), rgba(255,255,255,.02));display:grid;place-items:center;color:var(--muted);font-weight:600;letter-spacing:.04em}
+    .cat strong{font-size:1.35rem}
+    .cat p{margin:0;color:var(--muted)}
+    .contact-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .contact-card{padding:24px}
+    .contact-card strong{display:block;margin-bottom:8px;font-size:1.05rem}
+    .contact-card span{display:block;color:var(--muted);margin-bottom:14px}
+    .footer{padding:24px 0 48px;color:rgba(243,237,228,.48)}
+    @media (max-width:960px){.about,.categories,.contact-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:720px){.hero-box{padding:26px}.about,.categories,.contact-grid{grid-template-columns:1fr}h1{max-width:7ch}}
   </style>
 </head>
 <body>
-  <header class="site-header">
+  <header class="header">
     <div class="container header-row">
-      <div class="brand">
-        <span class="brand-mark"></span>
-        <span>Rafał Wilk</span>
-      </div>
-      <div class="nav-row">
-        <nav class="nav-links">
-          <a href="#about" data-i18n="navAbout">Over mij</a>
-          <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
-          <a href="#contact" data-i18n="navContact">Contact</a>
-        </nav>
-        <div class="lang-switch" aria-label="Language switcher">
-          <button class="lang-btn active" data-lang="nl">NL</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="pl">PL</button>
+      <div class="brand">Rafał Wilk</div>
+      <div class="nav">
+        <a href="#about" data-i18n="navAbout">O mnie</a>
+        <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+        <a href="#contact" data-i18n="navContact">Kontakt</a>
+        <div class="lang">
+          <button class="active" data-lang="pl">PL</button>
+          <button data-lang="en">EN</button>
+          <button data-lang="nl">NL</button>
         </div>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="hero" id="top">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
-          <h1 data-i18n="heroTitle">Licht. Detail. Sfeer.</h1>
-          <p data-i18n="heroText">Ik werk met beelden waarin compositie, rust en visuele kracht samenkomen.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
-            <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-box">
+          <div>
+            <div class="eyebrow" data-i18n="eyebrow">Portfolio fotograficzne</div>
+            <h1 data-i18n="heroTitle">Światło. Detal. Klimat.</h1>
+            <p data-i18n="heroText">Tworzę fotografie oparte na kompozycji, atmosferze i mocnym, dopracowanym obrazie.</p>
+            <div class="actions">
+              <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Zobacz portfolio</a>
+              <a class="btn" href="#contact" data-i18n="heroBtn2">Skontaktuj się</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="about">
+    <section id="about">
       <div class="container">
-        <div class="section-head reveal">
-          <span data-i18n="aboutEyebrow">Over mij</span>
-          <h2 data-i18n="aboutTitle">Persoonlijk, zorgvuldig en visueel helder.</h2>
-          <p data-i18n="aboutLead">Een korte introductie over mijn manier van kijken en werken.</p>
+        <div class="head">
+          <span data-i18n="aboutEyebrow">O mnie</span>
+          <h2 data-i18n="aboutTitle">Profesjonalnie. Osobiście. Konkretnie.</h2>
+          <p data-i18n="aboutLead">Krótki opis mojego podejścia do fotografii.</p>
         </div>
+        <div class="about">
+          <div class="card photo-placeholder" data-i18n="photoPlaceholder">Miejsce na moje zdjęcie</div>
+          <div class="card copy">
+            <h3 data-i18n="aboutBoxTitle">Fotografia oparta na spojrzeniu i konsekwencji.</h3>
+            <p data-i18n="aboutP1">Skupiam się na świetle, detalu, kompozycji i atmosferze. Interesują mnie kadry, które są czyste wizualnie i mają własny charakter.</p>
+            <p data-i18n="aboutP2">Pracuję w sposób spokojny i precyzyjny. Zależy mi na obrazie, który wygląda świadomie i profesjonalnie, bez zbędnych ozdobników.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <div class="about-grid">
-          <div class="about-photo reveal">
-            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk3/2wBDAQ4ODhYQEyAcGiBNSC1I
+    <section id="portfolio">
+      <div class="container">
+        <div class="head">
+          <span data-i18n="portfolioEyebrow">Portfolio</span>
+          <h2 data-i18n="portfolioTitle">Kategorie.</h2>
+          <p data-i18n="portfolioLead">Główne obszary mojej fotografii.</p>
+        </div>
+        <div class="categories">
+          <div class="card cat"><div class="thumb">1:1</div><strong data-i18n="cat1">Portret</strong><p data-i18n="catDesc1">Portrety oparte na obecności, świetle i spojrzeniu.</p></div>
+          <div class="card cat"><div class="thumb">1:1</div><strong data-i18n="cat2">Street</strong><p data-i18n="catDesc2">Codzienność, rytm miasta i obserwacja.</p></div>
+          <div class="card cat"><div class="thumb">1:1</div><strong data-i18n="cat3">Natura</strong><p data-i18n="catDesc3">Światło, faktura i spokój natury.</p></div>
+          <div class="card cat"><div class="thumb">1:1</div><strong data-i18n="cat4">Podróże</strong><p data-i18n="catDesc4">Miejsca, detale i klimat podróży.</p></div>
+          <div class="card cat"><div class="thumb">1:1</div><strong data-i18n="cat5">Kreatywne</strong><p data-i18n="catDesc5">Bardziej autorskie kadry z mocniejszym akcentem wizualnym.</p></div>
+          <div class="card cat"><div class="thumb">1:1</div><strong data-i18n="cat6">Wybrane</strong><p data-i18n="catDesc6">Przekrojowy wybór zdjęć, które najlepiej pokazują mój styl.</p></div>
+        </div>
+      </div>
+    </section>
 
-[truncated]
+    <section id="contact">
+      <div class="container">
+        <div class="head">
+          <span data-i18n="contactEyebrow">Kontakt</span>
+          <h2 data-i18n="contactTitle">Bezpośredni kontakt.</h2>
+          <p data-i18n="contactLead">Najprostsza droga do kontaktu w sprawie fotografii.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="card contact-card"><strong>Instagram</strong><span>@fotodisogno</span><a class="btn" href="https://instagram.com/fotodisogno" target="_blank" rel="noreferrer" data-i18n="contactBtn">Otwórz</a></div>
+          <div class="card contact-card"><strong>E-mail</strong><span>fotodisogno@gmail.com</span><a class="btn" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Otwórz</a></div>
+          <div class="card contact-card"><strong>WhatsApp</strong><span>31 0644747733</span><a class="btn" href="https://wa.me/310644747733" target="_blank" rel="noreferrer" data-i18n="contactBtn">Otwórz</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© Rafał Wilk</div>
+  </footer>
+
+  <script>
+    const translations = {
+      pl: {
+        navAbout: "O mnie", navPortfolio: "Portfolio", navContact: "Kontakt",
+        eyebrow: "Portfolio fotograficzne",
+        heroTitle: "Światło. Detal. Klimat.",
+        heroText: "Tworzę fotografie oparte na kompozycji, atmosferze i mocnym, dopracowanym obrazie.",
+        heroBtn1: "Zobacz portfolio", heroBtn2: "Skontaktuj się",
+        aboutEyebrow: "O mnie", aboutTitle: "Profesjonalnie. Osobiście. Konkretnie.", aboutLead: "Krótki opis mojego podejścia do fotografii.",
+        photoPlaceholder: "Miejsce na moje zdjęcie",
+        aboutBoxTitle: "Fotografia oparta na spojrzeniu i konsekwencji.",
+        aboutP1: "Skupiam się na świetle, detalu, kompozycji i atmosferze. Interesują mnie kadry, które są czyste wizualnie i mają własny charakter.",
+        aboutP2: "Pracuję w sposób spokojny i precyzyjny. Zależy mi na obrazie, który wygląda świadomie i profesjonalnie, bez zbędnych ozdobników.",
+        portfolioEyebrow: "Portfolio", portfolioTitle: "Kategorie.", portfolioLead: "Główne obszary mojej fotografii.",
+        cat1: "Portret", catDesc1: "Portrety oparte na obecności, świetle i spojrzeniu.",
+        cat2: "Street", catDesc2: "Codzienność, rytm miasta i obserwacja.",
+        cat3: "Natura", catDesc3: "Światło, faktura i spokój natury.",
+        cat4: "Podróże", catDesc4: "Miejsca, detale i klimat podróży.",
+        cat5: "Kreatywne", catDesc5: "Bardziej autorskie kadry z mocniejszym akcentem wizualnym.",
+        cat6: "Wybrane", catDesc6: "Przekrojowy wybór zdjęć, które najlepiej pokazują mój styl.",
+        contactEyebrow: "Kontakt", contactTitle: "Bezpośredni kontakt.", contactLead: "Najprostsza droga do kontaktu w sprawie fotografii.", contactBtn: "Otwórz"
+      },
+      en: {
+        navAbout: "About", navPortfolio: "Portfolio", navContact: "Contact",
+        eyebrow: "Photography portfolio",
+        heroTitle: "Light. Detail. Atmosphere.",
+        heroText: "I create photographs built on composition, atmosphere and a strong, refined visual language.",
+        heroBtn1: "View portfolio", heroBtn2: "Get in touch",
+        aboutEyebrow: "About", aboutTitle: "Professional. Personal. Clear.", aboutLead: "A short introduction to my visual approach.",
+        photoPlaceholder: "Space for my photo",
+        aboutBoxTitle: "Photography built on observation and consistency.",
+        aboutP1: "I focus on light, detail, composition and atmosphere. I look for images that feel visually clean and carry their own character.",
+        aboutP2: "I work in a calm and precise way. What matters to me is an image that feels intentional, polished and professional.",
+        portfolioEyebrow: "Portfolio", portfolioTitle: "Categories.", portfolioLead: "The main areas of my photography.",
+        cat1: "Portrait", catDesc1: "Portraits built on presence, light and expression.",
+        cat2: "Street", catDesc2: "Everyday scenes, urban rhythm and observation.",
+        cat3: "Nature", catDesc3: "Light, texture and the quiet strength of nature.",
+        cat4: "Travel", catDesc4: "Places, details and the atmosphere of travel.",
+        cat5: "Creative", catDesc5: "More personal images with a stronger visual accent.",
+        cat6: "Selected", catDesc6: "A cross-section of images that best represent my style.",
+        contactEyebrow: "Contact", contactTitle: "Direct contact.", contactLead: "The simplest way to get in touch about photography.", contactBtn: "Open"
+      },
+      nl: {
+        navAbout: "Over mij", navPortfolio: "Portfolio", navContact: "Contact",
+        eyebrow: "Fotografieportfolio",
+        heroTitle: "Licht. Detail. Sfeer.",
+        heroText: "Ik maak fotografie die steunt op compositie, sfeer en een sterke, verzorgde beeldtaal.",
+        heroBtn1: "Bekijk portfolio", heroBtn2: "Neem contact op",
+        aboutEyebrow: "Over mij", aboutTitle: "Professioneel. Persoonlijk. Helder.", aboutLead: "Een korte introductie van mijn visuele benadering.",
+        photoPlaceholder: "Plaats voor mijn foto",
+        aboutBoxTitle: "Fotografie gebaseerd op observatie en consistentie.",
+        aboutP1: "Ik richt mij op licht, detail, compositie en sfeer. Ik zoek beelden die visueel helder zijn en een eigen karakter hebben.",
+        aboutP2: "Ik werk rustig en precies. Voor mij telt een beeld dat bewust, verzorgd en professioneel oogt.",
+        portfolioEyebrow: "Portfolio", portfolioTitle: "Categorieën.", portfolioLead: "De belangrijkste richtingen binnen mijn fotografie.",
+        cat1: "Portret", catDesc1: "Portretten met aandacht voor aanwezigheid, licht en expressie.",
+        cat2: "Street", catDesc2: "Dagelijkse scènes, stadsritme en observatie.",
+        cat3: "Natuur", catDesc3: "Licht, textuur en de rustige kracht van natuur.",
+        cat4: "Reizen", catDesc4: "Plaatsen, details en de sfeer van reizen.",
+        cat5: "Creatief", catDesc5: "Persoonlijker werk met een sterker visueel accent.",
+        cat6: "Selectie", catDesc6: "Een doorsnede van beelden die mijn stijl goed samenvat.",
+        contactEyebrow: "Contact", contactTitle: "Direct contact.", contactLead: "De eenvoudigste manier om contact op te nemen over fotografie.", contactBtn: "Open"
+      }
+    };
+
+    const nodes = document.querySelectorAll('[data-i18n]');
+    const buttons = document.querySelectorAll('.lang button');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        buttons.forEach(b => b.classList.toggle('active', b === btn));
+        document.documentElement.lang = lang;
+        nodes.forEach(node => {
+          const key = node.dataset.i18n;
+          if (translations[lang][key]) node.textContent = translations[lang][key];
+        });
+      });
+    });
+  </script>
+</body>
+</html>
