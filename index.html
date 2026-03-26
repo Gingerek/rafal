@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="nl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rafał Wilk | Fotografia</title>
+  <title>Rafał Wilk | Fotografie</title>
   <meta name="description" content="Portfolio fotograficzne Rafała Wilka" />
   <style>
     :root{
@@ -17,6 +17,7 @@
       --container:1240px;
       --transition:220ms ease;
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -27,183 +28,535 @@
       line-height:1.55;
       overflow-x:hidden;
     }
+
     a{text-decoration:none;color:inherit}
     img{display:block;max-width:100%}
     button{font:inherit}
-    .container{width:min(var(--container), calc(100% - 32px)); margin:0 auto}
+
+    .container{
+      width:min(var(--container), calc(100% - 32px));
+      margin:0 auto;
+    }
+
     .site-header{
-      position:fixed; top:0; left:0; right:0; z-index:30;
-      background:rgba(5,5,5,.78); backdrop-filter:blur(14px);
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:30;
+      background:rgba(5,5,5,.78);
+      backdrop-filter:blur(14px);
       border-bottom:1px solid rgba(255,255,255,.05);
     }
+
     .header-row{
-      display:flex; justify-content:space-between; align-items:center; gap:16px;
-      padding:16px 0; flex-wrap:wrap;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:16px 0;
+      flex-wrap:wrap;
     }
-    .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.04em}
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:.04em;
+    }
+
     .brand-dot{
-      width:12px; height:12px; border-radius:999px; background:var(--accent);
-      box-shadow:0 0 18px rgba(209,179,132,.8); flex:0 0 auto;
+      width:12px;
+      height:12px;
+      border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 18px rgba(209,179,132,.8);
+      flex:0 0 auto;
     }
-    .nav-wrap{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
-    .nav{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
-    .nav a, .lang button{
-      padding:10px 14px; border-radius:999px; background:transparent; border:1px solid transparent;
-      color:var(--muted); cursor:pointer;
+
+    .nav-wrap{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .nav{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav a,
+    .lang button{
+      padding:10px 14px;
+      border-radius:999px;
+      background:transparent;
+      border:1px solid transparent;
+      color:var(--muted);
+      cursor:pointer;
       transition:background var(--transition), border-color var(--transition), color var(--transition);
     }
-    .nav a:hover, .lang button:hover, .lang button.active{
-      background:rgba(255,255,255,.05); border-color:var(--border); color:var(--text);
+
+    .nav a:hover,
+    .lang button:hover,
+    .lang button.active{
+      background:rgba(255,255,255,.05);
+      border-color:var(--border);
+      color:var(--text);
     }
+
     .lang{
-      display:flex; gap:6px; padding:4px; border-radius:999px;
-      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06);
+      display:flex;
+      gap:6px;
+      padding:4px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
     }
+
     .hero{
-      min-height:100svh; display:grid; align-items:end; padding:132px 0 72px;
+      min-height:100svh;
+      display:grid;
+      align-items:end;
+      padding:132px 0 72px;
       background:
         linear-gradient(90deg, rgba(5,5,5,.88) 0%, rgba(5,5,5,.64) 32%, rgba(5,5,5,.18) 60%, rgba(5,5,5,.34) 100%),
         linear-gradient(to top, rgba(5,5,5,.88) 0%, rgba(5,5,5,.34) 38%, rgba(5,5,5,.1) 70%, rgba(5,5,5,.22) 100%),
-        url("images/DSCF4051.jpg");
-      background-size:cover; background-position:center 24%; background-repeat:no-repeat; position:relative;
+        url("DSCF4051.jpg");
+      background-size:cover;
+      background-position:center 24%;
+      background-repeat:no-repeat;
+      position:relative;
     }
+
     .hero::after{
-      content:""; position:absolute; left:0; right:0; bottom:0; height:160px;
-      background:linear-gradient(to top, var(--bg), transparent); pointer-events:none;
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:160px;
+      background:linear-gradient(to top, var(--bg), transparent);
+      pointer-events:none;
     }
-    .hero-copy{position:relative; z-index:1; max-width:760px}
+
+    .hero-copy{
+      position:relative;
+      z-index:1;
+      max-width:760px;
+    }
+
     .eyebrow{
-      display:inline-block; padding:10px 16px; border-radius:999px; border:1px solid rgba(255,255,255,.1);
-      color:var(--muted); letter-spacing:.16em; text-transform:uppercase; font-size:.78rem; margin-bottom:22px;
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.1);
+      color:var(--muted);
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-size:.78rem;
+      margin-bottom:22px;
       background:rgba(5,5,5,.22);
     }
+
     h1{
-      font-size:clamp(2.8rem, 7vw, 5.8rem); line-height:.98; letter-spacing:-.05em; max-width:11ch; margin:0 0 20px;
+      font-size:clamp(2.8rem, 7vw, 5.8rem);
+      line-height:.98;
+      letter-spacing:-.05em;
+      max-width:11ch;
+      margin:0 0 20px;
     }
+
     .hero p{
-      font-size:clamp(1.05rem, 1.8vw, 1.32rem); max-width:42ch; color:var(--muted); margin:0 0 28px;
+      font-size:clamp(1.05rem, 1.8vw, 1.32rem);
+      max-width:42ch;
+      color:var(--muted);
+      margin:0 0 28px;
     }
-    .actions{display:flex; gap:12px; flex-wrap:wrap}
+
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; padding:15px 22px; border-radius:999px;
-      border:1px solid var(--border); background:rgba(255,255,255,.04); box-shadow:var(--shadow);
-      transition:transform var(--transition), background var(--transition), border-color var(--transition); cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:15px 22px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      box-shadow:var(--shadow);
+      transition:transform var(--transition), background var(--transition), border-color var(--transition);
+      cursor:pointer;
     }
+
     .btn:hover{
-      transform:translateY(-2px); background:rgba(255,255,255,.07); border-color:rgba(209,179,132,.25);
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.07);
+      border-color:rgba(209,179,132,.25);
     }
+
     .btn.primary{
       background:linear-gradient(135deg, rgba(209,179,132,.24), rgba(255,255,255,.04));
       border-color:rgba(209,179,132,.28);
     }
-    section{padding:82px 0; position:relative}
-    .head{max-width:760px; margin-bottom:28px}
+
+    section{
+      padding:82px 0;
+      position:relative;
+    }
+
+    .head{
+      max-width:760px;
+      margin-bottom:28px;
+    }
+
     .head span{
-      display:block; color:var(--accent); letter-spacing:.16em; text-transform:uppercase; font-size:.78rem; margin-bottom:12px;
+      display:block;
+      color:var(--accent);
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-size:.78rem;
+      margin-bottom:12px;
     }
+
     .head h2{
-      font-size:clamp(2.1rem, 4vw, 4rem); line-height:.96; letter-spacing:-.05em; margin:0 0 10px;
+      font-size:clamp(2.1rem, 4vw, 4rem);
+      line-height:.96;
+      letter-spacing:-.05em;
+      margin:0 0 10px;
     }
-    .head p{margin:0; color:var(--muted)}
-    .about{display:grid; grid-template-columns:.95fr 1.05fr; gap:18px; align-items:stretch}
+
+    .head p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .about{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.028));
-      border:1px solid var(--border); border-radius:24px; box-shadow:var(--shadow); overflow:hidden;
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
+
     .about-photo img{
-      width:100%; height:100%; min-height:520px; object-fit:cover; filter:brightness(.68) saturate(.82);
+      width:100%;
+      height:100%;
+      min-height:520px;
+      object-fit:cover;
+      filter:brightness(.68) saturate(.82);
     }
-    .copy{padding:28px; display:grid; gap:16px; align-content:start}
+
+    .copy{
+      padding:28px;
+      display:grid;
+      gap:16px;
+      align-content:start;
+    }
+
     .copy h3{
-      margin:0; font-size:clamp(1.5rem, 2.6vw, 2.2rem); line-height:1.08; letter-spacing:-.03em;
+      margin:0;
+      font-size:clamp(1.5rem, 2.6vw, 2.2rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
     }
-    .copy p{margin:0; color:var(--muted)}
-    .categories{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px}
+
+    .copy p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .categories{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
     .cat{
-      padding:18px; display:grid; gap:14px; text-align:left; cursor:pointer;
+      padding:18px;
+      display:grid;
+      gap:14px;
+      text-align:left;
+      cursor:pointer;
       transition:transform var(--transition), border-color var(--transition), box-shadow var(--transition);
     }
+
     .cat:hover{
-      transform:translateY(-3px); border-color:rgba(209,179,132,.25); box-shadow:0 22px 58px rgba(0,0,0,.42);
+      transform:translateY(-3px);
+      border-color:rgba(209,179,132,.25);
+      box-shadow:0 22px 58px rgba(0,0,0,.42);
     }
+
     .cat-pill{
-      display:inline-flex; width:fit-content; padding:8px 14px; border-radius:999px; background:rgba(255,255,255,.06);
-      color:var(--text); font-size:.92rem; letter-spacing:.02em;
+      display:inline-flex;
+      width:fit-content;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-size:.92rem;
+      letter-spacing:.02em;
     }
+
+    /* 1:1 miniatury kategorii */
     .thumb{
-      aspect-ratio:1 / 1; border-radius:18px; border:1px solid rgba(255,255,255,.08); overflow:hidden; background:rgba(255,255,255,.03);
+      aspect-ratio:1 / 1;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      background:rgba(255,255,255,.03);
     }
+
     .thumb img{
-      width:100%; height:100%; object-fit:cover; transition:transform var(--transition);
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform var(--transition);
     }
-    .cat:hover .thumb img{transform:scale(1.03)}
-    .cat p{display:none; margin:0; color:var(--muted)}
-    .modal, .lightbox{
-      position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:16px;
-      background:rgba(0,0,0,.86); backdrop-filter:blur(14px);
+
+    .cat:hover .thumb img{
+      transform:scale(1.03);
     }
-    .modal.open, .lightbox.open{display:flex}
+
+    .modal,
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      background:rgba(0,0,0,.86);
+      backdrop-filter:blur(14px);
+    }
+
+    .modal.open,
+    .lightbox.open{
+      display:flex;
+    }
+
     .modal-shell{
-      width:min(1320px, 100%); max-height:calc(100vh - 32px); overflow:auto; padding:24px; border-radius:28px;
+      width:min(1320px, 100%);
+      max-height:calc(100vh - 32px);
+      overflow:auto;
+      padding:24px;
+      border-radius:28px;
       border:1px solid rgba(255,255,255,.10);
       background:
         radial-gradient(circle at top right, rgba(209,179,132,.12), transparent 20%),
         linear-gradient(180deg, rgba(10,10,10,.96), rgba(6,6,6,.98));
       box-shadow:0 28px 90px rgba(0,0,0,.56);
     }
+
     .modal-top{
-      display:flex; justify-content:space-between; gap:16px; align-items:flex-start; margin-bottom:22px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:flex-start;
+      margin-bottom:22px;
     }
+
     .modal-kicker{
-      color:var(--accent); letter-spacing:.16em; text-transform:uppercase; font-size:.78rem; margin-bottom:10px;
+      color:var(--accent);
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-size:.78rem;
+      margin-bottom:10px;
     }
+
     .modal h3{
-      margin:0 0 8px; font-size:clamp(1.8rem, 3vw, 2.7rem); line-height:1.02; letter-spacing:-.04em;
+      margin:0 0 8px;
+      font-size:clamp(1.8rem, 3vw, 2.7rem);
+      line-height:1.02;
+      letter-spacing:-.04em;
     }
-    .modal p{margin:0; color:var(--muted)}
+
+    .modal p{
+      margin:0;
+      color:var(--muted);
+    }
+
     .close-btn{
-      width:50px; height:50px; border-radius:999px; border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05); color:var(--text); cursor:pointer; font-size:30px; line-height:1; flex:0 0 auto;
+      width:50px;
+      height:50px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      cursor:pointer;
+      font-size:30px;
+      line-height:1;
+      flex:0 0 auto;
     }
-    .gallery-grid{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:16px}
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:16px;
+    }
+
+    /* 1:1 miniatury w galerii */
     .gallery-item{
-      border:0; background:transparent; padding:0; cursor:pointer; border-radius:20px; overflow:hidden;
-      aspect-ratio:1 / 1; box-shadow:0 14px 34px rgba(0,0,0,.32);
+      border:0;
+      background:transparent;
+      padding:0;
+      cursor:pointer;
+      border-radius:20px;
+      overflow:hidden;
+      aspect-ratio:1 / 1;
+      box-shadow:0 14px 34px rgba(0,0,0,.32);
     }
+
     .gallery-item img{
-      width:100%; height:100%; object-fit:cover; transition:transform var(--transition), filter var(--transition);
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform var(--transition), filter var(--transition);
     }
-    .gallery-item:hover img{transform:scale(1.03); filter:brightness(1.04)}
+
+    .gallery-item:hover img{
+      transform:scale(1.03);
+      filter:brightness(1.04);
+    }
+
     .lightbox-inner{
-      position:relative; width:auto; height:auto; max-width:94vw; max-height:90vh; padding:0; border:none;
-      background:transparent; box-shadow:none; display:flex; align-items:center; justify-content:center;
+      position:relative;
+      width:auto;
+      height:auto;
+      max-width:94vw;
+      max-height:90vh;
+      padding:0;
+      border:none;
+      background:transparent;
+      box-shadow:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
+
     .lightbox img{
-      width:auto; height:auto; max-width:94vw; max-height:88vh; object-fit:contain; border-radius:18px;
+      width:auto;
+      height:auto;
+      max-width:94vw;
+      max-height:88vh;
+      object-fit:contain;
+      border-radius:18px;
       box-shadow:0 28px 90px rgba(0,0,0,.56);
     }
-    .lightbox .close-btn{position:fixed; top:18px; right:18px}
-    .contact-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px}
-    .contact-card{padding:24px}
-    .contact-card strong{display:block; margin-bottom:8px; font-size:1.05rem}
-    .contact-card span{display:block; color:var(--muted); margin-bottom:14px; word-break:break-word}
-    .footer{padding:24px 0 48px; color:rgba(243,237,228,.48)}
-    .footer .container{display:grid; gap:8px}
-    @media (max-width:1080px){
-      .about, .categories, .gallery-grid, .contact-grid{grid-template-columns:1fr 1fr}
-      .hero{background-position:center 22%}
+
+    .lightbox .close-btn{
+      position:fixed;
+      top:18px;
+      right:18px;
     }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .contact-card{
+      padding:24px;
+    }
+
+    .contact-card strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1.05rem;
+    }
+
+    .contact-card span{
+      display:block;
+      color:var(--muted);
+      margin-bottom:14px;
+      word-break:break-word;
+    }
+
+    .footer{
+      padding:24px 0 48px;
+      color:rgba(243,237,228,.48);
+    }
+
+    .footer .container{
+      display:grid;
+      gap:8px;
+    }
+
+    @media (max-width:1080px){
+      .about,
+      .categories,
+      .gallery-grid,
+      .contact-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .hero{
+        background-position:center 22%;
+      }
+    }
+
     @media (max-width:720px){
-      .container{width:min(calc(100% - 24px), var(--container))}
-      .header-row{align-items:flex-start}
-      .nav-wrap{width:100%; justify-content:space-between}
-      .hero{padding:118px 0 60px; background-position:60% 22%}
-      h1{max-width:11ch}
-      section{padding:66px 0}
-      .about, .categories, .gallery-grid, .contact-grid{grid-template-columns:1fr}
-      .about-photo img{min-height:420px}
-      .modal-shell{padding:18px}
-      .lightbox img{max-width:92vw; max-height:84vh}
+      .container{
+        width:min(calc(100% - 24px), var(--container));
+      }
+
+      .header-row{
+        align-items:flex-start;
+      }
+
+      .nav-wrap{
+        width:100%;
+        justify-content:space-between;
+      }
+
+      .hero{
+        padding:118px 0 60px;
+        background-position:60% 22%;
+      }
+
+      h1{
+        max-width:11ch;
+      }
+
+      section{
+        padding:66px 0;
+      }
+
+      .about,
+      .categories,
+      .gallery-grid,
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+
+      .about-photo img{
+        min-height:420px;
+      }
+
+      .modal-shell{
+        padding:18px;
+      }
+
+      .lightbox img{
+        max-width:92vw;
+        max-height:84vh;
+      }
     }
   </style>
 </head>
@@ -214,16 +567,18 @@
         <span class="brand-dot"></span>
         <span>Rafał Wilk</span>
       </div>
+
       <div class="nav-wrap">
         <nav class="nav">
-          <a href="#about" data-i18n="navAbout">O mnie</a>
+          <a href="#about" data-i18n="navAbout">Over mij</a>
           <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
-          <a href="#contact" data-i18n="navContact">Kontakt</a>
+          <a href="#contact" data-i18n="navContact">Contact</a>
         </nav>
+
         <div class="lang">
-          <button data-lang="nl">NL</button>
+          <button class="active" data-lang="nl">NL</button>
           <button data-lang="en">EN</button>
-          <button class="active" data-lang="pl">PL</button>
+          <button data-lang="pl">PL</button>
         </div>
       </div>
     </div>
@@ -233,12 +588,12 @@
     <section class="hero" id="top">
       <div class="container">
         <div class="hero-copy">
-          <div class="eyebrow" data-i18n="heroEyebrow">Portfolio fotograficzne</div>
-          <h1 data-i18n="heroTitle">Fotografia oparta na świetle atmosferze i wyrazistym obrazie</h1>
-          <p data-i18n="heroText">Witaj na mojej stronie gdzie pokazuję fotografie budowane kompozycją detalem i spokojną siłą wizualną</p>
+          <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
+          <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer licht en karakter</h1>
+          <p data-i18n="heroText">Welkom op mijn portfolio waar ik beelden laat zien die draaien om compositie detail en een rustige visuele kracht</p>
           <div class="actions">
-            <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Zobacz portfolio</a>
-            <a class="btn" href="#contact" data-i18n="heroBtn2">Skontaktuj się</a>
+            <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
+            <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
           </div>
         </div>
       </div>
@@ -247,18 +602,20 @@
     <section id="about">
       <div class="container">
         <div class="head">
-          <span data-i18n="aboutEyebrow">O mnie</span>
-          <h2 data-i18n="aboutTitle">Osobliwe spojrzenie przełożone na dopracowane i świadome kadry</h2>
-          <p data-i18n="aboutLead">Wierzę w fotografię która nie tylko dobrze wygląda ale również niesie jakość spokój i własny charakter</p>
+          <span data-i18n="aboutEyebrow">Over mij</span>
+          <h2 data-i18n="aboutTitle">Een persoonlijke blik vertaald naar verzorgde en doordachte beelden</h2>
+          <p data-i18n="aboutLead">Ik geloof in fotografie die niet alleen mooi oogt maar ook rust kwaliteit en eigen stijl uitstraalt</p>
         </div>
+
         <div class="about">
           <div class="card about-photo">
-            <img src="images/A7406441.avif" alt="Rafał Wilk" />
+            <img src="A7406441.avif" alt="Rafał Wilk" />
           </div>
+
           <div class="card copy">
-            <h3 data-i18n="aboutBoxTitle">Fotografia która łączy klimat precyzję i własny styl</h3>
-            <p data-i18n="aboutP1">W mojej pracy najważniejsze są światło detal kompozycja i emocja. Szukam obrazów które są mocne w swojej prostocie i przyciągają uwagę atmosferą oraz dopracowaniem</p>
-            <p data-i18n="aboutP2">Moim celem jest tworzenie fotografii która wygląda profesjonalnie i estetycznie a jednocześnie pozostaje osobista. Każdy kadr powinien być świadomie zbudowany i nieść własną opowieść</p>
+            <h3 data-i18n="aboutBoxTitle">Fotografie die sfeer precisie en een eigen signatuur samenbrengt</h3>
+            <p data-i18n="aboutP1">In mijn werk staan licht detail compositie en emotie centraal. Ik zoek beelden die sterk zijn in eenvoud en die de aandacht vasthouden door hun sfeer en afwerking</p>
+            <p data-i18n="aboutP2">Mijn doel is om fotografie te maken die verzorgd en professioneel aanvoelt en tegelijk persoonlijk blijft. Elk beeld moet bewust opgebouwd zijn en een eigen verhaal dragen</p>
           </div>
         </div>
       </div>
@@ -268,39 +625,39 @@
       <div class="container">
         <div class="head">
           <span data-i18n="portfolioEyebrow">Portfolio</span>
-          <h2 data-i18n="portfolioTitle">Wybrane obszary mojej fotografii</h2>
-          <p data-i18n="portfolioLead">Przejrzyj różne kategorie i zobacz mój sposób patrzenia na ludzi miejsca detale i światło</p>
+          <h2 data-i18n="portfolioTitle">Selecties uit mijn fotografisch werk</h2>
+          <p data-i18n="portfolioLead">Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen</p>
         </div>
 
-        <div class="categories" id="categoryGrid">
+        <div class="categories">
           <button class="card cat" type="button" data-category="portrait">
             <span class="cat-pill" data-i18n="cat1">Portret</span>
-            <div class="thumb"><img src="images/A7407652.jpg" alt="Portret" /></div>
+            <div class="thumb"><img src="A7407652.jpg" alt="Portret" /></div>
           </button>
 
           <button class="card cat" type="button" data-category="street">
-            <span class="cat-pill" data-i18n="cat2">Ulica</span>
-            <div class="thumb"><img src="images/A7407052.jpg" alt="Ulica" /></div>
+            <span class="cat-pill" data-i18n="cat2">Street</span>
+            <div class="thumb"><img src="A7407052.jpg" alt="Street" /></div>
           </button>
 
           <button class="card cat" type="button" data-category="animals">
-            <span class="cat-pill" data-i18n="cat3">Zwierzęta</span>
-            <div class="thumb"><img src="images/A7407059.jpg" alt="Zwierzęta" /></div>
+            <span class="cat-pill" data-i18n="cat3">Dieren</span>
+            <div class="thumb"><img src="DSCF3455.jpg" alt="Dieren" /></div>
           </button>
 
           <button class="card cat" type="button" data-category="macro">
-            <span class="cat-pill" data-i18n="cat4">Makro</span>
-            <div class="thumb"><img src="images/A7400567.png" alt="Makro" /></div>
+            <span class="cat-pill" data-i18n="cat4">Macro</span>
+            <div class="thumb"><img src="A7400567.png" alt="Macro" /></div>
           </button>
 
           <button class="card cat" type="button" data-category="travel">
-            <span class="cat-pill" data-i18n="cat5">Podróże</span>
-            <div class="thumb"><img src="images/A7406608.jpg" alt="Podróże" /></div>
+            <span class="cat-pill" data-i18n="cat5">Reizen</span>
+            <div class="thumb"><img src="A7406608.jpg" alt="Reizen" /></div>
           </button>
 
           <button class="card cat" type="button" data-category="creative">
-            <span class="cat-pill" data-i18n="cat6">Kreatywne</span>
-            <div class="thumb"><img src="images/A7406311-2.avif" alt="Kreatywne" /></div>
+            <span class="cat-pill" data-i18n="cat6">Creatief</span>
+            <div class="thumb"><img src="A7406311-2.avif" alt="Creatief" /></div>
           </button>
         </div>
       </div>
@@ -309,28 +666,28 @@
     <section id="contact">
       <div class="container">
         <div class="head">
-          <span data-i18n="contactEyebrow">Kontakt</span>
-          <h2 data-i18n="contactTitle">Skontaktuj się ze mną bezpośrednio</h2>
-          <p data-i18n="contactLead">W sprawie pytań współpracy lub zainteresowania moją fotografią możesz łatwo odezwać się przez poniższe kanały</p>
+          <span data-i18n="contactEyebrow">Contact</span>
+          <h2 data-i18n="contactTitle">Neem rechtstreeks contact met mij op</h2>
+          <p data-i18n="contactLead">Voor vragen samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen</p>
         </div>
 
         <div class="contact-grid">
           <div class="card contact-card">
             <strong>Instagram</strong>
             <span>@fotodisogno</span>
-            <a class="btn" href="https://instagram.com/fotodisogno" target="_blank" rel="noreferrer" data-i18n="contactBtn">Otwórz</a>
+            <a class="btn" href="https://instagram.com/fotodisogno" target="_blank" rel="noreferrer" data-i18n="contactBtn">Open</a>
           </div>
 
           <div class="card contact-card">
             <strong>E-mail</strong>
             <span>fotodisogno@gmail.com</span>
-            <a class="btn" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Otwórz</a>
+            <a class="btn" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Open</a>
           </div>
 
           <div class="card contact-card">
             <strong>WhatsApp</strong>
             <span>31 0644747733</span>
-            <a class="btn" href="https://wa.me/310644747733" target="_blank" rel="noreferrer" data-i18n="contactBtn">Otwórz</a>
+            <a class="btn" href="https://wa.me/310644747733" target="_blank" rel="noreferrer" data-i18n="contactBtn">Open</a>
           </div>
         </div>
       </div>
@@ -340,7 +697,7 @@
   <footer class="footer">
     <div class="container">
       <div>© Rafał Wilk</div>
-      <div data-i18n="legalNotice">Wszelkie prawa zastrzeżone. Wszystkie zdjęcia i treści na tej stronie są chronione prawem autorskim i nie mogą być kopiowane pobierane ani wykorzystywane bez uprzedniej pisemnej zgody</div>
+      <div data-i18n="legalNotice">Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd gedownload of gebruikt zonder voorafgaande schriftelijke toestemming</div>
     </div>
   </footer>
 
@@ -484,78 +841,81 @@
       portrait: {
         titleKey: "galleryTitlePortrait",
         items: [
-          { src: "images/A7407652.jpg", alt: "Portrait with white cap and gold face paint" },
-          { src: "images/A7407653.jpg", alt: "Portrait of cameraman in gold costume" },
-          { src: "images/A7407666.jpg", alt: "Portrait in historical costume" },
-          { src: "images/A7407707.jpg", alt: "Black and white portrait with camera costume" },
-          { src: "images/DSC03914.avif", alt: "Portrait of musician playing cello" },
-          { src: "images/DSC04580.avif", alt: "Portrait of drummer during performance" },
-          { src: "images/DSC05313-Enhanced-NR.avif", alt: "Portrait of man in orange vest" },
-          { src: "images/DSC05317.avif", alt: "Black and white portrait of singer with guitar" },
-          { src: "images/DSCF4051-2.jpg", alt: "Portrait with cat in dark background" },
-          { src: "images/DSC_5379.avif", alt: "Black and white portrait of smiling man" }
+          { src: "A7407652.jpg", alt: "Portrait with white cap and gold face paint" },
+          { src: "A7407653.jpg", alt: "Portrait of cameraman in gold costume" },
+          { src: "A7407666.jpg", alt: "Portrait in historical costume" },
+          { src: "A7407707.jpg", alt: "Black and white portrait with camera costume" },
+          { src: "DSC03914.avif", alt: "Portrait of musician playing cello" },
+          { src: "DSC04580.avif", alt: "Portrait of drummer during performance" },
+          { src: "DSC05313-Enhanced-NR.avif", alt: "Portrait of man in orange vest" },
+          { src: "DSC05317.avif", alt: "Black and white portrait of singer with guitar" },
+          { src: "DSCF4051-2.jpg", alt: "Portrait with cat in dark background" },
+          { src: "DSC_5379.avif", alt: "Black and white portrait of smiling man" }
         ]
       },
       street: {
         titleKey: "galleryTitleStreet",
         items: [
-          { src: "images/DSCF3455.jpg", alt: "Cyclist in fog by the lake" },
-          { src: "images/A7407373.jpg", alt: "Snowy bicycle in the city" },
-          { src: "images/A7407402.jpg", alt: "Winter walkway with figure" }
+          { src: "A7407052.jpg", alt: "Cyclist in fog by the lake" },
+          { src: "A7407373.jpg", alt: "Snowy bicycle in the city" },
+          { src: "A7407402.jpg", alt: "Winter walkway with figure" }
         ]
       },
       animals: {
         titleKey: "galleryTitleAnimals",
         items: [
-          { src: "images/DSCF3455.jpg", alt: "Cat walking in snow" },
-          { src: "images/A7407059.jpg", alt: "Cat walking in snow" },
-          { src: "images/A7407219.jpg", alt: "Duck in snow" },
-          { src: "images/A7407839.jpg", alt: "Cat close portrait" },
-          { src: "images/DSCF4010.jpg", alt: "Bird on wooden perch" },
-          { src: "images/DSC_0250.jpg", alt: "White and brown cat resting" }
+          { src: "DSCF3455.jpg", alt: "Robin bird portrait" },
+          { src: "DSC02526.avif", alt: "Bird with red eye on wooden perch" },
+          { src: "A7406653.avif", alt: "Seagull by the water" },
+          { src: "A7407059.jpg", alt: "Cat walking in snow" },
+          { src: "A7407219.jpg", alt: "Duck in snow" },
+          { src: "A7407839.jpg", alt: "Cat close portrait" },
+          { src: "DSCF0191.jpg", alt: "Long-haired cat portrait" },
+          { src: "DSCF4010.jpg", alt: "Bird on wooden perch" },
+          { src: "DSC_0250.jpg", alt: "White and brown cat resting" }
         ]
       },
       macro: {
         titleKey: "galleryTitleMacro",
         items: [
-          { src: "images/A7400567.png", alt: "Wildflowers in soft light" },
-          { src: "images/A7403102.avif", alt: "Daisy close-up" },
-          { src: "images/A7407521.png", alt: "Red berries close-up" },
-          { src: "images/DSC_0032.jpg", alt: "Red berries detail" },
-          { src: "images/DSC_0052.jpg", alt: "Small yellow flowers" },
-          { src: "images/DSC_0057.jpg", alt: "Small flower cluster" },
-          { src: "images/DSC_0352.jpg", alt: "White flower macro" },
-          { src: "images/DSC_0492.jpg", alt: "Purple flower detail" }
+          { src: "A7400567.png", alt: "Wildflowers in soft light" },
+          { src: "A7403102.avif", alt: "Daisy close-up" },
+          { src: "A7407521.png", alt: "Red berries close-up" },
+          { src: "DSC_0032.jpg", alt: "Red berries detail" },
+          { src: "DSC_0052.jpg", alt: "Small yellow flowers" },
+          { src: "DSC_0057.jpg", alt: "Small flower cluster" },
+          { src: "DSC_0352.jpg", alt: "White flower macro" },
+          { src: "DSC_0492.jpg", alt: "Purple flower detail" }
         ]
       },
       travel: {
         titleKey: "galleryTitleTravel",
         items: [
-          { src: "images/A7406608.jpg", alt: "Blue boat by the coast" },
-          { src: "images/A7406616.avif", alt: "Coastal landscape with sea and mountains" },
-          { src: "images/A7407232.jpg", alt: "Snowy forest with winter sunlight" },
-          { src: "images/A7407252-2.jpg", alt: "Black and white winter tree landscape" },
-          { src: "images/A7406473.avif", alt: "Aperol drinks by the lake" },
-          { src: "images/A7407409.jpg", alt: "Observation tower in winter" },
-          { src: "images/DSC04416.png", alt: "Sea view from table by the coast" },
-          { src: "images/DSC_0029-2.png", alt: "Windmill seen through branches" },
-          { src: "images/DSC_0372.jpg", alt: "Black and white waterside landscape" },
-          { src: "images/DSC_2985.avif", alt: "Coastal terrace and sea view" }
+          { src: "A7406608.jpg", alt: "Blue boat by the coast" },
+          { src: "A7406616.avif", alt: "Coastal landscape with sea and mountains" },
+          { src: "A7407232.jpg", alt: "Snowy forest with winter sunlight" },
+          { src: "A7407252-2.jpg", alt: "Black and white winter tree landscape" },
+          { src: "A7406473.avif", alt: "Aperol drinks by the lake" },
+          { src: "A7407409.jpg", alt: "Observation tower in winter" },
+          { src: "DSC04416.png", alt: "Sea view from table by the coast" },
+          { src: "DSC_0029-2.png", alt: "Windmill seen through branches" },
+          { src: "DSC_0372.jpg", alt: "Black and white waterside landscape" },
+          { src: "DSC_2985.avif", alt: "Coastal terrace and sea view" }
         ]
       },
       creative: {
         titleKey: "galleryTitleCreative",
         items: [
-          { src: "images/DSC_4824.avif", alt: "Grass silhouette at sunset" },
-          { src: "images/A7406311-2.avif", alt: "Decorative lantern with warm lights" },
-          { src: "images/A7406318-2.avif", alt: "Santa hat in festive bokeh" },
-          { src: "images/A7406347.avif", alt: "Abstract warm city lights" },
-          { src: "images/A7407223.jpg", alt: "Moon behind branches and clouds" },
-          { src: "images/A7407366.jpg", alt: "Candles in dark interior" },
-          { src: "images/A7407810.jpg", alt: "Full moon against black sky" },
-          { src: "images/DSC_0007-2.jpg", alt: "Abstract orange light spiral" },
-          { src: "images/A7408846.avif", alt: "Basketball hoop at sunset" },
-          { src: "images/A7409171.avif", alt: "Sun behind branches and clouds" }
+          { src: "DSC_4824.avif", alt: "Grass silhouette at sunset" },
+          { src: "A7406311-2.avif", alt: "Decorative lantern with warm lights" },
+          { src: "A7406318-2.avif", alt: "Santa hat in festive bokeh" },
+          { src: "A7406347.avif", alt: "Abstract warm city lights" },
+          { src: "A7407223.jpg", alt: "Moon behind branches and clouds" },
+          { src: "A7407366.jpg", alt: "Candles in dark interior" },
+          { src: "A7407810.jpg", alt: "Full moon against black sky" },
+          { src: "DSC_0007-2.jpg", alt: "Abstract orange light spiral" },
+          { src: "A7408846.avif", alt: "Basketball hoop at sunset" },
+          { src: "A7409171.avif", alt: "Sun behind branches and clouds" }
         ]
       }
     };
@@ -572,7 +932,7 @@
     const closeLightbox = document.getElementById("closeLightbox");
     const lightboxImage = document.getElementById("lightboxImage");
 
-    let currentLang = "pl";
+    let currentLang = "nl";
     let currentCategory = null;
     let currentIndex = 0;
 
@@ -582,9 +942,7 @@
         const key = node.dataset.i18n;
         if (key in dict) node.textContent = dict[key];
       });
-
       document.documentElement.lang = currentLang;
-
       if (currentCategory) {
         modalTitle.textContent = dict[galleryData[currentCategory].titleKey];
       }
@@ -659,16 +1017,16 @@
     });
 
     closeModal.addEventListener("click", closeCategory);
-    modal.addEventListener("click", (e) => {
+    modal.addEventListener("click", e => {
       if (e.target === modal) closeCategory();
     });
 
     closeLightbox.addEventListener("click", closeImage);
-    lightbox.addEventListener("click", (e) => {
+    lightbox.addEventListener("click", e => {
       if (e.target === lightbox) closeImage();
     });
 
-    document.addEventListener("keydown", (e) => {
+    document.addEventListener("keydown", e => {
       if (lightbox.classList.contains("open")) {
         if (e.key === "Escape") closeImage();
         if (e.key === "ArrowRight") moveImage(1);
