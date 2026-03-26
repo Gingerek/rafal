@@ -1,3 +1,6 @@
+Masz rację — w tym kodzie nadal był błąd, bo w kafelkach dalej widniał napis **„Kategoria”**; poniżej masz cały poprawiony kod, w którym na kafelku jest już tylko **nazwa kategorii**.
+
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -288,16 +291,15 @@
       box-shadow:0 22px 58px rgba(0,0,0,.42);
     }
 
-    .cat-label{
+    .cat-pill{
       display:inline-flex;
       width:fit-content;
-      padding:7px 11px;
+      padding:8px 14px;
       border-radius:999px;
       background:rgba(255,255,255,.06);
-      color:var(--muted);
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
+      color:var(--text);
+      font-size:.92rem;
+      letter-spacing:.02em;
     }
 
     .thumb{
@@ -316,7 +318,6 @@
     }
 
     .cat:hover .thumb img{transform:scale(1.03)}
-    .cat strong{font-size:1.35rem; line-height:1.05}
     .cat p{margin:0; color:var(--muted)}
 
     .modal,
@@ -374,6 +375,7 @@
     }
 
     .modal p{margin:0; color:var(--muted)}
+
     .close-btn{
       width:50px;
       height:50px;
@@ -571,44 +573,38 @@
 
         <div class="categories" id="categoryGrid">
           <button class="card cat" type="button" data-category="portrait">
-            <span class="cat-label" data-i18n="catLabel">Kategoria</span>
+            <span class="cat-pill" data-i18n="cat1">Portret</span>
             <div class="thumb"><img src="images/A7407313.jpg" alt="Portret" /></div>
-            <strong data-i18n="cat1">Portret</strong>
             <p data-i18n="catDesc1">Portrety oparte na obecności, świetle i spojrzeniu.</p>
           </button>
 
           <button class="card cat" type="button" data-category="street">
-            <span class="cat-label" data-i18n="catLabel">Kategoria</span>
+            <span class="cat-pill" data-i18n="cat2">Street</span>
             <div class="thumb"><img src="images/A7407052.jpg" alt="Street" /></div>
-            <strong data-i18n="cat2">Street</strong>
             <p data-i18n="catDesc2">Codzienność, rytm miasta i obserwacja.</p>
           </button>
 
           <button class="card cat" type="button" data-category="nature">
-            <span class="cat-label" data-i18n="catLabel">Kategoria</span>
+            <span class="cat-pill" data-i18n="cat3">Natura</span>
             <div class="thumb"><img src="images/A7400567.png" alt="Natura" /></div>
-            <strong data-i18n="cat3">Natura</strong>
             <p data-i18n="catDesc3">Światło, faktura i spokój natury.</p>
           </button>
 
           <button class="card cat" type="button" data-category="travel">
-            <span class="cat-label" data-i18n="catLabel">Kategoria</span>
+            <span class="cat-pill" data-i18n="cat4">Podróże</span>
             <div class="thumb"><img src="images/A7406608.jpg" alt="Podróże" /></div>
-            <strong data-i18n="cat4">Podróże</strong>
             <p data-i18n="catDesc4">Miejsca, detale i klimat podróży.</p>
           </button>
 
           <button class="card cat" type="button" data-category="creative">
-            <span class="cat-label" data-i18n="catLabel">Kategoria</span>
+            <span class="cat-pill" data-i18n="cat5">Kreatywne</span>
             <div class="thumb"><img src="images/A7406311-2.avif" alt="Kreatywne" /></div>
-            <strong data-i18n="cat5">Kreatywne</strong>
             <p data-i18n="catDesc5">Bardziej autorskie kadry z mocniejszym akcentem wizualnym.</p>
           </button>
 
           <button class="card cat" type="button" data-category="selected">
-            <span class="cat-label" data-i18n="catLabel">Kategoria</span>
+            <span class="cat-pill" data-i18n="cat6">Wybrane</span>
             <div class="thumb"><img src="images/A7407707.jpg" alt="Wybrane" /></div>
-            <strong data-i18n="cat6">Wybrane</strong>
             <p data-i18n="catDesc6">Przekrojowy wybór zdjęć, które najlepiej pokazują mój styl.</p>
           </button>
         </div>
@@ -691,7 +687,6 @@
         portfolioEyebrow: "Portfolio",
         portfolioTitle: "Kategorie portfolio.",
         portfolioLead: "Wybierz kategorię i otwórz pełny zestaw zdjęć.",
-        catLabel: "Kategoria",
         cat1: "Portret",
         catDesc1: "Portrety oparte na obecności, świetle i spojrzeniu.",
         cat2: "Street",
@@ -740,7 +735,6 @@
         portfolioEyebrow: "Portfolio",
         portfolioTitle: "Portfolio categories.",
         portfolioLead: "Choose a category and open the full image set.",
-        catLabel: "Category",
         cat1: "Portrait",
         catDesc1: "Portraits built on presence, light and expression.",
         cat2: "Street",
@@ -789,7 +783,6 @@
         portfolioEyebrow: "Portfolio",
         portfolioTitle: "Portfoliocategorieën.",
         portfolioLead: "Kies een categorie en open de volledige beeldselectie.",
-        catLabel: "Categorie",
         cat1: "Portret",
         catDesc1: "Portretten met aandacht voor aanwezigheid, licht en expressie.",
         cat2: "Street",
@@ -1022,3 +1015,5 @@
   </script>
 </body>
 </html>
+to teraz ? sprawdz jeszcze raz czy wsztko ok. jezlei nie podaj calosc do kopiwoania 
+```
