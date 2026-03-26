@@ -1,6 +1,3 @@
-Wklej cały ten kod do `index.html`:
-
-```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -329,6 +326,7 @@ Wklej cały ten kod do `index.html`:
 
     .cat:hover .thumb img{transform:scale(1.03)}
     .cat p{
+      display:none;
       margin:0;
       color:var(--muted);
     }
@@ -602,37 +600,37 @@ Wklej cały ten kod do `index.html`:
           <button class="card cat" type="button" data-category="portrait">
             <span class="cat-pill" data-i18n="cat1">Portret</span>
             <div class="thumb"><img src="images/A7407313.jpg" alt="Portret" /></div>
-            <p data-i18n="catDesc1">Portrety oparte na obecności, świetle i spojrzeniu.</p>
+            <p data-i18n="catDesc1"></p>
           </button>
 
           <button class="card cat" type="button" data-category="street">
             <span class="cat-pill" data-i18n="cat2">Street</span>
             <div class="thumb"><img src="images/A7407052.jpg" alt="Street" /></div>
-            <p data-i18n="catDesc2">Codzienność, rytm miasta i obserwacja.</p>
+            <p data-i18n="catDesc2"></p>
           </button>
 
           <button class="card cat" type="button" data-category="nature">
             <span class="cat-pill" data-i18n="cat3">Natura</span>
             <div class="thumb"><img src="images/A7400567.png" alt="Natura" /></div>
-            <p data-i18n="catDesc3">Światło, faktura i spokój natury.</p>
+            <p data-i18n="catDesc3"></p>
           </button>
 
           <button class="card cat" type="button" data-category="travel">
             <span class="cat-pill" data-i18n="cat4">Podróże</span>
             <div class="thumb"><img src="images/A7406608.jpg" alt="Podróże" /></div>
-            <p data-i18n="catDesc4">Miejsca, detale i klimat podróży.</p>
+            <p data-i18n="catDesc4"></p>
           </button>
 
           <button class="card cat" type="button" data-category="creative">
             <span class="cat-pill" data-i18n="cat5">Kreatywne</span>
             <div class="thumb"><img src="images/A7406311-2.avif" alt="Kreatywne" /></div>
-            <p data-i18n="catDesc5">Bardziej autorskie kadry z mocniejszym akcentem wizualnym.</p>
+            <p data-i18n="catDesc5"></p>
           </button>
 
           <button class="card cat" type="button" data-category="selected">
             <span class="cat-pill" data-i18n="cat6">Wybrane</span>
             <div class="thumb"><img src="images/A7407707.jpg" alt="Wybrane" /></div>
-            <p data-i18n="catDesc6">Wybór kadrów, które najlepiej pokazują mój styl.</p>
+            <p data-i18n="catDesc6"></p>
           </button>
         </div>
       </div>
@@ -715,17 +713,17 @@ Wklej cały ten kod do `index.html`:
         portfolioTitle: "Kategorie portfolio.",
         portfolioLead: "Wybierz kategorię i otwórz pełny zestaw zdjęć.",
         cat1: "Portret",
-        catDesc1: "Portrety oparte na obecności, świetle i spojrzeniu.",
+        catDesc1: "",
         cat2: "Street",
-        catDesc2: "Codzienność, rytm miasta i obserwacja.",
+        catDesc2: "",
         cat3: "Natura",
-        catDesc3: "Światło, faktura i spokój natury.",
+        catDesc3: "",
         cat4: "Podróże",
-        catDesc4: "Miejsca, detale i klimat podróży.",
+        catDesc4: "",
         cat5: "Kreatywne",
-        catDesc5: "Bardziej autorskie kadry z mocniejszym akcentem wizualnym.",
+        catDesc5: "",
         cat6: "Wybrane",
-        catDesc6: "Wybór kadrów, które najlepiej pokazują mój styl.",
+        catDesc6: "",
         contactEyebrow: "Kontakt",
         contactTitle: "Bezpośredni kontakt.",
         contactLead: "Najprostsza droga do kontaktu w sprawie fotografii.",
@@ -763,17 +761,17 @@ Wklej cały ten kod do `index.html`:
         portfolioTitle: "Portfolio categories.",
         portfolioLead: "Choose a category and open the full image set.",
         cat1: "Portrait",
-        catDesc1: "Portraits built on presence, light and expression.",
+        catDesc1: "",
         cat2: "Street",
-        catDesc2: "Everyday scenes, urban rhythm and observation.",
+        catDesc2: "",
         cat3: "Nature",
-        catDesc3: "Light, texture and the quiet strength of nature.",
+        catDesc3: "",
         cat4: "Travel",
-        catDesc4: "Places, details and the atmosphere of travel.",
+        catDesc4: "",
         cat5: "Creative",
-        catDesc5: "More personal images with a stronger visual accent.",
+        catDesc5: "",
         cat6: "Selected",
-        catDesc6: "A selection of images that best represent my style.",
+        catDesc6: "",
         contactEyebrow: "Contact",
         contactTitle: "Direct contact.",
         contactLead: "The simplest way to get in touch about photography.",
@@ -811,17 +809,17 @@ Wklej cały ten kod do `index.html`:
         portfolioTitle: "Portfoliocategorieën.",
         portfolioLead: "Kies een categorie en open de volledige beeldselectie.",
         cat1: "Portret",
-        catDesc1: "Portretten met aandacht voor aanwezigheid, licht en expressie.",
+        catDesc1: "",
         cat2: "Street",
-        catDesc2: "Dagelijkse scènes, stadsritme en observatie.",
+        catDesc2: "",
         cat3: "Natuur",
-        catDesc3: "Licht, textuur en de rustige kracht van natuur.",
+        catDesc3: "",
         cat4: "Reizen",
-        catDesc4: "Plaatsen, details en de sfeer van reizen.",
+        catDesc4: "",
         cat5: "Creatief",
-        catDesc5: "Persoonlijker werk met een sterker visueel accent.",
+        catDesc5: "",
         cat6: "Selectie",
-        catDesc6: "Een selectie beelden die mijn stijl het best samenvat.",
+        catDesc6: "",
         contactEyebrow: "Contact",
         contactTitle: "Direct contact.",
         contactLead: "De eenvoudigste manier om contact op te nemen over fotografie.",
@@ -935,7 +933,7 @@ Wklej cały ten kod do `index.html`:
       const dict = translations[currentLang];
       nodes.forEach(node => {
         const key = node.dataset.i18n;
-        if (dict[key]) node.textContent = dict[key];
+        if (key in dict) node.textContent = dict[key];
       });
 
       document.documentElement.lang = currentLang;
@@ -1042,4 +1040,3 @@ Wklej cały ten kod do `index.html`:
   </script>
 </body>
 </html>
-
