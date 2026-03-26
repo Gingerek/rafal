@@ -124,8 +124,7 @@
       padding:132px 0 72px;
       background:
         linear-gradient(90deg, rgba(5,5,5,.88) 0%, rgba(5,5,5,.64) 32%, rgba(5,5,5,.18) 60%, rgba(5,5,5,.34) 100%),
-        linear-gradient(to top, rgba(5,5,5,.88) 0%, rgba(5,5,5,.34) 38%, rgba(5,5,5,.1) 70%, rgba(5,5,5,.22) 100%),
-        url("DSCF4051.jpg");
+        linear-gradient(to top, rgba(5,5,5,.88) 0%, rgba(5,5,5,.34) 38%, rgba(5,5,5,.1) 70%, rgba(5,5,5,.22) 100%);
       background-size:cover;
       background-position:center 24%;
       background-repeat:no-repeat;
@@ -253,11 +252,23 @@
       overflow:hidden;
     }
 
-    .about-photo img{
+    .about-photo{
+      min-height:520px;
+      background:rgba(255,255,255,.03);
+    }
+
+    .about-photo img,
+    .about-photo .image-fallback{
       width:100%;
       height:100%;
       min-height:520px;
       object-fit:cover;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .about-photo img{
       filter:brightness(.68) saturate(.82);
     }
 
@@ -312,19 +323,23 @@
       letter-spacing:.02em;
     }
 
-    /* 1:1 miniatury kategorii */
     .thumb{
       aspect-ratio:1 / 1;
       border-radius:18px;
       border:1px solid rgba(255,255,255,.08);
       overflow:hidden;
       background:rgba(255,255,255,.03);
+      position:relative;
     }
 
-    .thumb img{
+    .thumb img,
+    .thumb .image-fallback{
       width:100%;
       height:100%;
       object-fit:cover;
+    }
+
+    .thumb img{
       transition:transform var(--transition);
     }
 
@@ -410,7 +425,6 @@
       gap:16px;
     }
 
-    /* 1:1 miniatury w galerii */
     .gallery-item{
       border:0;
       background:transparent;
@@ -420,12 +434,18 @@
       overflow:hidden;
       aspect-ratio:1 / 1;
       box-shadow:0 14px 34px rgba(0,0,0,.32);
+      background:rgba(255,255,255,.03);
+      position:relative;
     }
 
-    .gallery-item img{
+    .gallery-item img,
+    .gallery-item .image-fallback{
       width:100%;
       height:100%;
       object-fit:cover;
+    }
+
+    .gallery-item img{
       transition:transform var(--transition), filter var(--transition);
     }
 
@@ -457,6 +477,7 @@
       object-fit:contain;
       border-radius:18px;
       box-shadow:0 28px 90px rgba(0,0,0,.56);
+      background:#111;
     }
 
     .lightbox .close-btn{
@@ -496,6 +517,18 @@
     .footer .container{
       display:grid;
       gap:8px;
+    }
+
+    .image-fallback{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      text-align:center;
+      color:rgba(243,237,228,.55);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      font-size:.92rem;
     }
 
     @media (max-width:1080px){
@@ -545,7 +578,9 @@
         grid-template-columns:1fr;
       }
 
-      .about-photo img{
+      .about-photo,
+      .about-photo img,
+      .about-photo .image-fallback{
         min-height:420px;
       }
 
@@ -608,9 +643,7 @@
         </div>
 
         <div class="about">
-          <div class="card about-photo">
-            <img src="A7406441.avif" alt="Rafał Wilk" />
-          </div>
+          <div class="card about-photo" id="aboutPhotoWrap"></div>
 
           <div class="card copy">
             <h3 data-i18n="aboutBoxTitle">Fotografie die sfeer precisie en een eigen signatuur samenbrengt</h3>
@@ -629,37 +662,7 @@
           <p data-i18n="portfolioLead">Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen</p>
         </div>
 
-        <div class="categories">
-          <button class="card cat" type="button" data-category="portrait">
-            <span class="cat-pill" data-i18n="cat1">Portret</span>
-            <div class="thumb"><img src="A7407652.jpg" alt="Portret" /></div>
-          </button>
-
-          <button class="card cat" type="button" data-category="street">
-            <span class="cat-pill" data-i18n="cat2">Street</span>
-            <div class="thumb"><img src="A7407052.jpg" alt="Street" /></div>
-          </button>
-
-          <button class="card cat" type="button" data-category="animals">
-            <span class="cat-pill" data-i18n="cat3">Dieren</span>
-            <div class="thumb"><img src="DSCF3455.jpg" alt="Dieren" /></div>
-          </button>
-
-          <button class="card cat" type="button" data-category="macro">
-            <span class="cat-pill" data-i18n="cat4">Macro</span>
-            <div class="thumb"><img src="A7400567.png" alt="Macro" /></div>
-          </button>
-
-          <button class="card cat" type="button" data-category="travel">
-            <span class="cat-pill" data-i18n="cat5">Reizen</span>
-            <div class="thumb"><img src="A7406608.jpg" alt="Reizen" /></div>
-          </button>
-
-          <button class="card cat" type="button" data-category="creative">
-            <span class="cat-pill" data-i18n="cat6">Creatief</span>
-            <div class="thumb"><img src="A7406311-2.avif" alt="Creatief" /></div>
-          </button>
-        </div>
+        <div class="categories" id="categoriesGrid"></div>
       </div>
     </section>
 
@@ -759,7 +762,9 @@
         galleryTitleAnimals: "Zwierzęta",
         galleryTitleMacro: "Makro",
         galleryTitleTravel: "Podróże",
-        galleryTitleCreative: "Kreatywne"
+        galleryTitleCreative: "Kreatywne",
+        imageMissing: "Brak pliku zdjęcia",
+        imageMissingNamed: "Nie znaleziono zdjęcia:"
       },
       en: {
         navAbout: "About",
@@ -796,7 +801,9 @@
         galleryTitleAnimals: "Animals",
         galleryTitleMacro: "Macro",
         galleryTitleTravel: "Travel",
-        galleryTitleCreative: "Creative"
+        galleryTitleCreative: "Creative",
+        imageMissing: "Image file missing",
+        imageMissingNamed: "Image not found:"
       },
       nl: {
         navAbout: "Over mij",
@@ -833,9 +840,20 @@
         galleryTitleAnimals: "Dieren",
         galleryTitleMacro: "Macro",
         galleryTitleTravel: "Reizen",
-        galleryTitleCreative: "Creatief"
+        galleryTitleCreative: "Creatief",
+        imageMissing: "Fotobestand ontbreekt",
+        imageMissingNamed: "Foto niet gevonden:"
       }
     };
+
+    const categoriesMeta = [
+      { key: "portrait", labelKey: "cat1", cover: "A7407652.jpg" },
+      { key: "street", labelKey: "cat2", cover: "A7407052.jpg" },
+      { key: "animals", labelKey: "cat3", cover: "DSCF3455.jpg" },
+      { key: "macro", labelKey: "cat4", cover: "A7400567.png" },
+      { key: "travel", labelKey: "cat5", cover: "A7406608.jpg" },
+      { key: "creative", labelKey: "cat6", cover: "A7406311-2.avif" }
+    ];
 
     const galleryData = {
       portrait: {
@@ -920,13 +938,17 @@
       }
     };
 
+    const heroImageBase = "DSCF4051.jpg";
+    const aboutImageBase = "A7406441.avif";
+
     const nodes = document.querySelectorAll("[data-i18n]");
     const langButtons = document.querySelectorAll(".lang button");
-    const categoryButtons = document.querySelectorAll(".cat");
     const modal = document.getElementById("modal");
     const closeModal = document.getElementById("closeModal");
     const galleryGrid = document.getElementById("galleryGrid");
     const modalTitle = document.getElementById("modalTitle");
+    const categoriesGrid = document.getElementById("categoriesGrid");
+    const aboutPhotoWrap = document.getElementById("aboutPhotoWrap");
 
     const lightbox = document.getElementById("lightbox");
     const closeLightbox = document.getElementById("closeLightbox");
@@ -936,13 +958,119 @@
     let currentCategory = null;
     let currentIndex = 0;
 
+    function getImageCandidates(fileName){
+      return [
+        fileName,
+        `./${fileName}`,
+        `images/${fileName}`,
+        `./images/${fileName}`,
+        `img/${fileName}`,
+        `./img/${fileName}`
+      ];
+    }
+
+    function testImage(src){
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(src);
+        img.onerror = reject;
+        img.src = src;
+      });
+    }
+
+    async function resolveImage(fileName){
+      const candidates = getImageCandidates(fileName);
+      for(const candidate of candidates){
+        try{
+          const ok = await testImage(candidate);
+          return ok;
+        }catch(e){}
+      }
+      return null;
+    }
+
+    function getFallbackText(fileName){
+      const dict = translations[currentLang];
+      return `${dict.imageMissingNamed} ${fileName}`;
+    }
+
+    async function createResolvedImage(fileName, alt, className = ""){
+      const resolved = await resolveImage(fileName);
+      if(resolved){
+        const img = document.createElement("img");
+        img.src = resolved;
+        img.alt = alt || "";
+        if(className) img.className = className;
+        img.loading = "lazy";
+        return img;
+      }
+
+      const fallback = document.createElement("div");
+      fallback.className = "image-fallback";
+      fallback.textContent = getFallbackText(fileName);
+      return fallback;
+    }
+
+    async function setHeroBackground(){
+      const hero = document.querySelector(".hero");
+      const resolved = await resolveImage(heroImageBase);
+      if(resolved){
+        hero.style.backgroundImage = `
+          linear-gradient(90deg, rgba(5,5,5,.88) 0%, rgba(5,5,5,.64) 32%, rgba(5,5,5,.18) 60%, rgba(5,5,5,.34) 100%),
+          linear-gradient(to top, rgba(5,5,5,.88) 0%, rgba(5,5,5,.34) 38%, rgba(5,5,5,.1) 70%, rgba(5,5,5,.22) 100%),
+          url("${resolved}")
+        `;
+      }else{
+        hero.style.backgroundImage = `
+          linear-gradient(90deg, rgba(5,5,5,.88) 0%, rgba(5,5,5,.64) 32%, rgba(5,5,5,.18) 60%, rgba(5,5,5,.34) 100%),
+          linear-gradient(to top, rgba(5,5,5,.88) 0%, rgba(5,5,5,.34) 38%, rgba(5,5,5,.1) 70%, rgba(5,5,5,.22) 100%)
+        `;
+      }
+    }
+
+    async function renderAboutPhoto(){
+      aboutPhotoWrap.innerHTML = "";
+      const photo = await createResolvedImage(aboutImageBase, "Rafał Wilk");
+      aboutPhotoWrap.appendChild(photo);
+    }
+
+    async function renderCategories(){
+      const dict = translations[currentLang];
+      categoriesGrid.innerHTML = "";
+
+      for(const category of categoriesMeta){
+        const button = document.createElement("button");
+        button.className = "card cat";
+        button.type = "button";
+        button.dataset.category = category.key;
+
+        const pill = document.createElement("span");
+        pill.className = "cat-pill";
+        pill.textContent = dict[category.labelKey];
+
+        const thumb = document.createElement("div");
+        thumb.className = "thumb";
+
+        const thumbImage = await createResolvedImage(category.cover, dict[category.labelKey]);
+        thumb.appendChild(thumbImage);
+
+        button.appendChild(pill);
+        button.appendChild(thumb);
+        button.addEventListener("click", () => openCategory(category.key));
+
+        categoriesGrid.appendChild(button);
+      }
+    }
+
     function applyTranslations() {
       const dict = translations[currentLang];
       nodes.forEach(node => {
         const key = node.dataset.i18n;
         if (key in dict) node.textContent = dict[key];
       });
+
       document.documentElement.lang = currentLang;
+
       if (currentCategory) {
         modalTitle.textContent = dict[galleryData[currentCategory].titleKey];
       }
@@ -952,22 +1080,29 @@
       document.body.style.overflow = (modal.classList.contains("open") || lightbox.classList.contains("open")) ? "hidden" : "";
     }
 
-    function openCategory(category) {
+    async function openCategory(category) {
       currentCategory = category;
       const dict = translations[currentLang];
       const data = galleryData[category];
 
       modalTitle.textContent = dict[data.titleKey];
+      galleryGrid.innerHTML = "";
 
-      galleryGrid.innerHTML = data.items.map((item, index) => `
-        <button class="gallery-item" type="button" data-index="${index}" aria-label="${item.alt}">
-          <img src="${item.src}" alt="${item.alt}" loading="lazy" />
-        </button>
-      `).join("");
+      for(let index = 0; index < data.items.length; index++){
+        const item = data.items[index];
 
-      galleryGrid.querySelectorAll(".gallery-item").forEach(button => {
-        button.addEventListener("click", () => openLightbox(category, Number(button.dataset.index)));
-      });
+        const button = document.createElement("button");
+        button.className = "gallery-item";
+        button.type = "button";
+        button.dataset.index = index;
+        button.setAttribute("aria-label", item.alt);
+
+        const imageNode = await createResolvedImage(item.src, item.alt);
+        button.appendChild(imageNode);
+
+        button.addEventListener("click", () => openLightbox(category, index));
+        galleryGrid.appendChild(button);
+      }
 
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
@@ -980,11 +1115,15 @@
       lockBody();
     }
 
-    function openLightbox(category, index) {
+    async function openLightbox(category, index) {
       const item = galleryData[category].items[index];
       currentCategory = category;
       currentIndex = index;
-      lightboxImage.src = item.src;
+
+      const resolved = await resolveImage(item.src);
+      if(!resolved) return;
+
+      lightboxImage.src = resolved;
       lightboxImage.alt = item.alt;
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden", "false");
@@ -1005,15 +1144,12 @@
     }
 
     langButtons.forEach(button => {
-      button.addEventListener("click", () => {
+      button.addEventListener("click", async () => {
         currentLang = button.dataset.lang;
         langButtons.forEach(btn => btn.classList.toggle("active", btn === button));
         applyTranslations();
+        await renderCategories();
       });
-    });
-
-    categoryButtons.forEach(button => {
-      button.addEventListener("click", () => openCategory(button.dataset.category));
     });
 
     closeModal.addEventListener("click", closeCategory);
@@ -1039,7 +1175,14 @@
       }
     });
 
-    applyTranslations();
+    async function init(){
+      applyTranslations();
+      await setHeroBackground();
+      await renderAboutPhoto();
+      await renderCategories();
+    }
+
+    init();
   </script>
 </body>
 </html>
