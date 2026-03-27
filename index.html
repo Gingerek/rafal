@@ -362,6 +362,8 @@
         transform var(--transition),
         border-color var(--transition),
         box-shadow var(--transition);
+      content-visibility:auto;
+      contain-intrinsic-size:320px;
     }
 
     .cat:hover{
@@ -398,11 +400,32 @@
     }
 
     .thumb img{
-      transition:transform var(--transition);
+      transition:transform var(--transition), opacity var(--transition), filter var(--transition);
     }
 
     .cat:hover .thumb img{
       transform:scale(1.03);
+    }
+
+    .lazy-shell{
+      width:100%;
+      height:100%;
+      position:relative;
+      background:
+        linear-gradient(110deg, rgba(255,255,255,.03) 8%, rgba(255,255,255,.07) 18%, rgba(255,255,255,.03) 33%);
+      background-size:200% 100%;
+      animation:shimmer 1.6s linear infinite;
+    }
+
+    .lazy-shell.loaded{
+      animation:none;
+      background:none;
+    }
+
+    @keyframes shimmer{
+      to{
+        background-position:-200% 0;
+      }
     }
 
     .modal,
@@ -520,17 +543,25 @@
       box-shadow:0 14px 34px rgba(0,0,0,.32);
       background:rgba(255,255,255,.03);
       position:relative;
+      content-visibility:auto;
+      contain-intrinsic-size:260px;
     }
 
     .gallery-item img,
-    .gallery-item .image-fallback{
+    .gallery-item .image-fallback,
+    .gallery-item .lazy-shell{
       width:100%;
       height:100%;
       object-fit:cover;
     }
 
     .gallery-item img{
-      transition:transform var(--transition), filter var(--transition);
+      transition:transform var(--transition), filter var(--transition), opacity var(--transition);
+      opacity:0;
+    }
+
+    .gallery-item img.ready{
+      opacity:1;
     }
 
     .gallery-item:hover img{
@@ -1085,26 +1116,97 @@
     let currentCategory = null;
     let currentIndex = 0;
     let lastScrollY = 0;
+    let galleryObserver = null;
+    let categoryObserver = null;
 
     function imagePath(fileName){
       return `images/${fileName}`;
     }
 
-    function createImage(src, alt = "", lazy = true){
-      const img = document.createElement("img");
-      img.src = src;
-      img.alt = alt;
-      img.loading = lazy ? "lazy" : "eager";
-      img.decoding = "async";
+    function createFallback(src){
+      const fallback = document.createElement("div");
+      fallback.className = "image-fallback";
+      fallback.textContent = `${translations[currentLang].imageMissingNamed} ${src.split("/").pop()}`;
+      return fallback;
+    }
 
-      img.onerror = () => {
-        const fallback = document.createElement("div");
-        fallback.className = "image-fallback";
-        fallback.textContent = `${translations[currentLang].imageMissingNamed} ${src.split("/").pop()}`;
-        img.replaceWith(fallback);
+    function createLazyImage(src, alt = "", eager = false){
+      const shell = document.createElement("div");
+      shell.className = "lazy-shell";
+      shell.dataset.src = src;
+      shell.dataset.alt = alt;
+      if(eager) shell.dataset.eager = "true";
+      return shell;
+    }
+
+    function loadLazyShell(shell){
+      if(!shell || shell.dataset.loaded === "true") return;
+
+      const src = shell.dataset.src;
+      const alt = shell.dataset.alt || "";
+      const eager = shell.dataset.eager === "true";
+
+      const img = document.createElement("img");
+      img.alt = alt;
+      img.decoding = "async";
+      img.loading = eager ? "eager" : "lazy";
+
+      img.onload = () => {
+        shell.classList.add("loaded");
+        img.classList.add("ready");
       };
 
-      return img;
+      img.onerror = () => {
+        shell.replaceWith(createFallback(src));
+      };
+
+      img.src = src;
+      shell.dataset.loaded = "true";
+      shell.appendChild(img);
+    }
+
+    function setupCategoryObserver(){
+      if(categoryObserver) categoryObserver.disconnect();
+
+      categoryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            const shell = entry.target;
+            loadLazyShell(shell);
+            categoryObserver.unobserve(shell);
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: "300px 0px",
+        threshold: 0.01
+      });
+
+      document.querySelectorAll("#categoriesGrid .lazy-shell").forEach(shell => {
+        categoryObserver.observe(shell);
+      });
+    }
+
+    function setupGalleryObserver(){
+      if(galleryObserver) galleryObserver.disconnect();
+
+      galleryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            const shell = entry.target;
+            loadLazyShell(shell);
+            galleryObserver.unobserve(shell);
+          }
+        });
+      }, {
+        root: document.querySelector(".modal-shell"),
+        rootMargin: "300px 0px",
+        threshold: 0.01
+      });
+
+      document.querySelectorAll("#galleryGrid .lazy-shell").forEach(shell => {
+        galleryObserver.observe(shell);
+      });
     }
 
     function applyTranslations(){
@@ -1124,7 +1226,9 @@
 
     function renderAboutPhoto(){
       aboutPhotoWrap.innerHTML = "";
-      aboutPhotoWrap.appendChild(createImage(imagePath(aboutImage), "Rafał Wilk", false));
+      const shell = createLazyImage(imagePath(aboutImage), "Rafał Wilk", true);
+      aboutPhotoWrap.appendChild(shell);
+      loadLazyShell(shell);
     }
 
     function renderCategories(){
@@ -1145,7 +1249,7 @@
 
         const thumb = document.createElement("div");
         thumb.className = "thumb";
-        thumb.appendChild(createImage(imagePath(category.cover), dict[category.labelKey]));
+        thumb.appendChild(createLazyImage(imagePath(category.cover), dict[category.labelKey]));
 
         button.appendChild(pill);
         button.appendChild(thumb);
@@ -1155,6 +1259,7 @@
       });
 
       categoriesGrid.appendChild(fragment);
+      setupCategoryObserver();
     }
 
     function setBodyLock(){
@@ -1166,11 +1271,6 @@
       if(!history.state || typeof history.state.overlay === "undefined"){
         history.replaceState({ overlay: null }, "", location.href);
       }
-    }
-
-    function preloadImage(src){
-      const img = new Image();
-      img.src = src;
     }
 
     function openCategory(category, fromHistory = false){
@@ -1191,12 +1291,9 @@
         button.type = "button";
         button.setAttribute("aria-label", item.alt);
 
-        const image = createImage(imagePath(item.src), item.alt);
-        button.appendChild(image);
-
+        const shell = createLazyImage(imagePath(item.src), item.alt);
+        button.appendChild(shell);
         button.addEventListener("click", () => openLightbox(category, index));
-        button.addEventListener("mouseenter", () => preloadImage(imagePath(item.src)), { once:true });
-        button.addEventListener("touchstart", () => preloadImage(imagePath(item.src)), { once:true, passive:true });
 
         fragment.appendChild(button);
       });
@@ -1211,6 +1308,16 @@
       modal.setAttribute("aria-hidden", "false");
       setBodyLock();
 
+      const modalShell = document.querySelector(".modal-shell");
+      modalShell.scrollTop = 0;
+
+      setupGalleryObserver();
+
+      const firstFew = document.querySelectorAll("#galleryGrid .lazy-shell");
+      firstFew.forEach((shell, index) => {
+        if(index < 4) loadLazyShell(shell);
+      });
+
       if(!fromHistory){
         history.pushState({ overlay: "category", category }, "", location.href);
       }
@@ -1221,6 +1328,7 @@
       modal.setAttribute("aria-hidden", "true");
       setBodyLock();
       window.scrollTo(0, lastScrollY);
+      if(galleryObserver) galleryObserver.disconnect();
 
       if(!fromHistory && history.state && history.state.overlay === "category"){
         history.back();
@@ -1234,13 +1342,12 @@
       const item = galleryData[category].items[index];
       lightboxImage.src = imagePath(item.src);
       lightboxImage.alt = item.alt;
+      lightboxImage.decoding = "async";
+      lightboxImage.loading = "eager";
 
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden", "false");
       setBodyLock();
-
-      const nextIndex = (index + 1) % galleryData[category].items.length;
-      preloadImage(imagePath(galleryData[category].items[nextIndex].src));
 
       if(!fromHistory){
         history.pushState({ overlay: "lightbox", category, index }, "", location.href);
@@ -1273,9 +1380,6 @@
       lightboxImage.src = imagePath(item.src);
       lightboxImage.alt = item.alt;
 
-      const nextIndex = (currentIndex + 1) % items.length;
-      preloadImage(imagePath(items[nextIndex].src));
-
       history.replaceState(
         { overlay: "lightbox", category: currentCategory, index: currentIndex },
         "",
@@ -1289,6 +1393,7 @@
         langButtons.forEach(btn => btn.classList.toggle("active", btn === button));
         applyTranslations();
         renderCategories();
+        renderAboutPhoto();
       });
     });
 
