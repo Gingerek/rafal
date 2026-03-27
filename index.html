@@ -17,6 +17,9 @@
       --container:1240px;
       --transition:220ms ease;
       --header-h:88px;
+      --scrollbar-track:rgba(255,255,255,.04);
+      --scrollbar-thumb:rgba(209,179,132,.38);
+      --scrollbar-thumb-hover:rgba(209,179,132,.58);
     }
 
     *{
@@ -427,15 +430,39 @@
     .modal-shell{
       width:min(1320px, 100%);
       max-height:calc(100dvh - 32px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-      overflow:auto;
+      overflow-y:auto;
+      overflow-x:hidden;
       -webkit-overflow-scrolling:touch;
       padding:24px;
+      padding-right:18px;
       border-radius:28px;
       border:1px solid rgba(255,255,255,.10);
       background:
         radial-gradient(circle at top right, rgba(209,179,132,.12), transparent 20%),
         linear-gradient(180deg, rgba(10,10,10,.96), rgba(6,6,6,.98));
       box-shadow:0 28px 90px rgba(0,0,0,.56);
+      scrollbar-width:thin;
+      scrollbar-color:var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    .modal-shell::-webkit-scrollbar{
+      width:10px;
+    }
+
+    .modal-shell::-webkit-scrollbar-track{
+      background:var(--scrollbar-track);
+      border-radius:999px;
+      margin:12px 0;
+    }
+
+    .modal-shell::-webkit-scrollbar-thumb{
+      background:linear-gradient(180deg, rgba(209,179,132,.62), rgba(209,179,132,.26));
+      border-radius:999px;
+      border:2px solid rgba(8,8,8,.95);
+    }
+
+    .modal-shell::-webkit-scrollbar-thumb:hover{
+      background:linear-gradient(180deg, rgba(209,179,132,.82), rgba(209,179,132,.42));
     }
 
     .modal-top{
@@ -444,6 +471,7 @@
       gap:16px;
       align-items:flex-start;
       margin-bottom:22px;
+      padding-right:10px;
     }
 
     .modal-kicker{
@@ -481,9 +509,11 @@
       display:grid;
       grid-template-columns:repeat(4, minmax(0,1fr));
       gap:16px;
+      width:100%;
     }
 
     .gallery-item{
+      width:100%;
       border-radius:20px;
       overflow:hidden;
       aspect-ratio:1 / 1;
@@ -639,9 +669,51 @@
         min-height:420px;
       }
 
+      .modal{
+        padding:0;
+        align-items:stretch;
+        justify-content:stretch;
+      }
+
       .modal-shell{
-        padding:18px;
-        border-radius:24px;
+        width:100%;
+        max-width:100%;
+        max-height:100dvh;
+        height:100dvh;
+        border-radius:0;
+        border-left:none;
+        border-right:none;
+        border-top:none;
+        padding:16px 14px 24px;
+        padding-top:calc(16px + env(safe-area-inset-top, 0px));
+        padding-bottom:calc(24px + env(safe-area-inset-bottom, 0px));
+        padding-right:10px;
+      }
+
+      .modal-shell::-webkit-scrollbar{
+        width:7px;
+      }
+
+      .modal-shell::-webkit-scrollbar-track{
+        background:transparent;
+        margin:8px 0;
+      }
+
+      .modal-shell::-webkit-scrollbar-thumb{
+        background:linear-gradient(180deg, rgba(209,179,132,.50), rgba(209,179,132,.22));
+        border-radius:999px;
+        border:1px solid rgba(8,8,8,.96);
+      }
+
+      .modal-top{
+        position:sticky;
+        top:0;
+        z-index:3;
+        background:linear-gradient(180deg, rgba(8,8,8,.96), rgba(8,8,8,.78));
+        backdrop-filter:blur(10px);
+        -webkit-backdrop-filter:blur(10px);
+        padding:8px 8px 14px 0;
+        margin-bottom:16px;
       }
 
       .lightbox img{
