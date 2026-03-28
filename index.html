@@ -320,13 +320,14 @@
       height:100%;
       min-height:520px;
       object-fit:cover;
+      object-position:center center;
       display:flex;
       align-items:center;
       justify-content:center;
     }
 
     .about-photo img{
-      filter:brightness(.68) saturate(.82);
+      filter:brightness(.7) saturate(.82);
     }
 
     .copy{
@@ -345,8 +346,8 @@
       display:grid;
       gap:16px;
       align-content:start;
-      max-width:92%;
-      padding-bottom:200px;
+      max-width:100%;
+      padding-bottom:0;
     }
 
     .copy h3{
@@ -358,30 +359,6 @@
 
     .copy p{
       color:var(--muted);
-    }
-
-    .camera-art{
-      position:absolute;
-      right:18px;
-      bottom:18px;
-      width:min(62%, 340px);
-      pointer-events:none;
-      z-index:1;
-      opacity:.94;
-      filter:drop-shadow(0 16px 28px rgba(0,0,0,.44));
-    }
-
-    .camera-art img,
-    .camera-art .lazy-shell,
-    .camera-art .image-fallback{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    .camera-art img{
-      border-radius:0;
-      background:transparent;
     }
 
     .categories{
@@ -690,13 +667,7 @@
 
       .copy-content{
         max-width:100%;
-        padding-bottom:170px;
-      }
-
-      .camera-art{
-        width:min(56%, 280px);
-        right:16px;
-        bottom:16px;
+        padding-bottom:0;
       }
     }
 
@@ -754,14 +725,7 @@
       }
 
       .copy-content{
-        padding-bottom:145px;
-      }
-
-      .camera-art{
-        right:12px;
-        bottom:12px;
-        width:min(56%, 190px);
-        opacity:.96;
+        padding-bottom:0;
       }
 
       .modal{
@@ -879,8 +843,6 @@
               <p data-i18n="aboutP1">In mijn werk staan licht detail compositie en emotie centraal. Ik zoek beelden die sterk zijn in eenvoud en die de aandacht vasthouden door hun sfeer en afwerking</p>
               <p data-i18n="aboutP2">Mijn doel is om fotografie te maken die verzorgd en professioneel aanvoelt en tegelijk persoonlijk blijft. Elk beeld moet bewust opgebouwd zijn en een eigen verhaal dragen</p>
             </div>
-
-            <div class="camera-art" id="aboutCameraArt" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -1168,13 +1130,11 @@
     };
 
     const aboutImage = "ChatGPT Image 28 mar 2026, 16_46_19";
-    const aboutCameraImage = "ChatGPT Image 28 mar 2026, 12_30_03";
 
     const nodes = document.querySelectorAll("[data-i18n]");
     const langButtons = document.querySelectorAll(".lang button");
     const categoriesGrid = document.getElementById("categoriesGrid");
     const aboutPhotoWrap = document.getElementById("aboutPhotoWrap");
-    const aboutCameraArt = document.getElementById("aboutCameraArt");
     const modal = document.getElementById("modal");
     const modalTitle = document.getElementById("modalTitle");
     const galleryGrid = document.getElementById("galleryGrid");
@@ -1333,13 +1293,6 @@
       aboutPhotoWrap.innerHTML = "";
       const shell = createLazyImage(getCandidateImagePaths(aboutImage), "Rafał Wilk", true);
       aboutPhotoWrap.appendChild(shell);
-      loadLazyShell(shell);
-    }
-
-    function renderAboutCamera(){
-      aboutCameraArt.innerHTML = "";
-      const shell = createLazyImage(getCandidateImagePaths(aboutCameraImage), "", true);
-      aboutCameraArt.appendChild(shell);
       loadLazyShell(shell);
     }
 
@@ -1510,7 +1463,6 @@
         applyTranslations();
         renderCategories();
         renderAboutPhoto();
-        renderAboutCamera();
       });
     });
 
@@ -1569,7 +1521,6 @@
       ensureBaseState();
       applyTranslations();
       renderAboutPhoto();
-      renderAboutCamera();
       renderCategories();
     }
 
