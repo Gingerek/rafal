@@ -310,7 +310,7 @@
     }
 
     .about-photo{
-      min-height:520px;
+      min-height:560px;
       background:rgba(255,255,255,.03);
     }
 
@@ -318,26 +318,28 @@
     .about-photo .image-fallback{
       width:100%;
       height:100%;
-      min-height:520px;
+      min-height:560px;
       object-fit:cover;
-      object-position:center center;
+      object-position:38% center;
       display:flex;
       align-items:center;
       justify-content:center;
     }
 
     .about-photo img{
-      filter:brightness(.7) saturate(.82);
+      filter:brightness(.72) saturate(.82);
     }
 
     .copy{
       position:relative;
-      min-height:520px;
+      min-height:560px;
       padding:28px;
       background:
         radial-gradient(circle at 82% 88%, rgba(209,179,132,.035), transparent 24%),
         linear-gradient(180deg, rgba(255,255,255,.014), rgba(255,255,255,0));
       isolation:isolate;
+      display:flex;
+      align-items:center;
     }
 
     .copy-content{
@@ -345,7 +347,7 @@
       z-index:2;
       display:grid;
       gap:16px;
-      align-content:start;
+      align-content:center;
       max-width:100%;
       padding-bottom:0;
     }
@@ -359,6 +361,7 @@
 
     .copy p{
       color:var(--muted);
+      font-size:1.02rem;
     }
 
     .categories{
@@ -667,7 +670,18 @@
 
       .copy-content{
         max-width:100%;
-        padding-bottom:0;
+      }
+
+      .about-photo,
+      .about-photo img,
+      .about-photo .image-fallback,
+      .copy{
+        min-height:520px;
+      }
+
+      .about-photo img,
+      .about-photo .image-fallback{
+        object-position:40% center;
       }
     }
 
@@ -715,17 +729,18 @@
 
       .about-photo,
       .about-photo img,
-      .about-photo .image-fallback{
+      .about-photo .image-fallback,
+      .copy{
         min-height:420px;
+      }
+
+      .about-photo img,
+      .about-photo .image-fallback{
+        object-position:41% center;
       }
 
       .copy{
-        min-height:420px;
         padding:24px;
-      }
-
-      .copy-content{
-        padding-bottom:0;
       }
 
       .modal{
@@ -839,9 +854,9 @@
 
           <div class="card copy">
             <div class="copy-content">
-              <h3 data-i18n="aboutBoxTitle">Fotografie die sfeer precisie en een eigen signatuur samenbrengt</h3>
-              <p data-i18n="aboutP1">In mijn werk staan licht detail compositie en emotie centraal. Ik zoek beelden die sterk zijn in eenvoud en die de aandacht vasthouden door hun sfeer en afwerking</p>
-              <p data-i18n="aboutP2">Mijn doel is om fotografie te maken die verzorgd en professioneel aanvoelt en tegelijk persoonlijk blijft. Elk beeld moet bewust opgebouwd zijn en een eigen verhaal dragen</p>
+              <h3 data-i18n="aboutBoxTitle">Fotografie is voor mij meer dan alleen een beeld</h3>
+              <p data-i18n="aboutP1">Fotografie towarzyszy mi od dłuższego czasu i z każdą kolejną chwilą utwierdza mnie w tym, że jest to coś naprawdę bliskiego mnie.</p>
+              <p data-i18n="aboutP2">Przez ten czas pracowałem z różnymi systemami, między innymi Sony, Fuji i Nikon. Dzięki temu nauczyłem się, że choć sprzęt daje różne możliwości, to najważniejsze jest po prostu robić zdjęcia, rozwijać swoje spojrzenie i czerpać z tego satysfakcję. W fotografii najbardziej liczą się dla mnie światło, klimat i chwila.</p>
             </div>
           </div>
         </div>
@@ -932,9 +947,9 @@
         aboutEyebrow: "O mnie",
         aboutTitle: "Osobliwe spojrzenie przełożone na dopracowane i świadome kadry",
         aboutLead: "Wierzę w fotografię która nie tylko dobrze wygląda ale również niesie jakość spokój i własny charakter",
-        aboutBoxTitle: "Fotografia która łączy klimat precyzję i własny styl",
-        aboutP1: "W mojej pracy najważniejsze są światło detal kompozycja i emocja. Szukam obrazów które są mocne w swojej prostocie i przyciągają uwagę atmosferą oraz dopracowaniem",
-        aboutP2: "Moim celem jest tworzenie fotografii która wygląda profesjonalnie i estetycznie a jednocześnie pozostaje osobista. Każdy kadr powinien być świadomie zbudowany i nieść własną opowieść",
+        aboutBoxTitle: "Fotografia to dla mnie coś więcej niż samo robienie zdjęć",
+        aboutP1: "Fotografia towarzyszy mi od dłuższego czasu i z każdą kolejną chwilą utwierdza mnie w tym, że jest to coś naprawdę bliskiego mnie.",
+        aboutP2: "Przez ten czas pracowałem z różnymi systemami, między innymi Sony, Fuji i Nikon. Dzięki temu nauczyłem się, że choć sprzęt daje różne możliwości, to najważniejsze jest po prostu robić zdjęcia, rozwijać swoje spojrzenie i czerpać z tego satysfakcję. W fotografii najbardziej liczą się dla mnie światło, klimat i chwila.",
         portfolioEyebrow: "Portfolio",
         portfolioTitle: "Wybrane obszary mojej fotografii",
         portfolioLead: "Przejrzyj różne kategorie i zobacz mój sposób patrzenia na ludzi miejsca detale i światło",
@@ -970,9 +985,9 @@
         aboutEyebrow: "About",
         aboutTitle: "A personal way of seeing translated into thoughtful and carefully crafted images",
         aboutLead: "I believe in photography that not only looks strong but also carries quality calmness and a distinct character",
-        aboutBoxTitle: "Photography that brings together atmosphere precision and an individual signature",
-        aboutP1: "My work is built around light detail composition and emotion. I look for images that are powerful in their simplicity and hold attention through atmosphere and refinement",
-        aboutP2: "My goal is to create photography that feels professional polished and personal at the same time. Every image should be intentional and carry its own story",
+        aboutBoxTitle: "Photography for me is more than just taking pictures",
+        aboutP1: "Photography has been with me for a long time and with every next step it keeps confirming that it is something genuinely close to me.",
+        aboutP2: "Over time I worked with different systems including Sony Fuji and Nikon. That taught me one simple thing. Gear offers different possibilities but the most important part is simply to keep taking photos, develop your own eye and enjoy the process. In photography what matters most to me is light atmosphere and the moment itself.",
         portfolioEyebrow: "Portfolio",
         portfolioTitle: "Selected areas of my photographic work",
         portfolioLead: "Explore different categories and discover how I approach people places details and light",
@@ -1008,9 +1023,9 @@
         aboutEyebrow: "Over mij",
         aboutTitle: "Een persoonlijke blik vertaald naar verzorgde en doordachte beelden",
         aboutLead: "Ik geloof in fotografie die niet alleen mooi oogt maar ook rust kwaliteit en eigen stijl uitstraalt",
-        aboutBoxTitle: "Fotografie die sfeer precisie en een eigen signatuur samenbrengt",
-        aboutP1: "In mijn werk staan licht detail compositie en emotie centraal. Ik zoek beelden die sterk zijn in eenvoud en die de aandacht vasthouden door hun sfeer en afwerking",
-        aboutP2: "Mijn doel is om fotografie te maken die verzorgd en professioneel aanvoelt en tegelijk persoonlijk blijft. Elk beeld moet bewust opgebouwd zijn en een eigen verhaal dragen",
+        aboutBoxTitle: "Fotografie is voor mij meer dan alleen foto's maken",
+        aboutP1: "Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.",
+        aboutP2: "In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd. Apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht sfeer en het moment voor mij het belangrijkst.",
         portfolioEyebrow: "Portfolio",
         portfolioTitle: "Selecties uit mijn fotografisch werk",
         portfolioLead: "Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen",
