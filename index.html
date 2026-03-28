@@ -1167,7 +1167,7 @@
       }
     };
 
-    const aboutImage = "A7406441.avif";
+    const aboutImage = "ChatGPT Image 28 mar 2026, 16_46_19";
     const aboutCameraImage = "ChatGPT Image 28 mar 2026, 12_30_03";
 
     const nodes = document.querySelectorAll("[data-i18n]");
@@ -1331,7 +1331,7 @@
 
     function renderAboutPhoto(){
       aboutPhotoWrap.innerHTML = "";
-      const shell = createLazyImage(imagePath(aboutImage), "Rafał Wilk", true);
+      const shell = createLazyImage(getCandidateImagePaths(aboutImage), "Rafał Wilk", true);
       aboutPhotoWrap.appendChild(shell);
       loadLazyShell(shell);
     }
