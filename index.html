@@ -362,20 +362,28 @@
 
     .camera-art{
       position:absolute;
-      right:-10px;
-      bottom:-6px;
-      width:min(84%, 460px);
+      right:22px;
+      bottom:18px;
+      width:min(78%, 430px);
       pointer-events:none;
       z-index:1;
-      opacity:.92;
-      transform:rotate(-3deg);
-      filter:drop-shadow(0 22px 36px rgba(0,0,0,.42));
+      opacity:.82;
+      filter:drop-shadow(0 16px 28px rgba(0,0,0,.42));
+      border-radius:22px;
+      overflow:hidden;
     }
 
-    .camera-art svg{
+    .camera-art img,
+    .camera-art .lazy-shell,
+    .camera-art .image-fallback{
       width:100%;
       height:auto;
       display:block;
+      border-radius:22px;
+    }
+
+    .camera-art img{
+      opacity:.92;
     }
 
     .categories{
@@ -687,7 +695,9 @@
       }
 
       .camera-art{
-        width:min(84%, 400px);
+        width:min(80%, 360px);
+        right:16px;
+        bottom:14px;
       }
     }
 
@@ -749,10 +759,10 @@
       }
 
       .camera-art{
-        right:-18px;
-        bottom:-8px;
-        width:min(92%, 330px);
-        opacity:.86;
+        right:12px;
+        bottom:12px;
+        width:min(86%, 280px);
+        opacity:.78;
       }
 
       .modal{
@@ -871,159 +881,7 @@
               <p data-i18n="aboutP2">Mijn doel is om fotografie te maken die verzorgd en professioneel aanvoelt en tegelijk persoonlijk blijft. Elk beeld moet bewust opgebouwd zijn en een eigen verhaal dragen</p>
             </div>
 
-            <div class="camera-art" aria-hidden="true">
-              <svg viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false">
-                <defs>
-                  <linearGradient id="bodyFill" x1="138" y1="126" x2="625" y2="370" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#050505"/>
-                    <stop offset="38%" stop-color="#121212"/>
-                    <stop offset="75%" stop-color="#0d0d0d"/>
-                    <stop offset="100%" stop-color="#030303"/>
-                  </linearGradient>
-
-                  <linearGradient id="topFill" x1="282" y1="106" x2="468" y2="172" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#101010"/>
-                    <stop offset="45%" stop-color="#202020"/>
-                    <stop offset="100%" stop-color="#090909"/>
-                  </linearGradient>
-
-                  <linearGradient id="metalStroke" x1="190" y1="138" x2="625" y2="348" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="rgba(255,255,255,.22)"/>
-                    <stop offset="52%" stop-color="rgba(209,179,132,.32)"/>
-                    <stop offset="100%" stop-color="rgba(255,255,255,.10)"/>
-                  </linearGradient>
-
-                  <radialGradient id="lensOuter" cx="50%" cy="48%" r="50%">
-                    <stop offset="0%" stop-color="#1c1c1c"/>
-                    <stop offset="42%" stop-color="#0d0d0d"/>
-                    <stop offset="72%" stop-color="#050505"/>
-                    <stop offset="100%" stop-color="#010101"/>
-                  </radialGradient>
-
-                  <radialGradient id="lensInner" cx="48%" cy="45%" r="50%">
-                    <stop offset="0%" stop-color="#0d0f12"/>
-                    <stop offset="30%" stop-color="#12161a"/>
-                    <stop offset="52%" stop-color="#08090b"/>
-                    <stop offset="100%" stop-color="#020202"/>
-                  </radialGradient>
-
-                  <radialGradient id="glassGlow" cx="42%" cy="34%" r="60%">
-                    <stop offset="0%" stop-color="rgba(255,255,255,.28)"/>
-                    <stop offset="25%" stop-color="rgba(164,201,255,.12)"/>
-                    <stop offset="56%" stop-color="rgba(255,255,255,.04)"/>
-                    <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
-                  </radialGradient>
-
-                  <linearGradient id="glassHighlight" x1="360" y1="150" x2="470" y2="325" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="rgba(255,255,255,.20)"/>
-                    <stop offset="22%" stop-color="rgba(255,255,255,.06)"/>
-                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-                  </linearGradient>
-
-                  <filter id="softShadow" x="-25%" y="-25%" width="150%" height="150%">
-                    <feGaussianBlur stdDeviation="18"/>
-                  </filter>
-
-                  <filter id="softLensGlow" x="-25%" y="-25%" width="150%" height="150%">
-                    <feGaussianBlur stdDeviation="4"/>
-                  </filter>
-                </defs>
-
-                <ellipse cx="405" cy="390" rx="230" ry="36" fill="rgba(0,0,0,.48)" filter="url(#softShadow)"/>
-
-                <g opacity=".98">
-                  <path
-                    d="M176 185H255L292 138H439L474 184H565C618 184 652 219 652 271V317C652 362 618 392 565 392H157C110 392 82 364 82 319V243C82 204 114 185 176 185Z"
-                    fill="url(#bodyFill)"
-                    stroke="rgba(255,255,255,.06)"
-                    stroke-width="1.2"
-                  />
-
-                  <path
-                    d="M286 138H438L468 184H258L286 138Z"
-                    fill="url(#topFill)"
-                    stroke="rgba(255,255,255,.07)"
-                    stroke-width="1"
-                  />
-
-                  <path
-                    d="M333 124H412C420 124 425 129 425 136V147H320V136C320 129 325 124 333 124Z"
-                    fill="#0c0c0c"
-                    stroke="rgba(255,255,255,.06)"
-                    stroke-width="1"
-                  />
-
-                  <circle cx="186" cy="171" r="28" fill="#0b0b0b" stroke="rgba(255,255,255,.09)" stroke-width="1.2"/>
-                  <circle cx="567" cy="166" r="29" fill="#0a0a0a" stroke="rgba(255,255,255,.08)" stroke-width="1.2"/>
-
-                  <ellipse cx="186" cy="171" rx="15" ry="8" fill="rgba(255,255,255,.04)"/>
-                  <ellipse cx="567" cy="165" rx="16" ry="8" fill="rgba(255,255,255,.04)"/>
-
-                  <path
-                    d="M143 229H279"
-                    stroke="rgba(255,255,255,.08)"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M487 222H589"
-                    stroke="rgba(255,255,255,.08)"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M224 214H300"
-                    stroke="rgba(209,179,132,.10)"
-                    stroke-width="1.4"
-                    stroke-linecap="round"
-                  />
-
-                  <circle cx="396" cy="273" r="126" fill="rgba(0,0,0,.30)" filter="url(#softLensGlow)"/>
-
-                  <circle cx="396" cy="273" r="112" fill="url(#lensOuter)" stroke="url(#metalStroke)" stroke-width="4"/>
-                  <circle cx="396" cy="273" r="88" fill="rgba(0,0,0,.36)" stroke="rgba(255,255,255,.10)" stroke-width="2"/>
-                  <circle cx="396" cy="273" r="71" fill="url(#lensInner)" stroke="rgba(255,255,255,.07)" stroke-width="1.6"/>
-                  <circle cx="396" cy="273" r="46" fill="#040506" stroke="rgba(255,255,255,.06)" stroke-width="1.2"/>
-                  <circle cx="396" cy="273" r="19" fill="#090b0d" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-
-                  <circle cx="396" cy="273" r="104" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="1.3" stroke-dasharray="2 10"/>
-                  <circle cx="396" cy="273" r="79" fill="none" stroke="rgba(209,179,132,.12)" stroke-width="1.2" stroke-dasharray="1 9"/>
-
-                  <path
-                    d="M351 185C378 168 428 170 459 196"
-                    stroke="url(#glassHighlight)"
-                    stroke-width="9"
-                    stroke-linecap="round"
-                    fill="none"
-                  />
-                  <ellipse cx="377" cy="232" rx="18" ry="40" fill="url(#glassGlow)" transform="rotate(-24 377 232)"/>
-                  <ellipse cx="432" cy="310" rx="12" ry="26" fill="rgba(255,255,255,.05)" transform="rotate(-18 432 310)"/>
-
-                  <path
-                    d="M120 210C198 202 252 203 323 204"
-                    stroke="rgba(255,255,255,.12)"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    opacity=".25"
-                  />
-                  <path
-                    d="M474 194C532 194 575 193 614 189"
-                    stroke="rgba(255,255,255,.10)"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    opacity=".18"
-                  />
-
-                  <path
-                    d="M178 371C324 364 492 362 610 356"
-                    stroke="rgba(255,255,255,.08)"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    opacity=".18"
-                  />
-                </g>
-              </svg>
-            </div>
+            <div class="camera-art" id="aboutCameraArt" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -1311,11 +1169,13 @@
     };
 
     const aboutImage = "A7406441.avif";
+    const aboutCameraImage = "ChatGPT Image 28 mar 2026, 12_30_03";
 
     const nodes = document.querySelectorAll("[data-i18n]");
     const langButtons = document.querySelectorAll(".lang button");
     const categoriesGrid = document.getElementById("categoriesGrid");
     const aboutPhotoWrap = document.getElementById("aboutPhotoWrap");
+    const aboutCameraArt = document.getElementById("aboutCameraArt");
     const modal = document.getElementById("modal");
     const modalTitle = document.getElementById("modalTitle");
     const galleryGrid = document.getElementById("galleryGrid");
@@ -1331,30 +1191,61 @@
     let galleryObserver = null;
     let categoryObserver = null;
 
+    function hasExtension(fileName){
+      return /\.[a-z0-9]+$/i.test(fileName);
+    }
+
+    function encodePath(path){
+      return path
+        .split("/")
+        .map(part => encodeURIComponent(part))
+        .join("/");
+    }
+
     function imagePath(fileName){
-      return `images/${fileName}`;
+      return encodePath(`images/${fileName}`);
+    }
+
+    function getCandidateImagePaths(fileName){
+      if(hasExtension(fileName)){
+        return [imagePath(fileName)];
+      }
+
+      const extensions = ["png", "jpg", "jpeg", "webp", "avif"];
+      return extensions.map(ext => imagePath(`${fileName}.${ext}`));
     }
 
     function createFallback(src){
       const fallback = document.createElement("div");
       fallback.className = "image-fallback";
-      fallback.textContent = `${translations[currentLang].imageMissingNamed} ${src.split("/").pop()}`;
+      fallback.textContent = `${translations[currentLang].imageMissingNamed} ${decodeURIComponent(src.split("/").pop())}`;
       return fallback;
     }
 
     function createLazyImage(src, alt = "", eager = false){
       const shell = document.createElement("div");
       shell.className = "lazy-shell";
-      shell.dataset.src = src;
       shell.dataset.alt = alt;
+      shell.dataset.sources = JSON.stringify(Array.isArray(src) ? src : [src]);
       if(eager) shell.dataset.eager = "true";
       return shell;
+    }
+
+    function tryLoadImage(img, sources, index, onSuccess, onFailure){
+      if(index >= sources.length){
+        onFailure(sources[0] || "");
+        return;
+      }
+
+      img.onload = onSuccess;
+      img.onerror = () => tryLoadImage(img, sources, index + 1, onSuccess, onFailure);
+      img.src = sources[index];
     }
 
     function loadLazyShell(shell){
       if(!shell || shell.dataset.loaded === "true") return;
 
-      const src = shell.dataset.src;
+      const sources = JSON.parse(shell.dataset.sources || "[]");
       const alt = shell.dataset.alt || "";
       const eager = shell.dataset.eager === "true";
 
@@ -1363,16 +1254,19 @@
       img.decoding = "async";
       img.loading = eager ? "eager" : "lazy";
 
-      img.onload = () => {
-        shell.classList.add("loaded");
-        img.classList.add("ready");
-      };
+      tryLoadImage(
+        img,
+        sources,
+        0,
+        () => {
+          shell.classList.add("loaded");
+          img.classList.add("ready");
+        },
+        (failedSrc) => {
+          shell.replaceWith(createFallback(failedSrc));
+        }
+      );
 
-      img.onerror = () => {
-        shell.replaceWith(createFallback(src));
-      };
-
-      img.src = src;
       shell.dataset.loaded = "true";
       shell.appendChild(img);
     }
@@ -1440,6 +1334,13 @@
       aboutPhotoWrap.innerHTML = "";
       const shell = createLazyImage(imagePath(aboutImage), "Rafał Wilk", true);
       aboutPhotoWrap.appendChild(shell);
+      loadLazyShell(shell);
+    }
+
+    function renderAboutCamera(){
+      aboutCameraArt.innerHTML = "";
+      const shell = createLazyImage(getCandidateImagePaths(aboutCameraImage), "", true);
+      aboutCameraArt.appendChild(shell);
       loadLazyShell(shell);
     }
 
@@ -1547,12 +1448,16 @@
       }
     }
 
+    function resolveLightboxImage(item){
+      return imagePath(item.src);
+    }
+
     function openLightbox(category, index, fromHistory = false){
       currentCategory = category;
       currentIndex = index;
 
       const item = galleryData[category].items[index];
-      lightboxImage.src = imagePath(item.src);
+      lightboxImage.src = resolveLightboxImage(item);
       lightboxImage.alt = item.alt;
       lightboxImage.decoding = "async";
       lightboxImage.loading = "eager";
@@ -1589,7 +1494,7 @@
       currentIndex = (currentIndex + step + items.length) % items.length;
 
       const item = items[currentIndex];
-      lightboxImage.src = imagePath(item.src);
+      lightboxImage.src = resolveLightboxImage(item);
       lightboxImage.alt = item.alt;
 
       history.replaceState(
@@ -1606,6 +1511,7 @@
         applyTranslations();
         renderCategories();
         renderAboutPhoto();
+        renderAboutCamera();
       });
     });
 
@@ -1664,6 +1570,7 @@
       ensureBaseState();
       applyTranslations();
       renderAboutPhoto();
+      renderAboutCamera();
       renderCategories();
     }
 
