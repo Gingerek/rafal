@@ -11,48 +11,51 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="images/DSCF4051.jpg" />
 
+  <!-- Preload hero (best effort; final src is resolved in JS with fallbacks) -->
+  <link rel="preload" as="image" href="images/DSCF4051.jpg" fetchpriority="high" />
+
   <style>
     :root{
       --bg:#050505;
       --bg2:#070708;
       --panel:rgba(255,255,255,.055);
-      --panel2:rgba(255,255,255,.07);
-      --border:rgba(255,255,255,.09);
+      --panel2:rgba(255,255,255,.075);
+      --border:rgba(255,255,255,.10);
       --text:#f3ede4;
       --muted:rgba(243,237,228,.72);
       --accent:#d1b384;
-      --shadow:0 18px 55px rgba(0,0,0,.42);
-      --container:1100px;
 
-      --r-1:14px;
-      --r-2:18px;
-      --r-3:24px;
+      --shadow:0 18px 55px rgba(0,0,0,.42);
+      --shadow2:0 26px 90px rgba(0,0,0,.58);
+
+      --container:1180px;
+      --r1:14px;
+      --r2:18px;
+      --r3:26px;
 
       --t:220ms ease;
 
-      /* Typography */
-      --fs-body: clamp(15px, 0.45vw + 13.5px, 16.6px);
+      --fs-body: clamp(15px, .45vw + 13.5px, 16.6px);
       --lh: 1.62;
-      --fs-h1: clamp(1.75rem, 2.6vw + 1rem, 3.05rem);
-      --fs-h2: clamp(1.35rem, 1.6vw + .95rem, 2.1rem);
-      --fs-h3: clamp(1.05rem, 1vw + .92rem, 1.35rem);
-      --fs-lead: clamp(.98rem, .5vw + .88rem, 1.08rem);
+      --fs-h1: clamp(1.85rem, 2.2vw + 1.2rem, 3.15rem);
+      --fs-h2: clamp(1.35rem, 1.2vw + 1.05rem, 2.1rem);
+      --fs-h3: clamp(1.05rem, .6vw + .95rem, 1.35rem);
+      --fs-lead: clamp(1.00rem, .4vw + .92rem, 1.10rem);
+
       --max-text: 64ch;
 
-      --header-h: 76px;
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-bot: env(safe-area-inset-bottom, 0px);
+      --header-h: 78px;
     }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
-
     html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
-
     body{
       font-family: Inter, Arial, sans-serif;
       background:
-        radial-gradient(circle at 20% 0%, rgba(209,179,132,.10), transparent 24%),
-        radial-gradient(circle at 80% 18%, rgba(209,179,132,.06), transparent 22%),
+        radial-gradient(circle at 18% 0%, rgba(209,179,132,.10), transparent 26%),
+        radial-gradient(circle at 84% 14%, rgba(209,179,132,.06), transparent 24%),
         linear-gradient(180deg, var(--bg2), var(--bg));
       color:var(--text);
       font-size:var(--fs-body);
@@ -61,7 +64,6 @@
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
     }
-
     body.locked{ overflow:hidden; touch-action:none; }
 
     a{ color:inherit; text-decoration:none; }
@@ -96,32 +98,26 @@
       -webkit-backdrop-filter: blur(16px);
       border-bottom:1px solid rgba(255,255,255,.06);
     }
-
     .header-inner{
       min-height:var(--header-h);
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
+      gap:12px;
       padding:10px 0;
     }
-
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
       min-width:0;
     }
-
     .brand-dot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
+      width:10px; height:10px; border-radius:999px;
       background:var(--accent);
       box-shadow:0 0 18px rgba(209,179,132,.8);
       flex:0 0 auto;
     }
-
     .brand strong{
       font-weight:800;
       letter-spacing:.04em;
@@ -131,10 +127,10 @@
 
     .nav{
       display:flex;
-      align-items:center;
       gap:8px;
       flex-wrap:wrap;
       justify-content:flex-end;
+      align-items:center;
     }
 
     .chip{
@@ -150,14 +146,12 @@
       font-size:.88rem;
       white-space:nowrap;
     }
-
     .chip:hover{
       background:rgba(255,255,255,.06);
       border-color:var(--border);
       color:var(--text);
       transform:translateY(-1px);
     }
-
     .chip.primary{
       color:var(--text);
       border-color:rgba(209,179,132,.28);
@@ -172,7 +166,6 @@
       background:rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.07);
     }
-
     .lang button{
       min-height:34px;
       padding:7px 10px;
@@ -182,7 +175,6 @@
       border:1px solid transparent;
       transition:background var(--t), border-color var(--t), color var(--t);
     }
-
     .lang button:hover,
     .lang button.active{
       background:rgba(255,255,255,.07);
@@ -190,88 +182,71 @@
       color:var(--text);
     }
 
-    /* Layout sections */
+    /* Sections */
     .section{
-      padding:54px 0;
+      padding:56px 0;
       scroll-margin-top:calc(var(--header-h) + 22px + var(--safe-top));
     }
-
-    .section-head{
+    .head{
       display:grid;
       gap:10px;
       margin-bottom:18px;
-      max-width:860px;
+      max-width:900px;
     }
-
     .kicker{
       color:var(--accent);
       letter-spacing:.16em;
       text-transform:uppercase;
       font-size:.68rem;
     }
-
     h1{
       font-size:var(--fs-h1);
       line-height:1.06;
       letter-spacing:-.045em;
       text-wrap:balance;
-      max-width:20ch;
+      max-width:22ch;
     }
-
     h2{
       font-size:var(--fs-h2);
       line-height:1.12;
       letter-spacing:-.035em;
       text-wrap:balance;
-      max-width:28ch;
+      max-width:30ch;
     }
-
     p.lead{
       font-size:var(--fs-lead);
       color:var(--muted);
       max-width:var(--max-text);
     }
 
-    /* Hero */
+    /* HERO layout: two-column on desktop, stacked on mobile */
     .hero{
-      padding:26px 0 38px;
+      padding:18px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:16px;
+      align-items:stretch;
     }
 
-    .hero-card{
-      position:relative;
-      border-radius:var(--r-3);
-      border:1px solid rgba(255,255,255,.08);
-      background:
-        linear-gradient(180deg, rgba(7,7,7,.68), rgba(5,5,5,.92)),
-        url("images/DSCF4051.jpg");
-      background-size:cover;
-      background-position:center 30%;
-      overflow:hidden;
-      box-shadow:0 30px 90px rgba(0,0,0,.55);
-    }
-
-    .hero-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 10% 5%, rgba(209,179,132,.14), transparent 30%),
-        linear-gradient(90deg, rgba(5,5,5,.88) 0%, rgba(5,5,5,.45) 48%, rgba(5,5,5,.18) 100%);
-      pointer-events:none;
-    }
-
-    .hero-inner{
-      position:relative;
-      padding:28px;
+    .hero-copy{
+      border-radius:var(--r3);
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+      padding:22px;
       display:grid;
       gap:14px;
+      align-content:center;
+      min-height:420px;
     }
 
     .hero-actions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      margin-top:4px;
+      margin-top:6px;
     }
 
     .btn{
@@ -287,41 +262,178 @@
       font-size:.92rem;
       transition:transform var(--t), background var(--t), border-color var(--t);
     }
-
     .btn:hover{
       transform:translateY(-2px);
       background:rgba(255,255,255,.07);
       border-color:rgba(209,179,132,.22);
     }
-
     .btn.primary{
       background:linear-gradient(135deg, rgba(209,179,132,.24), rgba(255,255,255,.03));
       border-color:rgba(209,179,132,.30);
     }
 
-    /* Cards / grids */
+    .hero-media{
+      position:relative;
+      border-radius:var(--r3);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.09);
+      box-shadow:var(--shadow2);
+      min-height:420px;
+      background:rgba(255,255,255,.02);
+      isolation:isolate;
+    }
+    .hero-media::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:2;
+      background:
+        radial-gradient(circle at 16% 8%, rgba(209,179,132,.14), transparent 34%),
+        linear-gradient(90deg, rgba(5,5,5,.52) 0%, rgba(5,5,5,.18) 46%, rgba(5,5,5,.48) 100%),
+        linear-gradient(180deg, rgba(5,5,5,.10), rgba(5,5,5,.62));
+      pointer-events:none;
+    }
+    .hero-img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center 30%;
+      filter:brightness(.86) saturate(.92);
+      transform:scale(1.02);
+      z-index:1;
+    }
+    .hero-badges{
+      position:absolute;
+      inset:auto 16px 16px 16px;
+      z-index:3;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .badge{
+      padding:8px 11px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.22);
+      color:rgba(243,237,228,.88);
+      font-size:.82rem;
+      white-space:nowrap;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* Portfolio (folders) – logical: big, readable, consistent */
+    .folders{
+      display:grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .folder{
+      grid-column: span 4;
+      text-align:left;
+      padding:14px;
+      display:grid;
+      gap:12px;
+      border-radius:var(--r3);
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.028));
+      box-shadow:var(--shadow);
+      transition:transform var(--t), border-color var(--t), background var(--t), box-shadow var(--t);
+      content-visibility:auto;
+      contain-intrinsic-size:340px;
+    }
+    .folder:hover{
+      transform:translateY(-3px);
+      border-color:rgba(209,179,132,.24);
+      box-shadow:0 30px 100px rgba(0,0,0,.55);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+    }
+
+    .folder-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .folder-title{
+      display:grid;
+      gap:4px;
+      min-width:0;
+    }
+    .folder-title strong{
+      font-weight:850;
+      letter-spacing:-.01em;
+      font-size:1.06rem;
+      line-height:1.18;
+    }
+    .folder-title span{
+      color:var(--muted);
+      font-size:.86rem;
+      line-height:1.35;
+      text-wrap:balance;
+      max-width:42ch;
+    }
+    .folder-count{
+      flex:0 0 auto;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+      color:rgba(243,237,228,.86);
+      font-size:.78rem;
+      white-space:nowrap;
+    }
+
+    .folder-thumb{
+      aspect-ratio: 4 / 3;
+      border-radius:var(--r2);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.03);
+      position:relative;
+    }
+
+    .folder-thumb img,
+    .folder-thumb .lazy-shell,
+    .folder-thumb .image-fallback{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .folder-thumb img{
+      opacity:0;
+      transition:opacity var(--t), transform var(--t), filter var(--t);
+    }
+    .folder-thumb img.ready{ opacity:1; }
+    .folder:hover .folder-thumb img{ transform:scale(1.03); filter:brightness(1.04); }
+
+    /* About + Contact */
     .grid-2{
       display:grid;
-      grid-template-columns: 1.05fr .95fr;
+      grid-template-columns: 1fr 1fr;
       gap:16px;
       align-items:stretch;
     }
 
     .card{
-      border-radius:var(--r-3);
+      border-radius:var(--r3);
       border:1px solid rgba(255,255,255,.09);
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.028));
       box-shadow:var(--shadow);
       overflow:hidden;
     }
-
-    .card-pad{ padding:18px; }
+    .pad{ padding:18px; }
 
     .about-photo{
       min-height:420px;
       background:rgba(255,255,255,.03);
     }
-
     .about-photo img,
     .about-photo .image-fallback{
       width:100%;
@@ -333,130 +445,32 @@
       align-items:center;
       justify-content:center;
     }
-
-    .about-photo img{
-      filter:brightness(.76) saturate(.86);
-    }
+    .about-photo img{ filter:brightness(.76) saturate(.86); }
 
     .about-copy{
       display:grid;
       gap:10px;
       align-content:center;
     }
-
     .about-copy h3{
       font-size:var(--fs-h3);
       line-height:1.2;
       letter-spacing:-.02em;
       text-wrap:balance;
-      max-width:32ch;
+      max-width:34ch;
     }
-
     .about-copy p{
       color:var(--muted);
-      font-size:clamp(.90rem, .25vw + .86rem, .98rem);
+      font-size:clamp(.92rem, .25vw + .86rem, .99rem);
       max-width:var(--max-text);
     }
 
-    /* Portfolio categories redesigned */
-    .cats{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .cat{
-      text-align:left;
-      padding:14px;
-      display:grid;
-      gap:12px;
-      transition:transform var(--t), border-color var(--t), background var(--t), box-shadow var(--t);
-      content-visibility:auto;
-      contain-intrinsic-size:320px;
-    }
-
-    .cat:hover{
-      transform:translateY(-3px);
-      border-color:rgba(209,179,132,.25);
-      box-shadow:0 28px 80px rgba(0,0,0,.50);
-      background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.03));
-    }
-
-    .cat-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-    }
-
-    .cat-title{
-      display:grid;
-      gap:4px;
-      min-width:0;
-    }
-
-    .cat-title strong{
-      font-weight:800;
-      letter-spacing:-.01em;
-      font-size:1.02rem;
-      line-height:1.2;
-    }
-
-    .cat-title span{
-      color:var(--muted);
-      font-size:.86rem;
-      line-height:1.35;
-      text-wrap:balance;
-    }
-
-    .cat-count{
-      flex:0 0 auto;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
-      color:rgba(243,237,228,.86);
-      font-size:.78rem;
-      white-space:nowrap;
-    }
-
-    .thumb{
-      aspect-ratio: 4 / 3;
-      border-radius:var(--r-2);
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.09);
-      background:rgba(255,255,255,.03);
-      position:relative;
-    }
-
-    .thumb img,
-    .thumb .lazy-shell,
-    .thumb .image-fallback{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .thumb img{
-      transition:transform var(--t), opacity var(--t), filter var(--t);
-      opacity:0;
-    }
-
-    .thumb img.ready{ opacity:1; }
-    .cat:hover .thumb img{ transform:scale(1.03); filter:brightness(1.04); }
-
-    /* Contact */
     .contact-grid{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
+      grid-template-columns:repeat(3, minmax(0, 1fr));
       gap:14px;
     }
-
-    .contact-item{
-      display:grid;
-      gap:10px;
-    }
-
+    .contact-item{ display:grid; gap:10px; }
     .contact-item strong{ font-size:1rem; }
     .contact-item span{ color:var(--muted); word-break:break-word; }
 
@@ -465,7 +479,6 @@
       color:rgba(243,237,228,.50);
       font-size:.88rem;
     }
-
     .footer .container{ display:grid; gap:8px; }
 
     /* Lazy + fallback */
@@ -489,10 +502,9 @@
       animation:shimmer 1.6s linear infinite;
     }
     .lazy-shell.loaded{ animation:none; background:none; }
-
     @keyframes shimmer{ to{ background-position:-200% 0; } }
 
-    /* Overlays */
+    /* Overlay modal + lightbox */
     .overlay,
     .lightbox{
       position:fixed;
@@ -629,37 +641,43 @@
       right:12px;
     }
 
-    /* Mobile bottom nav for fast access */
+    /* Mobile bottom nav (faster access) */
     .mobile-nav{ display:none; }
 
-    @media (max-width: 980px){
+    /* Responsive */
+    @media (max-width: 1040px){
+      .hero-grid{ grid-template-columns:1fr; }
+      .hero-copy, .hero-media{ min-height:unset; }
+      .hero-media{ aspect-ratio: 16 / 10; }
       .grid-2{ grid-template-columns:1fr; }
       .about-photo{ min-height:320px; }
       .about-photo img, .about-photo .image-fallback{ min-height:320px; }
-      .cats{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+      .folders{ gap:12px; }
+      .folder{ grid-column: span 6; }
       .gallery{ grid-template-columns:repeat(4, minmax(0,1fr)); }
       .contact-grid{ grid-template-columns:1fr; }
     }
 
     @media (max-width: 640px){
-      :root{ --header-h: 70px; }
+      :root{ --header-h: 72px; }
 
-      .nav .chip{ display:none; } /* keep header clean */
+      .nav .chip{ display:none; }
       .lang{ width:100%; justify-content:space-between; border-radius:18px; }
       .lang button{ flex:1 1 0; border-radius:14px; }
 
-      .hero{ padding:14px 0 24px; }
-      .hero-inner{ padding:18px; }
-      h1{ max-width:22ch; }
+      .section{ padding:38px 0; }
+
+      .hero{ padding:12px 0 10px; }
+      .hero-copy{ padding:16px; }
       .hero-actions{ display:grid; grid-template-columns:1fr; }
 
-      .section{ padding:36px 0; }
+      .hero-media{ aspect-ratio: 4 / 3; }
+      .hero-badges{ inset:auto 12px 12px 12px; }
 
-      .cats{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; }
-      .cat{ padding:12px; gap:10px; }
-      .thumb{ aspect-ratio:1/1; } /* smaller, more “folder-like” on phones */
-      .cat-title strong{ font-size:.96rem; }
-      .cat-title span{ font-size:.82rem; }
+      .folder{ grid-column: span 6; padding:12px; gap:10px; }
+      .folder-thumb{ aspect-ratio: 1 / 1; }
+      .folder-title strong{ font-size:1.00rem; }
+      .folder-title span{ font-size:.83rem; }
 
       .modal{ border-radius:0; max-height:100dvh; height:100dvh; }
       .modal-body{ padding:12px; }
@@ -711,8 +729,8 @@
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto !important; }
       .lazy-shell{ animation:none !important; }
-      .btn, .chip, .cat, .thumb img, .g-item img{ transition:none !important; }
-      .btn:hover, .chip:hover, .cat:hover{ transform:none !important; }
+      .btn, .chip, .folder, .folder-thumb img, .g-item img{ transition:none !important; }
+      .btn:hover, .chip:hover, .folder:hover{ transform:none !important; }
     }
   </style>
 </head>
@@ -727,8 +745,8 @@
         </div>
 
         <nav class="nav" aria-label="Primary">
-          <a class="chip" href="#about" data-i18n="navAbout">Over mij</a>
           <a class="chip" href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+          <a class="chip" href="#about" data-i18n="navAbout">Over mij</a>
           <a class="chip primary" href="#contact" data-i18n="navContact">Contact</a>
         </nav>
 
@@ -743,10 +761,11 @@
 
   <div id="pageRoot">
     <main>
+      <!-- HERO -->
       <section class="hero" id="top">
         <div class="container">
-          <div class="hero-card">
-            <div class="hero-inner">
+          <div class="hero-grid">
+            <div class="hero-copy">
               <div class="kicker" data-i18n="heroEyebrow">Fotografieportfolio</div>
               <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer, licht en karakter</h1>
               <p class="lead" data-i18n="heroText">Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.</p>
@@ -755,25 +774,35 @@
                 <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
               </div>
             </div>
+
+            <div class="hero-media" aria-hidden="true">
+              <img id="heroImg" class="hero-img" src="" alt="" decoding="async" fetchpriority="high" />
+              <div class="hero-badges">
+                <div class="badge" data-i18n="heroBadge1">Sfeer • Licht • Karakter</div>
+                <div class="badge" data-i18n="heroBadge2">Snelle galerie • Lazy-load</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- PORTFOLIO FIRST (logical + fastest access) -->
       <section class="section" id="portfolio">
         <div class="container">
-          <div class="section-head">
+          <div class="head">
             <div class="kicker" data-i18n="portfolioEyebrow">Portfolio</div>
             <h2 data-i18n="portfolioTitle">Selecties uit mijn fotografisch werk</h2>
-            <p class="lead" data-i18n="portfolioLead">Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.</p>
+            <p class="lead" data-i18n="portfolioLead">Kies een categorie om de galerie te openen. Miniaturen laden slim en snel.</p>
           </div>
 
-          <div class="cats" id="categoriesGrid"></div>
+          <div class="folders" id="categoriesGrid"></div>
         </div>
       </section>
 
+      <!-- ABOUT -->
       <section class="section" id="about">
         <div class="container">
-          <div class="section-head">
+          <div class="head">
             <div class="kicker" data-i18n="aboutEyebrow">Over mij</div>
             <h2 data-i18n="aboutTitle">Een persoonlijke blik vertaald naar verzorgde en doordachte beelden</h2>
             <p class="lead" data-i18n="aboutLead">Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.</p>
@@ -783,7 +812,7 @@
             <div class="card about-photo" id="aboutPhotoWrap"></div>
 
             <div class="card">
-              <div class="card-pad about-copy">
+              <div class="pad about-copy">
                 <h3 data-i18n="aboutBoxTitle">Fotografie is voor mij meer dan alleen foto's maken</h3>
                 <p data-i18n="aboutP1">Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.</p>
                 <p data-i18n="aboutP2">In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.</p>
@@ -794,9 +823,10 @@
         </div>
       </section>
 
+      <!-- CONTACT -->
       <section class="section" id="contact">
         <div class="container">
-          <div class="section-head">
+          <div class="head">
             <div class="kicker" data-i18n="contactEyebrow">Contact</div>
             <h2 data-i18n="contactTitle">Neem rechtstreeks contact met mij op</h2>
             <p class="lead" data-i18n="contactLead">Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.</p>
@@ -804,7 +834,7 @@
 
           <div class="contact-grid">
             <div class="card">
-              <div class="card-pad contact-item">
+              <div class="pad contact-item">
                 <strong>Instagram</strong>
                 <span>@fotodisogno</span>
                 <a class="btn" href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
@@ -812,7 +842,7 @@
             </div>
 
             <div class="card">
-              <div class="card-pad contact-item">
+              <div class="pad contact-item">
                 <strong>E-mail</strong>
                 <span>fotodisogno@gmail.com</span>
                 <a class="btn" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Open</a>
@@ -820,7 +850,7 @@
             </div>
 
             <div class="card">
-              <div class="card-pad contact-item">
+              <div class="pad contact-item">
                 <strong>WhatsApp</strong>
                 <span>31 0644747733</span>
                 <a class="btn" href="https://wa.me/310644747733" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
@@ -847,7 +877,7 @@
 
   <!-- Category modal -->
   <div class="overlay" id="modalOverlay" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-head">
         <div>
           <div class="kicker" data-i18n="modalKicker">Portfolio</div>
@@ -875,33 +905,42 @@
     const translations = {
       pl: {
         navHome: "Start",
-        navAbout: "O mnie",
         navPortfolio: "Portfolio",
+        navAbout: "O mnie",
         navContact: "Kontakt",
+
         heroEyebrow: "Portfolio fotograficzne",
         heroTitle: "Fotografia oparta na świetle, atmosferze i wyrazistym obrazie",
         heroText: "Witaj na mojej stronie, gdzie pokazuję fotografie budowane kompozycją, detalem i spokojną siłą wizualną.",
         heroBtn1: "Zobacz portfolio",
         heroBtn2: "Skontaktuj się",
+        heroBadge1: "Sfera • Światło • Charakter",
+        heroBadge2: "Szybka galeria • Lazy-load",
+
         portfolioEyebrow: "Portfolio",
         portfolioTitle: "Wybrane obszary mojej fotografii",
-        portfolioLead: "Przejrzyj kategorie i szybko przejdź do zdjęć, które najbardziej Cię interesują.",
+        portfolioLead: "Wybierz kategorię, aby otworzyć galerię. Miniatury ładują się szybko i oszczędnie.",
+
         aboutEyebrow: "O mnie",
         aboutTitle: "Osobliwe spojrzenie przełożone na dopracowane i świadome kadry",
-        aboutLead: "Wierzę w fotografię, która niesie jakość, spokój i własny charakter.",
+        aboutLead: "Wierzę w fotografię, która nie tylko dobrze wygląda, ale również niesie jakość, spokój i własny charakter.",
         aboutBoxTitle: "Fotografia to dla mnie coś więcej niż samo robienie zdjęć",
         aboutP1: "Fotografia towarzyszy mi od dłuższego czasu i z każdą kolejną chwilą utwierdza mnie w tym, że jest to coś naprawdę bliskiego mnie.",
         aboutP2: "Przez ten czas pracowałem z różnymi systemami, m.in. Sony, Fuji i Nikon. Najważniejsze jest robić zdjęcia, rozwijać swój styl i czerpać radość z procesu. Liczą się dla mnie światło, klimat i chwila.",
         aboutCta: "Kontakt",
+
         contactEyebrow: "Kontakt",
         contactTitle: "Skontaktuj się ze mną bezpośrednio",
         contactLead: "W sprawie pytań, współpracy lub zainteresowania moją fotografią odezwij się przez poniższe kanały.",
         contactBtn: "Otwórz",
+
         modalKicker: "Portfolio",
         legalNotice: "Wszelkie prawa zastrzeżone. Wszystkie zdjęcia i treści na tej stronie są chronione prawem autorskim i nie mogą być kopiowane, pobierane ani wykorzystywane bez uprzedniej pisemnej zgody.",
+
         photoCount: "zdjęć",
         imageMissingNamed: "Nie znaleziono zdjęcia:",
         lightboxTitle: "Podgląd zdjęcia",
+
         cat1: "Portret",
         cat2: "Ulica",
         cat3: "Zwierzęta",
@@ -913,21 +952,33 @@
         catDesc3: "Natura i zwierzęta.",
         catDesc4: "Detale z bliska.",
         catDesc5: "Miejsca i klimat.",
-        catDesc6: "Światło i abstrakcja."
+        catDesc6: "Światło i abstrakcja.",
+
+        galleryTitlePortrait: "Portret",
+        galleryTitleStreet: "Ulica",
+        galleryTitleAnimals: "Zwierzęta",
+        galleryTitleMacro: "Makro",
+        galleryTitleTravel: "Podróże",
+        galleryTitleCreative: "Kreatywne"
       },
       en: {
         navHome: "Home",
-        navAbout: "About",
         navPortfolio: "Portfolio",
+        navAbout: "About",
         navContact: "Contact",
+
         heroEyebrow: "Photography portfolio",
         heroTitle: "Photography shaped by light, atmosphere and a refined visual language",
         heroText: "Welcome to my portfolio, where I present images built on composition, detail and a calm visual strength.",
         heroBtn1: "View portfolio",
         heroBtn2: "Get in touch",
+        heroBadge1: "Mood • Light • Character",
+        heroBadge2: "Fast gallery • Lazy-load",
+
         portfolioEyebrow: "Portfolio",
         portfolioTitle: "Selected areas of my photographic work",
-        portfolioLead: "Browse categories and jump straight to the photos you want to see.",
+        portfolioLead: "Pick a category to open the gallery. Thumbnails load quickly and efficiently.",
+
         aboutEyebrow: "About",
         aboutTitle: "A personal way of seeing translated into thoughtful images",
         aboutLead: "I believe in photography that carries quality, calmness and a distinct character.",
@@ -935,15 +986,19 @@
         aboutP1: "Photography has been with me for a long time and keeps confirming it’s something genuinely close to me.",
         aboutP2: "I worked with different systems (Sony, Fuji, Nikon). The key is to keep shooting, develop your eye and enjoy the process. Light, mood and the moment matter most to me.",
         aboutCta: "Contact",
+
         contactEyebrow: "Contact",
         contactTitle: "Get in touch with me directly",
         contactLead: "For questions, collaborations or interest in my photography, reach me via the channels below.",
         contactBtn: "Open",
+
         modalKicker: "Portfolio",
         legalNotice: "All rights reserved. All photographs and content on this website are protected by copyright and may not be copied, downloaded or used without prior written permission.",
+
         photoCount: "photos",
         imageMissingNamed: "Image not found:",
         lightboxTitle: "Image preview",
+
         cat1: "Portrait",
         cat2: "Street",
         cat3: "Animals",
@@ -955,37 +1010,53 @@
         catDesc3: "Nature and animals.",
         catDesc4: "Close-up details.",
         catDesc5: "Places and mood.",
-        catDesc6: "Light and abstraction."
+        catDesc6: "Light and abstraction.",
+
+        galleryTitlePortrait: "Portrait",
+        galleryTitleStreet: "Street",
+        galleryTitleAnimals: "Animals",
+        galleryTitleMacro: "Macro",
+        galleryTitleTravel: "Travel",
+        galleryTitleCreative: "Creative"
       },
       nl: {
         navHome: "Start",
-        navAbout: "Over mij",
         navPortfolio: "Portfolio",
+        navAbout: "Over mij",
         navContact: "Contact",
+
         heroEyebrow: "Fotografieportfolio",
         heroTitle: "Fotografie met aandacht voor sfeer, licht en karakter",
         heroText: "Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.",
         heroBtn1: "Bekijk portfolio",
         heroBtn2: "Neem contact op",
+        heroBadge1: "Sfeer • Licht • Karakter",
+        heroBadge2: "Snelle galerie • Lazy-load",
+
         portfolioEyebrow: "Portfolio",
         portfolioTitle: "Selecties uit mijn fotografisch werk",
-        portfolioLead: "Bekijk categorieën en ga direct naar de foto's die je wilt zien.",
+        portfolioLead: "Kies een categorie om de galerie te openen. Miniaturen laden snel en efficiënt.",
+
         aboutEyebrow: "Over mij",
         aboutTitle: "Een persoonlijke blik vertaald naar verzorgde en doordachte beelden",
-        aboutLead: "Ik geloof in fotografie die rust, kwaliteit en een eigen stijl uitstraalt.",
+        aboutLead: "Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.",
         aboutBoxTitle: "Fotografie is voor mij meer dan alleen foto's maken",
         aboutP1: "Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.",
-        aboutP2: "In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Het belangrijkste is blijven fotograferen, je eigen blik ontwikkelen en plezier houden in het proces. Licht, sfeer en moment zijn voor mij het belangrijkst.",
+        aboutP2: "In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.",
         aboutCta: "Contact",
+
         contactEyebrow: "Contact",
         contactTitle: "Neem rechtstreeks contact met mij op",
         contactLead: "Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.",
         contactBtn: "Open",
+
         modalKicker: "Portfolio",
         legalNotice: "Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming.",
+
         photoCount: "foto's",
         imageMissingNamed: "Foto niet gevonden:",
         lightboxTitle: "Foto bekijken",
+
         cat1: "Portret",
         cat2: "Straat",
         cat3: "Dieren",
@@ -997,17 +1068,24 @@
         catDesc3: "Natuur en dieren.",
         catDesc4: "Details van dichtbij.",
         catDesc5: "Plekken en sfeer.",
-        catDesc6: "Licht en abstractie."
+        catDesc6: "Licht en abstractie.",
+
+        galleryTitlePortrait: "Portret",
+        galleryTitleStreet: "Straat",
+        galleryTitleAnimals: "Dieren",
+        galleryTitleMacro: "Macro",
+        galleryTitleTravel: "Reizen",
+        galleryTitleCreative: "Creatief"
       }
     };
 
     const categoriesMeta = [
       { key: "portrait", labelKey: "cat1", descKey:"catDesc1", cover: "DSCF4051-2.jpg", titleKey: "galleryTitlePortrait" },
-      { key: "street", labelKey: "cat2", descKey:"catDesc2", cover: "A7407052.jpg", titleKey: "galleryTitleStreet" },
-      { key: "animals", labelKey: "cat3", descKey:"catDesc3", cover: "DSCF3455.jpg", titleKey: "galleryTitleAnimals" },
-      { key: "macro", labelKey: "cat4", descKey:"catDesc4", cover: "A7400567.png", titleKey: "galleryTitleMacro" },
-      { key: "travel", labelKey: "cat5", descKey:"catDesc5", cover: "DSC02526.avif", titleKey: "galleryTitleTravel" },
-      { key: "creative", labelKey: "cat6", descKey:"catDesc6", cover: "DSC_5304.jpg", titleKey: "galleryTitleCreative" }
+      { key: "street",   labelKey: "cat2", descKey:"catDesc2", cover: "A7407052.jpg",   titleKey: "galleryTitleStreet" },
+      { key: "animals",  labelKey: "cat3", descKey:"catDesc3", cover: "DSCF3455.jpg",   titleKey: "galleryTitleAnimals" },
+      { key: "macro",    labelKey: "cat4", descKey:"catDesc4", cover: "A7400567.png",   titleKey: "galleryTitleMacro" },
+      { key: "travel",   labelKey: "cat5", descKey:"catDesc5", cover: "DSC02526.avif",  titleKey: "galleryTitleTravel" },
+      { key: "creative", labelKey: "cat6", descKey:"catDesc6", cover: "DSC_5304.jpg",   titleKey: "galleryTitleCreative" }
     ];
 
     const galleryData = {
@@ -1094,16 +1172,21 @@
       }
     };
 
+    // NOTE: najlepiej zmień ten plik na prostą nazwę typu about.avif/jpg (bez spacji i przecinków)
     const aboutImage = "ChatGPT Image 28 mar 2026, 16_46_19";
+    const heroImage = "DSCF4051"; // without extension -> tries avif/webp/jpg/jpeg/png
 
     const pageRoot = document.getElementById("pageRoot");
     const nodes = document.querySelectorAll("[data-i18n]");
     const langButtons = document.querySelectorAll(".lang button");
 
+    const heroImg = document.getElementById("heroImg");
+
     const categoriesGrid = document.getElementById("categoriesGrid");
     const aboutPhotoWrap = document.getElementById("aboutPhotoWrap");
 
     const modalOverlay = document.getElementById("modalOverlay");
+    const modal = document.getElementById("modal");
     const modalTitle = document.getElementById("modalTitle");
     const modalMeta = document.getElementById("modalMeta");
     const modalBody = document.getElementById("modalBody");
@@ -1122,6 +1205,7 @@
     let currentLang = translations[urlLang] ? urlLang : "nl";
     let currentCategory = null;
     let currentIndex = 0;
+
     let lastScrollY = 0;
     let lastActiveElement = null;
 
@@ -1155,11 +1239,13 @@
       return fallback;
     }
 
-    function createLazyImage(src, alt = "", eager = false){
+    function createLazyImage(src, alt = "", eager = false, w = 900, h = 675){
       const shell = document.createElement("div");
       shell.className = "lazy-shell";
       shell.dataset.alt = alt;
       shell.dataset.sources = JSON.stringify(Array.isArray(src) ? src : [src]);
+      shell.dataset.w = String(w);
+      shell.dataset.h = String(h);
       if(eager) shell.dataset.eager = "true";
       return shell;
     }
@@ -1174,17 +1260,22 @@
       img.src = sources[index];
     }
 
-    function loadLazyShell(shell){
+    function loadLazyShell(shell, fetchPriority){
       if(!shell || shell.dataset.loaded === "true") return;
 
       const sources = JSON.parse(shell.dataset.sources || "[]");
       const alt = shell.dataset.alt || "";
       const eager = shell.dataset.eager === "true";
+      const w = parseInt(shell.dataset.w || "900", 10);
+      const h = parseInt(shell.dataset.h || "675", 10);
 
       const img = document.createElement("img");
       img.alt = alt;
       img.decoding = "async";
       img.loading = eager ? "eager" : "lazy";
+      img.width = w;
+      img.height = h;
+      if(fetchPriority) img.fetchPriority = fetchPriority;
 
       tryLoadImage(
         img,
@@ -1204,7 +1295,7 @@
     function setupObserverFor(selector, root, margin){
       const shells = Array.from(document.querySelectorAll(selector));
       if(!("IntersectionObserver" in window)){
-        shells.forEach(loadLazyShell);
+        shells.forEach(s => loadLazyShell(s));
         return null;
       }
 
@@ -1250,17 +1341,14 @@
 
     function trapFocus(e, container){
       if(e.key !== "Tab") return;
-
       const focusables = getFocusableElements(container);
       if(focusables.length === 0){
         e.preventDefault();
         container.focus();
         return;
       }
-
       const first = focusables[0];
       const last = focusables[focusables.length - 1];
-
       if(e.shiftKey && document.activeElement === first){
         e.preventDefault();
         last.focus();
@@ -1283,7 +1371,6 @@
         if(dict[key]) node.textContent = dict[key];
       });
       document.documentElement.lang = currentLang;
-
       lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
 
       if(currentCategory){
@@ -1293,11 +1380,25 @@
       }
     }
 
+    function renderHeroImage(){
+      const candidates = getCandidateImagePaths(heroImage);
+      const temp = new Image();
+      temp.decoding = "async";
+
+      tryLoadImage(
+        temp,
+        candidates,
+        0,
+        () => { heroImg.src = temp.src; },
+        () => { heroImg.removeAttribute("src"); }
+      );
+    }
+
     function renderAboutPhoto(){
       aboutPhotoWrap.innerHTML = "";
-      const shell = createLazyImage(getCandidateImagePaths(aboutImage), "Rafał Wilk", true);
+      const shell = createLazyImage(getCandidateImagePaths(aboutImage), "Rafał Wilk", true, 1200, 900);
       aboutPhotoWrap.appendChild(shell);
-      loadLazyShell(shell);
+      loadLazyShell(shell, "high");
     }
 
     function renderCategories(){
@@ -1306,18 +1407,18 @@
 
       const frag = document.createDocumentFragment();
 
-      categoriesMeta.forEach(cat => {
+      categoriesMeta.forEach((cat, idx) => {
         const button = document.createElement("button");
-        button.className = "card cat";
+        button.className = "folder";
         button.type = "button";
         button.dataset.category = cat.key;
         button.setAttribute("aria-haspopup", "dialog");
 
         const top = document.createElement("div");
-        top.className = "cat-top";
+        top.className = "folder-top";
 
         const title = document.createElement("div");
-        title.className = "cat-title";
+        title.className = "folder-title";
 
         const strong = document.createElement("strong");
         strong.textContent = dict[cat.labelKey];
@@ -1329,28 +1430,38 @@
         title.appendChild(desc);
 
         const count = document.createElement("div");
-        count.className = "cat-count";
+        count.className = "folder-count";
         count.textContent = `${galleryData[cat.key].items.length} ${dict.photoCount}`;
 
         top.appendChild(title);
         top.appendChild(count);
 
         const thumb = document.createElement("div");
-        thumb.className = "thumb";
-        thumb.appendChild(createLazyImage(imagePath(cat.cover), dict[cat.labelKey]));
+        thumb.className = "folder-thumb";
+
+        // Faster perceived load: eager-load first 2 covers + high priority first
+        const eager = idx < 2;
+        const shell = createLazyImage(imagePath(cat.cover), dict[cat.labelKey], eager, 1200, 900);
+        thumb.appendChild(shell);
 
         button.appendChild(top);
         button.appendChild(thumb);
 
         button.addEventListener("click", () => openCategory(cat.key, button));
-
         frag.appendChild(button);
       });
 
       categoriesGrid.appendChild(frag);
 
+      // load first covers immediately
+      const coverShells = Array.from(document.querySelectorAll("#categoriesGrid .lazy-shell"));
+      coverShells.forEach((s, i) => {
+        if(i === 0) loadLazyShell(s, "high");
+        else if(i === 1) loadLazyShell(s, "auto");
+      });
+
       if(categoryObserver) categoryObserver.disconnect();
-      categoryObserver = setupObserverFor("#categoriesGrid .lazy-shell", null, "300px 0px");
+      categoryObserver = setupObserverFor("#categoriesGrid .lazy-shell", null, "320px 0px");
     }
 
     function openCategory(categoryKey, openerEl){
@@ -1358,13 +1469,13 @@
       currentIndex = 0;
 
       lastActiveElement = openerEl || document.activeElement;
+      lastScrollY = window.scrollY;
 
       const dict = translations[currentLang];
       const data = galleryData[categoryKey];
 
       modalTitle.textContent = dict[data.titleKey];
       modalMeta.textContent = `${data.items.length} ${dict.photoCount}`;
-
       galleryGrid.innerHTML = "";
 
       const frag = document.createDocumentFragment();
@@ -1375,19 +1486,15 @@
         btn.type = "button";
         btn.setAttribute("aria-label", item.alt);
 
-        const shell = createLazyImage(imagePath(item.src), item.alt);
+        const eager = idx < 10;
+        const shell = createLazyImage(imagePath(item.src), item.alt, eager, 900, 900);
         btn.appendChild(shell);
 
         btn.addEventListener("click", () => openLightbox(categoryKey, idx, btn));
-
         frag.appendChild(btn);
       });
 
       galleryGrid.appendChild(frag);
-
-      if(!modalOverlay.classList.contains("open")){
-        lastScrollY = window.scrollY;
-      }
 
       modalOverlay.classList.add("open");
       modalOverlay.setAttribute("aria-hidden", "false");
@@ -1398,9 +1505,18 @@
       if(galleryObserver) galleryObserver.disconnect();
       galleryObserver = setupObserverFor("#galleryGrid .lazy-shell", modalBody, "520px 0px");
 
-      // eager first few
+      // eager load first few for instant grid
       document.querySelectorAll("#galleryGrid .lazy-shell").forEach((shell, i) => {
-        if(i < 10) loadLazyShell(shell);
+        if(i === 0) loadLazyShell(shell, "high");
+        else if(i < 10) loadLazyShell(shell);
+      });
+
+      // lightweight prefetch next few when idle (faster scrolling)
+      const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 250));
+      idle(() => {
+        document.querySelectorAll("#galleryGrid .lazy-shell").forEach((shell, i) => {
+          if(i >= 10 && i < 16) loadLazyShell(shell);
+        });
       });
 
       closeModal.focus();
@@ -1414,7 +1530,6 @@
 
       if(galleryObserver) galleryObserver.disconnect();
 
-      // restore scroll + focus
       window.scrollTo(0, lastScrollY);
       if(lastActiveElement && typeof lastActiveElement.focus === "function"){
         lastActiveElement.focus();
@@ -1507,7 +1622,7 @@
       );
     }
 
-    // Events
+    // Language
     langButtons.forEach(btn => {
       btn.addEventListener("click", () => {
         currentLang = btn.dataset.lang;
@@ -1519,6 +1634,7 @@
       });
     });
 
+    // Close handlers
     closeModal.addEventListener("click", () => closeCategory());
     modalOverlay.addEventListener("click", (e) => {
       if(e.target === modalOverlay) closeCategory();
@@ -1539,8 +1655,7 @@
       }
 
       if(modalOverlay.classList.contains("open")){
-        // trap focus inside modal
-        trapFocus(e, document.querySelector(".modal"));
+        trapFocus(e, modal);
         if(e.key === "Escape") closeCategory();
       }
     });
@@ -1549,11 +1664,10 @@
       const state = event.state || { overlay: null };
 
       if(state.overlay === "lightbox"){
-        // ensure category modal open
         if(!modalOverlay.classList.contains("open")){
+          // reopen category then lightbox
           openCategory(state.category, null);
         }
-        // then open lightbox
         openLightbox(state.category, state.index ?? 0, null);
         return;
       }
@@ -1577,10 +1691,9 @@
     });
 
     function init(){
-      // fix active lang button
       langButtons.forEach(b => b.classList.toggle("active", b.dataset.lang === currentLang));
-
       applyTranslations();
+      renderHeroImage();
       renderAboutPhoto();
       renderCategories();
       setBodyLock();
