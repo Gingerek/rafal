@@ -11,7 +11,6 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="images/DSCF4051.jpg" />
 
-  <!-- Preload hero (best effort; final src is resolved in JS with fallbacks) -->
   <link rel="preload" as="image" href="images/DSCF4051.jpg" fetchpriority="high" />
 
   <style>
@@ -87,7 +86,6 @@
       margin:0 auto;
     }
 
-    /* Header */
     .site-header{
       position:sticky;
       top:0;
@@ -182,7 +180,6 @@
       color:var(--text);
     }
 
-    /* Sections */
     .section{
       padding:56px 0;
       scroll-margin-top:calc(var(--header-h) + 22px + var(--safe-top));
@@ -219,7 +216,7 @@
       max-width:var(--max-text);
     }
 
-    /* HERO layout: two-column on desktop, stacked on mobile */
+    /* HERO */
     .hero{
       padding:18px 0 22px;
     }
@@ -325,7 +322,7 @@
       -webkit-backdrop-filter: blur(10px);
     }
 
-    /* Portfolio (folders) – logical: big, readable, consistent */
+    /* Portfolio folders */
     .folders{
       display:grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -641,10 +638,8 @@
       right:12px;
     }
 
-    /* Mobile bottom nav (faster access) */
     .mobile-nav{ display:none; }
 
-    /* Responsive */
     @media (max-width: 1040px){
       .hero-grid{ grid-template-columns:1fr; }
       .hero-copy, .hero-media{ min-height:unset; }
@@ -652,7 +647,6 @@
       .grid-2{ grid-template-columns:1fr; }
       .about-photo{ min-height:320px; }
       .about-photo img, .about-photo .image-fallback{ min-height:320px; }
-      .folders{ gap:12px; }
       .folder{ grid-column: span 6; }
       .gallery{ grid-template-columns:repeat(4, minmax(0,1fr)); }
       .contact-grid{ grid-template-columns:1fr; }
@@ -761,7 +755,6 @@
 
   <div id="pageRoot">
     <main>
-      <!-- HERO -->
       <section class="hero" id="top">
         <div class="container">
           <div class="hero-grid">
@@ -776,7 +769,7 @@
             </div>
 
             <div class="hero-media" aria-hidden="true">
-              <img id="heroImg" class="hero-img" src="" alt="" decoding="async" fetchpriority="high" />
+              <img id="heroImg" class="hero-img" src="images/DSCF4051.jpg" alt="" decoding="async" fetchpriority="high" />
               <div class="hero-badges">
                 <div class="badge" data-i18n="heroBadge1">Sfeer • Licht • Karakter</div>
                 <div class="badge" data-i18n="heroBadge2">Snelle galerie • Lazy-load</div>
@@ -786,7 +779,6 @@
         </div>
       </section>
 
-      <!-- PORTFOLIO FIRST (logical + fastest access) -->
       <section class="section" id="portfolio">
         <div class="container">
           <div class="head">
@@ -799,7 +791,6 @@
         </div>
       </section>
 
-      <!-- ABOUT -->
       <section class="section" id="about">
         <div class="container">
           <div class="head">
@@ -823,7 +814,6 @@
         </div>
       </section>
 
-      <!-- CONTACT -->
       <section class="section" id="contact">
         <div class="container">
           <div class="head">
@@ -875,7 +865,7 @@
     </nav>
   </div>
 
-  <!-- Category modal -->
+  <!-- Category modal (NOW PRESENT) -->
   <div class="overlay" id="modalOverlay" aria-hidden="true">
     <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-head">
@@ -892,12 +882,12 @@
     </div>
   </div>
 
-  <!-- Lightbox -->
+  <!-- Lightbox (NOW PRESENT) -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lightbox-inner" id="lightboxInner" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" tabindex="-1">
       <h2 id="lightboxTitle" class="sr-only">Image preview</h2>
       <button class="close-btn" id="closeLightbox" type="button" aria-label="Close">×</button>
-      <img id="lightboxImage" src="" alt="" />
+      <img id="lightboxImage" src="" alt="" decoding="async" />
     </div>
   </div>
 
@@ -1172,16 +1162,14 @@
       }
     };
 
-    // NOTE: najlepiej zmień ten plik na prostą nazwę typu about.avif/jpg (bez spacji i przecinków)
     const aboutImage = "ChatGPT Image 28 mar 2026, 16_46_19";
-    const heroImage = "DSCF4051"; // without extension -> tries avif/webp/jpg/jpeg/png
+    const heroImage = "DSCF4051";
 
     const pageRoot = document.getElementById("pageRoot");
     const nodes = document.querySelectorAll("[data-i18n]");
     const langButtons = document.querySelectorAll(".lang button");
 
     const heroImg = document.getElementById("heroImg");
-
     const categoriesGrid = document.getElementById("categoriesGrid");
     const aboutPhotoWrap = document.getElementById("aboutPhotoWrap");
 
@@ -1366,10 +1354,12 @@
 
     function applyTranslations(){
       const dict = translations[currentLang];
+
       nodes.forEach(node => {
         const key = node.dataset.i18n;
         if(dict[key]) node.textContent = dict[key];
       });
+
       document.documentElement.lang = currentLang;
       lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
 
@@ -1390,7 +1380,7 @@
         candidates,
         0,
         () => { heroImg.src = temp.src; },
-        () => { heroImg.removeAttribute("src"); }
+        () => { /* keep fallback src from HTML */ }
       );
     }
 
@@ -1413,6 +1403,7 @@
         button.type = "button";
         button.dataset.category = cat.key;
         button.setAttribute("aria-haspopup", "dialog");
+        button.setAttribute("aria-controls", "modalOverlay");
 
         const top = document.createElement("div");
         top.className = "folder-top";
@@ -1439,7 +1430,6 @@
         const thumb = document.createElement("div");
         thumb.className = "folder-thumb";
 
-        // Faster perceived load: eager-load first 2 covers + high priority first
         const eager = idx < 2;
         const shell = createLazyImage(imagePath(cat.cover), dict[cat.labelKey], eager, 1200, 900);
         thumb.appendChild(shell);
@@ -1453,7 +1443,6 @@
 
       categoriesGrid.appendChild(frag);
 
-      // load first covers immediately
       const coverShells = Array.from(document.querySelectorAll("#categoriesGrid .lazy-shell"));
       coverShells.forEach((s, i) => {
         if(i === 0) loadLazyShell(s, "high");
@@ -1505,13 +1494,11 @@
       if(galleryObserver) galleryObserver.disconnect();
       galleryObserver = setupObserverFor("#galleryGrid .lazy-shell", modalBody, "520px 0px");
 
-      // eager load first few for instant grid
       document.querySelectorAll("#galleryGrid .lazy-shell").forEach((shell, i) => {
         if(i === 0) loadLazyShell(shell, "high");
         else if(i < 10) loadLazyShell(shell);
       });
 
-      // lightweight prefetch next few when idle (faster scrolling)
       const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 250));
       idle(() => {
         document.querySelectorAll("#galleryGrid .lazy-shell").forEach((shell, i) => {
@@ -1622,7 +1609,6 @@
       );
     }
 
-    // Language
     langButtons.forEach(btn => {
       btn.addEventListener("click", () => {
         currentLang = btn.dataset.lang;
@@ -1634,7 +1620,6 @@
       });
     });
 
-    // Close handlers
     closeModal.addEventListener("click", () => closeCategory());
     modalOverlay.addEventListener("click", (e) => {
       if(e.target === modalOverlay) closeCategory();
@@ -1665,7 +1650,6 @@
 
       if(state.overlay === "lightbox"){
         if(!modalOverlay.classList.contains("open")){
-          // reopen category then lightbox
           openCategory(state.category, null);
         }
         openLightbox(state.category, state.index ?? 0, null);
