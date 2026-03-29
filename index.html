@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Rafał Wilk | Fotografie</title>
   <meta name="description" content="Portfolio fotograficzne Rafała Wilka" />
+
+  <!-- Social preview (OG) -->
+  <meta property="og:title" content="Rafał Wilk | Fotografie" />
+  <meta property="og:description" content="Portfolio fotograficzne Rafała Wilka" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/DSCF4051.jpg" />
+
   <style>
     :root{
       --bg:#050505;
@@ -50,6 +57,19 @@
     body.locked{
       overflow:hidden;
       touch-action:none;
+    }
+
+    /* Screen-reader only helper */
+    .sr-only{
+      position:absolute !important;
+      width:1px !important;
+      height:1px !important;
+      padding:0 !important;
+      margin:-1px !important;
+      overflow:hidden !important;
+      clip:rect(0,0,0,0) !important;
+      white-space:nowrap !important;
+      border:0 !important;
     }
 
     a{
@@ -488,6 +508,10 @@
       box-shadow:0 28px 90px rgba(0,0,0,.56);
       scrollbar-width:thin;
       scrollbar-color:var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    .modal-shell:focus{
+      outline:none;
     }
 
     .modal-shell::-webkit-scrollbar{
@@ -1236,6 +1260,18 @@
         min-height:140px;
       }
     }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto !important; }
+      .lazy-shell{ animation:none !important; }
+      .btn, .view-switch, .cat, .gallery-item img, .nav a, .lang button{
+        transition:none !important;
+      }
+      .btn:hover, .view-switch:hover, .cat:hover{
+        transform:none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1268,101 +1304,105 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero" id="top">
-      <div class="container">
-        <div class="hero-copy">
-          <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
-          <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer, licht en karakter</h1>
-          <p data-i18n="heroText">Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.</p>
-          <div class="actions">
-            <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
-            <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="head">
-          <span data-i18n="aboutEyebrow">Over mij</span>
-          <h2 data-i18n="aboutTitle">Een persoonlijke blik vertaald naar verzorgde en doordachte beelden</h2>
-          <p data-i18n="aboutLead">Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.</p>
-        </div>
-
-        <div class="about">
-          <div class="card about-photo" id="aboutPhotoWrap"></div>
-
-          <div class="card copy">
-            <div class="copy-content">
-              <h3 data-i18n="aboutBoxTitle">Fotografie is voor mij meer dan alleen foto's maken</h3>
-              <p data-i18n="aboutP1">Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.</p>
-              <p data-i18n="aboutP2">In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.</p>
+  <!-- everything except overlays -->
+  <div id="pageRoot">
+    <main>
+      <section class="hero" id="top">
+        <div class="container">
+          <div class="hero-copy">
+            <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
+            <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer, licht en karakter</h1>
+            <p data-i18n="heroText">Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.</p>
+            <div class="actions">
+              <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
+              <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="portfolio">
+      <section id="about">
+        <div class="container">
+          <div class="head">
+            <span data-i18n="aboutEyebrow">Over mij</span>
+            <h2 data-i18n="aboutTitle">Een persoonlijke blik vertaald naar verzorgde en doordachte beelden</h2>
+            <p data-i18n="aboutLead">Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.</p>
+          </div>
+
+          <div class="about">
+            <div class="card about-photo" id="aboutPhotoWrap"></div>
+
+            <div class="card copy">
+              <div class="copy-content">
+                <h3 data-i18n="aboutBoxTitle">Fotografie is voor mij meer dan alleen foto's maken</h3>
+                <p data-i18n="aboutP1">Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.</p>
+                <p data-i18n="aboutP2">In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio">
+        <div class="container">
+          <div class="head">
+            <span data-i18n="portfolioEyebrow">Portfolio</span>
+            <h2 data-i18n="portfolioTitle">Selecties uit mijn fotografisch werk</h2>
+            <p data-i18n="portfolioLead">Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.</p>
+          </div>
+
+          <div class="categories" id="categoriesGrid"></div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="head">
+            <span data-i18n="contactEyebrow">Contact</span>
+            <h2 data-i18n="contactTitle">Neem rechtstreeks contact met mij op</h2>
+            <p data-i18n="contactLead">Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.</p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="card contact-card">
+              <strong>Instagram</strong>
+              <span>@fotodisogno</span>
+              <a class="btn" href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
+            </div>
+
+            <div class="card contact-card">
+              <strong>E-mail</strong>
+              <span>fotodisogno@gmail.com</span>
+              <a class="btn" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Open</a>
+            </div>
+
+            <div class="card contact-card">
+              <strong>WhatsApp</strong>
+              <span>31 0644747733</span>
+              <a class="btn" href="https://wa.me/310644747733" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
       <div class="container">
-        <div class="head">
-          <span data-i18n="portfolioEyebrow">Portfolio</span>
-          <h2 data-i18n="portfolioTitle">Selecties uit mijn fotografisch werk</h2>
-          <p data-i18n="portfolioLead">Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.</p>
-        </div>
-
-        <div class="categories" id="categoriesGrid"></div>
+        <div>© Rafał Wilk</div>
+        <div data-i18n="legalNotice">Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming.</div>
       </div>
-    </section>
+    </footer>
 
-    <section id="contact">
-      <div class="container">
-        <div class="head">
-          <span data-i18n="contactEyebrow">Contact</span>
-          <h2 data-i18n="contactTitle">Neem rechtstreeks contact met mij op</h2>
-          <p data-i18n="contactLead">Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.</p>
-        </div>
+    <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+      <a href="#top" data-i18n="navHome">Start</a>
+      <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </nav>
+  </div>
 
-        <div class="contact-grid">
-          <div class="card contact-card">
-            <strong>Instagram</strong>
-            <span>@fotodisogno</span>
-            <a class="btn" href="https://instagram.com/fotodisogno" target="_blank" rel="noreferrer" data-i18n="contactBtn">Open</a>
-          </div>
-
-          <div class="card contact-card">
-            <strong>E-mail</strong>
-            <span>fotodisogno@gmail.com</span>
-            <a class="btn" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Open</a>
-          </div>
-
-          <div class="card contact-card">
-            <strong>WhatsApp</strong>
-            <span>31 0644747733</span>
-            <a class="btn" href="https://wa.me/310644747733" target="_blank" rel="noreferrer" data-i18n="contactBtn">Open</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div>© Rafał Wilk</div>
-      <div data-i18n="legalNotice">Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming.</div>
-    </div>
-  </footer>
-
-  <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
-    <a href="#top" data-i18n="navHome">Start</a>
-    <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
-    <a href="#contact" data-i18n="navContact">Contact</a>
-  </nav>
-
+  <!-- overlays -->
   <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-shell" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-shell" id="modalShell" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
       <div class="modal-top">
         <div>
           <div class="modal-kicker" data-i18n="modalKicker">Portfolio</div>
@@ -1376,7 +1416,8 @@
   </div>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <div class="lightbox-inner" role="dialog" aria-modal="true">
+    <div class="lightbox-inner" id="lightboxInner" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" tabindex="-1">
+      <h2 id="lightboxTitle" class="sr-only">Image preview</h2>
       <button class="close-btn" id="closeLightbox" type="button" aria-label="Close">×</button>
       <img id="lightboxImage" src="" alt="" />
     </div>
@@ -1424,7 +1465,8 @@
         imageMissingNamed: "Nie znaleziono zdjęcia:",
         viewToggleMobile: "Przejdź do wersji mobilnej",
         viewToggleDesktop: "Przejdź do wersji desktopowej",
-        photoCount: "zdjęć"
+        photoCount: "zdjęć",
+        lightboxTitle: "Podgląd zdjęcia"
       },
       en: {
         navHome: "Home",
@@ -1466,7 +1508,8 @@
         imageMissingNamed: "Image not found:",
         viewToggleMobile: "Switch to mobile version",
         viewToggleDesktop: "Switch to desktop version",
-        photoCount: "photos"
+        photoCount: "photos",
+        lightboxTitle: "Image preview"
       },
       nl: {
         navHome: "Start",
@@ -1508,7 +1551,8 @@
         imageMissingNamed: "Foto niet gevonden:",
         viewToggleMobile: "Ga naar mobiele versie",
         viewToggleDesktop: "Ga naar desktopversie",
-        photoCount: "foto's"
+        photoCount: "foto's",
+        lightboxTitle: "Foto bekijken"
       }
     };
 
@@ -1605,18 +1649,23 @@
       }
     };
 
+    // NOTE: jeśli możesz, zmień nazwę pliku "o mnie" na prostszą bez spacji/ przecinków
     const aboutImage = "ChatGPT Image 28 mar 2026, 16_46_19";
 
+    const pageRoot = document.getElementById("pageRoot");
     const nodes = document.querySelectorAll("[data-i18n]");
     const langButtons = document.querySelectorAll(".lang button");
     const categoriesGrid = document.getElementById("categoriesGrid");
     const aboutPhotoWrap = document.getElementById("aboutPhotoWrap");
     const modal = document.getElementById("modal");
+    const modalShell = document.getElementById("modalShell");
     const modalTitle = document.getElementById("modalTitle");
     const modalMeta = document.getElementById("modalMeta");
     const galleryGrid = document.getElementById("galleryGrid");
     const closeModal = document.getElementById("closeModal");
     const lightbox = document.getElementById("lightbox");
+    const lightboxInner = document.getElementById("lightboxInner");
+    const lightboxTitle = document.getElementById("lightboxTitle");
     const lightboxImage = document.getElementById("lightboxImage");
     const closeLightbox = document.getElementById("closeLightbox");
     const viewToggle = document.getElementById("viewToggle");
@@ -1634,6 +1683,9 @@
     let lastScrollY = 0;
     let galleryObserver = null;
     let categoryObserver = null;
+
+    // focus management
+    let lastActiveElement = null;
 
     function hasExtension(fileName){
       return /\.[a-z0-9]+$/i.test(fileName);
@@ -1655,7 +1707,7 @@
         return [imagePath(fileName)];
       }
 
-      const extensions = ["png", "jpg", "jpeg", "webp", "avif"];
+      const extensions = ["avif", "webp", "jpg", "jpeg", "png"];
       return extensions.map(ext => imagePath(`${fileName}.${ext}`));
     }
 
@@ -1718,6 +1770,13 @@
     function setupCategoryObserver(){
       if(categoryObserver) categoryObserver.disconnect();
 
+      const shells = Array.from(document.querySelectorAll("#categoriesGrid .lazy-shell"));
+
+      if(!("IntersectionObserver" in window)){
+        shells.forEach(loadLazyShell);
+        return;
+      }
+
       categoryObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if(entry.isIntersecting){
@@ -1732,13 +1791,18 @@
         threshold: 0.01
       });
 
-      document.querySelectorAll("#categoriesGrid .lazy-shell").forEach(shell => {
-        categoryObserver.observe(shell);
-      });
+      shells.forEach(shell => categoryObserver.observe(shell));
     }
 
     function setupGalleryObserver(){
       if(galleryObserver) galleryObserver.disconnect();
+
+      const shells = Array.from(document.querySelectorAll("#galleryGrid .lazy-shell"));
+
+      if(!("IntersectionObserver" in window)){
+        shells.forEach(loadLazyShell);
+        return;
+      }
 
       galleryObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1749,14 +1813,12 @@
           }
         });
       }, {
-        root: document.querySelector(".modal-shell"),
+        root: modalShell,
         rootMargin: "420px 0px",
         threshold: 0.01
       });
 
-      document.querySelectorAll("#galleryGrid .lazy-shell").forEach(shell => {
-        galleryObserver.observe(shell);
-      });
+      shells.forEach(shell => galleryObserver.observe(shell));
     }
 
     function buildSwitchHref(targetView){
@@ -1797,6 +1859,9 @@
       document.documentElement.lang = currentLang;
       updateViewToggle();
 
+      // lightbox accessible title
+      lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
+
       if(currentCategory){
         modalTitle.textContent = dict[galleryData[currentCategory].titleKey];
         modalMeta.textContent = `${galleryData[currentCategory].items.length} ${dict.photoCount}`;
@@ -1822,6 +1887,10 @@
         button.type = "button";
         button.dataset.category = category.key;
 
+        // a11y
+        button.setAttribute("aria-haspopup", "dialog");
+        button.setAttribute("aria-controls", "modal");
+
         if(!isMobileVersion){
           const pill = document.createElement("span");
           pill.className = "cat-pill";
@@ -1841,7 +1910,7 @@
           button.appendChild(label);
         }
 
-        button.addEventListener("click", () => openCategory(category.key));
+        button.addEventListener("click", () => openCategory(category.key, false, button));
         fragment.appendChild(button);
       });
 
@@ -1849,9 +1918,19 @@
       setupCategoryObserver();
     }
 
+    function setBackgroundInert(isInert){
+      // inert is supported in modern browsers; fallback is still ok (body lock + focus trap)
+      if("inert" in pageRoot){
+        pageRoot.inert = isInert;
+      } else {
+        pageRoot.setAttribute("aria-hidden", isInert ? "true" : "false");
+      }
+    }
+
     function setBodyLock(){
       const locked = modal.classList.contains("open") || lightbox.classList.contains("open");
       document.body.classList.toggle("locked", locked);
+      setBackgroundInert(locked);
     }
 
     function ensureBaseState(){
@@ -1860,7 +1939,43 @@
       }
     }
 
-    function openCategory(category, fromHistory = false){
+    function getFocusableElements(container){
+      const selectors = [
+        'a[href]',
+        'button:not([disabled])',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])'
+      ].join(',');
+
+      return Array.from(container.querySelectorAll(selectors))
+        .filter(el => !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length));
+    }
+
+    function trapFocus(e, container){
+      if(e.key !== "Tab") return;
+
+      const focusables = getFocusableElements(container);
+      if(focusables.length === 0){
+        e.preventDefault();
+        container.focus();
+        return;
+      }
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault();
+        last.focus();
+      } else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    function openCategory(category, fromHistory = false, openerEl = null){
       currentCategory = category;
       currentIndex = 0;
 
@@ -1881,7 +1996,7 @@
 
         const shell = createLazyImage(imagePath(item.src), item.alt);
         button.appendChild(shell);
-        button.addEventListener("click", () => openLightbox(category, index));
+        button.addEventListener("click", () => openLightbox(category, index, false, button));
 
         fragment.appendChild(button);
       });
@@ -1892,18 +2007,21 @@
         lastScrollY = window.scrollY;
       }
 
+      if(openerEl) lastActiveElement = openerEl;
+
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
       setBodyLock();
 
-      const modalShell = document.querySelector(".modal-shell");
       modalShell.scrollTop = 0;
-
       setupGalleryObserver();
 
       document.querySelectorAll("#galleryGrid .lazy-shell").forEach((shell, index) => {
         if(index < (isMobileVersion ? 10 : 4)) loadLazyShell(shell);
       });
+
+      // focus
+      closeModal.focus();
 
       if(!fromHistory){
         history.pushState({ overlay: "category", category }, "", location.href);
@@ -1921,28 +2039,61 @@
 
       if(galleryObserver) galleryObserver.disconnect();
 
+      // restore focus
+      if(lastActiveElement && typeof lastActiveElement.focus === "function"){
+        lastActiveElement.focus();
+      }
+
       if(!fromHistory && history.state && history.state.overlay === "category"){
         history.back();
       }
     }
 
-    function resolveLightboxImage(item){
-      return imagePath(item.src);
+    function resolveLightboxCandidates(item){
+      // supports future "no extension" filenames too
+      return getCandidateImagePaths(item.src);
     }
 
-    function openLightbox(category, index, fromHistory = false){
+    function openLightbox(category, index, fromHistory = false, openerEl = null){
       currentCategory = category;
       currentIndex = index;
 
+      const dict = translations[currentLang];
+      lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
+
       const item = galleryData[category].items[index];
-      lightboxImage.src = resolveLightboxImage(item);
+      const candidates = resolveLightboxCandidates(item);
+
+      if(openerEl) lastActiveElement = openerEl;
+
+      // reset first
+      lightboxImage.src = "";
       lightboxImage.alt = item.alt;
       lightboxImage.decoding = "async";
       lightboxImage.loading = "eager";
 
+      // try load with fallback list
+      const temp = new Image();
+      temp.decoding = "async";
+
+      tryLoadImage(
+        temp,
+        candidates,
+        0,
+        () => {
+          lightboxImage.src = temp.src;
+        },
+        () => {
+          // if all fail: close and show nothing (or you can show a fallback UI)
+          lightboxImage.src = "";
+        }
+      );
+
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden", "false");
       setBodyLock();
+
+      closeLightbox.focus();
 
       if(!fromHistory){
         history.pushState({ overlay: "lightbox", category, index }, "", location.href);
@@ -1960,6 +2111,11 @@
     function closeImage(fromHistory = false){
       closeLightboxOnly();
 
+      // restore focus
+      if(lastActiveElement && typeof lastActiveElement.focus === "function"){
+        lastActiveElement.focus();
+      }
+
       if(!fromHistory && history.state && history.state.overlay === "lightbox"){
         history.back();
       }
@@ -1972,8 +2128,24 @@
       currentIndex = (currentIndex + step + items.length) % items.length;
 
       const item = items[currentIndex];
-      lightboxImage.src = resolveLightboxImage(item);
+      const candidates = resolveLightboxCandidates(item);
+
       lightboxImage.alt = item.alt;
+
+      const temp = new Image();
+      temp.decoding = "async";
+
+      tryLoadImage(
+        temp,
+        candidates,
+        0,
+        () => {
+          lightboxImage.src = temp.src;
+        },
+        () => {
+          lightboxImage.src = "";
+        }
+      );
 
       history.replaceState(
         { overlay: "lightbox", category: currentCategory, index: currentIndex },
@@ -1998,8 +2170,10 @@
       }
 
       setBodyLock();
+      history.replaceState({ overlay: null }, "", location.href);
       applyTranslations();
       renderCategories();
+      renderAboutPhoto();
     }
 
     langButtons.forEach(button => {
@@ -2024,15 +2198,20 @@
     });
 
     document.addEventListener("keydown", e => {
+      // focus trap for open overlays
       if(lightbox.classList.contains("open")){
+        trapFocus(e, lightboxInner);
+
         if(e.key === "Escape") closeImage();
         if(e.key === "ArrowRight") moveImage(1);
         if(e.key === "ArrowLeft") moveImage(-1);
         return;
       }
 
-      if(modal.classList.contains("open") && e.key === "Escape"){
-        closeCategory();
+      if(modal.classList.contains("open")){
+        trapFocus(e, modalShell);
+
+        if(e.key === "Escape") closeCategory();
       }
     });
 
@@ -2041,9 +2220,9 @@
 
       if(state.overlay === "lightbox"){
         if(!modal.classList.contains("open") && currentCategory !== state.category){
-          openCategory(state.category, true);
+          openCategory(state.category, true, null);
         }
-        openLightbox(state.category, state.index ?? 0, true);
+        openLightbox(state.category, state.index ?? 0, true, null);
         return;
       }
 
@@ -2051,7 +2230,7 @@
         if(lightbox.classList.contains("open")){
           closeLightboxOnly();
         }
-        openCategory(state.category, true);
+        openCategory(state.category, true, null);
         return;
       }
 
@@ -2088,6 +2267,7 @@
       applyTranslations();
       renderAboutPhoto();
       renderCategories();
+      setBodyLock();
     }
 
     init();
