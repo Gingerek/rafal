@@ -9,6 +9,7 @@
     :root{
       --bg:#050505;
       --panel:rgba(255,255,255,.045);
+      --panel-strong:rgba(255,255,255,.07);
       --border:rgba(255,255,255,.08);
       --text:#f3ede4;
       --muted:rgba(243,237,228,.72);
@@ -281,7 +282,6 @@
       background:rgba(255,255,255,.04);
       box-shadow:var(--shadow);
       font-size:.9rem;
-      box-shadow:var(--shadow);
       transition:
         transform var(--transition),
         background var(--transition),
@@ -462,104 +462,8 @@
       transform:scale(1.03);
     }
 
-    .mobile-cat{
-      padding:12px;
-      gap:0;
-    }
-
-    .cat-trigger{
-      width:100%;
-      display:grid;
-      gap:10px;
-      text-align:left;
-    }
-
-    .cat-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-
-    .cat-arrow{
-      width:30px;
-      height:30px;
-      flex:0 0 auto;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      font-size:.95rem;
-      line-height:1;
-    }
-
-    .inline-gallery{
+    .mobile-app-label{
       display:none;
-      gap:8px;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      padding-top:12px;
-      border-top:1px solid rgba(255,255,255,.06);
-      margin-top:12px;
-    }
-
-    .mobile-cat.open .inline-gallery{
-      display:grid;
-    }
-
-    .inline-gallery-item{
-      width:100%;
-      aspect-ratio:1 / 1;
-      border-radius:14px;
-      overflow:hidden;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:0 10px 24px rgba(0,0,0,.24);
-      position:relative;
-    }
-
-    .inline-gallery-item img,
-    .inline-gallery-item .image-fallback,
-    .inline-gallery-item .lazy-shell{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .inline-gallery-item img{
-      opacity:0;
-      transition:opacity var(--transition), transform var(--transition);
-    }
-
-    .inline-gallery-item img.ready{
-      opacity:1;
-    }
-
-    .inline-gallery-item:active img{
-      transform:scale(1.02);
-    }
-
-    .lazy-shell{
-      width:100%;
-      height:100%;
-      position:relative;
-      background:
-        linear-gradient(110deg, rgba(255,255,255,.03) 8%, rgba(255,255,255,.07) 18%, rgba(255,255,255,.03) 33%);
-      background-size:200% 100%;
-      animation:shimmer 1.6s linear infinite;
-    }
-
-    .lazy-shell.loaded{
-      animation:none;
-      background:none;
-    }
-
-    @keyframes shimmer{
-      to{
-        background-position:-200% 0;
-      }
     }
 
     .modal,
@@ -775,6 +679,31 @@
       font-size:.86rem;
     }
 
+    .lazy-shell{
+      width:100%;
+      height:100%;
+      position:relative;
+      background:
+        linear-gradient(110deg, rgba(255,255,255,.03) 8%, rgba(255,255,255,.07) 18%, rgba(255,255,255,.03) 33%);
+      background-size:200% 100%;
+      animation:shimmer 1.6s linear infinite;
+    }
+
+    .lazy-shell.loaded{
+      animation:none;
+      background:none;
+    }
+
+    @keyframes shimmer{
+      to{
+        background-position:-200% 0;
+      }
+    }
+
+    .mobile-bottom-nav{
+      display:none;
+    }
+
     @media (max-width:1080px){
       :root{
         --header-h:134px;
@@ -926,34 +855,44 @@
 
     body.mobile-view{
       padding-top:0;
+      background:
+        radial-gradient(circle at top, rgba(209,179,132,.08), transparent 20%),
+        linear-gradient(180deg, #060606, #050505 24%, #050505 100%);
+    }
+
+    body.mobile-view main{
+      padding-bottom:92px;
     }
 
     body.mobile-view .site-header{
       position:sticky;
       top:0;
-      background:rgba(5,5,5,.92);
+      background:rgba(5,5,5,.94);
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
 
     body.mobile-view .top-switch{
-      padding:8px 0 8px;
+      padding:8px 0 6px;
     }
 
     body.mobile-view .view-switch{
       width:100%;
       min-height:38px;
-      font-size:.8rem;
+      font-size:.78rem;
       padding:9px 12px;
     }
 
     body.mobile-view .header-row{
       min-height:auto;
-      padding:8px 0 12px;
+      padding:6px 0 12px;
       gap:10px;
     }
 
     body.mobile-view .brand{
       width:100%;
-      font-size:.9rem;
+      justify-content:flex-start;
+      font-size:.92rem;
+      letter-spacing:.03em;
     }
 
     body.mobile-view .brand-dot{
@@ -961,43 +900,52 @@
       height:8px;
     }
 
-    body.mobile-view .nav-wrap{
-      width:100%;
-      display:grid;
-      gap:8px;
-    }
-
     body.mobile-view .nav{
-      width:100%;
-      flex-wrap:nowrap;
-      overflow-x:auto;
-      padding-bottom:2px;
-      scrollbar-width:none;
-    }
-
-    body.mobile-view .nav::-webkit-scrollbar{
       display:none;
     }
 
-    body.mobile-view .nav a,
-    body.mobile-view .lang button{
-      min-height:34px;
-      padding:7px 10px;
-      font-size:.78rem;
+    body.mobile-view .nav-wrap{
+      width:100%;
+      justify-content:flex-end;
     }
 
     body.mobile-view .lang{
-      width:fit-content;
+      width:100%;
+      justify-content:space-between;
+      background:rgba(255,255,255,.035);
+    }
+
+    body.mobile-view .lang button{
+      flex:1 1 0;
+      min-height:34px;
+      padding:7px 8px;
+      font-size:.77rem;
     }
 
     body.mobile-view .hero{
-      min-height:auto;
+      min-height:420px;
+      width:min(calc(100% - 24px), 760px);
+      margin:10px auto 18px;
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:0 22px 52px rgba(0,0,0,.42);
       align-items:end;
       padding:
-        24px
+        34px
         0
-        max(36px, env(safe-area-inset-bottom, 16px));
-      background-position:60% 18%;
+        max(24px, env(safe-area-inset-bottom, 12px));
+      background:
+        linear-gradient(180deg, rgba(5,5,5,.14) 0%, rgba(5,5,5,.22) 26%, rgba(5,5,5,.72) 72%, rgba(5,5,5,.9) 100%),
+        linear-gradient(90deg, rgba(5,5,5,.58) 0%, rgba(5,5,5,.12) 45%, rgba(5,5,5,.42) 100%),
+        url("images/DSCF4051.jpg");
+      background-size:cover;
+      background-position:62% 18%;
+      background-repeat:no-repeat;
+    }
+
+    body.mobile-view .hero::after{
+      height:80px;
+      background:linear-gradient(to top, rgba(5,5,5,.5), transparent);
     }
 
     body.mobile-view .hero-copy{
@@ -1006,13 +954,14 @@
     }
 
     body.mobile-view .eyebrow{
-      font-size:.6rem;
+      font-size:.58rem;
       padding:6px 10px;
       margin-bottom:10px;
+      background:rgba(5,5,5,.26);
     }
 
     body.mobile-view h1{
-      font-size:clamp(1.28rem, 4.9vw, 1.72rem);
+      font-size:clamp(1.28rem, 5vw, 1.74rem);
       line-height:1.08;
       letter-spacing:-.035em;
       max-width:12ch;
@@ -1021,7 +970,7 @@
 
     body.mobile-view .hero p{
       font-size:.84rem;
-      max-width:30ch;
+      max-width:31ch;
       margin-bottom:16px;
     }
 
@@ -1033,17 +982,27 @@
     body.mobile-view .actions .btn{
       width:100%;
       min-height:40px;
-      font-size:.84rem;
+      font-size:.83rem;
       padding:11px 14px;
+      box-shadow:none;
+      background:rgba(255,255,255,.06);
     }
 
     body.mobile-view section{
-      padding:38px 0;
-      scroll-margin-top:104px;
+      padding:0 0 18px;
+      scroll-margin-top:108px;
+    }
+
+    body.mobile-view #about .container,
+    body.mobile-view #portfolio .container,
+    body.mobile-view #contact .container{
+      display:grid;
+      gap:14px;
     }
 
     body.mobile-view .head{
-      margin-bottom:18px;
+      margin-bottom:0;
+      padding:0 2px;
     }
 
     body.mobile-view .head span{
@@ -1052,12 +1011,14 @@
     }
 
     body.mobile-view .head h2{
-      font-size:clamp(1.22rem, 4.8vw, 1.55rem);
+      font-size:clamp(1.18rem, 4.6vw, 1.46rem);
       line-height:1.08;
+      margin-bottom:8px;
     }
 
     body.mobile-view .head p{
-      font-size:.86rem;
+      font-size:.84rem;
+      line-height:1.5;
     }
 
     body.mobile-view .about{
@@ -1068,7 +1029,8 @@
     body.mobile-view .about-photo,
     body.mobile-view .about-photo img,
     body.mobile-view .about-photo .image-fallback{
-      min-height:300px;
+      min-height:280px;
+      border-radius:24px;
     }
 
     body.mobile-view .about-photo img,
@@ -1078,53 +1040,155 @@
 
     body.mobile-view .copy{
       min-height:auto;
-      padding:16px;
+      padding:18px;
+      border-radius:24px;
+    }
+
+    body.mobile-view .copy-content{
+      gap:12px;
     }
 
     body.mobile-view .copy h3{
-      font-size:clamp(1.02rem, 4.1vw, 1.22rem);
+      font-size:clamp(1rem, 4vw, 1.18rem);
       line-height:1.14;
     }
 
     body.mobile-view .copy p{
-      font-size:.86rem;
+      font-size:.84rem;
+      line-height:1.52;
     }
 
     body.mobile-view .categories{
-      grid-template-columns:1fr;
-      gap:12px;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:10px;
     }
 
     body.mobile-view .cat{
-      padding:12px;
+      padding:10px;
+      gap:8px;
       transform:none !important;
+      border-radius:22px;
+      box-shadow:0 14px 28px rgba(0,0,0,.24);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+    }
+
+    body.mobile-view .cat:hover{
+      transform:none;
+      box-shadow:0 14px 28px rgba(0,0,0,.24);
     }
 
     body.mobile-view .cat-pill{
-      font-size:.76rem;
-      padding:6px 10px;
+      display:none;
+    }
+
+    body.mobile-view .mobile-app-label{
+      display:block;
+      font-size:.72rem;
+      line-height:1.2;
+      text-align:center;
+      color:var(--text);
+      min-height:30px;
+      text-wrap:balance;
     }
 
     body.mobile-view .thumb{
-      border-radius:14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.07);
+      box-shadow:0 8px 20px rgba(0,0,0,.2);
     }
 
-    body.mobile-view .cat-arrow{
-      width:26px;
-      height:26px;
-      font-size:.85rem;
-    }
-
-    body.mobile-view .cat-trigger:focus-visible,
-    body.mobile-view .inline-gallery-item:focus-visible,
-    body.mobile-view .view-switch:focus-visible,
-    body.mobile-view .btn:focus-visible{
-      outline:2px solid rgba(209,179,132,.7);
-      outline-offset:2px;
+    body.mobile-view .thumb img{
+      transform:none !important;
     }
 
     body.mobile-view .modal{
-      display:none !important;
+      padding:0;
+      align-items:stretch;
+      justify-content:stretch;
+      background:rgba(0,0,0,.92);
+    }
+
+    body.mobile-view .modal-shell{
+      width:100%;
+      max-width:100%;
+      max-height:100dvh;
+      height:100dvh;
+      border-radius:0;
+      border:none;
+      padding:14px 12px 18px;
+      padding-top:calc(14px + env(safe-area-inset-top, 0px));
+      padding-bottom:calc(18px + env(safe-area-inset-bottom, 0px));
+      background:
+        radial-gradient(circle at top right, rgba(209,179,132,.08), transparent 24%),
+        linear-gradient(180deg, rgba(8,8,8,.98), rgba(5,5,5,1));
+      box-shadow:none;
+    }
+
+    body.mobile-view .modal-top{
+      position:sticky;
+      top:0;
+      z-index:4;
+      margin-bottom:14px;
+      padding:4px 0 12px;
+      background:linear-gradient(180deg, rgba(7,7,7,.98), rgba(7,7,7,.86));
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+
+    body.mobile-view .modal-kicker{
+      font-size:.58rem;
+      margin-bottom:6px;
+    }
+
+    body.mobile-view .modal h3{
+      font-size:1.16rem;
+      line-height:1.08;
+      margin-bottom:0;
+    }
+
+    body.mobile-view .close-btn{
+      width:40px;
+      height:40px;
+      font-size:22px;
+      background:rgba(255,255,255,.07);
+    }
+
+    body.mobile-view .gallery-grid{
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:8px;
+    }
+
+    body.mobile-view .gallery-item{
+      border-radius:14px;
+      box-shadow:0 8px 20px rgba(0,0,0,.24);
+    }
+
+    body.mobile-view .lightbox{
+      padding:0;
+      background:rgba(0,0,0,.96);
+    }
+
+    body.mobile-view .lightbox-inner{
+      max-width:100vw;
+      max-height:100dvh;
+      width:100%;
+      height:100%;
+      padding:18px 12px calc(18px + env(safe-area-inset-bottom, 0px));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    body.mobile-view .lightbox img{
+      max-width:100%;
+      max-height:calc(100dvh - 56px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+      border-radius:14px;
+    }
+
+    body.mobile-view .lightbox .close-btn{
+      top:calc(10px + env(safe-area-inset-top, 0px));
+      right:10px;
     }
 
     body.mobile-view .contact-grid{
@@ -1134,6 +1198,7 @@
 
     body.mobile-view .contact-card{
       padding:16px;
+      border-radius:22px;
     }
 
     body.mobile-view .contact-card strong{
@@ -1142,40 +1207,99 @@
 
     body.mobile-view .contact-card span{
       font-size:.84rem;
+      margin-bottom:10px;
     }
 
     body.mobile-view .contact-card .btn{
       min-height:38px;
       font-size:.82rem;
+      box-shadow:none;
     }
 
     body.mobile-view .footer{
-      padding:18px 0 calc(28px + env(safe-area-inset-bottom, 0px));
-      font-size:.8rem;
+      padding:10px 0 calc(84px + env(safe-area-inset-bottom, 0px));
+      font-size:.78rem;
+    }
+
+    body.mobile-view .mobile-bottom-nav{
+      position:fixed;
+      left:12px;
+      right:12px;
+      bottom:calc(10px + env(safe-area-inset-bottom, 0px));
+      z-index:40;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:8px;
+      padding:8px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(8,8,8,.88);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      box-shadow:0 18px 40px rgba(0,0,0,.4);
+    }
+
+    body.mobile-view .mobile-bottom-nav a{
+      min-height:42px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      border-radius:16px;
+      font-size:.76rem;
+      color:var(--muted);
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.05);
+      transition:background var(--transition), color var(--transition), border-color var(--transition);
+    }
+
+    body.mobile-view .mobile-bottom-nav a:active,
+    body.mobile-view .mobile-bottom-nav a:hover{
+      color:var(--text);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(209,179,132,.18);
+    }
+
+    body.mobile-view .cat:focus-visible,
+    body.mobile-view .view-switch:focus-visible,
+    body.mobile-view .btn:focus-visible,
+    body.mobile-view .mobile-bottom-nav a:focus-visible,
+    body.mobile-view .lang button:focus-visible{
+      outline:2px solid rgba(209,179,132,.7);
+      outline-offset:2px;
     }
 
     @media (max-width:420px){
-      body.mobile-view .inline-gallery{
-        grid-template-columns:1fr 1fr;
+      body.mobile-view .categories{
+        grid-template-columns:repeat(3, minmax(0,1fr));
+        gap:8px;
       }
 
-      body.mobile-view .lang{
-        width:100%;
-        justify-content:space-between;
+      body.mobile-view .cat{
+        padding:8px;
+        border-radius:20px;
       }
 
-      body.mobile-view .lang button{
-        flex:1 1 auto;
+      body.mobile-view .mobile-app-label{
+        font-size:.67rem;
+        min-height:28px;
       }
 
       body.mobile-view h1{
-        font-size:clamp(1.16rem, 4.6vw, 1.5rem);
-        max-width:12ch;
+        font-size:clamp(1.14rem, 4.8vw, 1.44rem);
       }
 
       body.mobile-view .hero p{
-        font-size:.8rem;
+        font-size:.79rem;
         max-width:28ch;
+      }
+
+      body.mobile-view .gallery-grid{
+        grid-template-columns:repeat(3, minmax(0,1fr));
+      }
+
+      body.mobile-view .mobile-bottom-nav a{
+        font-size:.72rem;
       }
     }
   </style>
@@ -1297,6 +1421,12 @@
     </div>
   </footer>
 
+  <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+    <a href="#top" data-i18n="navHome">Start</a>
+    <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+    <a href="#contact" data-i18n="navContact">Contact</a>
+  </nav>
+
   <div class="modal" id="modal" aria-hidden="true">
     <div class="modal-shell" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-top">
@@ -1320,6 +1450,7 @@
   <script>
     const translations = {
       pl: {
+        navHome: "Start",
         navAbout: "O mnie",
         navPortfolio: "Portfolio",
         navContact: "Kontakt",
@@ -1360,6 +1491,7 @@
         viewToggleDesktop: "Przejdź do wersji desktopowej"
       },
       en: {
+        navHome: "Home",
         navAbout: "About",
         navPortfolio: "Portfolio",
         navContact: "Contact",
@@ -1400,6 +1532,7 @@
         viewToggleDesktop: "Switch to desktop version"
       },
       nl: {
+        navHome: "Start",
         navAbout: "Over mij",
         navPortfolio: "Portfolio",
         navContact: "Contact",
@@ -1656,7 +1789,7 @@
         });
       }, {
         root: null,
-        rootMargin: "300px 0px",
+        rootMargin: "280px 0px",
         threshold: 0.01
       });
 
@@ -1668,6 +1801,8 @@
     function setupGalleryObserver(){
       if(galleryObserver) galleryObserver.disconnect();
 
+      const modalShell = document.querySelector(".modal-shell");
+
       galleryObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if(entry.isIntersecting){
@@ -1677,8 +1812,8 @@
           }
         });
       }, {
-        root: document.querySelector(".modal-shell"),
-        rootMargin: "300px 0px",
+        root: modalShell,
+        rootMargin: "280px 0px",
         threshold: 0.01
       });
 
@@ -1737,65 +1872,6 @@
       loadLazyShell(shell);
     }
 
-    function renderInlineGallery(category, container){
-      if(container.dataset.ready === "true") return;
-
-      const data = galleryData[category];
-      const fragment = document.createDocumentFragment();
-
-      data.items.forEach((item, index) => {
-        const button = document.createElement("button");
-        button.className = "inline-gallery-item";
-        button.type = "button";
-        button.setAttribute("aria-label", item.alt);
-
-        const shell = createLazyImage(imagePath(item.src), item.alt);
-        button.appendChild(shell);
-
-        button.addEventListener("click", (event) => {
-          event.stopPropagation();
-          openLightbox(category, index);
-        });
-
-        fragment.appendChild(button);
-      });
-
-      container.appendChild(fragment);
-      container.dataset.ready = "true";
-      setupCategoryObserver();
-
-      container.querySelectorAll(".lazy-shell").forEach((shell, index) => {
-        if(index < 4) loadLazyShell(shell);
-      });
-    }
-
-    function closeOtherMobileCategories(exceptCard){
-      document.querySelectorAll(".mobile-cat.open").forEach(card => {
-        if(card !== exceptCard){
-          card.classList.remove("open");
-          const arrow = card.querySelector(".cat-arrow");
-          if(arrow) arrow.textContent = "+";
-        }
-      });
-    }
-
-    function toggleMobileCategory(article, category){
-      const arrow = article.querySelector(".cat-arrow");
-      const gallery = article.querySelector(".inline-gallery");
-      const willOpen = !article.classList.contains("open");
-
-      closeOtherMobileCategories(article);
-
-      if(willOpen){
-        article.classList.add("open");
-        if(arrow) arrow.textContent = "−";
-        renderInlineGallery(category, gallery);
-      } else {
-        article.classList.remove("open");
-        if(arrow) arrow.textContent = "+";
-      }
-    }
-
     function renderCategories(){
       const dict = translations[currentLang];
       categoriesGrid.innerHTML = "";
@@ -1803,64 +1879,32 @@
       const fragment = document.createDocumentFragment();
 
       categoriesMeta.forEach(category => {
+        const button = document.createElement("button");
+        button.className = "card cat";
+        button.type = "button";
+        button.dataset.category = category.key;
+
+        const thumb = document.createElement("div");
+        thumb.className = "thumb";
+        thumb.appendChild(createLazyImage(imagePath(category.cover), dict[category.labelKey]));
+
         if(isMobileVersion){
-          const article = document.createElement("article");
-          article.className = "card cat mobile-cat";
-          article.dataset.category = category.key;
+          button.appendChild(thumb);
 
-          const trigger = document.createElement("button");
-          trigger.className = "cat-trigger";
-          trigger.type = "button";
-
-          const head = document.createElement("div");
-          head.className = "cat-head";
-
-          const pill = document.createElement("span");
-          pill.className = "cat-pill";
-          pill.textContent = dict[category.labelKey];
-
-          const arrow = document.createElement("span");
-          arrow.className = "cat-arrow";
-          arrow.textContent = "+";
-
-          head.appendChild(pill);
-          head.appendChild(arrow);
-
-          const thumb = document.createElement("div");
-          thumb.className = "thumb";
-          thumb.appendChild(createLazyImage(imagePath(category.cover), dict[category.labelKey]));
-
-          trigger.appendChild(head);
-          trigger.appendChild(thumb);
-
-          const inlineGallery = document.createElement("div");
-          inlineGallery.className = "inline-gallery";
-
-          trigger.addEventListener("click", () => toggleMobileCategory(article, category.key));
-
-          article.appendChild(trigger);
-          article.appendChild(inlineGallery);
-          fragment.appendChild(article);
+          const label = document.createElement("span");
+          label.className = "mobile-app-label";
+          label.textContent = dict[category.labelKey];
+          button.appendChild(label);
         } else {
-          const button = document.createElement("button");
-          button.className = "card cat";
-          button.type = "button";
-          button.dataset.category = category.key;
-
           const pill = document.createElement("span");
           pill.className = "cat-pill";
           pill.textContent = dict[category.labelKey];
-
-          const thumb = document.createElement("div");
-          thumb.className = "thumb";
-          thumb.appendChild(createLazyImage(imagePath(category.cover), dict[category.labelKey]));
-
           button.appendChild(pill);
           button.appendChild(thumb);
-          button.addEventListener("click", () => openCategory(category.key));
-
-          fragment.appendChild(button);
         }
+
+        button.addEventListener("click", () => openCategory(category.key));
+        fragment.appendChild(button);
       });
 
       categoriesGrid.appendChild(fragment);
@@ -1879,8 +1923,6 @@
     }
 
     function openCategory(category, fromHistory = false){
-      if(isMobileVersion) return;
-
       currentCategory = category;
       currentIndex = 0;
 
@@ -1921,7 +1963,7 @@
       setupGalleryObserver();
 
       document.querySelectorAll("#galleryGrid .lazy-shell").forEach((shell, index) => {
-        if(index < 4) loadLazyShell(shell);
+        if(index < (isMobileVersion ? 9 : 4)) loadLazyShell(shell);
       });
 
       if(!fromHistory){
@@ -1933,7 +1975,11 @@
       modal.classList.remove("open");
       modal.setAttribute("aria-hidden", "true");
       setBodyLock();
-      window.scrollTo(0, lastScrollY);
+
+      if(!isMobileVersion){
+        window.scrollTo(0, lastScrollY);
+      }
+
       if(galleryObserver) galleryObserver.disconnect();
 
       if(!fromHistory && history.state && history.state.overlay === "category"){
@@ -1999,11 +2045,6 @@
 
     function syncViewMode(){
       document.body.classList.toggle("mobile-view", isMobileVersion);
-
-      if(isMobileVersion && modal.classList.contains("open")){
-        closeCategory(true);
-      }
-
       applyTranslations();
       renderCategories();
     }
@@ -2046,14 +2087,14 @@
       const state = event.state || { overlay: null };
 
       if(state.overlay === "lightbox"){
-        if(!modal.classList.contains("open") && !isMobileVersion && currentCategory !== state.category){
+        if(!modal.classList.contains("open") && currentCategory !== state.category){
           openCategory(state.category, true);
         }
         openLightbox(state.category, state.index ?? 0, true);
         return;
       }
 
-      if(state.overlay === "category" && !isMobileVersion){
+      if(state.overlay === "category"){
         if(lightbox.classList.contains("open")){
           closeLightboxOnly();
         }
