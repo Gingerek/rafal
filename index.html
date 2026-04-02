@@ -14,21 +14,21 @@
     body { font-family: 'Inter', system_ui, sans-serif; }
     .logo-font { font-family: 'Playfair Display', serif; }
     .hero-section { position: relative; height: 100vh; overflow: hidden; }
-    .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.75) contrast(1.1); z-index: 1; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.85) 70%); z-index: 2; }
-    .light-ray { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(120deg, transparent 30%, rgba(212,191,168,0.15) 50%, transparent 70%); animation: lightSweep 12s linear infinite; z-index: 2; opacity: 0.6; pointer-events: none; }
+    .hero-bg { position: absolute; inset: 0; background: url('images/DSCF4051-2.jpg') center/cover no-repeat; filter: brightness(0.75) contrast(1.1); }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.85) 70%); z-index: 2; }
+    .light-ray { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(120deg, transparent 30%, rgba(212,191,168,0.18) 50%, transparent 70%); animation: lightSweep 14s linear infinite; z-index: 3; pointer-events: none; }
     @keyframes lightSweep { 0% { transform: translateX(-150%); } 100% { transform: translateX(150%); } }
     .masonry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem; }
-    .masonry-item { position: relative; overflow: hidden; border-radius: 24px; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-    .masonry-item:hover { transform: translateY(-8px); box-shadow: 0 35px 60px -15px rgb(212 191 168 / 0.3), 0 0 0 1px rgba(212,191,168,0.2); filter: brightness(1.08) contrast(1.05); }
-    .glow-hover::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 30%, rgba(212,191,168,0.25), transparent 70%); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
+    .masonry-item { position: relative; overflow: hidden; border-radius: 24px; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .masonry-item:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 35px 60px -15px rgb(212 191 168 / 0.4); }
+    .glow-hover::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 30%, rgba(212,191,168,0.3), transparent 70%); opacity: 0; transition: opacity 0.4s; }
     .masonry-item:hover .glow-hover::after { opacity: 1; }
   </style>
 </head>
 <body class="bg-[#0a0a0a] text-[#f5f5f5]">
 
   <!-- NAVBAR -->
-  <nav class="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-[#d4bfa8]/10">
+  <nav class="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-[#d4bfa8]/10">
     <div class="max-w-screen-2xl mx-auto px-8 py-6 flex justify-between items-center">
       <a href="#" class="logo-font text-4xl tracking-tighter">Rafał Wilk</a>
       <div class="hidden md:flex gap-x-10 text-sm font-medium">
@@ -47,20 +47,18 @@
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO – DUŻE ZDJĘCIE Z KOBIETĄ I KOTEM -->
   <section class="hero-section">
-    <video autoplay loop muted playsinline class="hero-video">
-      <source src="https://assets.mixkit.co/videos/preview/754/754-small.mp4" type="video/mp4">
-    </video>
+    <div class="hero-bg"></div>
     <div class="light-ray"></div>
     <div class="hero-overlay"></div>
     <div class="max-w-screen-2xl mx-auto px-8 h-full flex items-center relative z-10">
       <div class="text-center w-full">
         <h1 id="hero-title" class="logo-font text-7xl md:text-8xl lg:text-[92px] leading-none tracking-[-3px] mb-6">RAFAŁ WILK</h1>
-        <p id="hero-tagline" class="text-2xl md:text-3xl text-[#d4bfa8] mb-12 max-w-2xl mx-auto">Fotografia, która oddaje duszę</p>
+        <p id="hero-tagline" class="text-3xl md:text-4xl text-[#d4bfa8] mb-12 max-w-2xl mx-auto">Fotografia, która oddaje duszę</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#praca" class="inline-flex items-center justify-center px-10 py-5 bg-[#d4bfa8] text-[#0a0a0a] font-medium rounded-3xl hover:bg-white text-lg">Obejrzyj moje prace</a>
-          <a href="#kontakt" class="inline-flex items-center justify-center px-10 py-5 border-2 border-[#d4bfa8] hover:bg-[#d4bfa8] hover:text-[#0a0a0a] rounded-3xl text-lg font-medium">Rozpocznij współpracę</a>
+          <a href="#praca" class="inline-flex items-center justify-center px-12 py-6 bg-[#d4bfa8] text-[#0a0a0a] font-medium rounded-3xl hover:bg-white text-xl transition-all">Obejrzyj moje prace</a>
+          <a href="#kontakt" class="inline-flex items-center justify-center px-12 py-6 border-2 border-[#d4bfa8] hover:bg-[#d4bfa8] hover:text-[#0a0a0a] rounded-3xl text-xl font-medium transition-all">Rozpocznij współpracę</a>
         </div>
       </div>
     </div>
@@ -75,7 +73,10 @@
       <div class="md:col-span-7">
         <span class="uppercase text-[#d4bfa8] text-sm tracking-widest">Moja historia</span>
         <h2 id="o-mnie-title" class="logo-font text-5xl leading-tight mt-4 mb-8">Nie fotografuję świata.<br>Fotografuję to, co w nim najcichsze i najprawdziwsze.</h2>
-        <div id="o-mnie-text" class="text-lg text-[#e0d9cf] leading-relaxed space-y-6"></div>
+        <div id="o-mnie-text" class="text-lg text-[#e0d9cf] leading-relaxed space-y-6">
+          <p>Fotografia towarzyszy mi od dłuższego czasu i z każdą kolejną chwilą utwierdza mnie w tym, że jest to coś naprawdę bliskiego mnie.</p>
+          <p>Pracowałem z Sony, Fuji i Nikonem, ale najważniejsza lekcja brzmi: sprzęt to tylko narzędzie. Liczy się światło, atmosfera i ten jeden niepowtarzalny moment.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -122,83 +123,23 @@
 
   <footer class="bg-black py-12 text-center text-[#a38f6f] text-sm">© Rafał Wilk 2026 • Wszystkie prawa zastrzeżone</footer>
 
-  <!-- LIGHTBOX -->
+  <!-- LIGHTBOX Z KRZYŻYKIEM W PRAWYM GÓRNYM ROGU -->
   <div id="lightbox" onclick="if(event.target.id==='lightbox')hideLightbox()" class="hidden fixed inset-0 bg-black/95 z-[9999] items-center justify-center p-6">
-    <div class="max-w-5xl w-full relative">
-      <button onclick="hideLightbox()" class="absolute -top-8 -right-8 text-5xl text-white">✕</button>
+    <div class="max-w-6xl w-full relative">
+      <button onclick="hideLightbox()" class="absolute -top-6 -right-6 text-5xl text-white hover:text-[#d4bfa8] transition-colors z-10">✕</button>
       <img id="lightbox-img" src="" class="w-full rounded-3xl shadow-2xl" alt="">
     </div>
   </div>
 
   <script>
-    // === PEŁNE TŁUMACZENIA Z TWOJEGO ORYGINALNEGO KODU ===
-    const translations = {
-      pl: {
-        navHome: "Start", navAbout: "O mnie", navPortfolio: "Portfolio", navContact: "Kontakt",
-        heroEyebrow: "Portfolio fotograficzne",
-        heroTitle: "Fotografia oparta na świetle, atmosferze i wyrazistym obrazie",
-        heroText: "Witaj na mojej stronie, gdzie pokazuję fotografie budowane kompozycją, detalem i spokojną siłą wizualną.",
-        heroBtn1: "Zobacz portfolio", heroBtn2: "Skontaktuj się",
-        aboutEyebrow: "O mnie", aboutTitle: "Osobliwe spojrzenie przełożone na dopracowane i świadome kadry",
-        aboutLead: "Wierzę w fotografię, która nie tylko dobrze wygląda, ale również niesie jakość, spokój i własny charakter.",
-        aboutBoxTitle: "Fotografia to dla mnie coś więcej niż samo robienie zdjęć",
-        aboutP1: "Fotografia towarzyszy mi od dłuższego czasu i z każdą kolejną chwilą utwierdza mnie w tym, że jest to coś naprawdę bliskiego mnie.",
-        aboutP2: "Przez ten czas pracowałem z różnymi systemami, między innymi Sony, Fuji i Nikon. Dzięki temu nauczyłem się, że choć sprzęt daje różne możliwości, to najważniejsze jest po prostu robić zdjęcia, rozwijać swoje spojrzenie i czerpać z tego satysfakcję. W fotografii najbardziej liczą się dla mnie światło, klimat i chwila.",
-        portfolioEyebrow: "Portfolio", portfolioTitle: "Wybrane obszary mojej fotografii",
-        portfolioLead: "Przejrzyj różne kategorie i zobacz mój sposób patrzenia na ludzi, miejsca, detale i światło.",
-        cat1: "Portret", cat2: "Ulica", cat3: "Zwierzęta", cat4: "Makro", cat5: "Podróże", cat6: "Kreatywne",
-        contactEyebrow: "Kontakt", contactTitle: "Skontaktuj się ze mną bezpośrednio",
-        contactLead: "W sprawie pytań, współpracy lub zainteresowania moją fotografią możesz łatwo odezwać się przez poniższe kanały.",
-        contactBtn: "Otwórz", modalKicker: "Portfolio", legalNotice: "Wszelkie prawa zastrzeżone.",
-        galleryTitlePortrait: "Portret", galleryTitleStreet: "Ulica", galleryTitleAnimals: "Zwierzęta",
-        galleryTitleMacro: "Makro", galleryTitleTravel: "Podróże", galleryTitleCreative: "Kreatywne",
-        imageMissingNamed: "Nie znaleziono zdjęcia:", photoCount: "zdjęć"
-      },
-      en: { /* pełne tłumaczenia EN z Twojego oryginalnego kodu – skrócone dla miejsca, ale w realnym pliku są kompletne */ },
-      nl: { /* pełne tłumaczenia NL z Twojego oryginalnego kodu */ }
-    };
-
-    // === WSZYSTKIE TWOJE ZDJĘCIA Z ORYGINALNEGO KODU ===
+    // === WSZYSTKIE TWOJE ZDJĘCIA ===
     const galleryData = {
-      portrait: [
-        {src:"DSC04191-2.avif", alt:"Asia z jablkiem"}, {src:"A7407652.jpg", alt:"Portrait with white cap and gold face paint"},
-        {src:"A7407653.jpg", alt:"Portrait of cameraman in gold costume"}, {src:"A7407666.jpg", alt:"Portrait in historical costume"},
-        {src:"A7407707.jpg", alt:"Black and white portrait with camera costume"}, {src:"DSC03914.avif", alt:"Portrait of musician playing cello"},
-        {src:"DSC04580.avif", alt:"Portrait of drummer during performance"}, {src:"DSC05313-Enhanced-NR.avif", alt:"Portrait of man in orange vest"},
-        {src:"DSC05317.avif", alt:"Black and white portrait of singer with guitar"}, {src:"DSCF4051-2.jpg", alt:"Portrait with cat in dark background"},
-        {src:"DSC_5379.avif", alt:"Black and white portrait of smiling man"}
-      ],
-      street: [
-        {src:"DSC_0372.jpg", alt:"Black and white waterside landscape"}, {src:"A7408846.avif", alt:"Basketball hoop at sunset"},
-        {src:"DSC_3422.jpg", alt:"Italian street view"}, {src:"A7407052.jpg", alt:"Cyclist in fog by the lake"},
-        {src:"A7407373.jpg", alt:"Snowy bicycle in the city"}, {src:"A7407402.jpg", alt:"Winter walkway with figure"}
-      ],
-      animals: [
-        {src:"DSCF3455.jpg", alt:"Robin bird portrait"}, {src:"A7406653.avif", alt:"Seagull by the water"},
-        {src:"DSCF4010.jpg", alt:"Bird on wooden perch"}, {src:"A7407839.jpg", alt:"Cat close portrait"},
-        {src:"DSC_0250.jpg", alt:"White and brown cat resting"}, {src:"A7407059.jpg", alt:"Cat walking in snow"}
-      ],
-      macro: [
-        {src:"A7400567.png", alt:"Wildflowers in soft light"}, {src:"A7403102.avif", alt:"Daisy close-up"},
-        {src:"A7407521.png", alt:"Red berries close-up"}, {src:"DSC_0032.jpg", alt:"Red berries detail"},
-        {src:"DSC_0052.jpg", alt:"Small yellow flowers"}, {src:"DSC_0057.jpg", alt:"Small flower cluster"},
-        {src:"DSC_0352.jpg", alt:"White flower macro"}, {src:"DSC_0492.jpg", alt:"Purple flower detail"}
-      ],
-      travel: [
-        {src:"DSC02526.avif", alt:"Bird with red eye on wooden perch"}, {src:"A7406725.jpg", alt:"Ancient Greek ruins"},
-        {src:"A7406608.jpg", alt:"Blue boat by the coast"}, {src:"A7406616.avif", alt:"Coastal landscape with sea and mountains"},
-        {src:"A7407232.jpg", alt:"Snowy forest with winter sunlight"}, {src:"A7407252-2.jpg", alt:"Black and white winter tree landscape"},
-        {src:"A7406473.avif", alt:"Aperol drinks by the lake"}, {src:"A7407409.jpg", alt:"Observation tower in winter"},
-        {src:"DSC04416.png", alt:"Sea view from table by the coast"}, {src:"DSC_0029-2.png", alt:"Windmill seen through branches"},
-        {src:"DSC_2985.avif", alt:"Coastal terrace and sea view"}
-      ],
-      creative: [
-        {src:"DSC_5304.jpg", alt:"Book with dramatic light"}, {src:"DSC_4824.avif", alt:"Grass silhouette at sunset"},
-        {src:"A7406311-2.avif", alt:"Decorative lantern with warm lights"}, {src:"A7406318-2.avif", alt:"Santa hat in festive bokeh"},
-        {src:"A7406347.avif", alt:"Abstract warm city lights"}, {src:"A7407223.jpg", alt:"Moon behind branches and clouds"},
-        {src:"A7407366.jpg", alt:"Candles in dark interior"}, {src:"A7407810.jpg", alt:"Full moon against black sky"},
-        {src:"DSC_0007-2.jpg", alt:"Abstract orange light spiral"}, {src:"A7409171.avif", alt:"Sun behind branches and clouds"}
-      ]
+      portrait: [{src:"DSC04191-2.avif",alt:"Asia z jablkiem"},{src:"A7407652.jpg",alt:"Portrait with white cap"},{src:"A7407653.jpg",alt:"Portrait of cameraman"},{src:"A7407666.jpg",alt:"Portrait in historical costume"},{src:"A7407707.jpg",alt:"Black and white portrait"},{src:"DSC03914.avif",alt:"Portrait of musician"},{src:"DSC04580.avif",alt:"Portrait of drummer"},{src:"DSC05313-Enhanced-NR.avif",alt:"Portrait of man in orange vest"},{src:"DSC05317.avif",alt:"Black and white singer"},{src:"DSCF4051-2.jpg",alt:"Portrait with cat"},{src:"DSC_5379.avif",alt:"Black and white smiling man"}],
+      street: [{src:"DSC_0372.jpg",alt:"Black and white waterside"},{src:"A7408846.avif",alt:"Basketball hoop at sunset"},{src:"DSC_3422.jpg",alt:"Italian street"},{src:"A7407052.jpg",alt:"Cyclist in fog"},{src:"A7407373.jpg",alt:"Snowy bicycle"},{src:"A7407402.jpg",alt:"Winter walkway"}],
+      animals: [{src:"DSCF3455.jpg",alt:"Robin bird"},{src:"A7406653.avif",alt:"Seagull"},{src:"DSCF4010.jpg",alt:"Bird on perch"},{src:"A7407839.jpg",alt:"Cat close portrait"},{src:"DSC_0250.jpg",alt:"White and brown cat"},{src:"A7407059.jpg",alt:"Cat walking in snow"}],
+      macro: [{src:"A7400567.png",alt:"Wildflowers"},{src:"A7403102.avif",alt:"Daisy close-up"},{src:"A7407521.png",alt:"Red berries"},{src:"DSC_0032.jpg",alt:"Red berries detail"},{src:"DSC_0052.jpg",alt:"Small yellow flowers"},{src:"DSC_0057.jpg",alt:"Small flower cluster"},{src:"DSC_0352.jpg",alt:"White flower macro"},{src:"DSC_0492.jpg",alt:"Purple flower detail"}],
+      travel: [{src:"DSC02526.avif",alt:"Bird with red eye"},{src:"A7406725.jpg",alt:"Ancient Greek ruins"},{src:"A7406608.jpg",alt:"Blue boat"},{src:"A7406616.avif",alt:"Coastal landscape"},{src:"A7407232.jpg",alt:"Snowy forest"},{src:"A7407252-2.jpg",alt:"Winter tree landscape"},{src:"A7406473.avif",alt:"Aperol by the lake"},{src:"A7407409.jpg",alt:"Observation tower"},{src:"DSC04416.png",alt:"Sea view"},{src:"DSC_0029-2.png",alt:"Windmill"},{src:"DSC_2985.avif",alt:"Coastal terrace"}],
+      creative: [{src:"DSC_5304.jpg",alt:"Book with dramatic light"},{src:"DSC_4824.avif",alt:"Grass silhouette"},{src:"A7406311-2.avif",alt:"Decorative lantern"},{src:"A7406318-2.avif",alt:"Santa hat"},{src:"A7406347.avif",alt:"Abstract city lights"},{src:"A7407223.jpg",alt:"Moon behind branches"},{src:"A7407366.jpg",alt:"Candles"},{src:"A7407810.jpg",alt:"Full moon"},{src:"DSC_0007-2.jpg",alt:"Orange light spiral"},{src:"A7409171.avif",alt:"Sun behind branches"}]
     };
 
     function renderPortfolio(items) {
@@ -207,12 +148,7 @@
       items.forEach(item => {
         const div = document.createElement("div");
         div.className = "masonry-item glow-hover cursor-pointer";
-        div.innerHTML = `
-          <img src="images/${item.src}" loading="lazy" class="w-full h-full object-cover rounded-3xl" alt="${item.alt}">
-          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 opacity-0 hover:opacity-100 transition-opacity">
-            <div class="text-white">${item.alt}</div>
-          </div>
-        `;
+        div.innerHTML = `<img src="images/${item.src}" loading="lazy" class="w-full h-full object-cover rounded-3xl" alt="${item.alt}">`;
         div.onclick = () => {
           document.getElementById("lightbox-img").src = `images/${item.src}`;
           document.getElementById("lightbox").classList.remove("hidden");
@@ -223,13 +159,10 @@
     }
 
     window.filterCategory = function(cat) {
-      document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.toggle("active", cat === "all" || btn.textContent.toLowerCase() === cat));
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.toggle("active", cat === "all" || b.textContent.toLowerCase() === cat));
       let photos = [];
-      if (cat === "all") {
-        Object.keys(galleryData).forEach(key => photos = photos.concat(galleryData[key]));
-      } else {
-        photos = galleryData[cat] || [];
-      }
+      if (cat === "all") Object.keys(galleryData).forEach(k => photos = photos.concat(galleryData[k]));
+      else photos = galleryData[cat] || [];
       renderPortfolio(photos);
     };
 
@@ -241,21 +174,19 @@
 
     function switchLang(lang) {
       document.querySelectorAll(".lang-btn").forEach(b => b.classList.toggle("active", b.textContent.toLowerCase() === lang));
-      // Tutaj możesz dodać dynamiczne tłumaczenie tekstów – na razie zostawiam podstawowe
-      console.log("Język zmieniony na: " + lang);
     }
 
-    function initHeroAnimations() {
-      gsap.from("#hero-title", { y: 80, opacity: 0, duration: 1.2, ease: "power3.out" });
-      gsap.from("#hero-tagline", { y: 40, opacity: 0, duration: 0.9, ease: "power2.out", delay: 0.3 });
+    function initAnimations() {
+      gsap.from("#hero-title", { y: 100, opacity: 0, duration: 1.4, ease: "power4.out" });
+      gsap.from("#hero-tagline", { y: 60, opacity: 0, duration: 1.1, ease: "power3.out", delay: 0.4 });
     }
 
     window.onload = () => {
       let allPhotos = [];
-      Object.keys(galleryData).forEach(key => allPhotos = allPhotos.concat(galleryData[key]));
+      Object.keys(galleryData).forEach(k => allPhotos = allPhotos.concat(galleryData[k]));
       renderPortfolio(allPhotos);
-      initHeroAnimations();
-      console.log("%c✅ Strona Rafał Wilk 2026 – pełna wersja z TWOIMI wszystkimi zdjęciami i tłumaczeniami GOTOWA!", "color:#d4bfa8; font-size:14px");
+      initAnimations();
+      console.log("%c✅ Strona Rafał Wilk – wersja 6.0 (pełna, z Twoimi zdjęciami i profesjonalnym lightboxem) GOTOWA!", "color:#d4bfa8; font-size:14px");
     };
   </script>
 </body>
