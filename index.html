@@ -1,2160 +1,491 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Rafał Wilk | Fotografie</title>
-  <meta name="description" content="Portfolio fotograficzne Rafała Wilka" />
-
-  <!-- Social preview (OG) -->
-  <meta property="og:title" content="Rafał Wilk | Fotografie" />
-  <meta property="og:description" content="Portfolio fotograficzne Rafała Wilka" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="images/DSCF4051.jpg" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rafał Wilk • Fotografia z duszą – portrety, krajobrazy, fine art">
+  <title>Rafał Wilk • Fotografia, która oddaje duszę</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    :root{
-      --bg:#050505;
-      --bg-soft:#0b0b0c;
-      --panel:rgba(255,255,255,.045);
-      --panel-2:rgba(255,255,255,.065);
-      --border:rgba(255,255,255,.08);
-      --text:#f3ede4;
-      --muted:rgba(243,237,228,.72);
-      --accent:#d1b384;
-      --shadow:0 18px 50px rgba(0,0,0,.35);
-      --container:1240px;
-      --transition:220ms ease;
-      --header-h:124px;
-      --scrollbar-track:rgba(255,255,255,.04);
-      --scrollbar-thumb:rgba(209,179,132,.42);
-
-      /* Typography scale (more proportional desktop + mobile) */
-      --fs-body: clamp(15px, 0.55vw + 13px, 16.5px);
-      --lh-body: 1.62;
-      --fs-h1: clamp(2.05rem, 3.6vw, 3.35rem);
-      --fs-h2: clamp(1.7rem, 2.35vw, 2.55rem);
-      --fs-h3: clamp(1.18rem, 1.35vw + .9rem, 1.55rem);
-      --fs-lead: clamp(.98rem, .55vw + .86rem, 1.08rem);
-      --fs-small: clamp(.86rem, .35vw + .78rem, .95rem);
-      --text-max: 62ch;
-      --lead-max: 48ch;
-    }
-
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
-
-    html{
-      scroll-behavior:smooth;
-      -webkit-text-size-adjust:100%;
-    }
-
-    body{
-      font-family:Inter, Arial, sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(209,179,132,.08), transparent 22%),
-        var(--bg);
-      color:var(--text);
-      line-height:var(--lh-body);
-      font-size:var(--fs-body);
-      overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-
-    body.locked{
-      overflow:hidden;
-      touch-action:none;
-    }
-
-    .sr-only{
-      position:absolute !important;
-      width:1px !important;
-      height:1px !important;
-      padding:0 !important;
-      margin:-1px !important;
-      overflow:hidden !important;
-      clip:rect(0,0,0,0) !important;
-      white-space:nowrap !important;
-      border:0 !important;
-    }
-
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    img{
-      display:block;
-      max-width:100%;
-      -webkit-user-drag:none;
-    }
-
-    button{
-      font:inherit;
-      color:inherit;
-      background:none;
-      border:none;
-      cursor:pointer;
-      -webkit-tap-highlight-color:transparent;
-    }
-
-    .container{
-      width:min(var(--container), calc(100% - 32px));
-      margin:0 auto;
-    }
-
-    .site-header{
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-      z-index:30;
-      background:rgba(5,5,5,.82);
-      backdrop-filter:blur(14px);
-      -webkit-backdrop-filter:blur(14px);
-      border-bottom:1px solid rgba(255,255,255,.05);
-      padding-top:env(safe-area-inset-top, 0px);
-    }
-
-    .top-switch{
-      padding:10px 0 4px;
-      display:flex;
-      justify-content:flex-start;
-    }
-
-    .view-switch{
-      min-height:40px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 15px;
-      border-radius:999px;
-      border:1px solid rgba(209,179,132,.24);
-      background:linear-gradient(135deg, rgba(209,179,132,.18), rgba(255,255,255,.03));
-      box-shadow:var(--shadow);
-      color:var(--text);
-      font-size:.84rem;
-      transition:transform var(--transition), background var(--transition), border-color var(--transition);
-      text-align:center;
-    }
-
-    .view-switch:hover{
-      transform:translateY(-2px);
-      background:linear-gradient(135deg, rgba(209,179,132,.24), rgba(255,255,255,.05));
-      border-color:rgba(209,179,132,.34);
-    }
-
-    .header-row{
-      min-height:70px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
-      padding:10px 0 14px;
-      flex-wrap:wrap;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:700;
-      font-size:.98rem;
-      letter-spacing:.04em;
-      min-width:0;
-    }
-
-    .brand-dot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      background:var(--accent);
-      box-shadow:0 0 18px rgba(209,179,132,.8);
-      flex:0 0 auto;
-    }
-
-    .nav-wrap{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .nav{
-      display:flex;
-      gap:6px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .nav a,
-    .lang button{
-      min-height:38px;
-      padding:8px 12px;
-      border-radius:999px;
-      color:var(--muted);
-      border:1px solid transparent;
-      font-size:.88rem;
-      transition:background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      white-space:nowrap;
-    }
-
-    .nav a:hover,
-    .lang button:hover,
-    .lang button.active{
-      background:rgba(255,255,255,.05);
-      border-color:var(--border);
-      color:var(--text);
-    }
-
-    .lang{
-      display:flex;
-      gap:4px;
-      padding:3px;
-      border-radius:999px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.06);
-    }
-
-    .hero{
-      min-height:100svh;
-      min-height:100dvh;
-      display:grid;
-      align-items:end;
-      padding:
-        calc(var(--header-h) + 46px + env(safe-area-inset-top, 0px))
-        0
-        max(64px, env(safe-area-inset-bottom, 16px));
-      position:relative;
-      background:
-        linear-gradient(90deg, rgba(5,5,5,.88) 0%, rgba(5,5,5,.66) 32%, rgba(5,5,5,.18) 60%, rgba(5,5,5,.34) 100%),
-        linear-gradient(to top, rgba(5,5,5,.88) 0%, rgba(5,5,5,.34) 38%, rgba(5,5,5,.1) 70%, rgba(5,5,5,.22) 100%),
-        url("images/DSCF4051.jpg");
-      background-size:cover;
-      background-position:center 24%;
-      background-repeat:no-repeat;
-    }
-
-    .hero::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:0;
-      height:160px;
-      background:linear-gradient(to top, var(--bg), transparent);
-      pointer-events:none;
-    }
-
-    .hero-copy{
-      position:relative;
-      z-index:1;
-      max-width:680px;
-    }
-
-    .eyebrow{
-      display:inline-block;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.1);
-      color:var(--muted);
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-size:.68rem;
-      margin-bottom:16px;
-      background:rgba(5,5,5,.22);
-    }
-
-    h1{
-      font-size:var(--fs-h1);
-      line-height:1.03;
-      letter-spacing:-.045em;
-      max-width:16ch;
-      margin-bottom:14px;
-      text-wrap:balance;
-    }
-
-    .hero p{
-      font-size:var(--fs-lead);
-      max-width:var(--lead-max);
-      color:var(--muted);
-      margin-bottom:22px;
-    }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      min-height:44px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:12px 18px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.04);
-      box-shadow:var(--shadow);
-      font-size:.92rem;
-      transition:transform var(--transition), background var(--transition), border-color var(--transition);
-      text-align:center;
-    }
-
-    .btn:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.07);
-      border-color:rgba(209,179,132,.25);
-    }
-
-    .btn.primary{
-      background:linear-gradient(135deg, rgba(209,179,132,.24), rgba(255,255,255,.04));
-      border-color:rgba(209,179,132,.28);
-    }
-
-    section{
-      padding:76px 0;
-      scroll-margin-top:calc(var(--header-h) + 24px + env(safe-area-inset-top, 0px));
-    }
-
-    .head{
-      max-width:820px;
-      margin-bottom:26px;
-    }
-
-    .head span{
-      display:block;
-      color:var(--accent);
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      font-size:.68rem;
-      margin-bottom:10px;
-    }
-
-    .head h2{
-      font-size:var(--fs-h2);
-      line-height:1.06;
-      letter-spacing:-.04em;
-      margin-bottom:10px;
-      text-wrap:balance;
-      max-width:22ch;
-    }
-
-    .head p{
-      color:var(--muted);
-      font-size:var(--fs-lead);
-      max-width:var(--text-max);
-    }
-
-    .about{
-      display:grid;
-      grid-template-columns:.95fr 1.05fr;
-      gap:18px;
-      align-items:stretch;
-    }
-
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.028));
-      border:1px solid var(--border);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-
-    .about-photo{
-      min-height:540px;
-      background:rgba(255,255,255,.03);
-    }
-
-    .about-photo img,
-    .about-photo .image-fallback{
-      width:100%;
-      height:100%;
-      min-height:540px;
-      object-fit:cover;
-      object-position:38% center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .about-photo img{
-      filter:brightness(.72) saturate(.82);
-    }
-
-    .copy{
-      position:relative;
-      min-height:540px;
-      padding:28px;
-      background:
-        radial-gradient(circle at 82% 88%, rgba(209,179,132,.035), transparent 24%),
-        linear-gradient(180deg, rgba(255,255,255,.014), rgba(255,255,255,0));
-      isolation:isolate;
-      display:flex;
-      align-items:center;
-    }
-
-    .copy-content{
-      position:relative;
-      z-index:2;
-      display:grid;
-      gap:14px;
-      align-content:center;
-      max-width:100%;
-    }
-
-    .copy h3{
-      font-size:var(--fs-h3);
-      line-height:1.14;
-      letter-spacing:-.025em;
-      text-wrap:balance;
-      max-width:28ch;
-    }
-
-    .copy p{
-      color:var(--muted);
-      font-size:var(--fs-small);
-      max-width:var(--text-max);
-    }
-
-    .categories{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:18px;
-    }
-
-    .cat{
-      padding:16px;
-      display:grid;
-      gap:12px;
-      text-align:left;
-      transition:transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-      content-visibility:auto;
-      contain-intrinsic-size:320px;
-    }
-
-    .cat:hover{
-      transform:translateY(-3px);
-      border-color:rgba(209,179,132,.25);
-      box-shadow:0 22px 58px rgba(0,0,0,.42);
-    }
-
-    .cat-pill{
-      display:inline-flex;
-      width:fit-content;
-      padding:7px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.06);
-      color:var(--text);
-      font-size:.82rem;
-      letter-spacing:.02em;
-    }
-
-    .thumb{
-      aspect-ratio:1 / 1;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.08);
-      overflow:hidden;
-      background:rgba(255,255,255,.03);
-      position:relative;
-    }
-
-    .thumb img,
-    .thumb .image-fallback{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .thumb img{
-      transition:transform var(--transition), opacity var(--transition), filter var(--transition);
-    }
-
-    .cat:hover .thumb img{
-      transform:scale(1.03);
-    }
-
-    .mobile-cat-label{
-      display:none;
-    }
-
-    .modal,
-    .lightbox{
-      position:fixed;
-      inset:0;
-      z-index:100;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:max(16px, env(safe-area-inset-top, 0px)) 16px max(16px, env(safe-area-inset-bottom, 0px));
-      background:rgba(0,0,0,.86);
-      backdrop-filter:blur(14px);
-      -webkit-backdrop-filter:blur(14px);
-    }
-
-    .modal.open,
-    .lightbox.open{
-      display:flex;
-    }
-
-    .modal-shell{
-      width:min(1320px, 100%);
-      max-height:calc(100dvh - 32px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-      overflow-y:auto;
-      overflow-x:hidden;
-      -webkit-overflow-scrolling:touch;
-      padding:22px;
-      padding-right:16px;
-      border-radius:28px;
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(circle at top right, rgba(209,179,132,.12), transparent 20%),
-        linear-gradient(180deg, rgba(10,10,10,.96), rgba(6,6,6,.98));
-      box-shadow:0 28px 90px rgba(0,0,0,.56);
-      scrollbar-width:thin;
-      scrollbar-color:var(--scrollbar-thumb) var(--scrollbar-track);
-    }
-
-    .modal-shell:focus{ outline:none; }
-
-    .modal-shell::-webkit-scrollbar{ width:10px; }
-    .modal-shell::-webkit-scrollbar-track{
-      background:var(--scrollbar-track);
-      border-radius:999px;
-      margin:12px 0;
-    }
-    .modal-shell::-webkit-scrollbar-thumb{
-      background:linear-gradient(180deg, rgba(209,179,132,.62), rgba(209,179,132,.26));
-      border-radius:999px;
-      border:2px solid rgba(8,8,8,.95);
-    }
-
-    .modal-top{
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      align-items:flex-start;
-      margin-bottom:18px;
-      padding-right:10px;
-    }
-
-    .modal-kicker{
-      color:var(--accent);
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      font-size:.68rem;
-      margin-bottom:8px;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap');
+    
+    :root {
+      --accent: #d4bfa8;
     }
-
-    .modal h3{
-      font-size:clamp(1.45rem, 2.2vw, 2rem);
-      line-height:1.02;
-      letter-spacing:-.035em;
-      margin-bottom:6px;
-      text-wrap:balance;
-    }
-
-    .modal-meta{
-      color:var(--muted);
-      font-size:.88rem;
-    }
-
-    .close-btn{
-      width:44px;
-      height:44px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      color:var(--text);
-      font-size:24px;
-      line-height:1;
-      flex:0 0 auto;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .gallery-grid{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0,1fr));
-      gap:14px;
-      width:100%;
-    }
-
-    .gallery-item{
-      width:100%;
-      border-radius:18px;
-      overflow:hidden;
-      aspect-ratio:1 / 1;
-      box-shadow:0 14px 34px rgba(0,0,0,.32);
-      background:rgba(255,255,255,.03);
-      position:relative;
-      content-visibility:auto;
-      contain-intrinsic-size:260px;
-    }
-
-    .gallery-item img,
-    .gallery-item .image-fallback,
-    .gallery-item .lazy-shell{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .gallery-item img{
-      transition:transform var(--transition), filter var(--transition), opacity var(--transition);
-      opacity:0;
-    }
-
-    .gallery-item img.ready{ opacity:1; }
-
-    .gallery-item:hover img{
-      transform:scale(1.03);
-      filter:brightness(1.04);
-    }
-
-    .lightbox-inner{
-      position:relative;
-      max-width:94vw;
-      max-height:90dvh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .lightbox img{
-      width:auto;
-      height:auto;
-      max-width:94vw;
-      max-height:88dvh;
-      object-fit:contain;
-      border-radius:16px;
-      box-shadow:0 28px 90px rgba(0,0,0,.56);
-      background:#111;
-    }
-
-    .lightbox .close-btn{
-      position:fixed;
-      top:calc(16px + env(safe-area-inset-top, 0px));
-      right:16px;
-    }
-
-    .contact-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:18px;
-    }
-
-    .contact-card{ padding:22px; }
-
-    .contact-card strong{
-      display:block;
-      margin-bottom:8px;
-      font-size:.98rem;
-    }
-
-    .contact-card span{
-      display:block;
-      color:var(--muted);
-      margin-bottom:12px;
-      word-break:break-word;
-      font-size:.93rem;
-    }
-
-    .footer{
-      padding:22px 0 calc(44px + env(safe-area-inset-bottom, 0px));
-      color:rgba(243,237,228,.48);
-      font-size:.88rem;
+    
+    .tail-container * {
+      font-family: 'Inter', system_ui, sans-serif;
     }
-
-    .footer .container{
-      display:grid;
-      gap:8px;
-    }
-
-    .image-fallback{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      text-align:center;
-      color:rgba(243,237,228,.55);
-      background:linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      font-size:.86rem;
-    }
-
-    .lazy-shell{
-      width:100%;
-      height:100%;
-      position:relative;
-      background:linear-gradient(110deg, rgba(255,255,255,.03) 8%, rgba(255,255,255,.07) 18%, rgba(255,255,255,.03) 33%);
-      background-size:200% 100%;
-      animation:shimmer 1.6s linear infinite;
+    
+    .logo-font {
+      font-family: 'Playfair Display', sans-serif;
     }
 
-    .lazy-shell.loaded{
-      animation:none;
-      background:none;
+    .hero-bg {
+      background-image: linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.75)), url('https://picsum.photos/id/1015/2000/1200');
+      background-size: cover;
+      background-position: center;
     }
 
-    @keyframes shimmer{
-      to{ background-position:-200% 0; }
+    .masonry-grid {
+      column-count: 3;
+      column-gap: 1.5rem;
     }
-
-    .mobile-bottom-nav{ display:none; }
-
-    @media (max-width:1080px){
-      :root{ --header-h:134px; }
-
-      .about,
-      .categories,
-      .gallery-grid,
-      .contact-grid{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .hero{ background-position:center 22%; }
-
-      .about-photo,
-      .about-photo img,
-      .about-photo .image-fallback,
-      .copy{
-        min-height:500px;
-      }
-
-      .about-photo img,
-      .about-photo .image-fallback{
-        object-position:40% center;
+    
+    @media (max-width: 768px) {
+      .masonry-grid {
+        column-count: 2;
       }
     }
 
-    @media (max-width:720px){
-      :root{ --header-h:170px; }
-
-      .container{
-        width:min(calc(100% - 24px), var(--container));
-      }
-
-      .header-row{ align-items:flex-start; }
-      .brand{ width:100%; }
-
-      .nav-wrap{
-        width:100%;
-        justify-content:space-between;
-        align-items:flex-start;
-      }
-
-      .hero{
-        padding:
-          calc(var(--header-h) + 24px + env(safe-area-inset-top, 0px))
-          0
-          max(50px, env(safe-area-inset-bottom, 16px));
-        background-position:60% 22%;
-      }
-
-      section{ padding:62px 0; }
-
-      .about,
-      .categories,
-      .gallery-grid,
-      .contact-grid{
-        grid-template-columns:1fr;
-      }
-
-      .about-photo,
-      .about-photo img,
-      .about-photo .image-fallback,
-      .copy{
-        min-height:390px;
-      }
-
-      .about-photo img,
-      .about-photo .image-fallback{
-        object-position:41% center;
-      }
-
-      .copy{ padding:22px; }
-
-      .actions .btn,
-      .contact-card .btn{
-        width:100%;
-      }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .masonry-item:hover {
+      transform: scale(1.03);
+      filter: brightness(1.1);
     }
 
-    /* ============ MOBILE VIEW ============ */
-    body.mobile-view{
-      background:
-        radial-gradient(circle at top, rgba(209,179,132,.08), transparent 18%),
-        linear-gradient(180deg, #060606, #050505 32%, #050505 100%);
+    .lightbox {
+      animation: fadeIn 0.3s ease forwards;
     }
 
-    body.mobile-view main{ padding-bottom:96px; }
-
-    body.mobile-view .site-header{
-      position:sticky;
-      top:0;
-      background:rgba(5,5,5,.94);
-      border-bottom:1px solid rgba(255,255,255,.06);
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    body.mobile-view .top-switch{ padding:8px 0 6px; }
-
-    body.mobile-view .view-switch{
-      width:100%;
-      min-height:36px;
-      font-size:.77rem;
-      padding:8px 12px;
-      box-shadow:none;
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
     }
-
-    body.mobile-view .header-row{
-      min-height:auto;
-      padding:4px 0 12px;
-      gap:10px;
+    
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #d4bfa8;
+      transition: width 0.3s ease;
     }
-
-    body.mobile-view .brand{
-      width:100%;
-      font-size:.9rem;
-      letter-spacing:.03em;
-    }
-
-    body.mobile-view .brand-dot{
-      width:8px;
-      height:8px;
-    }
-
-    body.mobile-view .nav{ display:none; }
-
-    body.mobile-view .nav-wrap{
-      width:100%;
-      justify-content:flex-end;
-    }
-
-    body.mobile-view .lang{
-      width:100%;
-      justify-content:space-between;
-      border-radius:18px;
-      background:rgba(255,255,255,.035);
-    }
-
-    body.mobile-view .lang button{
-      flex:1 1 0;
-      min-height:34px;
-      padding:7px 8px;
-      font-size:.75rem;
-      border-radius:14px;
-    }
-
-    body.mobile-view .hero{
-      min-height:auto;
-      width:min(calc(100% - 24px), 780px);
-      margin:12px auto 18px;
-      border-radius:28px;
-      overflow:hidden;
-      box-shadow:0 24px 54px rgba(0,0,0,.38);
-      padding:28px 0 22px;
-      background:
-        linear-gradient(180deg, rgba(5,5,5,.14) 0%, rgba(5,5,5,.22) 26%, rgba(5,5,5,.74) 74%, rgba(5,5,5,.9) 100%),
-        linear-gradient(90deg, rgba(5,5,5,.6) 0%, rgba(5,5,5,.12) 48%, rgba(5,5,5,.34) 100%),
-        url("images/DSCF4051.jpg");
-      background-size:cover;
-      background-position:62% 18%;
-      background-repeat:no-repeat;
-    }
-
-    body.mobile-view .hero::after{ display:none; }
-
-    body.mobile-view .hero-copy{ max-width:100%; }
-
-    body.mobile-view .eyebrow{
-      font-size:.56rem;
-      padding:6px 9px;
-      margin-bottom:10px;
-    }
-
-    body.mobile-view h1{
-      font-size:clamp(1.22rem, 4.9vw, 1.62rem);
-      line-height:1.09;
-      margin-bottom:10px;
-      max-width:18ch;
-      letter-spacing:-.03em;
-    }
-
-    body.mobile-view .hero p{
-      font-size:clamp(.86rem, 1.25vw + .78rem, .96rem);
-      max-width:34ch;
-      margin-bottom:14px;
-    }
-
-    body.mobile-view .actions{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:8px;
-    }
-
-    body.mobile-view .actions .btn{
-      width:100%;
-      min-height:40px;
-      font-size:.84rem;
-      padding:10px 14px;
-      box-shadow:none;
-    }
-
-    body.mobile-view section{
-      padding:0 0 18px;
-      scroll-margin-top:110px;
-    }
-
-    body.mobile-view #about .container,
-    body.mobile-view #portfolio .container,
-    body.mobile-view #contact .container{
-      display:grid;
-      gap:14px;
-    }
-
-    body.mobile-view .head{
-      margin-bottom:0;
-      padding:0 2px;
-    }
-
-    body.mobile-view .head span{
-      font-size:.58rem;
-      margin-bottom:8px;
-    }
-
-    body.mobile-view .head h2{
-      font-size:clamp(1.14rem, 4.35vw, 1.45rem);
-      line-height:1.12;
-      margin-bottom:8px;
-      max-width:24ch;
-    }
-
-    body.mobile-view .head p{
-      font-size:clamp(.86rem, 1.1vw + .78rem, .95rem);
-      line-height:1.58;
-      max-width:62ch;
-    }
-
-    body.mobile-view .about{
-      grid-template-columns:1fr;
-      gap:14px;
-    }
-
-    body.mobile-view .about-photo,
-    body.mobile-view .about-photo img,
-    body.mobile-view .about-photo .image-fallback{
-      min-height:270px;
-      border-radius:24px;
-    }
-
-    body.mobile-view .about-photo img,
-    body.mobile-view .about-photo .image-fallback{
-      object-position:44% center;
-    }
-
-    body.mobile-view .copy{
-      min-height:auto;
-      padding:18px;
-      border-radius:24px;
-    }
-
-    body.mobile-view .copy-content{ gap:12px; }
-
-    body.mobile-view .copy h3{
-      font-size:clamp(1.02rem, 1.2vw + .92rem, 1.16rem);
-      line-height:1.18;
-      max-width:30ch;
-    }
-
-    body.mobile-view .copy p{
-      font-size:clamp(.84rem, 1.1vw + .76rem, .92rem);
-      line-height:1.6;
-    }
-
-    /* MOBILE CATEGORIES: smaller thumbnails + subtitles + pro proportions */
-    body.mobile-view .categories{
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:10px;
-      align-items:start;
-    }
-
-    body.mobile-view .cat{
-      padding:10px 8px 10px;
-      gap:8px;
-      transform:none !important;
-      border-radius:18px;
-      box-shadow:0 10px 22px rgba(0,0,0,.22);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
-      border:1px solid rgba(255,255,255,.06);
-      text-align:center;
-    }
-
-    body.mobile-view .cat:hover{
-      transform:none;
-      box-shadow:0 10px 22px rgba(0,0,0,.22);
-    }
-
-    body.mobile-view .cat-pill{ display:none; }
-
-    body.mobile-view .thumb{
-      border-radius:14px;
-      box-shadow:0 8px 18px rgba(0,0,0,.18);
-      aspect-ratio:1 / 1;
-      width:100%;
-    }
-
-    body.mobile-view .thumb img{ transform:none !important; }
-
-    body.mobile-view .mobile-cat-label{
-      display:block;
-      font-size:clamp(.66rem, .7vw + .58rem, .74rem);
-      line-height:1.22;
-      text-align:center;
-      color:rgba(243,237,228,.92);
-      min-height:2.5em; /* keeps rows aligned */
-      text-wrap:balance;
-      letter-spacing:.01em;
-    }
-
-    @media (max-width:420px){
-      body.mobile-view .categories{ gap:8px; }
-      body.mobile-view .cat{ padding:9px 7px 9px; border-radius:16px; }
-      body.mobile-view .mobile-cat-label{
-        font-size:clamp(.64rem, .9vw + .56rem, .72rem);
-        min-height:2.3em;
-      }
-      body.mobile-view h1{
-        font-size:clamp(1.14rem, 4.6vw, 1.46rem);
-      }
-      body.mobile-view .hero p{
-        font-size:clamp(.84rem, 1.1vw + .76rem, .92rem);
-        max-width:32ch;
-      }
-    }
-
-    /* Modal + gallery in mobile-view */
-    body.mobile-view .modal{
-      padding:0;
-      align-items:stretch;
-      justify-content:stretch;
-      background:rgba(0,0,0,.96);
-      backdrop-filter:none;
-      -webkit-backdrop-filter:none;
-    }
-
-    body.mobile-view .modal-shell{
-      width:100%;
-      max-width:100%;
-      height:100dvh;
-      max-height:100dvh;
-      border:none;
-      border-radius:0;
-      padding:12px 12px 18px;
-      padding-top:calc(12px + env(safe-area-inset-top, 0px));
-      padding-bottom:calc(18px + env(safe-area-inset-bottom, 0px));
-      background:linear-gradient(180deg, rgba(8,8,8,.99), rgba(5,5,5,1));
-      box-shadow:none;
-      overscroll-behavior:contain;
-    }
-
-    body.mobile-view .modal-top{
-      position:sticky;
-      top:0;
-      z-index:5;
-      margin-bottom:12px;
-      padding:2px 0 12px;
-      background:linear-gradient(180deg, rgba(7,7,7,.98), rgba(7,7,7,.86));
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
-    }
-
-    body.mobile-view .modal h3{
-      font-size:clamp(1.04rem, 2.8vw, 1.18rem);
-      line-height:1.1;
-      margin-bottom:4px;
-    }
-
-    body.mobile-view .modal-kicker{
-      font-size:.56rem;
-      margin-bottom:5px;
-    }
-
-    body.mobile-view .modal-meta{
-      font-size:.78rem;
-    }
-
-    body.mobile-view .close-btn{
-      width:40px;
-      height:40px;
-      font-size:21px;
-      background:rgba(255,255,255,.07);
-    }
-
-    body.mobile-view .gallery-grid{
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:9px;
-      padding-bottom:24px;
-    }
-
-    body.mobile-view .gallery-item{
-      border-radius:14px;
-      box-shadow:0 10px 24px rgba(0,0,0,.22);
-      aspect-ratio:1 / 1;
-      overflow:hidden;
-    }
-
-    body.mobile-view .lightbox{
-      padding:0;
-      background:rgba(0,0,0,.97);
-    }
-
-    body.mobile-view .lightbox-inner{
-      max-width:100vw;
-      max-height:100dvh;
-      width:100%;
-      height:100%;
-      padding:16px 10px calc(16px + env(safe-area-inset-bottom, 0px));
-    }
-
-    body.mobile-view .lightbox img{
-      max-width:100%;
-      max-height:calc(100dvh - 50px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-      border-radius:14px;
-    }
-
-    body.mobile-view .lightbox .close-btn{
-      top:calc(10px + env(safe-area-inset-top, 0px));
-      right:10px;
-    }
-
-    body.mobile-view .contact-grid{
-      grid-template-columns:1fr;
-      gap:12px;
-    }
-
-    body.mobile-view .contact-card{
-      padding:16px;
-      border-radius:22px;
-    }
-
-    body.mobile-view .contact-card strong{ font-size:.9rem; }
-
-    body.mobile-view .contact-card span{
-      font-size:.84rem;
-      margin-bottom:10px;
-    }
-
-    body.mobile-view .contact-card .btn{
-      min-height:38px;
-      font-size:.82rem;
-      box-shadow:none;
-    }
-
-    body.mobile-view .footer{
-      padding:10px 0 calc(82px + env(safe-area-inset-bottom, 0px));
-      font-size:.77rem;
-    }
-
-    body.mobile-view .mobile-bottom-nav{
-      position:fixed;
-      left:12px;
-      right:12px;
-      bottom:calc(10px + env(safe-area-inset-bottom, 0px));
-      z-index:40;
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:8px;
-      padding:8px;
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(8,8,8,.9);
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
-      box-shadow:0 18px 40px rgba(0,0,0,.38);
-    }
-
-    body.mobile-view .mobile-bottom-nav a{
-      min-height:42px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      border-radius:16px;
-      font-size:.74rem;
-      color:var(--muted);
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.05);
-      transition:background var(--transition), color var(--transition), border-color var(--transition);
-    }
-
-    body.mobile-view .mobile-bottom-nav a:hover,
-    body.mobile-view .mobile-bottom-nav a:active{
-      color:var(--text);
-      background:rgba(255,255,255,.08);
-      border-color:rgba(209,179,132,.18);
-    }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto !important; }
-      .lazy-shell{ animation:none !important; }
-      .btn, .view-switch, .cat, .gallery-item img, .nav a, .lang button{
-        transition:none !important;
-      }
-      .btn:hover, .view-switch:hover, .cat:hover{ transform:none !important; }
+    
+    .nav-link:hover:after {
+      width: 100%;
     }
   </style>
 </head>
-<body>
-  <header class="site-header">
-    <div class="container">
-      <div class="top-switch">
-        <a class="view-switch" id="viewToggle" href="?view=mobile">Przejdź do wersji mobilnej</a>
+<body class="tail-container bg-[#0a0a0a] text-[#f5f5f5]">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-lg border-b border-[#d4bfa8]/10">
+    <div class="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
+      <a href="#" class="logo-font text-3xl tracking-tight">Rafał Wilk</a>
+      
+      <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+        <a href="#praca" class="nav-link">Praca</a>
+        <a href="#o-mnie" class="nav-link">O mnie</a>
+        <a href="#proces" class="nav-link">Proces</a>
+        <a href="#kontakt" class="nav-link">Kontakt</a>
       </div>
 
-      <div class="header-row">
-        <div class="brand">
-          <span class="brand-dot"></span>
-          <span>Rafał Wilk</span>
+      <div class="flex items-center gap-x-6">
+        <!-- Języki -->
+        <div class="flex items-center text-xs font-medium border border-[#d4bfa8]/30 rounded-full px-4 py-1">
+          <button onclick="switchLanguage('pl')" class="px-3 hover:text-[#d4bfa8] transition-colors active">PL</button>
+          <button onclick="switchLanguage('en')" class="px-3 hover:text-[#d4bfa8] transition-colors">EN</button>
+          <button onclick="switchLanguage('nl')" class="px-3 hover:text-[#d4bfa8] transition-colors">NL</button>
         </div>
 
-        <div class="nav-wrap">
-          <nav class="nav">
-            <a href="#about" data-i18n="navAbout">Over mij</a>
-            <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
-            <a href="#contact" data-i18n="navContact">Contact</a>
-          </nav>
+        <!-- Instagram -->
+        <a href="https://instagram.com/fotodisogno" target="_blank"
+           class="flex items-center gap-x-2 text-sm hover:text-[#d4bfa8] transition-colors">
+          <i class="fa-brands fa-instagram text-xl"></i>
+          <span class="hidden sm:inline">@fotodisogno</span>
+        </a>
 
-          <div class="lang">
-            <button class="active" data-lang="nl" type="button">NL</button>
-            <button data-lang="en" type="button">EN</button>
-            <button data-lang="pl" type="button">PL</button>
+        <!-- Mobile menu button -->
+        <button onclick="toggleMobileMenu()" class="md:hidden text-2xl">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-[#0a0a0a] border-t border-[#d4bfa8]/10 px-8 py-6">
+      <div class="flex flex-col gap-y-6 text-lg">
+        <a href="#praca" onclick="toggleMobileMenu()" class="nav-link">Praca</a>
+        <a href="#o-mnie" onclick="toggleMobileMenu()" class="nav-link">O mnie</a>
+        <a href="#proces" onclick="toggleMobileMenu()" class="nav-link">Proces</a>
+        <a href="#kontakt" onclick="toggleMobileMenu()" class="nav-link">Kontakt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-bg h-screen flex items-center relative">
+    <div class="max-w-screen-2xl mx-auto px-8 text-center">
+      <h1 class="text-6xl md:text-7xl lg:text-8xl font-semibold logo-font leading-none tracking-tighter mb-6">
+        RAFAŁ WILK
+      </h1>
+      <p class="text-2xl md:text-3xl text-[#d4bfa8] max-w-2xl mx-auto mb-12">
+        Fotografia, która oddaje duszę
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#praca" 
+           class="inline-flex items-center justify-center px-10 py-4 bg-[#d4bfa8] text-[#0a0a0a] font-medium rounded-full hover:bg-white transition-colors text-lg">
+          Obejrzyj prace
+        </a>
+        <a href="#kontakt" 
+           class="inline-flex items-center justify-center px-10 py-4 border-2 border-[#d4bfa8] font-medium rounded-full hover:bg-[#d4bfa8] hover:text-[#0a0a0a] transition-colors text-lg">
+          Rozpocznij współpracę
+        </a>
+      </div>
+    </div>
+
+    <div class="absolute bottom-12 left-1/2 flex flex-col items-center gap-y-2 text-xs tracking-widest">
+      <div class="animate-bounce">↓</div>
+      PRZEWIJ W DÓŁ
+    </div>
+  </section>
+
+  <!-- O MNIE -->
+  <section id="o-mnie" class="max-w-screen-2xl mx-auto px-8 py-24">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <img src="https://picsum.photos/id/1005/1200/1400" 
+             alt="Rafał Wilk – portret" 
+             class="w-full rounded-3xl shadow-2xl">
+      </div>
+      <div class="space-y-8">
+        <div class="uppercase text-[#d4bfa8] tracking-widest text-sm">Osobiste spojrzenie</div>
+        <h2 class="text-5xl font-semibold logo-font leading-tight">
+          Fotografia to nie tylko obraz.<br>To cisza, która mówi najgłośniej.
+        </h2>
+        <p class="text-lg text-[#e0d9cf] leading-relaxed">
+          Wierzę w fotografie, które emanują spokojem, jakością i własnym charakterem. 
+          Pracowałem z Sony, Fuji i Nikonem, ale najcenniejsza lekcja brzmi: sprzęt jest tylko narzędziem. 
+          Najważniejsze jest światło, atmosfera i ten jeden niepowtarzalny moment.
+        </p>
+        
+        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-[#d4bfa8]/10">
+          <div>
+            <div class="text-4xl font-semibold text-[#d4bfa8]">100+</div>
+            <div class="text-sm text-[#c7b9a8]">Zrealizowanych sesji</div>
+          </div>
+          <div>
+            <div class="text-4xl font-semibold text-[#d4bfa8]">8</div>
+            <div class="text-sm text-[#c7b9a8]">Lat doświadczenia</div>
+          </div>
+          <div>
+            <div class="text-4xl font-semibold text-[#d4bfa8]">∞</div>
+            <div class="text-sm text-[#c7b9a8]">Momentów uchwyconych</div>
           </div>
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
-  <div id="pageRoot">
-    <main>
-      <section class="hero" id="top">
-        <div class="container">
-          <div class="hero-copy">
-            <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
-            <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer, licht en karakter</h1>
-            <p data-i18n="heroText">Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.</p>
-            <div class="actions">
-              <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
-              <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
-            </div>
-          </div>
+  <!-- PRACA / PORTFOLIO -->
+  <section id="praca" class="bg-[#111111] py-24">
+    <div class="max-w-screen-2xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row justify-between items-baseline mb-12">
+        <h2 class="text-5xl font-semibold logo-font">Moje prace</h2>
+        
+        <!-- Filtry -->
+        <div class="flex flex-wrap gap-3 mt-6 md:mt-0" id="filters">
+          <button onclick="filterCategory('all')" 
+                  class="filter-btn active px-6 py-2 rounded-full border border-[#d4bfa8]/30 hover:border-[#d4bfa8] text-sm font-medium transition-colors">
+            Wszystkie
+          </button>
+          <button onclick="filterCategory('portret')" 
+                  class="filter-btn px-6 py-2 rounded-full border border-[#d4bfa8]/30 hover:border-[#d4bfa8] text-sm font-medium transition-colors">
+            Portret
+          </button>
+          <button onclick="filterCategory('krajobraz')" 
+                  class="filter-btn px-6 py-2 rounded-full border border-[#d4bfa8]/30 hover:border-[#d4bfa8] text-sm font-medium transition-colors">
+            Krajobraz
+          </button>
+          <button onclick="filterCategory('street')" 
+                  class="filter-btn px-6 py-2 rounded-full border border-[#d4bfa8]/30 hover:border-[#d4bfa8] text-sm font-medium transition-colors">
+            Street
+          </button>
+          <button onclick="filterCategory('fineart')" 
+                  class="filter-btn px-6 py-2 rounded-full border border-[#d4bfa8]/30 hover:border-[#d4bfa8] text-sm font-medium transition-colors">
+            Fine Art
+          </button>
         </div>
-      </section>
-
-      <section id="about">
-        <div class="container">
-          <div class="head">
-            <span data-i18n="aboutEyebrow">Over mij</span>
-            <h2 data-i18n="aboutTitle">Een persoonlijke blik vertaald naar verzorgde en doordachte beelden</h2>
-            <p data-i18n="aboutLead">Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.</p>
-          </div>
-
-          <div class="about">
-            <div class="card about-photo" id="aboutPhotoWrap"></div>
-
-            <div class="card copy">
-              <div class="copy-content">
-                <h3 data-i18n="aboutBoxTitle">Fotografie is voor mij meer dan alleen foto's maken</h3>
-                <p data-i18n="aboutP1">Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.</p>
-                <p data-i18n="aboutP2">In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="portfolio">
-        <div class="container">
-          <div class="head">
-            <span data-i18n="portfolioEyebrow">Portfolio</span>
-            <h2 data-i18n="portfolioTitle">Selecties uit mijn fotografisch werk</h2>
-            <p data-i18n="portfolioLead">Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.</p>
-          </div>
-
-          <div class="categories" id="categoriesGrid"></div>
-        </div>
-      </section>
-
-      <section id="contact">
-        <div class="container">
-          <div class="head">
-            <span data-i18n="contactEyebrow">Contact</span>
-            <h2 data-i18n="contactTitle">Neem rechtstreeks contact met mij op</h2>
-            <p data-i18n="contactLead">Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.</p>
-          </div>
-
-          <div class="contact-grid">
-            <div class="card contact-card">
-              <strong>Instagram</strong>
-              <span>@fotodisogno</span>
-              <a class="btn" href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
-            </div>
-
-            <div class="card contact-card">
-              <strong>E-mail</strong>
-              <span>fotodisogno@gmail.com</span>
-              <a class="btn" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Open</a>
-            </div>
-
-            <div class="card contact-card">
-              <strong>WhatsApp</strong>
-              <span>31 0644747733</span>
-              <a class="btn" href="https://wa.me/310644747733" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container">
-        <div>© Rafał Wilk</div>
-        <div data-i18n="legalNotice">Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming.</div>
       </div>
-    </footer>
 
-    <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
-      <a href="#top" data-i18n="navHome">Start</a>
-      <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
-      <a href="#contact" data-i18n="navContact">Contact</a>
-    </nav>
-  </div>
+      <!-- Masonry Grid -->
+      <div class="masonry-grid" id="portfolio-grid">
+        <!-- Zdjęcia są dodawane dynamicznie przez JS -->
+      </div>
+    </div>
+  </section>
 
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-shell" id="modalShell" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
-      <div class="modal-top">
+  <!-- PROCES -->
+  <section id="proces" class="max-w-screen-2xl mx-auto px-8 py-24">
+    <div class="text-center mb-16">
+      <span class="uppercase text-[#d4bfa8] tracking-widest">Jak powstaje zdjęcie</span>
+      <h2 class="text-5xl font-semibold logo-font mt-3">Mój proces twórczy</h2>
+    </div>
+    
+    <div class="grid md:grid-cols-4 gap-8">
+      <div class="group">
+        <div class="aspect-video bg-[#1a1a1a] rounded-3xl overflow-hidden mb-6 relative">
+          <img src="https://picsum.photos/id/1016/800/600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+            <div class="text-6xl font-light text-[#d4bfa8]/70">01</div>
+          </div>
+        </div>
+        <h3 class="text-xl font-medium">Znajdowanie światła</h3>
+        <p class="text-[#c7b9a8] mt-2">Czekam na idealny moment, gdy światło maluje scenę.</p>
+      </div>
+      <div class="group">
+        <div class="aspect-video bg-[#1a1a1a] rounded-3xl overflow-hidden mb-6 relative">
+          <img src="https://picsum.photos/id/133/800/600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+            <div class="text-6xl font-light text-[#d4bfa8]/70">02</div>
+          </div>
+        </div>
+        <h3 class="text-xl font-medium">Uchwycenie chwili</h3>
+        <p class="text-[#c7b9a8] mt-2">Cisza. Koncentracja. Jeden kadr, który zostaje na zawsze.</p>
+      </div>
+      <div class="group">
+        <div class="aspect-video bg-[#1a1a1a] rounded-3xl overflow-hidden mb-6 relative">
+          <img src="https://picsum.photos/id/201/800/600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+            <div class="text-6xl font-light text-[#d4bfa8]/70">03</div>
+          </div>
+        </div>
+        <h3 class="text-xl font-medium">Obróbka z szacunkiem</h3>
+        <p class="text-[#c7b9a8] mt-2">Minimalna, ale precyzyjna – tak by zachować autentyczność.</p>
+      </div>
+      <div class="group">
+        <div class="aspect-video bg-[#1a1a1a] rounded-3xl overflow-hidden mb-6 relative">
+          <img src="https://picsum.photos/id/251/800/600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+            <div class="text-6xl font-light text-[#d4bfa8]/70">04</div>
+          </div>
+        </div>
+        <h3 class="text-xl font-medium">Wydruk i prezentacja</h3>
+        <p class="text-[#c7b9a8] mt-2">Bo prawdziwa fotografia żyje na papierze.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="bg-[#111111] py-24">
+    <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-2 gap-16">
+      <div>
+        <h2 class="text-5xl font-semibold logo-font mb-8">Porozmawiajmy</h2>
+        <p class="text-[#e0d9cf] text-lg max-w-md">
+          Masz pomysł na sesję, współpracę lub chcesz po prostu pogadać o fotografii? 
+          Napisz do mnie – odpowiem najszybciej jak mogę.
+        </p>
+        
+        <div class="mt-12 space-y-6">
+          <a href="https://instagram.com/fotodisogno" target="_blank"
+             class="flex items-center gap-4 group">
+            <i class="fa-brands fa-instagram text-4xl group-hover:text-[#d4bfa8]"></i>
+            <div>
+              <div class="font-medium">@fotodisogno</div>
+              <div class="text-sm text-[#c7b9a8]">Instagram</div>
+            </div>
+          </a>
+          <a href="mailto:fotodisogno@gmail.com" 
+             class="flex items-center gap-4 group">
+            <i class="fa-solid fa-envelope text-4xl group-hover:text-[#d4bfa8]"></i>
+            <div>
+              <div class="font-medium">fotodisogno@gmail.com</div>
+              <div class="text-sm text-[#c7b9a8]">E-mail (kliknij, by skopiować)</div>
+            </div>
+          </a>
+          <a href="https://wa.me/31644747733" target="_blank"
+             class="flex items-center gap-4 group">
+            <i class="fa-brands fa-whatsapp text-4xl group-hover:text-[#d4bfa8]"></i>
+            <div>
+              <div class="font-medium">+31 644 747 733</div>
+              <div class="text-sm text-[#c7b9a8]">WhatsApp</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Formularz -->
+      <form id="contactForm" class="space-y-8">
         <div>
-          <div class="modal-kicker" data-i18n="modalKicker">Portfolio</div>
-          <h3 id="modalTitle">Portret</h3>
-          <div class="modal-meta" id="modalMeta"></div>
+          <label class="block text-xs uppercase mb-2">Twoje imię</label>
+          <input type="text" id="name" 
+                 class="w-full bg-transparent border border-[#d4bfa8]/30 focus:border-[#d4bfa8] rounded-2xl px-6 py-5 outline-none transition-colors">
         </div>
-        <button class="close-btn" id="closeModal" type="button" aria-label="Close">×</button>
-      </div>
-      <div class="gallery-grid" id="galleryGrid"></div>
+        <div>
+          <label class="block text-xs uppercase mb-2">E-mail</label>
+          <input type="email" id="email" 
+                 class="w-full bg-transparent border border-[#d4bfa8]/30 focus:border-[#d4bfa8] rounded-2xl px-6 py-5 outline-none transition-colors">
+        </div>
+        <div>
+          <label class="block text-xs uppercase mb-2">Wiadomość</label>
+          <textarea id="message" rows="6"
+                    class="w-full bg-transparent border border-[#d4bfa8]/30 focus:border-[#d4bfa8] rounded-3xl px-6 py-5 outline-none transition-colors"></textarea>
+        </div>
+        <button type="submit"
+                class="w-full py-6 bg-[#d4bfa8] text-[#0a0a0a] font-medium text-lg rounded-3xl hover:bg-white transition-colors">
+          WYŚLIJ WIADOMOŚĆ
+        </button>
+      </form>
     </div>
-  </div>
+  </section>
 
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <div class="lightbox-inner" id="lightboxInner" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" tabindex="-1">
-      <h2 id="lightboxTitle" class="sr-only">Image preview</h2>
-      <button class="close-btn" id="closeLightbox" type="button" aria-label="Close">×</button>
-      <img id="lightboxImage" src="" alt="" />
+  <!-- FOOTER -->
+  <footer class="bg-black py-12 border-t border-[#d4bfa8]/10">
+    <div class="max-w-screen-2xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-sm text-[#a38f6f]">
+      <div>© Rafał Wilk 2026 • Wszystkie prawa zastrzeżone</div>
+      <div class="flex gap-x-8 mt-6 md:mt-0">
+        <a href="#" class="hover:text-[#d4bfa8]">Polityka prywatności</a>
+        <a href="#" class="hover:text-[#d4bfa8]">Warunki korzystania</a>
+      </div>
+      <div class="mt-6 md:mt-0">Made with passion for light &amp; silence</div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" onclick="if(event.target.id === 'lightbox') hideLightbox()" 
+       class="hidden fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4">
+    <div class="lightbox max-w-6xl w-full relative">
+      <button onclick="hideLightbox()" 
+              class="absolute -top-6 -right-6 text-4xl text-white hover:text-[#d4bfa8] z-10">
+        ✕
+      </button>
+      <img id="lightbox-image" src="" class="w-full rounded-3xl shadow-2xl">
+      <div id="lightbox-caption" class="mt-6 text-center text-[#d4bfa8]"></div>
     </div>
   </div>
 
   <script>
-    const translations = {
-      pl: {
-        navHome: "Start",
-        navAbout: "O mnie",
-        navPortfolio: "Portfolio",
-        navContact: "Kontakt",
-        heroEyebrow: "Portfolio fotograficzne",
-        heroTitle: "Fotografia oparta na świetle, atmosferze i wyrazistym obrazie",
-        heroText: "Witaj na mojej stronie, gdzie pokazuję fotografie budowane kompozycją, detalem i spokojną siłą wizualną.",
-        heroBtn1: "Zobacz portfolio",
-        heroBtn2: "Skontaktuj się",
-        aboutEyebrow: "O mnie",
-        aboutTitle: "Osobliwe spojrzenie przełożone na dopracowane i świadome kadry",
-        aboutLead: "Wierzę w fotografię, która nie tylko dobrze wygląda, ale również niesie jakość, spokój i własny charakter.",
-        aboutBoxTitle: "Fotografia to dla mnie coś więcej niż samo robienie zdjęć",
-        aboutP1: "Fotografia towarzyszy mi od dłuższego czasu i z każdą kolejną chwilą utwierdza mnie w tym, że jest to coś naprawdę bliskiego mnie.",
-        aboutP2: "Przez ten czas pracowałem z różnymi systemami, między innymi Sony, Fuji i Nikon. Dzięki temu nauczyłem się, że choć sprzęt daje różne możliwości, to najważniejsze jest po prostu robić zdjęcia, rozwijać swoje spojrzenie i czerpać z tego satysfakcję. W fotografii najbardziej liczą się dla mnie światło, klimat i chwila.",
-        portfolioEyebrow: "Portfolio",
-        portfolioTitle: "Wybrane obszary mojej fotografii",
-        portfolioLead: "Przejrzyj różne kategorie i zobacz mój sposób patrzenia na ludzi, miejsca, detale i światło.",
-        cat1: "Portret",
-        cat2: "Ulica",
-        cat3: "Zwierzęta",
-        cat4: "Makro",
-        cat5: "Podróże",
-        cat6: "Kreatywne",
-        contactEyebrow: "Kontakt",
-        contactTitle: "Skontaktuj się ze mną bezpośrednio",
-        contactLead: "W sprawie pytań, współpracy lub zainteresowania moją fotografią możesz łatwo odezwać się przez poniższe kanały.",
-        contactBtn: "Otwórz",
-        modalKicker: "Portfolio",
-        legalNotice: "Wszelkie prawa zastrzeżone. Wszystkie zdjęcia i treści na tej stronie są chronione prawem autorskim i nie mogą być kopiowane, pobierane ani wykorzystywane bez uprzedniej pisemnej zgody.",
-        galleryTitlePortrait: "Portret",
-        galleryTitleStreet: "Ulica",
-        galleryTitleAnimals: "Zwierzęta",
-        galleryTitleMacro: "Makro",
-        galleryTitleTravel: "Podróże",
-        galleryTitleCreative: "Kreatywne",
-        imageMissingNamed: "Nie znaleziono zdjęcia:",
-        viewToggleMobile: "Przejdź do wersji mobilnej",
-        viewToggleDesktop: "Przejdź do wersji desktopowej",
-        photoCount: "zdjęć",
-        lightboxTitle: "Podgląd zdjęcia"
-      },
-      en: {
-        navHome: "Home",
-        navAbout: "About",
-        navPortfolio: "Portfolio",
-        navContact: "Contact",
-        heroEyebrow: "Photography portfolio",
-        heroTitle: "Photography shaped by light, atmosphere and a refined visual language",
-        heroText: "Welcome to my portfolio, where I present images built on composition, detail and a calm visual strength.",
-        heroBtn1: "View portfolio",
-        heroBtn2: "Get in touch",
-        aboutEyebrow: "About",
-        aboutTitle: "A personal way of seeing translated into thoughtful and carefully crafted images",
-        aboutLead: "I believe in photography that not only looks strong, but also carries quality, calmness and a distinct character.",
-        aboutBoxTitle: "Photography for me is more than just taking pictures",
-        aboutP1: "Photography has been with me for a long time and, with every next step, it keeps confirming that it is something genuinely close to me.",
-        aboutP2: "Over time, I worked with different systems, including Sony, Fuji and Nikon. That taught me one simple thing: gear offers different possibilities, but the most important part is simply to keep taking photos, develop your own eye and enjoy the process. In photography, what matters most to me is light, atmosphere and the moment itself.",
-        portfolioEyebrow: "Portfolio",
-        portfolioTitle: "Selected areas of my photographic work",
-        portfolioLead: "Explore different categories and discover how I approach people, places, details and light.",
-        cat1: "Portrait",
-        cat2: "Street",
-        cat3: "Animals",
-        cat4: "Macro",
-        cat5: "Travel",
-        cat6: "Creative",
-        contactEyebrow: "Contact",
-        contactTitle: "Get in touch with me directly",
-        contactLead: "For questions, collaborations or interest in my photography, you can reach me easily through the channels below.",
-        contactBtn: "Open",
-        modalKicker: "Portfolio",
-        legalNotice: "All rights reserved. All photographs and content on this website are protected by copyright and may not be copied, downloaded or used without prior written permission.",
-        galleryTitlePortrait: "Portrait",
-        galleryTitleStreet: "Street",
-        galleryTitleAnimals: "Animals",
-        galleryTitleMacro: "Macro",
-        galleryTitleTravel: "Travel",
-        galleryTitleCreative: "Creative",
-        imageMissingNamed: "Image not found:",
-        viewToggleMobile: "Switch to mobile version",
-        viewToggleDesktop: "Switch to desktop version",
-        photoCount: "photos",
-        lightboxTitle: "Image preview"
-      },
-      nl: {
-        navHome: "Start",
-        navAbout: "Over mij",
-        navPortfolio: "Portfolio",
-        navContact: "Contact",
-        heroEyebrow: "Fotografieportfolio",
-        heroTitle: "Fotografie met aandacht voor sfeer, licht en karakter",
-        heroText: "Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.",
-        heroBtn1: "Bekijk portfolio",
-        heroBtn2: "Neem contact op",
-        aboutEyebrow: "Over mij",
-        aboutTitle: "Een persoonlijke blik vertaald naar verzorgde en doordachte beelden",
-        aboutLead: "Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.",
-        aboutBoxTitle: "Fotografie is voor mij meer dan alleen foto's maken",
-        aboutP1: "Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.",
-        aboutP2: "In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.",
-        portfolioEyebrow: "Portfolio",
-        portfolioTitle: "Selecties uit mijn fotografisch werk",
-        portfolioLead: "Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.",
-        cat1: "Portret",
-        cat2: "Straat",
-        cat3: "Dieren",
-        cat4: "Macro",
-        cat5: "Reizen",
-        cat6: "Creatief",
-        contactEyebrow: "Contact",
-        contactTitle: "Neem rechtstreeks contact met mij op",
-        contactLead: "Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.",
-        contactBtn: "Open",
-        modalKicker: "Portfolio",
-        legalNotice: "Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming.",
-        galleryTitlePortrait: "Portret",
-        galleryTitleStreet: "Straat",
-        galleryTitleAnimals: "Dieren",
-        galleryTitleMacro: "Macro",
-        galleryTitleTravel: "Reizen",
-        galleryTitleCreative: "Creatief",
-        imageMissingNamed: "Foto niet gevonden:",
-        viewToggleMobile: "Ga naar mobiele versie",
-        viewToggleDesktop: "Ga naar desktopversie",
-        photoCount: "foto's",
-        lightboxTitle: "Foto bekijken"
-      }
-    };
-
-    const categoriesMeta = [
-      { key: "portrait", labelKey: "cat1", cover: "DSCF4051-2.jpg" },
-      { key: "street", labelKey: "cat2", cover: "A7407052.jpg" },
-      { key: "animals", labelKey: "cat3", cover: "DSCF3455.jpg" },
-      { key: "macro", labelKey: "cat4", cover: "A7400567.png" },
-      { key: "travel", labelKey: "cat5", cover: "DSC02526.avif" },
-      { key: "creative", labelKey: "cat6", cover: "DSC_5304.jpg" }
-    ];
-
-    const galleryData = {
-      portrait: {
-        titleKey: "galleryTitlePortrait",
-        items: [
-          { src: "DSC04191-2.avif", alt: "Asia z jablkiem" },
-          { src: "A7407652.jpg", alt: "Portrait with white cap and gold face paint" },
-          { src: "A7407653.jpg", alt: "Portrait of cameraman in gold costume" },
-          { src: "A7407666.jpg", alt: "Portrait in historical costume" },
-          { src: "A7407707.jpg", alt: "Black and white portrait with camera costume" },
-          { src: "DSC03914.avif", alt: "Portrait of musician playing cello" },
-          { src: "DSC04580.avif", alt: "Portrait of drummer during performance" },
-          { src: "DSC05313-Enhanced-NR.avif", alt: "Portrait of man in orange vest" },
-          { src: "DSC05317.avif", alt: "Black and white portrait of singer with guitar" },
-          { src: "DSCF4051-2.jpg", alt: "Portrait with cat in dark background" },
-          { src: "DSC_5379.avif", alt: "Black and white portrait of smiling man" }
-        ]
-      },
-      street: {
-        titleKey: "galleryTitleStreet",
-        items: [
-          { src: "DSC_0372.jpg", alt: "Black and white waterside landscape" },
-          { src: "A7408846.avif", alt: "Basketball hoop at sunset" },
-          { src: "DSC_3422.jpg", alt: "Italian street view" },
-          { src: "A7407052.jpg", alt: "Cyclist in fog by the lake" },
-          { src: "A7407373.jpg", alt: "Snowy bicycle in the city" },
-          { src: "A7407402.jpg", alt: "Winter walkway with figure" }
-        ]
-      },
-      animals: {
-        titleKey: "galleryTitleAnimals",
-        items: [
-          { src: "DSCF3455.jpg", alt: "Robin bird portrait" },
-          { src: "A7406653.avif", alt: "Seagull by the water" },
-          { src: "DSCF4010.jpg", alt: "Bird on wooden perch" },
-          { src: "A7407839.jpg", alt: "Cat close portrait" },
-          { src: "DSC_0250.jpg", alt: "White and brown cat resting" },
-          { src: "A7407059.jpg", alt: "Cat walking in snow" }
-        ]
-      },
-      macro: {
-        titleKey: "galleryTitleMacro",
-        items: [
-          { src: "A7400567.png", alt: "Wildflowers in soft light" },
-          { src: "A7403102.avif", alt: "Daisy close-up" },
-          { src: "A7407521.png", alt: "Red berries close-up" },
-          { src: "DSC_0032.jpg", alt: "Red berries detail" },
-          { src: "DSC_0052.jpg", alt: "Small yellow flowers" },
-          { src: "DSC_0057.jpg", alt: "Small flower cluster" },
-          { src: "DSC_0352.jpg", alt: "White flower macro" },
-          { src: "DSC_0492.jpg", alt: "Purple flower detail" }
-        ]
-      },
-      travel: {
-        titleKey: "galleryTitleTravel",
-        items: [
-          { src: "DSC02526.avif", alt: "Bird with red eye on wooden perch" },
-          { src: "A7406725.jpg", alt: "Ancient Greek ruins" },
-          { src: "A7406608.jpg", alt: "Blue boat by the coast" },
-          { src: "A7406616.avif", alt: "Coastal landscape with sea and mountains" },
-          { src: "A7407232.jpg", alt: "Snowy forest with winter sunlight" },
-          { src: "A7407252-2.jpg", alt: "Black and white winter tree landscape" },
-          { src: "A7406473.avif", alt: "Aperol drinks by the lake" },
-          { src: "A7407409.jpg", alt: "Observation tower in winter" },
-          { src: "DSC04416.png", alt: "Sea view from table by the coast" },
-          { src: "DSC_0029-2.png", alt: "Windmill seen through branches" },
-          { src: "DSC_2985.avif", alt: "Coastal terrace and sea view" }
-        ]
-      },
-      creative: {
-        titleKey: "galleryTitleCreative",
-        items: [
-          { src: "DSC_5304.jpg", alt: "Book with dramatic light" },
-          { src: "DSC_4824.avif", alt: "Grass silhouette at sunset" },
-          { src: "A7406311-2.avif", alt: "Decorative lantern with warm lights" },
-          { src: "A7406318-2.avif", alt: "Santa hat in festive bokeh" },
-          { src: "A7406347.avif", alt: "Abstract warm city lights" },
-          { src: "A7407223.jpg", alt: "Moon behind branches and clouds" },
-          { src: "A7407366.jpg", alt: "Candles in dark interior" },
-          { src: "A7407810.jpg", alt: "Full moon against black sky" },
-          { src: "DSC_0007-2.jpg", alt: "Abstract orange light spiral" },
-          { src: "A7409171.avif", alt: "Sun behind branches and clouds" }
-        ]
-      }
-    };
-
-    const aboutImage = "ChatGPT Image 28 mar 2026, 16_46_19";
-
-    const pageRoot = document.getElementById("pageRoot");
-    const nodes = document.querySelectorAll("[data-i18n]");
-    const langButtons = document.querySelectorAll(".lang button");
-    const categoriesGrid = document.getElementById("categoriesGrid");
-    const aboutPhotoWrap = document.getElementById("aboutPhotoWrap");
-    const modal = document.getElementById("modal");
-    const modalShell = document.getElementById("modalShell");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalMeta = document.getElementById("modalMeta");
-    const galleryGrid = document.getElementById("galleryGrid");
-    const closeModal = document.getElementById("closeModal");
-    const lightbox = document.getElementById("lightbox");
-    const lightboxInner = document.getElementById("lightboxInner");
-    const lightboxTitle = document.getElementById("lightboxTitle");
-    const lightboxImage = document.getElementById("lightboxImage");
-    const closeLightbox = document.getElementById("closeLightbox");
-    const viewToggle = document.getElementById("viewToggle");
-
-    const pageUrl = new URL(window.location.href);
-    const mediaQuery = window.matchMedia("(max-width: 820px)");
-    const urlLang = pageUrl.searchParams.get("lang");
-    const forcedView = pageUrl.searchParams.get("view");
-    const hasForcedView = forcedView === "mobile" || forcedView === "desktop";
-
-    let currentLang = translations[urlLang] ? urlLang : "nl";
-    let isMobileVersion = forcedView === "mobile" || (!hasForcedView && mediaQuery.matches);
-    let currentCategory = null;
-    let currentIndex = 0;
-    let lastScrollY = 0;
-    let galleryObserver = null;
-    let categoryObserver = null;
-    let lastActiveElement = null;
-
-    function hasExtension(fileName){
-      return /\.[a-z0-9]+$/i.test(fileName);
-    }
-
-    function encodePath(path){
-      return path.split("/").map(part => encodeURIComponent(part)).join("/");
-    }
-
-    function imagePath(fileName){
-      return encodePath(`images/${fileName}`);
-    }
-
-    function getCandidateImagePaths(fileName){
-      if(hasExtension(fileName)){
-        return [imagePath(fileName)];
-      }
-      const extensions = ["avif", "webp", "jpg", "jpeg", "png"];
-      return extensions.map(ext => imagePath(`${fileName}.${ext}`));
-    }
-
-    function createFallback(src){
-      const fallback = document.createElement("div");
-      fallback.className = "image-fallback";
-      fallback.textContent = `${translations[currentLang].imageMissingNamed} ${decodeURIComponent((src || "").split("/").pop() || "")}`;
-      return fallback;
-    }
-
-    function createLazyImage(src, alt = "", eager = false){
-      const shell = document.createElement("div");
-      shell.className = "lazy-shell";
-      shell.dataset.alt = alt;
-      shell.dataset.sources = JSON.stringify(Array.isArray(src) ? src : [src]);
-      if(eager) shell.dataset.eager = "true";
-      return shell;
-    }
-
-    function tryLoadImage(img, sources, index, onSuccess, onFailure){
-      if(index >= sources.length){
-        onFailure(sources[0] || "");
-        return;
-      }
-      img.onload = onSuccess;
-      img.onerror = () => tryLoadImage(img, sources, index + 1, onSuccess, onFailure);
-      img.src = sources[index];
-    }
-
-    function loadLazyShell(shell){
-      if(!shell || shell.dataset.loaded === "true") return;
-
-      const sources = JSON.parse(shell.dataset.sources || "[]");
-      const alt = shell.dataset.alt || "";
-      const eager = shell.dataset.eager === "true";
-
-      const img = document.createElement("img");
-      img.alt = alt;
-      img.decoding = "async";
-      img.loading = eager ? "eager" : "lazy";
-
-      tryLoadImage(
-        img,
-        sources,
-        0,
-        () => {
-          shell.classList.add("loaded");
-          img.classList.add("ready");
-        },
-        (failedSrc) => {
-          shell.replaceWith(createFallback(failedSrc));
-        }
-      );
-
-      shell.dataset.loaded = "true";
-      shell.appendChild(img);
-    }
-
-    function setupCategoryObserver(){
-      if(categoryObserver) categoryObserver.disconnect();
-      const shells = Array.from(document.querySelectorAll("#categoriesGrid .lazy-shell"));
-      if(!("IntersectionObserver" in window)){
-        shells.forEach(loadLazyShell);
-        return;
-      }
-      categoryObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            const shell = entry.target;
-            loadLazyShell(shell);
-            categoryObserver.unobserve(shell);
+    // Tailwind config
+    function initializeTailwind() {
+      tailwind.config = {
+        content: ["./**/*.{html,js}"],
+        theme: {
+          extend: {
+            colors: {
+              accent: "#d4bfa8"
+            }
           }
-        });
-      }, { root:null, rootMargin:"280px 0px", threshold:0.01 });
-      shells.forEach(shell => categoryObserver.observe(shell));
-    }
-
-    function setupGalleryObserver(){
-      if(galleryObserver) galleryObserver.disconnect();
-      const shells = Array.from(document.querySelectorAll("#galleryGrid .lazy-shell"));
-      if(!("IntersectionObserver" in window)){
-        shells.forEach(loadLazyShell);
-        return;
+        }
       }
-      galleryObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            const shell = entry.target;
-            loadLazyShell(shell);
-            galleryObserver.unobserve(shell);
-          }
-        });
-      }, { root: modalShell, rootMargin:"420px 0px", threshold:0.01 });
-      shells.forEach(shell => galleryObserver.observe(shell));
     }
 
-    function buildSwitchHref(targetView){
-      const url = new URL(window.location.href);
-      url.searchParams.set("lang", currentLang);
-      url.searchParams.set("view", targetView);
-      return `${url.pathname}${url.search}`;
+    // Portfolio data (zastąp URL-e swoimi prawdziwymi zdjęciami!)
+    const portfolioItems = [
+      { id: 1, category: "portret", url: "https://picsum.photos/id/1005/800/1200", title: "Portret 2025", year: "2025" },
+      { id: 2, category: "krajobraz", url: "https://picsum.photos/id/1015/800/1100", title: "Mgła nad jeziorem", year: "2025" },
+      { id: 3, category: "street", url: "https://picsum.photos/id/133/800/1000", title: "Miasto o świcie", year: "2024" },
+      { id: 4, category: "fineart", url: "https://picsum.photos/id/201/800/1300", title: "Cisza w lesie", year: "2025" },
+      { id: 5, category: "portret", url: "https://picsum.photos/id/1009/800/1200", title: "Intymny portret", year: "2024" },
+      { id: 6, category: "krajobraz", url: "https://picsum.photos/id/251/800/1100", title: "Góry o zmierzchu", year: "2025" },
+      { id: 7, category: "street", url: "https://picsum.photos/id/1003/800/1000", title: "Ruch uliczny", year: "2024" },
+      { id: 8, category: "fineart", url: "https://picsum.photos/id/160/800/1300", title: "Abstrakcja światła", year: "2025" }
+    ]
+
+    // Render portfolio
+    function renderPortfolio(filteredItems) {
+      const grid = document.getElementById("portfolio-grid")
+      grid.innerHTML = ""
+
+      filteredItems.forEach(item => {
+        const div = document.createElement("div")
+        div.className = "masonry-item cursor-pointer"
+        div.innerHTML = `
+          <div class="relative overflow-hidden rounded-3xl">
+            <img src="${item.url}" alt="${item.title}" class="w-full aspect-[4/5] object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 flex items-end p-6 opacity-0 hover:opacity-100 transition-all">
+              <div>
+                <div class="text-white font-medium">${item.title}</div>
+                <div class="text-xs text-[#d4bfa8]">${item.year}</div>
+              </div>
+            </div>
+          </div>
+        `
+        div.onclick = () => showLightbox(item)
+        grid.appendChild(div)
+      })
     }
 
-    function updateViewToggle(){
-      const dict = translations[currentLang];
-      const targetView = isMobileVersion ? "desktop" : "mobile";
-      viewToggle.textContent = isMobileVersion ? dict.viewToggleDesktop : dict.viewToggleMobile;
-      viewToggle.href = buildSwitchHref(targetView);
-    }
+    // Filter
+    window.filterCategory = function(cat) {
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.toggle("active", 
+          (cat === "all" && btn.textContent === "Wszystkie") || 
+          btn.textContent.toLowerCase() === cat
+        )
+      })
 
-    function updateUrlLanguageOnly(){
-      const url = new URL(window.location.href);
-      url.searchParams.set("lang", currentLang);
-      if(hasForcedView){
-        url.searchParams.set("view", forcedView);
+      if (cat === "all") {
+        renderPortfolio(portfolioItems)
       } else {
-        url.searchParams.delete("view");
-      }
-      history.replaceState(history.state || { overlay: null }, "", `${url.pathname}${url.search}${url.hash}`);
-    }
-
-    function applyTranslations(){
-      const dict = translations[currentLang];
-      nodes.forEach(node => {
-        const key = node.dataset.i18n;
-        if(dict[key]) node.textContent = dict[key];
-      });
-
-      document.documentElement.lang = currentLang;
-      updateViewToggle();
-
-      lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
-
-      if(currentCategory){
-        modalTitle.textContent = dict[galleryData[currentCategory].titleKey];
-        modalMeta.textContent = `${galleryData[currentCategory].items.length} ${dict.photoCount}`;
+        const filtered = portfolioItems.filter(item => item.category === cat)
+        renderPortfolio(filtered)
       }
     }
 
-    function renderAboutPhoto(){
-      aboutPhotoWrap.innerHTML = "";
-      const shell = createLazyImage(getCandidateImagePaths(aboutImage), "Rafał Wilk", true);
-      aboutPhotoWrap.appendChild(shell);
-      loadLazyShell(shell);
+    // Lightbox
+    function showLightbox(item) {
+      document.getElementById("lightbox-image").src = item.url
+      document.getElementById("lightbox-caption").innerHTML = `
+        <div class="text-xl">${item.title}</div>
+        <div class="text-sm opacity-70">${item.year} • ${item.category}</div>
+      `
+      document.getElementById("lightbox").classList.remove("hidden")
+      document.getElementById("lightbox").classList.add("flex")
     }
 
-    function renderCategories(){
-      const dict = translations[currentLang];
-      categoriesGrid.innerHTML = "";
-      const fragment = document.createDocumentFragment();
-
-      categoriesMeta.forEach(category => {
-        const button = document.createElement("button");
-        button.className = "card cat";
-        button.type = "button";
-        button.dataset.category = category.key;
-        button.setAttribute("aria-haspopup", "dialog");
-        button.setAttribute("aria-controls", "modal");
-
-        if(!isMobileVersion){
-          const pill = document.createElement("span");
-          pill.className = "cat-pill";
-          pill.textContent = dict[category.labelKey];
-          button.appendChild(pill);
-        }
-
-        const thumb = document.createElement("div");
-        thumb.className = "thumb";
-        thumb.appendChild(createLazyImage(imagePath(category.cover), dict[category.labelKey]));
-        button.appendChild(thumb);
-
-        if(isMobileVersion){
-          const label = document.createElement("span");
-          label.className = "mobile-cat-label";
-          label.textContent = dict[category.labelKey];
-          button.appendChild(label);
-        }
-
-        button.addEventListener("click", () => openCategory(category.key, false, button));
-        fragment.appendChild(button);
-      });
-
-      categoriesGrid.appendChild(fragment);
-      setupCategoryObserver();
+    function hideLightbox() {
+      const lb = document.getElementById("lightbox")
+      lb.classList.add("hidden")
+      lb.classList.remove("flex")
     }
 
-    function setBackgroundInert(isInert){
-      if("inert" in pageRoot){
-        pageRoot.inert = isInert;
-      } else {
-        pageRoot.setAttribute("aria-hidden", isInert ? "true" : "false");
-      }
+    // Mobile menu
+    window.toggleMobileMenu = function() {
+      const menu = document.getElementById("mobileMenu")
+      menu.classList.toggle("hidden")
     }
 
-    function setBodyLock(){
-      const locked = modal.classList.contains("open") || lightbox.classList.contains("open");
-      document.body.classList.toggle("locked", locked);
-      setBackgroundInert(locked);
+    // Language switcher (placeholder – w przyszłości możesz dodać tłumaczenia)
+    window.switchLanguage = function(lang) {
+      if (lang !== "pl") {
+        alert("🌍 Wersja EN i NL będzie dostępna w kolejnej iteracji. Aktualnie strona w pełni po polsku.")
+      }
+      // Tu w przyszłości możesz dodać dynamiczne tłumaczenia
     }
 
-    function ensureBaseState(){
-      if(!history.state || typeof history.state.overlay === "undefined"){
-        history.replaceState({ overlay: null }, "", location.href);
-      }
+    // Form submit (demo)
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault()
+      alert("✅ Wiadomość wysłana! (To demo – w rzeczywistości trafi na Twój e-mail)")
+      this.reset()
+    })
+
+    // Initialize everything
+    window.onload = function() {
+      initializeTailwind()
+      renderPortfolio(portfolioItems)
+      
+      // Keyboard escape for lightbox
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") hideLightbox()
+      })
+      
+      console.log("%c✅ Strona Rafał Wilk 2026 została pomyślnie załadowana – gotowa na GitHub Pages!", "color:#d4bfa8; font-family:monospace")
     }
-
-    function getFocusableElements(container){
-      const selectors = [
-        'a[href]',
-        'button:not([disabled])',
-        'input:not([disabled])',
-        'select:not([disabled])',
-        'textarea:not([disabled])',
-        '[tabindex]:not([tabindex="-1"])'
-      ].join(',');
-      return Array.from(container.querySelectorAll(selectors))
-        .filter(el => !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length));
-    }
-
-    function trapFocus(e, container){
-      if(e.key !== "Tab") return;
-      const focusables = getFocusableElements(container);
-      if(focusables.length === 0){
-        e.preventDefault();
-        container.focus();
-        return;
-      }
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if(e.shiftKey && document.activeElement === first){
-        e.preventDefault();
-        last.focus();
-      } else if(!e.shiftKey && document.activeElement === last){
-        e.preventDefault();
-        first.focus();
-      }
-    }
-
-    function openCategory(category, fromHistory = false, openerEl = null){
-      currentCategory = category;
-      currentIndex = 0;
-
-      const dict = translations[currentLang];
-      const data = galleryData[category];
-
-      modalTitle.textContent = dict[data.titleKey];
-      modalMeta.textContent = `${data.items.length} ${dict.photoCount}`;
-      galleryGrid.innerHTML = "";
-
-      const fragment = document.createDocumentFragment();
-
-      data.items.forEach((item, index) => {
-        const button = document.createElement("button");
-        button.className = "gallery-item";
-        button.type = "button";
-        button.setAttribute("aria-label", item.alt);
-
-        const shell = createLazyImage(imagePath(item.src), item.alt);
-        button.appendChild(shell);
-        button.addEventListener("click", () => openLightbox(category, index, false, button));
-
-        fragment.appendChild(button);
-      });
-
-      galleryGrid.appendChild(fragment);
-
-      if(!modal.classList.contains("open")){
-        lastScrollY = window.scrollY;
-      }
-
-      if(openerEl) lastActiveElement = openerEl;
-
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
-      setBodyLock();
-
-      modalShell.scrollTop = 0;
-
-      setupGalleryObserver();
-
-      document.querySelectorAll("#galleryGrid .lazy-shell").forEach((shell, index) => {
-        if(index < (isMobileVersion ? 12 : 6)) loadLazyShell(shell);
-      });
-
-      closeModal.focus();
-
-      if(!fromHistory){
-        history.pushState({ overlay: "category", category }, "", location.href);
-      }
-    }
-
-    function closeCategory(fromHistory = false){
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-      setBodyLock();
-
-      if(!isMobileVersion){
-        window.scrollTo(0, lastScrollY);
-      }
-
-      if(galleryObserver) galleryObserver.disconnect();
-
-      if(lastActiveElement && typeof lastActiveElement.focus === "function"){
-        lastActiveElement.focus();
-      }
-
-      if(!fromHistory && history.state && history.state.overlay === "category"){
-        history.back();
-      }
-    }
-
-    function resolveLightboxCandidates(item){
-      return getCandidateImagePaths(item.src);
-    }
-
-    function openLightbox(category, index, fromHistory = false, openerEl = null){
-      currentCategory = category;
-      currentIndex = index;
-
-      const dict = translations[currentLang];
-      lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
-
-      const item = galleryData[category].items[index];
-      const candidates = resolveLightboxCandidates(item);
-
-      if(openerEl) lastActiveElement = openerEl;
-
-      lightboxImage.src = "";
-      lightboxImage.alt = item.alt;
-      lightboxImage.decoding = "async";
-      lightboxImage.loading = "eager";
-
-      const temp = new Image();
-      temp.decoding = "async";
-
-      tryLoadImage(
-        temp,
-        candidates,
-        0,
-        () => { lightboxImage.src = temp.src; },
-        () => { lightboxImage.src = ""; }
-      );
-
-      lightbox.classList.add("open");
-      lightbox.setAttribute("aria-hidden", "false");
-      setBodyLock();
-
-      closeLightbox.focus();
-
-      if(!fromHistory){
-        history.pushState({ overlay: "lightbox", category, index }, "", location.href);
-      }
-    }
-
-    function closeLightboxOnly(){
-      lightbox.classList.remove("open");
-      lightbox.setAttribute("aria-hidden", "true");
-      lightboxImage.src = "";
-      lightboxImage.alt = "";
-      setBodyLock();
-    }
-
-    function closeImage(fromHistory = false){
-      closeLightboxOnly();
-
-      if(lastActiveElement && typeof lastActiveElement.focus === "function"){
-        lastActiveElement.focus();
-      }
-
-      if(!fromHistory && history.state && history.state.overlay === "lightbox"){
-        history.back();
-      }
-    }
-
-    function moveImage(step){
-      if(!currentCategory) return;
-
-      const items = galleryData[currentCategory].items;
-      currentIndex = (currentIndex + step + items.length) % items.length;
-
-      const item = items[currentIndex];
-      const candidates = resolveLightboxCandidates(item);
-
-      lightboxImage.alt = item.alt;
-
-      const temp = new Image();
-      temp.decoding = "async";
-
-      tryLoadImage(
-        temp,
-        candidates,
-        0,
-        () => { lightboxImage.src = temp.src; },
-        () => { lightboxImage.src = ""; }
-      );
-
-      history.replaceState(
-        { overlay: "lightbox", category: currentCategory, index: currentIndex },
-        "",
-        location.href
-      );
-    }
-
-    function syncViewMode(){
-      document.body.classList.toggle("mobile-view", isMobileVersion);
-
-      if(modal.classList.contains("open")){
-        modal.classList.remove("open");
-        modal.setAttribute("aria-hidden", "true");
-      }
-
-      if(lightbox.classList.contains("open")){
-        lightbox.classList.remove("open");
-        lightbox.setAttribute("aria-hidden", "true");
-        lightboxImage.src = "";
-        lightboxImage.alt = "";
-      }
-
-      setBodyLock();
-      history.replaceState({ overlay: null }, "", location.href);
-      applyTranslations();
-      renderCategories();
-      renderAboutPhoto();
-    }
-
-    langButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        currentLang = button.dataset.lang;
-        langButtons.forEach(btn => btn.classList.toggle("active", btn === button));
-        updateUrlLanguageOnly();
-        applyTranslations();
-        renderCategories();
-        renderAboutPhoto();
-      });
-    });
-
-    closeModal.addEventListener("click", () => closeCategory());
-    modal.addEventListener("click", e => { if(e.target === modal) closeCategory(); });
-
-    closeLightbox.addEventListener("click", () => closeImage());
-    lightbox.addEventListener("click", e => { if(e.target === lightbox) closeImage(); });
-
-    document.addEventListener("keydown", e => {
-      if(lightbox.classList.contains("open")){
-        trapFocus(e, lightboxInner);
-        if(e.key === "Escape") closeImage();
-        if(e.key === "ArrowRight") moveImage(1);
-        if(e.key === "ArrowLeft") moveImage(-1);
-        return;
-      }
-
-      if(modal.classList.contains("open")){
-        trapFocus(e, modalShell);
-        if(e.key === "Escape") closeCategory();
-      }
-    });
-
-    window.addEventListener("popstate", event => {
-      const state = event.state || { overlay: null };
-
-      if(state.overlay === "lightbox"){
-        if(!modal.classList.contains("open") && currentCategory !== state.category){
-          openCategory(state.category, true, null);
-        }
-        openLightbox(state.category, state.index ?? 0, true, null);
-        return;
-      }
-
-      if(state.overlay === "category"){
-        if(lightbox.classList.contains("open")){
-          closeLightboxOnly();
-        }
-        openCategory(state.category, true, null);
-        return;
-      }
-
-      if(lightbox.classList.contains("open")){
-        closeLightboxOnly();
-      }
-
-      if(modal.classList.contains("open")){
-        closeCategory(true);
-      }
-    });
-
-    if(!hasForcedView){
-      const mediaHandler = (event) => {
-        isMobileVersion = event.matches;
-        syncViewMode();
-      };
-
-      if(typeof mediaQuery.addEventListener === "function"){
-        mediaQuery.addEventListener("change", mediaHandler);
-      } else if(typeof mediaQuery.addListener === "function"){
-        mediaQuery.addListener(mediaHandler);
-      }
-    }
-
-    function init(){
-      ensureBaseState();
-
-      langButtons.forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.lang === currentLang);
-      });
-
-      document.body.classList.toggle("mobile-view", isMobileVersion);
-      applyTranslations();
-      renderAboutPhoto();
-      renderCategories();
-      setBodyLock();
-    }
-
-    init();
   </script>
 </body>
 </html>
