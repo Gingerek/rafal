@@ -1,256 +1,1731 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rafał Wilk • Fotografia, która oddaje duszę</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Rafał Wilk | Fotografie</title>
+  <meta name="description" content="Portfolio fotograficzne Rafała Wilka" />
+  <!-- Social preview (OG) -->
+  <meta property="og:title" content="Rafał Wilk | Fotografie" />
+  <meta property="og:description" content="Portfolio fotograficzne Rafała Wilka" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/DSCF4051.jpg" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap');
-    :root { --accent: #d4bfa8; }
-    body { font-family: 'Inter', system_ui, sans-serif; }
-    .logo-font { font-family: 'Playfair Display', serif; }
-
-    /* MOBILE VIEW – z Twojego oryginalnego kodu */
-    body.mobile-view { background: linear-gradient(180deg, #060606, #050505); }
-    .mobile-bottom-nav {
-      position: fixed; bottom: 12px; left: 12px; right: 12px; z-index: 50;
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
-      padding: 8px; border-radius: 22px; background: rgba(8,8,8,0.95);
-      backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.4);
+    :root{
+      --bg:#0a0a0a;
+      --surface:#121212;
+      --panel:#1c1c1c;
+      --border:rgba(212,166,111,.18);
+      --text:#f4f0e6;
+      --muted:rgba(212,182,138,.78);
+      --accent:#d4a66f;
+      --accent-glow:rgba(212,166,111,.45);
+      --deep:#0f0f0f;
+      --shadow:0 25px 60px -15px rgba(0,0,0,.65);
+      --container:1380px;
+      --transition:cubic-bezier(0.42,0,0.18,1);
+      --header-h:88px;
+      --fs-body:clamp(15.5px,0.65vw+13.5px,17px);
+      --lh-body:1.68;
+      --fs-h1:clamp(2.8rem,4.8vw,4.2rem);
+      --fs-h2:clamp(2.05rem,3.1vw,2.95rem);
+      --fs-h3:clamp(1.35rem,1.8vw+0.6rem,1.85rem);
+      --fs-lead:clamp(1.05rem,0.65vw+0.95rem,1.18rem);
+      --fs-small:clamp(0.9rem,0.4vw+0.82rem,0.98rem);
+      --text-max:68ch;
+      --lead-max:52ch;
     }
-
-    .hero-section { position: relative; height: 100vh; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background: url('images/DSCF4051.jpg') center/cover no-repeat; filter: brightness(0.82) contrast(1.1); z-index: 1; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.88) 70%); z-index: 2; }
-    .light-ray { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(120deg, transparent 30%, rgba(212,191,168,0.22) 50%, transparent 70%); animation: lightSweep 14s linear infinite; z-index: 3; pointer-events: none; }
-    @keyframes lightSweep { 0% { transform: translateX(-150%); } 100% { transform: translateX(150%); } }
-
-    .masonry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem; }
-    .masonry-item { position: relative; overflow: hidden; border-radius: 24px; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-    .masonry-item img { filter: brightness(0.82); transition: filter 0.3s; }
-    .masonry-item:hover img { filter: brightness(0.95); }
-    .masonry-item:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 35px 60px -15px rgb(212 191 168 / 0.4); }
-
-    /* Lightbox – naprawiony (całe zdjęcia) */
-    #lightbox { display: none; }
-    #lightbox.flex { display: flex; }
-    .lightbox-content { max-width: 94vw; max-height: 94vh; padding: 20px; display: flex; align-items: center; justify-content: center; }
-    #lightbox-img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 24px; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
+    
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+    
+    html{
+      scroll-behavior:smooth;
+      -webkit-text-size-adjust:100%;
+    }
+    
+    body{
+      font-family:Inter,system-ui,-apple-system,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:var(--lh-body);
+      font-size:var(--fs-body);
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    
+    body.locked{
+      overflow:hidden;
+      touch-action:none;
+    }
+    
+    .sr-only{
+      position:absolute !important;
+      width:1px !important;
+      height:1px !important;
+      padding:0 !important;
+      margin:-1px !important;
+      overflow:hidden !important;
+      clip:rect(0,0,0,0) !important;
+      white-space:nowrap !important;
+      border:0 !important;
+    }
+    
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+    
+    img{
+      display:block;
+      max-width:100%;
+      -webkit-user-drag:none;
+    }
+    
+    button{
+      font:inherit;
+      color:inherit;
+      background:none;
+      border:none;
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
+    
+    .container{
+      width:min(var(--container),calc(100% - 48px));
+      margin:0 auto;
+    }
+    
+    /* HEADER – ultra-premium minimal */
+    .site-header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:50;
+      background:rgba(10,10,10,.92);
+      backdrop-filter:blur(24px);
+      -webkit-backdrop-filter:blur(24px);
+      border-bottom:1px solid rgba(212,166,111,.12);
+      padding-top:env(safe-area-inset-top,0);
+      transition:background .4s var(--transition);
+    }
+    
+    .top-switch{
+      padding:12px 0 6px;
+      display:flex;
+      justify-content:center;
+    }
+    
+    .view-switch{
+      min-height:42px;
+      padding:0 28px;
+      border-radius:9999px;
+      background:linear-gradient(90deg,rgba(212,166,111,.16),rgba(255,255,255,.04));
+      border:1px solid var(--border);
+      color:var(--text);
+      font-size:.86rem;
+      font-weight:500;
+      letter-spacing:.04em;
+      box-shadow:var(--shadow);
+      transition:transform .3s var(--transition),background .3s var(--transition),box-shadow .3s var(--transition);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    
+    .view-switch:hover{
+      transform:translateY(-2px) scale(1.02);
+      box-shadow:0 30px 60px -12px var(--accent-glow);
+    }
+    
+    .header-row{
+      min-height:68px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:8px 0;
+    }
+    
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:600;
+      font-size:1.05rem;
+      letter-spacing:.06em;
+      color:var(--text);
+    }
+    
+    .brand-dot{
+      width:11px;
+      height:11px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 22px 6px var(--accent-glow);
+      animation:pulse-glow 4s infinite ease-in-out;
+      flex-shrink:0;
+    }
+    
+    @keyframes pulse-glow{
+      0%,100%{box-shadow:0 0 22px 6px var(--accent-glow);}
+      50%{box-shadow:0 0 32px 12px var(--accent-glow);}
+    }
+    
+    .nav-wrap{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+    
+    .nav{
+      display:flex;
+      gap:8px;
+    }
+    
+    .nav a,
+    .lang button{
+      padding:10px 22px;
+      border-radius:9999px;
+      font-size:.9rem;
+      font-weight:500;
+      letter-spacing:.02em;
+      color:var(--muted);
+      transition:background .3s var(--transition),color .3s var(--transition),transform .3s var(--transition);
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .nav a::after,
+    .lang button::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,transparent,rgba(212,166,111,.2),transparent);
+      transform:translateX(-120%);
+      transition:transform .6s var(--transition);
+    }
+    
+    .nav a:hover::after,
+    .lang button:hover::after{
+      transform:translateX(240%);
+    }
+    
+    .nav a:hover,
+    .lang button:hover,
+    .lang button.active{
+      color:var(--text);
+      background:rgba(212,166,111,.12);
+      box-shadow:0 0 0 1px var(--border);
+    }
+    
+    .lang{
+      display:flex;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(212,166,111,.2);
+      border-radius:9999px;
+      padding:4px;
+      box-shadow:var(--shadow);
+    }
+    
+    /* HERO – cinematic luxury */
+    .hero{
+      min-height:100dvh;
+      display:flex;
+      align-items:flex-end;
+      padding:calc(var(--header-h)+64px) 0 120px;
+      position:relative;
+      background:
+        linear-gradient(180deg,rgba(10,10,10,.65) 0%,rgba(10,10,10,.35) 42%,rgba(10,10,10,.75) 100%),
+        linear-gradient(90deg,rgba(10,10,10,.75) 0%,rgba(10,10,10,.25) 100%),
+        url("images/DSCF4051.jpg") center 26% / cover no-repeat;
+      isolation:isolate;
+    }
+    
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 50% 30%,rgba(212,166,111,.08),transparent 70%);
+      pointer-events:none;
+      animation:hero-breath 25s infinite linear;
+    }
+    
+    @keyframes hero-breath{
+      0%{opacity:.7;}
+      50%{opacity:1;}
+      100%{opacity:.7;}
+    }
+    
+    .hero-copy{
+      position:relative;
+      z-index:2;
+      max-width:760px;
+    }
+    
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 20px;
+      border-radius:9999px;
+      border:1px solid rgba(212,166,111,.3);
+      background:rgba(10,10,10,.4);
+      color:var(--muted);
+      font-size:.74rem;
+      font-weight:500;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      margin-bottom:24px;
+      box-shadow:0 0 30px -10px var(--accent);
+    }
+    
+    h1{
+      font-size:var(--fs-h1);
+      line-height:1.02;
+      letter-spacing:-.06em;
+      font-weight:600;
+      max-width:18ch;
+      margin-bottom:18px;
+    }
+    
+    .hero p{
+      font-size:var(--fs-lead);
+      max-width:var(--lead-max);
+      color:var(--muted);
+      margin-bottom:32px;
+    }
+    
+    .actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    
+    .btn{
+      min-height:54px;
+      padding:0 32px;
+      border-radius:9999px;
+      font-size:.95rem;
+      font-weight:500;
+      letter-spacing:.03em;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(90deg,rgba(212,166,111,.22),rgba(255,255,255,.06));
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      transition:transform .4s var(--transition),background .4s var(--transition),border-color .4s var(--transition),box-shadow .4s var(--transition);
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
+      transform:translateX(-150%);
+      transition:transform .7s var(--transition);
+    }
+    
+    .btn:hover::before{
+      transform:translateX(300%);
+    }
+    
+    .btn:hover{
+      transform:translateY(-3px) scale(1.03);
+      box-shadow:0 30px 70px -15px var(--accent-glow);
+      border-color:rgba(212,166,111,.5);
+    }
+    
+    .btn.primary{
+      background:linear-gradient(90deg,#d4a66f,#e8c99f);
+      color:#111;
+      font-weight:600;
+      box-shadow:0 0 40px 8px rgba(212,166,111,.35);
+    }
+    
+    /* SECTIONS */
+    section{
+      padding:110px 0;
+      scroll-margin-top:calc(var(--header-h)+40px);
+    }
+    
+    .head{
+      max-width:820px;
+      margin-bottom:52px;
+    }
+    
+    .head span{
+      display:block;
+      color:var(--accent);
+      font-size:.73rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+      font-weight:500;
+    }
+    
+    .head h2{
+      font-size:var(--fs-h2);
+      line-height:1.08;
+      letter-spacing:-.04em;
+      font-weight:600;
+      max-width:26ch;
+    }
+    
+    .head p{
+      color:var(--muted);
+      font-size:var(--fs-lead);
+      max-width:var(--text-max);
+      margin-top:16px;
+    }
+    
+    /* ABOUT – refined split */
+    .about{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:48px;
+      align-items:center;
+    }
+    
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:32px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:transform .5s var(--transition),box-shadow .5s var(--transition);
+    }
+    
+    .card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 40px 80px -20px var(--accent-glow);
+    }
+    
+    .about-photo{
+      position:relative;
+      min-height:620px;
+      border-radius:32px;
+    }
+    
+    .about-photo img,
+    .about-photo .image-fallback{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:32px;
+      filter:brightness(.85) contrast(1.05);
+      transition:filter .6s var(--transition);
+    }
+    
+    .about-photo:hover img{
+      filter:brightness(.95) contrast(1.1);
+    }
+    
+    .copy{
+      padding:48px 42px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-height:620px;
+      background:linear-gradient(180deg,rgba(28,28,28,.9),var(--panel));
+    }
+    
+    .copy-content{
+      display:grid;
+      gap:22px;
+    }
+    
+    .copy h3{
+      font-size:var(--fs-h3);
+      line-height:1.2;
+      letter-spacing:-.03em;
+      font-weight:600;
+    }
+    
+    .copy p{
+      color:var(--muted);
+      font-size:var(--fs-small);
+      line-height:1.72;
+    }
+    
+    /* PORTFOLIO CATEGORIES – bold modern grid */
+    .categories{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+      gap:28px;
+    }
+    
+    .cat{
+      border-radius:28px;
+      overflow:hidden;
+      background:var(--panel);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      transition:all .5s var(--transition);
+      position:relative;
+    }
+    
+    .cat:hover{
+      transform:scale(1.04);
+      box-shadow:0 40px 90px -20px var(--accent-glow);
+      border-color:rgba(212,166,111,.4);
+    }
+    
+    .thumb{
+      aspect-ratio:16/13;
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .thumb img,
+    .thumb .image-fallback{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .8s cubic-bezier(0.34,0.1,0.2,1);
+    }
+    
+    .cat:hover .thumb img{
+      transform:scale(1.08);
+    }
+    
+    .cat-pill{
+      position:absolute;
+      top:24px;
+      left:24px;
+      background:rgba(10,10,10,.75);
+      color:var(--text);
+      padding:6px 18px;
+      border-radius:9999px;
+      font-size:.85rem;
+      font-weight:500;
+      letter-spacing:.04em;
+      box-shadow:0 10px 20px rgba(0,0,0,.4);
+      backdrop-filter:blur(8px);
+    }
+    
+    .mobile-cat-label{
+      padding:20px 24px 24px;
+      font-size:var(--fs-small);
+      font-weight:500;
+      line-height:1.4;
+      text-align:center;
+      color:var(--text);
+    }
+    
+    /* MODAL & LIGHTBOX – cinematic */
+    .modal,
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(10,10,10,.94);
+      backdrop-filter:blur(20px);
+      padding:env(safe-area-inset-top,20px) 20px env(safe-area-inset-bottom,20px);
+    }
+    
+    .modal.open,
+    .lightbox.open{
+      display:flex;
+      animation:modalFade .4s var(--transition);
+    }
+    
+    @keyframes modalFade{
+      from{opacity:0;}
+      to{opacity:1;}
+    }
+    
+    .modal-shell{
+      width:min(1360px,100%);
+      max-height:calc(100dvh - 40px);
+      background:var(--deep);
+      border:1px solid var(--border);
+      border-radius:36px;
+      overflow:hidden;
+      box-shadow:0 40px 120px -20px rgba(212,166,111,.3);
+      animation:modalPop .5s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    
+    @keyframes modalPop{
+      0%{transform:scale(0.92) translateY(40px);opacity:0;}
+      100%{transform:scale(1) translateY(0);opacity:1;}
+    }
+    
+    .modal-top{
+      padding:32px 40px 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      border-bottom:1px solid rgba(212,166,111,.15);
+    }
+    
+    .modal-kicker{
+      color:var(--accent);
+      font-size:.72rem;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      font-weight:500;
+    }
+    
+    .modal h3{
+      font-size:clamp(1.65rem,2.4vw,2.4rem);
+      line-height:1.1;
+      letter-spacing:-.04em;
+      font-weight:600;
+    }
+    
+    .modal-meta{
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:4px;
+    }
+    
+    .close-btn{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      background:rgba(212,166,111,.1);
+      border:1px solid var(--border);
+      font-size:28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:transform .3s var(--transition),background .3s var(--transition);
+    }
+    
+    .close-btn:hover{
+      transform:rotate(90deg) scale(1.1);
+      background:var(--accent);
+      color:#111;
+    }
+    
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:18px;
+      padding:32px 40px 48px;
+    }
+    
+    .gallery-item{
+      border-radius:24px;
+      overflow:hidden;
+      aspect-ratio:1/1;
+      box-shadow:var(--shadow);
+      transition:all .4s var(--transition);
+      position:relative;
+    }
+    
+    .gallery-item:hover{
+      transform:scale(1.04);
+      box-shadow:0 30px 60px -15px var(--accent-glow);
+    }
+    
+    .gallery-item img,
+    .gallery-item .lazy-shell{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .6s var(--transition);
+    }
+    
+    .gallery-item:hover img{
+      transform:scale(1.06);
+    }
+    
+    .lightbox-inner{
+      position:relative;
+      max-width:96vw;
+      max-height:92dvh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      animation:lightboxPop .4s var(--transition);
+    }
+    
+    @keyframes lightboxPop{
+      0%{transform:scale(0.9);opacity:0;}
+      100%{transform:scale(1);opacity:1;}
+    }
+    
+    .lightbox img{
+      max-width:100%;
+      max-height:88dvh;
+      border-radius:24px;
+      box-shadow:0 40px 120px -20px rgba(0,0,0,.8);
+      background:#111;
+    }
+    
+    .lightbox .close-btn{
+      position:absolute;
+      top:-22px;
+      right:-22px;
+      z-index:10;
+    }
+    
+    /* CONTACT */
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:24px;
+    }
+    
+    .contact-card{
+      padding:36px 32px;
+      border-radius:28px;
+      background:var(--panel);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      transition:all .4s var(--transition);
+    }
+    
+    .contact-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 30px 70px -15px var(--accent-glow);
+    }
+    
+    .contact-card strong{
+      display:block;
+      font-size:1.05rem;
+      margin-bottom:8px;
+    }
+    
+    .contact-card span{
+      display:block;
+      color:var(--muted);
+      font-size:.95rem;
+      margin-bottom:22px;
+      word-break:break-word;
+    }
+    
+    /* FOOTER */
+    .footer{
+      padding:64px 0 44px;
+      color:rgba(244,240,230,.5);
+      font-size:.9rem;
+      border-top:1px solid rgba(212,166,111,.12);
+    }
+    
+    .footer .container{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    
+    /* MOBILE VIEW OVERRIDES */
+    body.mobile-view{
+      --header-h:76px;
+    }
+    
+    body.mobile-view .site-header{
+      background:rgba(10,10,10,.96);
+    }
+    
+    body.mobile-view .hero{
+      min-height:auto;
+      padding:calc(var(--header-h)+32px) 0 80px;
+      background-position:62% 24%;
+    }
+    
+    body.mobile-view .about,
+    body.mobile-view .categories,
+    body.mobile-view .gallery-grid,
+    body.mobile-view .contact-grid{
+      grid-template-columns:1fr;
+    }
+    
+    body.mobile-view .about-photo,
+    body.mobile-view .copy{
+      min-height:auto;
+    }
+    
+    body.mobile-view .categories{
+      gap:18px;
+    }
+    
+    body.mobile-view .cat{
+      border-radius:22px;
+    }
+    
+    body.mobile-view .mobile-cat-label{
+      display:block;
+      padding:18px 22px;
+    }
+    
+    body.mobile-view .modal-shell{
+      border-radius:0;
+      max-height:100dvh;
+      height:100dvh;
+    }
+    
+    body.mobile-view .mobile-bottom-nav{
+      position:fixed;
+      bottom:calc(12px + env(safe-area-inset-bottom,12px));
+      left:16px;
+      right:16px;
+      background:rgba(18,18,18,.96);
+      backdrop-filter:blur(24px);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:8px;
+      box-shadow:0 20px 50px -10px rgba(0,0,0,.6);
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+      z-index:100;
+    }
+    
+    body.mobile-view .mobile-bottom-nav a{
+      padding:14px 0;
+      text-align:center;
+      border-radius:18px;
+      font-size:.82rem;
+      font-weight:500;
+      transition:background .3s var(--transition);
+    }
+    
+    body.mobile-view .mobile-bottom-nav a:hover{
+      background:rgba(212,166,111,.15);
+    }
+    
+    /* SCROLL REVEAL */
+    .reveal{
+      opacity:0;
+      transform:translateY(40px);
+      transition:all 1s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+    
+    /* REDUCED MOTION */
+    @media (prefers-reduced-motion:reduce){
+      *{transition-duration:0ms !important;animation-duration:0ms !important;}
+      .reveal{transition:none;}
+    }
+    
+    @media (max-width:820px){
+      :root{--header-h:76px;}
+      section{padding:80px 0;}
+    }
   </style>
 </head>
-<body class="bg-[#0a0a0a] text-[#f5f5f5]" id="body">
-
-  <!-- PRZYCISK MOBILNY NA GÓRZE -->
-  <div class="top-switch bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-[#d4bfa8]/10 py-3 text-center">
-    <a id="viewToggle" href="?view=mobile" class="inline-flex items-center justify-center px-6 py-2 rounded-3xl border border-[#d4bfa8]/30 text-sm font-medium hover:bg-[#d4bfa8] hover:text-[#0a0a0a]">Przejdź do wersji mobilnej</a>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="top-switch">
+        <a class="view-switch" id="viewToggle" href="?view=mobile">Przejdź do wersji mobilnej</a>
+      </div>
+      <div class="header-row">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <span>Rafał Wilk</span>
+        </div>
+        <div class="nav-wrap">
+          <nav class="nav">
+            <a href="#about" data-i18n="navAbout">Over mij</a>
+            <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+            <a href="#contact" data-i18n="navContact">Contact</a>
+          </nav>
+          <div class="lang">
+            <button class="active" data-lang="nl" type="button">NL</button>
+            <button data-lang="en" type="button">EN</button>
+            <button data-lang="pl" type="button">PL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div id="pageRoot">
+    <main>
+      <section class="hero" id="top">
+        <div class="container">
+          <div class="hero-copy">
+            <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
+            <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer, licht en karakter</h1>
+            <p data-i18n="heroText">Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.</p>
+            <div class="actions">
+              <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
+              <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section id="about">
+        <div class="container">
+          <div class="head reveal">
+            <span data-i18n="aboutEyebrow">Over mij</span>
+            <h2 data-i18n="aboutTitle">Een persoonlijke blik vertaald naar verzorgde en doordachte beelden</h2>
+            <p data-i18n="aboutLead">Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.</p>
+          </div>
+          <div class="about">
+            <div class="card about-photo reveal" id="aboutPhotoWrap"></div>
+            <div class="card copy reveal">
+              <div class="copy-content">
+                <h3 data-i18n="aboutBoxTitle">Fotografie is voor mij meer dan alleen foto's maken</h3>
+                <p data-i18n="aboutP1">Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.</p>
+                <p data-i18n="aboutP2">In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section id="portfolio">
+        <div class="container">
+          <div class="head reveal">
+            <span data-i18n="portfolioEyebrow">Portfolio</span>
+            <h2 data-i18n="portfolioTitle">Selecties uit mijn fotografisch werk</h2>
+            <p data-i18n="portfolioLead">Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.</p>
+          </div>
+          <div class="categories" id="categoriesGrid"></div>
+        </div>
+      </section>
+      
+      <section id="contact">
+        <div class="container">
+          <div class="head reveal">
+            <span data-i18n="contactEyebrow">Contact</span>
+            <h2 data-i18n="contactTitle">Neem rechtstreeks contact met mij op</h2>
+            <p data-i18n="contactLead">Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.</p>
+          </div>
+          <div class="contact-grid">
+            <div class="card contact-card reveal">
+              <strong>Instagram</strong>
+              <span>@fotodisogno</span>
+              <a class="btn" href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
+            </div>
+            <div class="card contact-card reveal">
+              <strong>E-mail</strong>
+              <span>fotodisogno@gmail.com</span>
+              <a class="btn" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Open</a>
+            </div>
+            <div class="card contact-card reveal">
+              <strong>WhatsApp</strong>
+              <span>31 0644747733</span>
+              <a class="btn" href="https://wa.me/310644747733" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <footer class="footer">
+      <div class="container">
+        <div>© Rafał Wilk</div>
+        <div data-i18n="legalNotice">Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming.</div>
+      </div>
+    </footer>
+    
+    <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+      <a href="#top" data-i18n="navHome">Start</a>
+      <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </nav>
   </div>
-
-  <!-- NAVBAR -->
-  <nav class="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-[#d4bfa8]/10">
-    <div class="max-w-screen-2xl mx-auto px-8 py-6 flex justify-between items-center">
-      <a href="#" class="logo-font text-4xl tracking-tighter">Rafał Wilk</a>
-      <div class="hidden md:flex gap-x-10 text-sm font-medium">
-        <a href="#o-mnie" data-i18n="navAbout">O mnie</a>
-        <a href="#praca" data-i18n="navPortfolio">Praca</a>
-        <a href="#kontakt" data-i18n="navContact">Kontakt</a>
-      </div>
-      <div class="flex items-center gap-x-6">
-        <div class="flex border border-[#d4bfa8]/30 rounded-3xl px-1 py-1 text-xs font-medium">
-          <button onclick="switchLang('pl')" class="lang-btn active px-5 py-2 rounded-3xl">PL</button>
-          <button onclick="switchLang('en')" class="lang-btn px-5 py-2 rounded-3xl">EN</button>
-          <button onclick="switchLang('nl')" class="lang-btn px-5 py-2 rounded-3xl">NL</button>
+  
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-shell" id="modalShell" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <div class="modal-top">
+        <div>
+          <div class="modal-kicker" data-i18n="modalKicker">Portfolio</div>
+          <h3 id="modalTitle">Portret</h3>
+          <div class="modal-meta" id="modalMeta"></div>
         </div>
-        <a href="https://instagram.com/fotodisogno" target="_blank" class="text-2xl hover:text-[#d4bfa8]"><i class="fa-brands fa-instagram"></i></a>
+        <button class="close-btn" id="closeModal" type="button" aria-label="Close">×</button>
       </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero-section" id="top">
-    <div class="hero-bg"></div>
-    <div class="light-ray"></div>
-    <div class="hero-overlay"></div>
-    <div class="max-w-screen-2xl mx-auto px-8 h-full flex items-center relative z-10">
-      <div class="text-center w-full">
-        <h1 id="hero-title" class="logo-font text-7xl md:text-8xl lg:text-[92px] leading-none tracking-[-3px] mb-6" data-i18n="heroTitle">RAFAŁ WILK</h1>
-        <p id="hero-tagline" class="text-3xl md:text-4xl text-[#d4bfa8] mb-12 max-w-2xl mx-auto" data-i18n="heroTagline">Fotografia, która oddaje duszę</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#praca" class="inline-flex items-center justify-center px-12 py-6 bg-[#d4bfa8] text-[#0a0a0a] font-medium rounded-3xl hover:bg-white text-xl transition-all" data-i18n="heroBtn1">Obejrzyj moje prace</a>
-          <a href="#kontakt" class="inline-flex items-center justify-center px-12 py-6 border-2 border-[#d4bfa8] hover:bg-[#d4bfa8] hover:text-[#0a0a0a] rounded-3xl text-xl font-medium transition-all" data-i18n="heroBtn2">Rozpocznij współpracę</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- O MNIE -->
-  <section id="o-mnie" class="max-w-screen-2xl mx-auto px-8 py-28">
-    <div class="grid md:grid-cols-12 gap-16 items-center">
-      <div class="md:col-span-5">
-        <img src="images/A7406441.jpg" alt="Rafał Wilk" class="rounded-3xl shadow-2xl w-full" loading="lazy">
-      </div>
-      <div class="md:col-span-7">
-        <span class="uppercase text-[#d4bfa8] text-sm tracking-widest" data-i18n="aboutEyebrow">Moja historia</span>
-        <h2 id="o-mnie-title" class="logo-font text-5xl leading-tight mt-4 mb-8" data-i18n="aboutTitle">Nie fotografuję świata.<br>Fotografuję to, co w nim najcichsze i najprawdziwsze.</h2>
-        <div id="o-mnie-text" class="text-lg text-[#e0d9cf] leading-relaxed space-y-6">
-          <p data-i18n="aboutP1">Fotografia towarzyszy mi od dłuższego czasu i z każdą kolejną chwilą utwierdza mnie w tym, że jest to coś naprawdę bliskiego mnie.</p>
-          <p data-i18n="aboutP2">Pracowałem z Sony, Fuji i Nikonem, ale najważniejsza lekcja brzmi: sprzęt to tylko narzędzie. Liczy się światło, atmosfera i ten jeden niepowtarzalny moment.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRACA -->
-  <section id="praca" class="bg-[#111] py-24">
-    <div class="max-w-screen-2xl mx-auto px-8">
-      <div class="flex justify-between items-baseline mb-12">
-        <h2 id="praca-title" class="logo-font text-5xl" data-i18n="portfolioTitle">Praca</h2>
-        <div class="flex flex-wrap gap-3" id="filters">
-          <button onclick="filterCategory('all')" class="filter-btn active px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]" data-i18n="filterAll">Wszystkie</button>
-          <button onclick="filterCategory('portrait')" class="filter-btn px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]" data-i18n="filterPortrait">Portret</button>
-          <button onclick="filterCategory('street')" class="filter-btn px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]" data-i18n="filterStreet">Ulica</button>
-          <button onclick="filterCategory('animals')" class="filter-btn px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]" data-i18n="filterAnimals">Zwierzęta</button>
-          <button onclick="filterCategory('macro')" class="filter-btn px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]" data-i18n="filterMacro">Makro</button>
-          <button onclick="filterCategory('travel')" class="filter-btn px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]" data-i18n="filterTravel">Podróże</button>
-          <button onclick="filterCategory('creative')" class="filter-btn px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]" data-i18n="filterCreative">Kreatywne</button>
-        </div>
-      </div>
-      <div class="masonry-grid" id="portfolio-grid"></div>
-    </div>
-  </section>
-
-  <!-- KONTAKT -->
-  <section id="kontakt" class="max-w-screen-2xl mx-auto px-8 py-28">
-    <div class="grid md:grid-cols-2 gap-16">
-      <div>
-        <h2 id="kontakt-title" class="logo-font text-5xl" data-i18n="contactTitle">Porozmawiajmy o świetle</h2>
-        <p id="kontakt-text" class="text-[#e0d9cf] mt-8 text-lg" data-i18n="contactLead">Nie jestem tylko fotografem. Jestem kimś, kto potrafi zamienić chwilę w wieczność. Napisz – opowiem Ci, jak mogę opowiedzieć Twoją historię.</p>
-        <div class="mt-16 space-y-8">
-          <a href="https://instagram.com/fotodisogno" target="_blank" class="flex items-center gap-6 group"><i class="fa-brands fa-instagram text-5xl group-hover:text-[#d4bfa8]"></i><div>@fotodisogno</div></a>
-          <a href="mailto:fotodisogno@gmail.com" class="flex items-center gap-6 group"><i class="fa-solid fa-envelope text-5xl group-hover:text-[#d4bfa8]"></i><div>fotodisogno@gmail.com</div></a>
-          <a href="https://wa.me/31644747733" target="_blank" class="flex items-center gap-6 group"><i class="fa-brands fa-whatsapp text-5xl group-hover:text-[#d4bfa8]"></i><div>+31 644 747 733</div></a>
-        </div>
-      </div>
-      <form id="contactForm" class="space-y-8 bg-white/5 border border-white/10 rounded-3xl p-10">
-        <input type="text" placeholder="Twoje imię" class="w-full bg-transparent border-b border-[#d4bfa8]/30 py-4 focus:outline-none">
-        <input type="email" placeholder="E-mail" class="w-full bg-transparent border-b border-[#d4bfa8]/30 py-4 focus:outline-none">
-        <textarea rows="6" placeholder="Twoja historia..." class="w-full bg-transparent border-b border-[#d4bfa8]/30 py-4 focus:outline-none"></textarea>
-        <button type="submit" class="w-full py-6 bg-[#d4bfa8] text-[#0a0a0a] rounded-3xl text-lg font-medium hover:scale-105 transition-transform" data-i18n="sendBtn">WYŚLIJ WIADOMOŚĆ</button>
-      </form>
-    </div>
-  </section>
-
-  <footer class="bg-black py-12 text-center text-[#a38f6f] text-sm" data-i18n="footer">© Rafał Wilk 2026 • Wszystkie prawa zastrzeżone</footer>
-
-  <!-- MOBILE BOTTOM NAV -->
-  <nav class="mobile-bottom-nav" id="mobileNav">
-    <a href="#top" class="text-center text-sm">Start</a>
-    <a href="#praca" class="text-center text-sm">Praca</a>
-    <a href="#kontakt" class="text-center text-sm">Kontakt</a>
-  </nav>
-
-  <!-- LIGHTBOX -->
-  <div id="lightbox" onclick="if(event.target.id==='lightbox')hideLightbox()" class="hidden fixed inset-0 bg-black/95 z-[9999] items-center justify-center p-6">
-    <div class="lightbox-content">
-      <button onclick="hideLightbox()" class="absolute -top-6 -right-6 text-5xl text-white hover:text-[#d4bfa8] transition-colors z-10">✕</button>
-      <img id="lightbox-img" src="" alt="">
+      <div class="gallery-grid" id="galleryGrid"></div>
     </div>
   </div>
-
+  
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-inner" id="lightboxInner" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" tabindex="-1">
+      <h2 id="lightboxTitle" class="sr-only">Image preview</h2>
+      <button class="close-btn" id="closeLightbox" type="button" aria-label="Close">×</button>
+      <img id="lightboxImage" src="" alt="" />
+    </div>
+  </div>
+  
   <script>
-    // === WSZYSTKIE TWOJE ZDJĘCIA (zachowane 1:1 z oryginału) ===
-    const galleryData = {
-      portrait: [{src:"DSC04191-2.avif",alt:"Asia z jablkiem"},{src:"A7407652.jpg",alt:"Portrait with white cap"},{src:"A7407653.jpg",alt:"Portrait of cameraman"},{src:"A7407666.jpg",alt:"Portrait in historical costume"},{src:"A7407707.jpg",alt:"Black and white portrait"},{src:"DSC03914.avif",alt:"Portrait of musician"},{src:"DSC04580.avif",alt:"Portrait of drummer"},{src:"DSC05313-Enhanced-NR.avif",alt:"Portrait of man in orange vest"},{src:"DSC05317.avif",alt:"Black and white singer"},{src:"DSCF4051-2.jpg",alt:"Portrait with cat"},{src:"DSC_5379.avif",alt:"Black and white smiling man"}],
-      street: [{src:"DSC_0372.jpg",alt:"Black and white waterside"},{src:"A7408846.avif",alt:"Basketball hoop at sunset"},{src:"DSC_3422.jpg",alt:"Italian street"},{src:"A7407052.jpg",alt:"Cyclist in fog"},{src:"A7407373.jpg",alt:"Snowy bicycle"},{src:"A7407402.jpg",alt:"Winter walkway"}],
-      animals: [{src:"DSCF3455.jpg",alt:"Robin bird"},{src:"A7406653.avif",alt:"Seagull"},{src:"DSCF4010.jpg",alt:"Bird on perch"},{src:"A7407839.jpg",alt:"Cat close portrait"},{src:"DSC_0250.jpg",alt:"White and brown cat"},{src:"A7407059.jpg",alt:"Cat walking in snow"}],
-      macro: [{src:"A7400567.png",alt:"Wildflowers"},{src:"A7403102.avif",alt:"Daisy close-up"},{src:"A7407521.png",alt:"Red berries"},{src:"DSC_0032.jpg",alt:"Red berries detail"},{src:"DSC_0052.jpg",alt:"Small yellow flowers"},{src:"DSC_0057.jpg",alt:"Small flower cluster"},{src:"DSC_0352.jpg",alt:"White flower macro"},{src:"DSC_0492.jpg",alt:"Purple flower detail"}],
-      travel: [{src:"DSC02526.avif",alt:"Bird with red eye"},{src:"A7406725.jpg",alt:"Ancient Greek ruins"},{src:"A7406608.jpg",alt:"Blue boat"},{src:"A7406616.avif",alt:"Coastal landscape"},{src:"A7407232.jpg",alt:"Snowy forest"},{src:"A7407252-2.jpg",alt:"Winter tree landscape"},{src:"A7406473.avif",alt:"Aperol by the lake"},{src:"A7407409.jpg",alt:"Observation tower"},{src:"DSC04416.png",alt:"Sea view"},{src:"DSC_0029-2.png",alt:"Windmill"},{src:"DSC_2985.avif",alt:"Coastal terrace"}],
-      creative: [{src:"DSC_5304.jpg",alt:"Book with dramatic light"},{src:"DSC_4824.avif",alt:"Grass silhouette"},{src:"A7406311-2.avif",alt:"Decorative lantern"},{src:"A7406318-2.avif",alt:"Santa hat"},{src:"A7406347.avif",alt:"Abstract city lights"},{src:"A7407223.jpg",alt:"Moon behind branches"},{src:"A7407366.jpg",alt:"Candles"},{src:"A7407810.jpg",alt:"Full moon"},{src:"DSC_0007-2.jpg",alt:"Orange light spiral"},{src:"A7409171.avif",alt:"Sun behind branches"}]
-    };
-
-    // === TŁUMACZENIA (pełne z Twojego oryginalnego kodu) ===
     const translations = {
       pl: {
-        navAbout: "O mnie", navPortfolio: "Praca", navContact: "Kontakt",
-        heroTitle: "RAFAŁ WILK", heroTagline: "Fotografia, która oddaje duszę",
-        heroBtn1: "Obejrzyj moje prace", heroBtn2: "Rozpocznij współpracę",
-        aboutEyebrow: "Moja historia", aboutTitle: "Nie fotografuję świata.<br>Fotografuję to, co w nim najcichsze i najprawdziwsze.",
+        navHome: "Start",
+        navAbout: "O mnie",
+        navPortfolio: "Portfolio",
+        navContact: "Kontakt",
+        heroEyebrow: "Portfolio fotograficzne",
+        heroTitle: "Fotografia oparta na świetle, atmosferze i wyrazistym obrazie",
+        heroText: "Witaj na mojej stronie, gdzie pokazuję fotografie budowane kompozycją, detalem i spokojną siłą wizualną.",
+        heroBtn1: "Zobacz portfolio",
+        heroBtn2: "Skontaktuj się",
+        aboutEyebrow: "O mnie",
+        aboutTitle: "Osobliwe spojrzenie przełożone na dopracowane i świadome kadry",
+        aboutLead: "Wierzę w fotografię, która nie tylko dobrze wygląda, ale również niesie jakość, spokój i własny charakter.",
+        aboutBoxTitle: "Fotografia to dla mnie coś więcej niż samo robienie zdjęć",
         aboutP1: "Fotografia towarzyszy mi od dłuższego czasu i z każdą kolejną chwilą utwierdza mnie w tym, że jest to coś naprawdę bliskiego mnie.",
-        aboutP2: "Pracowałem z Sony, Fuji i Nikonem, ale najważniejsza lekcja brzmi: sprzęt to tylko narzędzie. Liczy się światło, atmosfera i ten jeden niepowtarzalny moment.",
-        portfolioTitle: "Praca",
-        filterAll: "Wszystkie", filterPortrait: "Portret", filterStreet: "Ulica", filterAnimals: "Zwierzęta",
-        filterMacro: "Makro", filterTravel: "Podróże", filterCreative: "Kreatywne",
-        contactTitle: "Porozmawiajmy o świetle",
-        contactLead: "Nie jestem tylko fotografem. Jestem kimś, kto potrafi zamienić chwilę w wieczność. Napisz – opowiem Ci, jak mogę opowiedzieć Twoją historię.",
-        sendBtn: "WYŚLIJ WIADOMOŚĆ",
-        footer: "© Rafał Wilk 2026 • Wszystkie prawa zastrzeżone"
+        aboutP2: "Przez ten czas pracowałem z różnymi systemami, między innymi Sony, Fuji i Nikon. Dzięki temu nauczyłem się, że choć sprzęt daje różne możliwości, to najważniejsze jest po prostu robić zdjęcia, rozwijać swoje spojrzenie i czerpać z tego satysfakcję. W fotografii najbardziej liczą się dla mnie światło, klimat i chwila.",
+        portfolioEyebrow: "Portfolio",
+        portfolioTitle: "Wybrane obszary mojej fotografii",
+        portfolioLead: "Przejrzyj różne kategorie i zobacz mój sposób patrzenia na ludzi, miejsca, detale i światło.",
+        cat1: "Portret",
+        cat2: "Ulica",
+        cat3: "Zwierzęta",
+        cat4: "Makro",
+        cat5: "Podróże",
+        cat6: "Kreatywne",
+        contactEyebrow: "Kontakt",
+        contactTitle: "Skontaktuj się ze mną bezpośrednio",
+        contactLead: "W sprawie pytań, współpracy lub zainteresowania moją fotografią możesz łatwo odezwać się przez poniższe kanały.",
+        contactBtn: "Otwórz",
+        modalKicker: "Portfolio",
+        legalNotice: "Wszelkie prawa zastrzeżone. Wszystkie zdjęcia i treści na tej stronie są chronione prawem autorskim i nie mogą być kopiowane, pobierane ani wykorzystywane bez uprzedniej pisemnej zgody.",
+        galleryTitlePortrait: "Portret",
+        galleryTitleStreet: "Ulica",
+        galleryTitleAnimals: "Zwierzęta",
+        galleryTitleMacro: "Makro",
+        galleryTitleTravel: "Podróże",
+        galleryTitleCreative: "Kreatywne",
+        imageMissingNamed: "Nie znaleziono zdjęcia:",
+        viewToggleMobile: "Przejdź do wersji mobilnej",
+        viewToggleDesktop: "Przejdź do wersji desktopowej",
+        photoCount: "zdjęć",
+        lightboxTitle: "Podgląd zdjęcia"
       },
-      en: { /* pełne EN z Twojego kodu */ },
-      nl: { /* pełne NL z Twojego kodu */ }
+      en: {
+        navHome: "Home",
+        navAbout: "About",
+        navPortfolio: "Portfolio",
+        navContact: "Contact",
+        heroEyebrow: "Photography portfolio",
+        heroTitle: "Photography shaped by light, atmosphere and a refined visual language",
+        heroText: "Welcome to my portfolio, where I present images built on composition, detail and a calm visual strength.",
+        heroBtn1: "View portfolio",
+        heroBtn2: "Get in touch",
+        aboutEyebrow: "About",
+        aboutTitle: "A personal way of seeing translated into thoughtful and carefully crafted images",
+        aboutLead: "I believe in photography that not only looks strong, but also carries quality, calmness and a distinct character.",
+        aboutBoxTitle: "Photography for me is more than just taking pictures",
+        aboutP1: "Photography has been with me for a long time and, with every next step, it keeps confirming that it is something genuinely close to me.",
+        aboutP2: "Over time, I worked with different systems, including Sony, Fuji and Nikon. That taught me one simple thing: gear offers different possibilities, but the most important part is simply to keep taking photos, develop your own eye and enjoy the process. In photography, what matters most to me is light, atmosphere and the moment itself.",
+        portfolioEyebrow: "Portfolio",
+        portfolioTitle: "Selected areas of my photographic work",
+        portfolioLead: "Explore different categories and discover how I approach people, places, details and light.",
+        cat1: "Portrait",
+        cat2: "Street",
+        cat3: "Animals",
+        cat4: "Macro",
+        cat5: "Travel",
+        cat6: "Creative",
+        contactEyebrow: "Contact",
+        contactTitle: "Get in touch with me directly",
+        contactLead: "For questions, collaborations or interest in my photography, you can reach me easily through the channels below.",
+        contactBtn: "Open",
+        modalKicker: "Portfolio",
+        legalNotice: "All rights reserved. All photographs and content on this website are protected by copyright and may not be copied, downloaded or used without prior written permission.",
+        galleryTitlePortrait: "Portrait",
+        galleryTitleStreet: "Street",
+        galleryTitleAnimals: "Animals",
+        galleryTitleMacro: "Macro",
+        galleryTitleTravel: "Travel",
+        galleryTitleCreative: "Creative",
+        imageMissingNamed: "Image not found:",
+        viewToggleMobile: "Switch to mobile version",
+        viewToggleDesktop: "Switch to desktop version",
+        photoCount: "photos",
+        lightboxTitle: "Image preview"
+      },
+      nl: {
+        navHome: "Start",
+        navAbout: "Over mij",
+        navPortfolio: "Portfolio",
+        navContact: "Contact",
+        heroEyebrow: "Fotografieportfolio",
+        heroTitle: "Fotografie met aandacht voor sfeer, licht en karakter",
+        heroText: "Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.",
+        heroBtn1: "Bekijk portfolio",
+        heroBtn2: "Neem contact op",
+        aboutEyebrow: "Over mij",
+        aboutTitle: "Een persoonlijke blik vertaald naar verzorgde en doordachte beelden",
+        aboutLead: "Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.",
+        aboutBoxTitle: "Fotografie is voor mij meer dan alleen foto's maken",
+        aboutP1: "Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.",
+        aboutP2: "In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.",
+        portfolioEyebrow: "Portfolio",
+        portfolioTitle: "Selecties uit mijn fotografisch werk",
+        portfolioLead: "Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.",
+        cat1: "Portret",
+        cat2: "Straat",
+        cat3: "Dieren",
+        cat4: "Macro",
+        cat5: "Reizen",
+        cat6: "Creatief",
+        contactEyebrow: "Contact",
+        contactTitle: "Neem rechtstreeks contact met mij op",
+        contactLead: "Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.",
+        contactBtn: "Open",
+        modalKicker: "Portfolio",
+        legalNotice: "Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload or gebruikt zonder voorafgaande schriftelijke toestemming.",
+        galleryTitlePortrait: "Portret",
+        galleryTitleStreet: "Straat",
+        galleryTitleAnimals: "Dieren",
+        galleryTitleMacro: "Macro",
+        galleryTitleTravel: "Reizen",
+        galleryTitleCreative: "Creatief",
+        imageMissingNamed: "Foto niet gevonden:",
+        viewToggleMobile: "Ga naar mobiele versie",
+        viewToggleDesktop: "Ga naar desktopversie",
+        photoCount: "foto's",
+        lightboxTitle: "Foto bekijken"
+      }
     };
-
-    function renderPortfolio(items) {
-      const grid = document.getElementById("portfolio-grid");
-      grid.innerHTML = "";
-      items.forEach(item => {
-        const div = document.createElement("div");
-        div.className = "masonry-item glow-hover cursor-pointer";
-        div.innerHTML = `<img src="images/${item.src}" loading="lazy" class="w-full h-full object-cover rounded-3xl" alt="${item.alt}">`;
-        div.onclick = () => {
-          document.getElementById("lightbox-img").src = `images/${item.src}`;
-          document.getElementById("lightbox").classList.remove("hidden");
-          document.getElementById("lightbox").classList.add("flex");
-        };
-        grid.appendChild(div);
+    
+    const categoriesMeta = [
+      { key: "portrait", labelKey: "cat1", cover: "DSCF4051-2.jpg" },
+      { key: "street", labelKey: "cat2", cover: "A7407052.jpg" },
+      { key: "animals", labelKey: "cat3", cover: "DSCF3455.jpg" },
+      { key: "macro", labelKey: "cat4", cover: "A7400567.png" },
+      { key: "travel", labelKey: "cat5", cover: "DSC02526.avif" },
+      { key: "creative", labelKey: "cat6", cover: "DSC_5304.jpg" }
+    ];
+    
+    const galleryData = {
+      portrait: {
+        titleKey: "galleryTitlePortrait",
+        items: [
+          { src: "DSC04191-2.avif", alt: "Asia z jablkiem" },
+          { src: "A7407652.jpg", alt: "Portrait with white cap and gold face paint" },
+          { src: "A7407653.jpg", alt: "Portrait of cameraman in gold costume" },
+          { src: "A7407666.jpg", alt: "Portrait in historical costume" },
+          { src: "A7407707.jpg", alt: "Black and white portrait with camera costume" },
+          { src: "DSC03914.avif", alt: "Portrait of musician playing cello" },
+          { src: "DSC04580.avif", alt: "Portrait of drummer during performance" },
+          { src: "DSC05313-Enhanced-NR.avif", alt: "Portrait of man in orange vest" },
+          { src: "DSC05317.avif", alt: "Black and white portrait of singer with guitar" },
+          { src: "DSCF4051-2.jpg", alt: "Portrait with cat in dark background" },
+          { src: "DSC_5379.avif", alt: "Black and white portrait of smiling man" }
+        ]
+      },
+      street: {
+        titleKey: "galleryTitleStreet",
+        items: [
+          { src: "DSC_0372.jpg", alt: "Black and white waterside landscape" },
+          { src: "A7408846.avif", alt: "Basketball hoop at sunset" },
+          { src: "DSC_3422.jpg", alt: "Italian street view" },
+          { src: "A7407052.jpg", alt: "Cyclist in fog by the lake" },
+          { src: "A7407373.jpg", alt: "Snowy bicycle in the city" },
+          { src: "A7407402.jpg", alt: "Winter walkway with figure" }
+        ]
+      },
+      animals: {
+        titleKey: "galleryTitleAnimals",
+        items: [
+          { src: "DSCF3455.jpg", alt: "Robin bird portrait" },
+          { src: "A7406653.avif", alt: "Seagull by the water" },
+          { src: "DSCF4010.jpg", alt: "Bird on wooden perch" },
+          { src: "A7407839.jpg", alt: "Cat close portrait" },
+          { src: "DSC_0250.jpg", alt: "White and brown cat resting" },
+          { src: "A7407059.jpg", alt: "Cat walking in snow" }
+        ]
+      },
+      macro: {
+        titleKey: "galleryTitleMacro",
+        items: [
+          { src: "A7400567.png", alt: "Wildflowers in soft light" },
+          { src: "A7403102.avif", alt: "Daisy close-up" },
+          { src: "A7407521.png", alt: "Red berries close-up" },
+          { src: "DSC_0032.jpg", alt: "Red berries detail" },
+          { src: "DSC_0052.jpg", alt: "Small yellow flowers" },
+          { src: "DSC_0057.jpg", alt: "Small flower cluster" },
+          { src: "DSC_0352.jpg", alt: "White flower macro" },
+          { src: "DSC_0492.jpg", alt: "Purple flower detail" }
+        ]
+      },
+      travel: {
+        titleKey: "galleryTitleTravel",
+        items: [
+          { src: "DSC02526.avif", alt: "Bird with red eye on wooden perch" },
+          { src: "A7406725.jpg", alt: "Ancient Greek ruins" },
+          { src: "A7406608.jpg", alt: "Blue boat by the coast" },
+          { src: "A7406616.avif", alt: "Coastal landscape with sea and mountains" },
+          { src: "A7407232.jpg", alt: "Snowy forest with winter sunlight" },
+          { src: "A7407252-2.jpg", alt: "Black and white winter tree landscape" },
+          { src: "A7406473.avif", alt: "Aperol drinks by the lake" },
+          { src: "A7407409.jpg", alt: "Observation tower in winter" },
+          { src: "DSC04416.png", alt: "Sea view from table by the coast" },
+          { src: "DSC_0029-2.png", alt: "Windmill seen through branches" },
+          { src: "DSC_2985.avif", alt: "Coastal terrace and sea view" }
+        ]
+      },
+      creative: {
+        titleKey: "galleryTitleCreative",
+        items: [
+          { src: "DSC_5304.jpg", alt: "Book with dramatic light" },
+          { src: "DSC_4824.avif", alt: "Grass silhouette at sunset" },
+          { src: "A7406311-2.avif", alt: "Decorative lantern with warm lights" },
+          { src: "A7406318-2.avif", alt: "Santa hat in festive bokeh" },
+          { src: "A7406347.avif", alt: "Abstract warm city lights" },
+          { src: "A7407223.jpg", alt: "Moon behind branches and clouds" },
+          { src: "A7407366.jpg", alt: "Candles in dark interior" },
+          { src: "A7407810.jpg", alt: "Full moon against black sky" },
+          { src: "DSC_0007-2.jpg", alt: "Abstract orange light spiral" },
+          { src: "A7409171.avif", alt: "Sun behind branches and clouds" }
+        ]
+      }
+    };
+    
+    const aboutImage = "ChatGPT Image 28 mar 2026, 16_46_19";
+    const pageRoot = document.getElementById("pageRoot");
+    const nodes = document.querySelectorAll("[data-i18n]");
+    const langButtons = document.querySelectorAll(".lang button");
+    const categoriesGrid = document.getElementById("categoriesGrid");
+    const aboutPhotoWrap = document.getElementById("aboutPhotoWrap");
+    const modal = document.getElementById("modal");
+    const modalShell = document.getElementById("modalShell");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMeta = document.getElementById("modalMeta");
+    const galleryGrid = document.getElementById("galleryGrid");
+    const closeModal = document.getElementById("closeModal");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxInner = document.getElementById("lightboxInner");
+    const lightboxTitle = document.getElementById("lightboxTitle");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const closeLightbox = document.getElementById("closeLightbox");
+    const viewToggle = document.getElementById("viewToggle");
+    const pageUrl = new URL(window.location.href);
+    const mediaQuery = window.matchMedia("(max-width: 820px)");
+    const urlLang = pageUrl.searchParams.get("lang");
+    const forcedView = pageUrl.searchParams.get("view");
+    const hasForcedView = forcedView === "mobile" || forcedView === "desktop";
+    let currentLang = translations[urlLang] ? urlLang : "nl";
+    let isMobileVersion = forcedView === "mobile" || (!hasForcedView && mediaQuery.matches);
+    let currentCategory = null;
+    let currentIndex = 0;
+    let lastScrollY = 0;
+    let galleryObserver = null;
+    let categoryObserver = null;
+    let lastActiveElement = null;
+    let scrollRevealObserver = null;
+    
+    function hasExtension(fileName){
+      return /\.[a-z0-9]+$/i.test(fileName);
+    }
+    
+    function encodePath(path){
+      return path.split("/").map(part => encodeURIComponent(part)).join("/");
+    }
+    
+    function imagePath(fileName){
+      return encodePath(`images/${fileName}`);
+    }
+    
+    function getCandidateImagePaths(fileName){
+      if(hasExtension(fileName)){
+        return [imagePath(fileName)];
+      }
+      const extensions = ["avif", "webp", "jpg", "jpeg", "png"];
+      return extensions.map(ext => imagePath(`${fileName}.${ext}`));
+    }
+    
+    function createFallback(src){
+      const fallback = document.createElement("div");
+      fallback.className = "image-fallback";
+      fallback.textContent = `${translations[currentLang].imageMissingNamed} ${decodeURIComponent((src || "").split("/").pop() || "")}`;
+      return fallback;
+    }
+    
+    function createLazyImage(src, alt = "", eager = false){
+      const shell = document.createElement("div");
+      shell.className = "lazy-shell";
+      shell.dataset.alt = alt;
+      shell.dataset.sources = JSON.stringify(Array.isArray(src) ? src : [src]);
+      if(eager) shell.dataset.eager = "true";
+      return shell;
+    }
+    
+    function tryLoadImage(img, sources, index, onSuccess, onFailure){
+      if(index >= sources.length){
+        onFailure(sources[0] || "");
+        return;
+      }
+      img.onload = onSuccess;
+      img.onerror = () => tryLoadImage(img, sources, index + 1, onSuccess, onFailure);
+      img.src = sources[index];
+    }
+    
+    function loadLazyShell(shell){
+      if(!shell || shell.dataset.loaded === "true") return;
+      const sources = JSON.parse(shell.dataset.sources || "[]");
+      const alt = shell.dataset.alt || "";
+      const eager = shell.dataset.eager === "true";
+      const img = document.createElement("img");
+      img.alt = alt;
+      img.decoding = "async";
+      img.loading = eager ? "eager" : "lazy";
+      tryLoadImage(
+        img,
+        sources,
+        0,
+        () => {
+          shell.classList.add("loaded");
+          img.classList.add("ready");
+        },
+        (failedSrc) => {
+          shell.replaceWith(createFallback(failedSrc));
+        }
+      );
+      shell.dataset.loaded = "true";
+      shell.appendChild(img);
+    }
+    
+    function setupCategoryObserver(){
+      if(categoryObserver) categoryObserver.disconnect();
+      const shells = Array.from(document.querySelectorAll("#categoriesGrid .lazy-shell"));
+      if(!("IntersectionObserver" in window)){
+        shells.forEach(loadLazyShell);
+        return;
+      }
+      categoryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            const shell = entry.target;
+            loadLazyShell(shell);
+            categoryObserver.unobserve(shell);
+          }
+        });
+      }, { root:null, rootMargin:"280px 0px", threshold:0.01 });
+      shells.forEach(shell => categoryObserver.observe(shell));
+    }
+    
+    function setupGalleryObserver(){
+      if(galleryObserver) galleryObserver.disconnect();
+      const shells = Array.from(document.querySelectorAll("#galleryGrid .lazy-shell"));
+      if(!("IntersectionObserver" in window)){
+        shells.forEach(loadLazyShell);
+        return;
+      }
+      galleryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            const shell = entry.target;
+            loadLazyShell(shell);
+            galleryObserver.unobserve(shell);
+          }
+        });
+      }, { root: modalShell, rootMargin:"420px 0px", threshold:0.01 });
+      shells.forEach(shell => galleryObserver.observe(shell));
+    }
+    
+    function setupScrollReveal(){
+      if(scrollRevealObserver) scrollRevealObserver.disconnect();
+      scrollRevealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add("visible");
+            scrollRevealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -60px 0px" });
+      
+      document.querySelectorAll('.reveal').forEach(el => {
+        scrollRevealObserver.observe(el);
       });
     }
-
-    window.filterCategory = function(cat) {
-      document.querySelectorAll(".filter-btn").forEach(b => b.classList.toggle("active", cat === "all" || b.textContent.toLowerCase() === cat));
-      let photos = [];
-      if (cat === "all") Object.keys(galleryData).forEach(k => photos = photos.concat(galleryData[k]));
-      else photos = galleryData[cat] || [];
-      renderPortfolio(photos);
-    };
-
-    function hideLightbox() {
-      const lb = document.getElementById("lightbox");
-      lb.classList.add("hidden");
-      lb.classList.remove("flex");
+    
+    function buildSwitchHref(targetView){
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", currentLang);
+      url.searchParams.set("view", targetView);
+      return `${url.pathname}${url.search}`;
     }
-
-    function switchLang(lang) {
-      document.querySelectorAll(".lang-btn").forEach(b => b.classList.toggle("active", b.textContent.toLowerCase() === lang));
-      const dict = translations[lang];
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.dataset.i18n;
-        if (dict[key]) el.innerHTML = dict[key];
+    
+    function updateViewToggle(){
+      const dict = translations[currentLang];
+      const targetView = isMobileVersion ? "desktop" : "mobile";
+      viewToggle.textContent = isMobileVersion ? dict.viewToggleDesktop : dict.viewToggleMobile;
+      viewToggle.href = buildSwitchHref(targetView);
+    }
+    
+    function updateUrlLanguageOnly(){
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", currentLang);
+      if(hasForcedView){
+        url.searchParams.set("view", forcedView);
+      } else {
+        url.searchParams.delete("view");
+      }
+      history.replaceState(history.state || { overlay: null }, "", `${url.pathname}${url.search}${url.hash}`);
+    }
+    
+    function applyTranslations(){
+      const dict = translations[currentLang];
+      nodes.forEach(node => {
+        const key = node.dataset.i18n;
+        if(dict[key]) node.textContent = dict[key];
+      });
+      document.documentElement.lang = currentLang;
+      updateViewToggle();
+      lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
+      if(currentCategory){
+        modalTitle.textContent = dict[galleryData[currentCategory].titleKey];
+        modalMeta.textContent = `${galleryData[currentCategory].items.length} ${dict.photoCount}`;
+      }
+    }
+    
+    function renderAboutPhoto(){
+      aboutPhotoWrap.innerHTML = "";
+      const shell = createLazyImage(getCandidateImagePaths(aboutImage), "Rafał Wilk", true);
+      aboutPhotoWrap.appendChild(shell);
+      loadLazyShell(shell);
+    }
+    
+    function renderCategories(){
+      const dict = translations[currentLang];
+      categoriesGrid.innerHTML = "";
+      const fragment = document.createDocumentFragment();
+      categoriesMeta.forEach(category => {
+        const button = document.createElement("button");
+        button.className = "card cat reveal";
+        button.type = "button";
+        button.dataset.category = category.key;
+        button.setAttribute("aria-haspopup", "dialog");
+        button.setAttribute("aria-controls", "modal");
+        
+        const thumb = document.createElement("div");
+        thumb.className = "thumb";
+        thumb.appendChild(createLazyImage(imagePath(category.cover), dict[category.labelKey]));
+        button.appendChild(thumb);
+        
+        if(!isMobileVersion){
+          const pill = document.createElement("span");
+          pill.className = "cat-pill";
+          pill.textContent = dict[category.labelKey];
+          button.appendChild(pill);
+        } else {
+          const label = document.createElement("span");
+          label.className = "mobile-cat-label";
+          label.textContent = dict[category.labelKey];
+          button.appendChild(label);
+        }
+        
+        button.addEventListener("click", () => openCategory(category.key, false, button));
+        fragment.appendChild(button);
+      });
+      categoriesGrid.appendChild(fragment);
+      setupCategoryObserver();
+    }
+    
+    function setBackgroundInert(isInert){
+      if("inert" in pageRoot){
+        pageRoot.inert = isInert;
+      } else {
+        pageRoot.setAttribute("aria-hidden", isInert ? "true" : "false");
+      }
+    }
+    
+    function setBodyLock(){
+      const locked = modal.classList.contains("open") || lightbox.classList.contains("open");
+      document.body.classList.toggle("locked", locked);
+      setBackgroundInert(locked);
+    }
+    
+    function ensureBaseState(){
+      if(!history.state || typeof history.state.overlay === "undefined"){
+        history.replaceState({ overlay: null }, "", location.href);
+      }
+    }
+    
+    function getFocusableElements(container){
+      const selectors = [
+        'a[href]',
+        'button:not([disabled])',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])'
+      ].join(',');
+      return Array.from(container.querySelectorAll(selectors))
+        .filter(el => !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length));
+    }
+    
+    function trapFocus(e, container){
+      if(e.key !== "Tab") return;
+      const focusables = getFocusableElements(container);
+      if(focusables.length === 0){
+        e.preventDefault();
+        container.focus();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault();
+        last.focus();
+      } else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault();
+        first.focus();
+      }
+    }
+    
+    function openCategory(category, fromHistory = false, openerEl = null){
+      currentCategory = category;
+      currentIndex = 0;
+      const dict = translations[currentLang];
+      const data = galleryData[category];
+      modalTitle.textContent = dict[data.titleKey];
+      modalMeta.textContent = `${data.items.length} ${dict.photoCount}`;
+      galleryGrid.innerHTML = "";
+      const fragment = document.createDocumentFragment();
+      data.items.forEach((item, index) => {
+        const button = document.createElement("button");
+        button.className = "gallery-item";
+        button.type = "button";
+        button.setAttribute("aria-label", item.alt);
+        const shell = createLazyImage(imagePath(item.src), item.alt);
+        button.appendChild(shell);
+        button.addEventListener("click", () => openLightbox(category, index, false, button));
+        fragment.appendChild(button);
+      });
+      galleryGrid.appendChild(fragment);
+      if(!modal.classList.contains("open")){
+        lastScrollY = window.scrollY;
+      }
+      if(openerEl) lastActiveElement = openerEl;
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      setBodyLock();
+      modalShell.scrollTop = 0;
+      setupGalleryObserver();
+      document.querySelectorAll("#galleryGrid .lazy-shell").forEach((shell, index) => {
+        if(index < (isMobileVersion ? 12 : 6)) loadLazyShell(shell);
+      });
+      closeModal.focus();
+      if(!fromHistory){
+        history.pushState({ overlay: "category", category }, "", location.href);
+      }
+    }
+    
+    function closeCategory(fromHistory = false){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      setBodyLock();
+      if(!isMobileVersion){
+        window.scrollTo({top:lastScrollY,behavior:"smooth"});
+      }
+      if(galleryObserver) galleryObserver.disconnect();
+      if(lastActiveElement && typeof lastActiveElement.focus === "function"){
+        lastActiveElement.focus();
+      }
+      if(!fromHistory && history.state && history.state.overlay === "category"){
+        history.back();
+      }
+    }
+    
+    function resolveLightboxCandidates(item){
+      return getCandidateImagePaths(item.src);
+    }
+    
+    function openLightbox(category, index, fromHistory = false, openerEl = null){
+      currentCategory = category;
+      currentIndex = index;
+      const dict = translations[currentLang];
+      lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
+      const item = galleryData[category].items[index];
+      const candidates = resolveLightboxCandidates(item);
+      if(openerEl) lastActiveElement = openerEl;
+      lightboxImage.src = "";
+      lightboxImage.alt = item.alt;
+      lightboxImage.decoding = "async";
+      lightboxImage.loading = "eager";
+      const temp = new Image();
+      temp.decoding = "async";
+      tryLoadImage(
+        temp,
+        candidates,
+        0,
+        () => { lightboxImage.src = temp.src; },
+        () => { lightboxImage.src = ""; }
+      );
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+      setBodyLock();
+      closeLightbox.focus();
+      if(!fromHistory){
+        history.pushState({ overlay: "lightbox", category, index }, "", location.href);
+      }
+    }
+    
+    function closeLightboxOnly(){
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImage.src = "";
+      lightboxImage.alt = "";
+      setBodyLock();
+    }
+    
+    function closeImage(fromHistory = false){
+      closeLightboxOnly();
+      if(lastActiveElement && typeof lastActiveElement.focus === "function"){
+        lastActiveElement.focus();
+      }
+      if(!fromHistory && history.state && history.state.overlay === "lightbox"){
+        history.back();
+      }
+    }
+    
+    function moveImage(step){
+      if(!currentCategory) return;
+      const items = galleryData[currentCategory].items;
+      currentIndex = (currentIndex + step + items.length) % items.length;
+      const item = items[currentIndex];
+      const candidates = resolveLightboxCandidates(item);
+      lightboxImage.alt = item.alt;
+      const temp = new Image();
+      temp.decoding = "async";
+      tryLoadImage(
+        temp,
+        candidates,
+        0,
+        () => { lightboxImage.src = temp.src; },
+        () => { lightboxImage.src = ""; }
+      );
+      history.replaceState(
+        { overlay: "lightbox", category: currentCategory, index: currentIndex },
+        "",
+        location.href
+      );
+    }
+    
+    function syncViewMode(){
+      document.body.classList.toggle("mobile-view", isMobileVersion);
+      if(modal.classList.contains("open")){
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+      }
+      if(lightbox.classList.contains("open")){
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImage.src = "";
+        lightboxImage.alt = "";
+      }
+      setBodyLock();
+      history.replaceState({ overlay: null }, "", location.href);
+      applyTranslations();
+      renderCategories();
+      renderAboutPhoto();
+      setTimeout(() => setupScrollReveal(), 300);
+    }
+    
+    langButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        currentLang = button.dataset.lang;
+        langButtons.forEach(btn => btn.classList.toggle("active", btn === button));
+        updateUrlLanguageOnly();
+        applyTranslations();
+        renderCategories();
+        renderAboutPhoto();
+      });
+    });
+    
+    closeModal.addEventListener("click", () => closeCategory());
+    modal.addEventListener("click", e => { if(e.target === modal) closeCategory(); });
+    closeLightbox.addEventListener("click", () => closeImage());
+    lightbox.addEventListener("click", e => { if(e.target === lightbox) closeImage(); });
+    
+    document.addEventListener("keydown", e => {
+      if(lightbox.classList.contains("open")){
+        trapFocus(e, lightboxInner);
+        if(e.key === "Escape") closeImage();
+        if(e.key === "ArrowRight") moveImage(1);
+        if(e.key === "ArrowLeft") moveImage(-1);
+        return;
+      }
+      if(modal.classList.contains("open")){
+        trapFocus(e, modalShell);
+        if(e.key === "Escape") closeCategory();
+      }
+    });
+    
+    window.addEventListener("popstate", event => {
+      const state = event.state || { overlay: null };
+      if(state.overlay === "lightbox"){
+        if(!modal.classList.contains("open") && currentCategory !== state.category){
+          openCategory(state.category, true, null);
+        }
+        openLightbox(state.category, state.index ?? 0, true, null);
+        return;
+      }
+      if(state.overlay === "category"){
+        if(lightbox.classList.contains("open")){
+          closeLightboxOnly();
+        }
+        openCategory(state.category, true, null);
+        return;
+      }
+      if(lightbox.classList.contains("open")){
+        closeLightboxOnly();
+      }
+      if(modal.classList.contains("open")){
+        closeCategory(true);
+      }
+    });
+    
+    if(!hasForcedView){
+      const mediaHandler = (event) => {
+        isMobileVersion = event.matches;
+        syncViewMode();
+      };
+      if(typeof mediaQuery.addEventListener === "function"){
+        mediaQuery.addEventListener("change", mediaHandler);
+      } else if(typeof mediaQuery.addListener === "function"){
+        mediaQuery.addListener(mediaHandler);
+      }
+    }
+    
+    function init(){
+      ensureBaseState();
+      langButtons.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === currentLang);
+      });
+      document.body.classList.toggle("mobile-view", isMobileVersion);
+      applyTranslations();
+      renderAboutPhoto();
+      renderCategories();
+      setBodyLock();
+      setTimeout(() => {
+        setupScrollReveal();
+      }, 600);
+      
+      // Subtle hero parallax
+      const hero = document.querySelector('.hero');
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if(!ticking && hero){
+          window.requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            hero.style.backgroundPositionY = `calc(26% + ${scrollY * 0.12}px)`;
+            ticking = false;
+          });
+          ticking = true;
+        }
       });
     }
-
-    function initMobile() {
-      const isMobile = window.matchMedia("(max-width: 820px)").matches;
-      document.getElementById("body").classList.toggle("mobile-view", isMobile);
-      document.getElementById("mobileNav").style.display = isMobile ? "grid" : "none";
-    }
-
-    function initAnimations() {
-      gsap.from("#hero-title", { y: 120, opacity: 0, duration: 1.6, ease: "power4.out" });
-      gsap.from("#hero-tagline", { y: 80, opacity: 0, duration: 1.3, ease: "power3.out", delay: 0.4 });
-      gsap.from("#o-mnie", { y: 60, opacity: 0, duration: 1.2, ease: "power3.out", scrollTrigger: "#o-mnie" });
-    }
-
-    window.onload = () => {
-      let allPhotos = [];
-      Object.keys(galleryData).forEach(k => allPhotos = allPhotos.concat(galleryData[k]));
-      renderPortfolio(allPhotos);
-      initMobile();
-      initAnimations();
-      console.log("%c✅ Wersja 7.0 – profesjonalna, 100% działająca strona z Twoimi wszystkimi zdjęciami GOTOWA!", "color:#d4bfa8; font-size:14px");
-    };
+    
+    init();
   </script>
 </body>
 </html>
