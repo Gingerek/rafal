@@ -1,6 +1,4 @@
-Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
-
-```html
+```html id="w38521"
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -17,32 +15,31 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
   <style>
     :root{
       --bg:#050505;
-      --bg-soft:#0b0c0e;
-      --bg-panel:#101114;
-      --panel:rgba(255,255,255,.055);
-      --panel-soft:rgba(255,255,255,.03);
+      --bg-soft:#0b0d10;
+      --panel:rgba(255,255,255,.05);
+      --panel-2:rgba(255,255,255,.03);
       --border:rgba(255,255,255,.08);
       --border-soft:rgba(255,255,255,.05);
       --text:#f4ede4;
       --muted:rgba(244,237,228,.72);
-      --muted-soft:rgba(244,237,228,.5);
+      --muted-2:rgba(244,237,228,.52);
       --accent:#d1b384;
-      --accent-2:#35515d;
+      --cool:#385764;
       --shadow:0 28px 80px rgba(0,0,0,.42);
-      --shadow-soft:0 18px 42px rgba(0,0,0,.24);
-      --container:1320px;
+      --shadow-soft:0 18px 44px rgba(0,0,0,.24);
       --radius-xl:34px;
       --radius-lg:26px;
       --radius-md:20px;
       --radius-sm:16px;
+      --container:1320px;
       --transition:260ms cubic-bezier(.22,.61,.36,1);
-      --header-h:104px;
-      --fs-body:clamp(15px, .25vw + 14px, 16.5px);
-      --fs-h1:clamp(2.5rem, 5vw, 5.5rem);
-      --fs-h2:clamp(1.85rem, 2.4vw, 3rem);
-      --fs-h3:clamp(1.08rem, .95vw + .92rem, 1.45rem);
-      --fs-lead:clamp(1rem, .38vw + .9rem, 1.12rem);
-      --fs-small:clamp(.84rem, .22vw + .8rem, .96rem);
+      --header-h:100px;
+      --fs-body:clamp(15px,.25vw + 14px,16.5px);
+      --fs-h1:clamp(2.4rem,5vw,5.4rem);
+      --fs-h2:clamp(1.8rem,2.5vw,3rem);
+      --fs-h3:clamp(1.02rem,.9vw + .9rem,1.38rem);
+      --fs-lead:clamp(1rem,.38vw + .9rem,1.1rem);
+      --fs-small:clamp(.84rem,.22vw + .8rem,.95rem);
       --lh:1.64;
       --scrollbar-track:rgba(255,255,255,.04);
       --scrollbar-thumb:rgba(209,179,132,.42);
@@ -58,12 +55,13 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       overflow-x:hidden;
       background:
         radial-gradient(circle at 12% 0%, rgba(209,179,132,.08), transparent 22%),
-        radial-gradient(circle at 96% 10%, rgba(53,81,93,.16), transparent 18%),
-        linear-gradient(180deg, #050505 0%, #09090a 34%, #050505 100%);
+        radial-gradient(circle at 95% 8%, rgba(56,87,100,.15), transparent 20%),
+        linear-gradient(180deg,#050505 0%, #09090a 36%, #050505 100%);
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
     }
-    body.locked{overflow:hidden}
+    body.locked{overflow:hidden;touch-action:none}
+    body.lang-fade #pageRoot{opacity:.26;transform:translateY(6px)}
 
     a{text-decoration:none;color:inherit}
     img{display:block;max-width:100%;-webkit-user-drag:none}
@@ -75,6 +73,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       cursor:pointer;
       -webkit-tap-highlight-color:transparent;
     }
+
     .sr-only{
       position:absolute!important;
       width:1px!important;
@@ -89,13 +88,12 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
 
     .container{width:min(var(--container), calc(100% - 40px));margin:0 auto}
     #pageRoot{transition:opacity .22s ease, transform .22s ease}
-    body.lang-fade #pageRoot{opacity:.28;transform:translateY(6px)}
 
     .site-header{
       position:fixed;
       top:0;left:0;right:0;
-      z-index:70;
-      padding-top:env(safe-area-inset-top, 0px);
+      z-index:80;
+      padding-top:env(safe-area-inset-top,0px);
       background:linear-gradient(180deg, rgba(5,5,5,.92), rgba(5,5,5,.72));
       backdrop-filter:blur(18px) saturate(125%);
       -webkit-backdrop-filter:blur(18px) saturate(125%);
@@ -120,9 +118,10 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       min-width:0;
     }
     .brand-dot{
-      width:12px;height:12px;border-radius:999px;flex:0 0 auto;
-      background:radial-gradient(circle at 35% 35%, #f7dab4 0%, #d1b384 42%, #8b6c48 100%);
+      width:12px;height:12px;border-radius:999px;
+      background:radial-gradient(circle at 35% 35%, #f6d8b1 0%, #d1b384 42%, #8a6c49 100%);
       box-shadow:0 0 22px rgba(209,179,132,.78);
+      flex:0 0 auto;
     }
 
     .nav{
@@ -137,6 +136,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       border:1px solid rgba(255,255,255,.06);
       box-shadow:var(--shadow-soft);
     }
+
     .nav a,
     .lang button,
     .view-switch{
@@ -154,8 +154,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
         transform var(--transition),
         color var(--transition),
         background var(--transition),
-        border-color var(--transition),
-        box-shadow var(--transition);
+        border-color var(--transition);
     }
     .nav a:hover,
     .lang button:hover,
@@ -166,6 +165,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       border-color:rgba(255,255,255,.08);
       transform:translateY(-1px);
     }
+
     .header-tools{
       display:flex;
       align-items:center;
@@ -190,8 +190,15 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     main{position:relative}
     section{
       padding:88px 0;
-      scroll-margin-top:calc(var(--header-h) + 18px);
+      scroll-margin-top:calc(var(--header-h) + 20px);
     }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(28px) scale(.988);
+      transition:opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+    }
+    .reveal.visible{opacity:1;transform:none}
 
     .section-shell{
       border-radius:var(--radius-xl);
@@ -200,14 +207,6 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       box-shadow:var(--shadow-soft);
       overflow:hidden;
     }
-
-    .reveal{
-      opacity:0;
-      transform:translateY(28px) scale(.988);
-      transition:opacity .82s cubic-bezier(.22,.61,.36,1), transform .82s cubic-bezier(.22,.61,.36,1);
-      will-change:opacity,transform;
-    }
-    .reveal.visible{opacity:1;transform:none}
 
     .eyebrow,
     .section-kicker,
@@ -229,10 +228,9 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     .section-kicker::before,
     .modal-kicker::before{
       content:"";
-      width:7px;height:7px;border-radius:999px;
+      width:7px;height:7px;border-radius:999px;flex:0 0 auto;
       background:var(--accent);
       box-shadow:0 0 14px rgba(209,179,132,.8);
-      flex:0 0 auto;
     }
 
     .hero{
@@ -240,7 +238,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       min-height:100dvh;
       display:grid;
       align-items:center;
-      padding:calc(var(--header-h) + 26px + env(safe-area-inset-top, 0px)) 0 max(28px, env(safe-area-inset-bottom, 18px));
+      padding:calc(var(--header-h) + 26px + env(safe-area-inset-top,0px)) 0 max(28px, env(safe-area-inset-bottom,18px));
     }
     .hero-stage{
       position:relative;
@@ -252,9 +250,9 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       box-shadow:var(--shadow);
       isolation:isolate;
       background:
-        linear-gradient(108deg, rgba(5,5,5,.93) 0%, rgba(5,5,5,.72) 34%, rgba(5,5,5,.25) 58%, rgba(5,5,5,.52) 100%),
-        radial-gradient(circle at 85% 18%, rgba(53,81,93,.34), transparent 24%),
-        radial-gradient(circle at 18% 86%, rgba(209,179,132,.16), transparent 26%),
+        linear-gradient(110deg, rgba(5,5,5,.93) 0%, rgba(5,5,5,.72) 34%, rgba(5,5,5,.24) 58%, rgba(5,5,5,.52) 100%),
+        radial-gradient(circle at 85% 18%, rgba(56,87,100,.34), transparent 24%),
+        radial-gradient(circle at 16% 84%, rgba(209,179,132,.16), transparent 26%),
         url("images/DSCF4051.jpg");
       background-size:cover;
       background-position:center 24%;
@@ -278,7 +276,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     .hero-stage::after{
       left:-12%;bottom:-28%;
       width:42vw;max-width:680px;aspect-ratio:1/1;
-      background:radial-gradient(circle, rgba(53,81,93,.22), transparent 64%);
+      background:radial-gradient(circle, rgba(56,87,100,.22), transparent 64%);
       filter:blur(24px);
       animation:floatGlowTwo 17s ease-in-out infinite alternate;
     }
@@ -296,7 +294,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       z-index:1;
       height:100%;
       display:grid;
-      grid-template-columns:minmax(0, 1.02fr) minmax(320px, .98fr);
+      grid-template-columns:minmax(0, 1.04fr) minmax(320px, .96fr);
       gap:28px;
       align-items:end;
       padding:44px;
@@ -417,7 +415,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     }
     .hero-preview-grid{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
+      grid-template-columns:repeat(3, minmax(0,1fr));
       gap:12px;
     }
     .hero-preview-grid .mini-card{
@@ -440,8 +438,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
 
     .stats-panel{
       position:absolute;
-      top:42px;
-      right:42px;
+      top:42px;right:42px;
       z-index:2;
       width:min(320px, 28vw);
       padding:18px;
@@ -457,7 +454,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     }
     .stats-grid{
       display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
+      grid-template-columns:repeat(2, minmax(0,1fr));
       gap:10px;
     }
     .stat-item{
@@ -548,7 +545,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       align-content:space-between;
       padding:34px;
       background:
-        radial-gradient(circle at 100% 0%, rgba(53,81,93,.18), transparent 28%),
+        radial-gradient(circle at 100% 0%, rgba(56,87,100,.18), transparent 28%),
         radial-gradient(circle at 0% 100%, rgba(209,179,132,.1), transparent 26%),
         linear-gradient(180deg, rgba(255,255,255,.042), rgba(255,255,255,.015));
     }
@@ -580,7 +577,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     }
     .copy-footer{
       display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
+      grid-template-columns:repeat(2, minmax(0,1fr));
       gap:12px;
       margin-top:26px;
     }
@@ -603,24 +600,19 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     .portfolio-shell{padding:36px}
     .categories{
       display:grid;
-      grid-template-columns:repeat(12, minmax(0, 1fr));
-      gap:18px;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:20px;
     }
+
     .cat{
       position:relative;
       overflow:hidden;
-      min-height:430px;
-      display:grid;
-      align-content:end;
-      grid-column:span 4;
-      border-radius:26px;
+      min-height:440px;
+      border-radius:28px;
       transition:transform var(--transition), border-color var(--transition), box-shadow var(--transition);
       content-visibility:auto;
-      contain-intrinsic-size:430px;
+      contain-intrinsic-size:440px;
     }
-    .cat:nth-child(1), .cat:nth-child(4){grid-column:span 5}
-    .cat:nth-child(2), .cat:nth-child(5){grid-column:span 3}
-    .cat:nth-child(3), .cat:nth-child(6){grid-column:span 4}
     .cat:hover{
       transform:translateY(-5px);
       border-color:rgba(209,179,132,.18);
@@ -636,12 +628,12 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       position:absolute;
       inset:0;
       background:
-        linear-gradient(180deg, rgba(4,4,4,.08) 0%, rgba(4,4,4,.12) 34%, rgba(4,4,4,.55) 72%, rgba(4,4,4,.84) 100%),
-        linear-gradient(35deg, rgba(53,81,93,.15), transparent 35%);
+        linear-gradient(180deg, rgba(5,5,5,.12) 0%, rgba(5,5,5,.16) 28%, rgba(5,5,5,.42) 62%, rgba(5,5,5,.82) 100%),
+        linear-gradient(45deg, rgba(56,87,100,.12), transparent 38%);
       pointer-events:none;
       transition:opacity var(--transition);
     }
-    .cat:hover .thumb::after{opacity:.88}
+    .cat:hover .thumb::after{opacity:.9}
     .thumb .lazy-shell,
     .thumb img,
     .thumb .image-fallback{
@@ -652,14 +644,18 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     }
     .cat:hover .thumb img{
       transform:scale(1.05);
-      filter:saturate(1.03);
+      filter:saturate(1.04);
     }
-    .cat-content{
-      position:relative;
+
+    .cat-overlay{
+      position:absolute;
+      inset:0;
       z-index:2;
-      display:grid;
-      gap:14px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
       padding:22px;
+      text-align:left;
     }
     .cat-topline{
       display:flex;
@@ -680,18 +676,26 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       letter-spacing:.12em;
       text-transform:uppercase;
       border:1px solid rgba(255,255,255,.09);
-      background:rgba(8,8,8,.34);
+      background:rgba(8,8,8,.36);
       color:var(--text);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
     }
-    .cat-count{color:rgba(244,237,228,.82)}
+    .cat-bottom{
+      margin-top:auto;
+      display:grid;
+      gap:10px;
+      min-height:150px;
+      align-content:end;
+    }
     .cat-title{
-      font-size:clamp(1.28rem, 1.5vw, 1.9rem);
+      font-size:clamp(1.34rem, 1.45vw, 1.9rem);
       line-height:1;
       letter-spacing:-.04em;
     }
     .cat-sub{
-      color:rgba(244,237,228,.72);
-      max-width:32ch;
+      color:rgba(244,237,228,.78);
+      max-width:28ch;
       font-size:.92rem;
     }
     .mobile-cat-label{display:none}
@@ -699,7 +703,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     .contact-shell{padding:36px}
     .contact-grid{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
+      grid-template-columns:repeat(3, minmax(0,1fr));
       gap:18px;
     }
     .contact-card{
@@ -713,7 +717,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       border-radius:26px;
       transition:transform var(--transition), border-color var(--transition), box-shadow var(--transition);
       background:
-        radial-gradient(circle at 100% 0%, rgba(53,81,93,.16), transparent 28%),
+        radial-gradient(circle at 100% 0%, rgba(56,87,100,.16), transparent 28%),
         linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.018));
     }
     .contact-card:hover{
@@ -725,7 +729,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       font-size:.72rem;
       letter-spacing:.18em;
       text-transform:uppercase;
-      color:var(--muted-soft);
+      color:var(--muted-2);
       margin-bottom:12px;
     }
     .contact-card strong{
@@ -743,7 +747,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     .contact-card .btn{width:fit-content}
 
     .footer{
-      padding:0 0 calc(34px + env(safe-area-inset-bottom, 0px));
+      padding:0 0 calc(34px + env(safe-area-inset-bottom,0px));
       color:rgba(244,237,228,.46);
       font-size:.87rem;
     }
@@ -798,56 +802,39 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       opacity:1;
     }
 
-    .modal-shell{
+    .modal-panel{
       width:min(1360px, 100%);
-      max-height:calc(100dvh - 36px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
-      overflow-y:auto;
-      overflow-x:hidden;
-      -webkit-overflow-scrolling:touch;
-      overscroll-behavior:contain;
+      height:min(88vh, 940px);
+      display:grid;
+      grid-template-rows:auto 1fr;
       border-radius:30px;
       border:1px solid rgba(255,255,255,.09);
       background:
-        radial-gradient(circle at 100% 0%, rgba(53,81,93,.18), transparent 26%),
+        radial-gradient(circle at 100% 0%, rgba(56,87,100,.18), transparent 26%),
         radial-gradient(circle at 0% 100%, rgba(209,179,132,.1), transparent 22%),
         linear-gradient(180deg, rgba(10,10,10,.96), rgba(7,7,7,.985));
       box-shadow:0 34px 110px rgba(0,0,0,.52);
-      scrollbar-width:thin;
-      scrollbar-color:var(--scrollbar-thumb) var(--scrollbar-track);
+      overflow:hidden;
       transform:translateY(14px) scale(.985);
       transition:transform var(--transition);
     }
-    .modal.open .modal-shell,
+    .modal.open .modal-panel,
     .lightbox.open .lightbox-inner{transform:none}
-    .modal-shell::-webkit-scrollbar{width:10px}
-    .modal-shell::-webkit-scrollbar-track{
-      background:var(--scrollbar-track);
-      border-radius:999px;
-      margin:14px 0;
-    }
-    .modal-shell::-webkit-scrollbar-thumb{
-      background:linear-gradient(180deg, rgba(209,179,132,.62), rgba(209,179,132,.26));
-      border-radius:999px;
-      border:2px solid rgba(8,8,8,.95);
-    }
 
     .modal-top{
-      position:sticky;
-      top:0;
-      z-index:3;
       display:flex;
       justify-content:space-between;
       gap:18px;
       align-items:flex-start;
-      padding:28px 28px 18px;
-      background:linear-gradient(180deg, rgba(7,7,7,.98), rgba(7,7,7,.88));
+      padding:24px 24px 18px;
       border-bottom:1px solid rgba(255,255,255,.04);
+      background:linear-gradient(180deg, rgba(7,7,7,.98), rgba(7,7,7,.88));
       backdrop-filter:blur(12px);
       -webkit-backdrop-filter:blur(12px);
     }
     .modal h3{
       margin-top:12px;
-      font-size:clamp(1.5rem, 2.15vw, 2.25rem);
+      font-size:clamp(1.5rem, 2.1vw, 2.2rem);
       line-height:1;
       letter-spacing:-.045em;
     }
@@ -855,6 +842,25 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       margin-top:8px;
       color:var(--muted);
       font-size:.88rem;
+    }
+
+    .modal-body{
+      min-height:0;
+      overflow:auto;
+      padding:0 24px 24px;
+      scrollbar-width:thin;
+      scrollbar-color:var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+    .modal-body::-webkit-scrollbar{width:10px}
+    .modal-body::-webkit-scrollbar-track{
+      background:var(--scrollbar-track);
+      border-radius:999px;
+      margin:14px 0;
+    }
+    .modal-body::-webkit-scrollbar-thumb{
+      background:linear-gradient(180deg, rgba(209,179,132,.62), rgba(209,179,132,.26));
+      border-radius:999px;
+      border:2px solid rgba(8,8,8,.95);
     }
 
     .close-btn{
@@ -885,9 +891,9 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     }
 
     .gallery-grid{
-      padding:0 28px 28px;
+      padding-top:18px;
       display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
+      grid-template-columns:repeat(4, minmax(0,1fr));
       gap:14px;
     }
     .gallery-item{
@@ -913,7 +919,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       width:100%;height:100%;object-fit:cover;
     }
     .gallery-item img{
-      transition:transform 560ms ease, filter 420ms ease, opacity var(--transition);
+      transition:transform .56s ease, filter .42s ease, opacity var(--transition);
     }
     .gallery-item:hover img{
       transform:scale(1.04);
@@ -943,7 +949,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     }
     .lightbox .close-btn{
       position:fixed;
-      top:calc(18px + env(safe-area-inset-top, 0px));
+      top:calc(18px + env(safe-area-inset-top,0px));
       right:18px;
       width:34px;
       height:34px;
@@ -957,7 +963,8 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       :root{--header-h:112px}
       .hero-grid{grid-template-columns:1fr;align-items:end}
       .stats-panel{
-        position:relative;top:auto;right:auto;
+        position:relative;
+        top:auto;right:auto;
         width:100%;max-width:520px;margin-left:auto;
       }
       .section-head{grid-template-columns:1fr}
@@ -968,14 +975,8 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       .about-photo img,
       .about-photo .image-fallback{min-height:540px}
       .contact-grid{grid-template-columns:1fr 1fr}
-      .gallery-grid{grid-template-columns:repeat(3, minmax(0, 1fr))}
-      .cat,
-      .cat:nth-child(1),
-      .cat:nth-child(2),
-      .cat:nth-child(3),
-      .cat:nth-child(4),
-      .cat:nth-child(5),
-      .cat:nth-child(6){grid-column:span 6}
+      .categories{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .gallery-grid{grid-template-columns:repeat(3, minmax(0,1fr))}
     }
 
     @media (max-width:860px){
@@ -1002,6 +1003,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       }
       .lang{justify-content:space-between}
       .view-switch{width:100%}
+
       .hero{
         padding:calc(var(--header-h) + 12px + env(safe-area-inset-top,0px)) 0 max(22px, env(safe-area-inset-bottom,18px));
       }
@@ -1024,37 +1026,28 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
         padding:16px;
         border-radius:22px;
       }
+
       .section-shell,
       .copy,
       .about-photo,
       .contact-card,
       .cat,
-      .modal-shell{border-radius:24px}
+      .modal-panel{border-radius:24px}
       .about-shell,
       .portfolio-shell,
       .contact-shell{padding:20px}
       .contact-grid{grid-template-columns:1fr}
-      .gallery-grid{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        padding:0 18px 18px;
-      }
+      .categories{grid-template-columns:1fr}
+      .cat{min-height:340px}
+      .gallery-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
       .modal-top{padding:20px 18px 16px}
-      .cat,
-      .cat:nth-child(1),
-      .cat:nth-child(2),
-      .cat:nth-child(3),
-      .cat:nth-child(4),
-      .cat:nth-child(5),
-      .cat:nth-child(6){
-        grid-column:span 12;
-        min-height:320px;
-      }
+      .modal-body{padding:0 18px 18px}
     }
 
     body.mobile-view{
       background:
         radial-gradient(circle at top, rgba(209,179,132,.08), transparent 18%),
-        radial-gradient(circle at 100% 10%, rgba(53,81,93,.16), transparent 20%),
+        radial-gradient(circle at 100% 10%, rgba(56,87,100,.16), transparent 20%),
         linear-gradient(180deg,#050505,#070708 34%,#050505 100%);
     }
     body.mobile-view main{padding-bottom:96px}
@@ -1090,6 +1083,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       padding:8px 12px;
       font-size:.76rem;
     }
+
     body.mobile-view .hero{padding:14px 0 18px}
     body.mobile-view .hero-stage{
       min-height:auto;
@@ -1150,6 +1144,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       border-radius:16px;
     }
     body.mobile-view .stat-item strong{font-size:1.18rem}
+
     body.mobile-view section{
       padding:0 0 18px;
       scroll-margin-top:110px;
@@ -1175,6 +1170,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       border-radius:18px;
       font-size:.88rem;
     }
+
     body.mobile-view .about-shell,
     body.mobile-view .portfolio-shell,
     body.mobile-view .contact-shell{padding:14px}
@@ -1209,29 +1205,36 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       border-radius:16px;
       font-size:.84rem;
     }
+
     body.mobile-view .categories{
-      grid-template-columns:repeat(2, minmax(0, 1fr));
+      grid-template-columns:repeat(2, minmax(0,1fr));
       gap:10px;
     }
-    body.mobile-view .cat,
-    body.mobile-view .cat:nth-child(1),
-    body.mobile-view .cat:nth-child(2),
-    body.mobile-view .cat:nth-child(3),
-    body.mobile-view .cat:nth-child(4),
-    body.mobile-view .cat:nth-child(5),
-    body.mobile-view .cat:nth-child(6){
-      grid-column:span 1;
+    body.mobile-view .cat{
       min-height:auto;
       border-radius:18px;
       transform:none!important;
     }
-    body.mobile-view .cat-content{
-      padding:12px;
-      gap:10px;
+    body.mobile-view .thumb{
+      position:relative;
+      aspect-ratio:1/1;
+      border-radius:14px;
+      overflow:hidden;
+    }
+    body.mobile-view .thumb::after{
+      background:linear-gradient(180deg, rgba(4,4,4,.08), rgba(4,4,4,.22));
+      opacity:1;
+    }
+    body.mobile-view .cat-overlay{
+      position:relative;
+      inset:auto;
+      padding:10px 8px 8px;
+      display:block;
     }
     body.mobile-view .cat-topline,
-    body.mobile-view .cat-title,
-    body.mobile-view .cat-sub{display:none}
+    body.mobile-view .cat-bottom{
+      display:none;
+    }
     body.mobile-view .mobile-cat-label{
       display:block;
       font-size:.73rem;
@@ -1240,17 +1243,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       color:rgba(244,237,228,.92);
       min-height:2.4em;
     }
-    body.mobile-view .thumb{
-      position:relative;
-      inset:auto;
-      aspect-ratio:1/1;
-      border-radius:14px;
-      overflow:hidden;
-    }
-    body.mobile-view .thumb::after{
-      background:linear-gradient(180deg, rgba(4,4,4,.06), rgba(4,4,4,.22));
-      opacity:1;
-    }
+
     body.mobile-view .contact-grid{
       grid-template-columns:1fr;
       gap:12px;
@@ -1281,22 +1274,19 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       backdrop-filter:none;
       -webkit-backdrop-filter:none;
     }
-    body.mobile-view .modal-shell{
+    body.mobile-view .modal-panel{
       width:100%;
-      max-width:100%;
       height:100dvh;
       max-height:100dvh;
       border:none;
       border-radius:0;
-      padding:0;
-      background:linear-gradient(180deg, rgba(8,8,8,.99), rgba(5,5,5,1));
       box-shadow:none;
-      overscroll-behavior:contain;
     }
     body.mobile-view .modal-top{
       padding:calc(14px + env(safe-area-inset-top,0px)) 14px 14px;
       position:sticky;
       top:0;
+      z-index:2;
       background:linear-gradient(180deg, rgba(7,7,7,.98), rgba(7,7,7,.88));
     }
     body.mobile-view .modal h3{
@@ -1305,13 +1295,16 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     }
     body.mobile-view .modal-kicker{font-size:.55rem}
     body.mobile-view .modal-meta{font-size:.77rem}
+    body.mobile-view .modal-body{
+      padding:0 14px 24px;
+    }
     body.mobile-view .close-btn{
       width:32px;height:32px;font-size:14px;
     }
     body.mobile-view .gallery-grid{
-      grid-template-columns:repeat(3, minmax(0, 1fr));
+      grid-template-columns:repeat(3, minmax(0,1fr));
       gap:8px;
-      padding:0 14px 24px;
+      padding-top:14px;
     }
     body.mobile-view .gallery-item{
       border-radius:14px;
@@ -1346,7 +1339,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       bottom:calc(10px + env(safe-area-inset-bottom,0px));
       z-index:70;
       display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
+      grid-template-columns:repeat(3, minmax(0,1fr));
       gap:8px;
       padding:8px;
       border-radius:22px;
@@ -1381,7 +1374,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       body.mobile-view .mobile-cat-label{font-size:.69rem}
       body.mobile-view h1{font-size:clamp(1.42rem, 7vw, 2rem)}
       body.mobile-view .hero p{font-size:.88rem}
-      body.mobile-view .gallery-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
+      body.mobile-view .gallery-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -1402,7 +1395,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       .lang button,
       .modal,
       .lightbox,
-      .modal-shell,
+      .modal-panel,
       .lightbox-inner,
       .thumb img,
       .gallery-item img{transition:none!important;transform:none!important}
@@ -1528,7 +1521,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
               <div class="section-title">
                 <div class="section-kicker" data-i18n="portfolioEyebrow">Portfolio</div>
                 <h2 data-i18n="portfolioTitle">Selecties uit mijn fotografisch werk</h2>
-                <p data-i18n="portfolioLead">Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.</p>
+                <p data-i18n="portfolioLead">Bekijk verschillende kategorieën i ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.</p>
               </div>
               <div class="section-note" data-i18n="heroText">Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.</div>
             </div>
@@ -1600,7 +1593,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
   </div>
 
   <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-shell" id="modalShell" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+    <div class="modal-panel" id="modalPanel" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
       <div class="modal-top">
         <div>
           <div class="modal-kicker" data-i18n="modalKicker">Portfolio</div>
@@ -1609,7 +1602,9 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
         </div>
         <button class="close-btn" id="closeModal" type="button" aria-label="Close">×</button>
       </div>
-      <div class="gallery-grid" id="galleryGrid"></div>
+      <div class="modal-body" id="modalBody">
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
     </div>
   </div>
 
@@ -1856,9 +1851,10 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
     const categoriesGrid = document.getElementById("categoriesGrid");
     const aboutPhotoWrap = document.getElementById("aboutPhotoWrap");
     const modal = document.getElementById("modal");
-    const modalShell = document.getElementById("modalShell");
+    const modalPanel = document.getElementById("modalPanel");
     const modalTitle = document.getElementById("modalTitle");
     const modalMeta = document.getElementById("modalMeta");
+    const modalBody = document.getElementById("modalBody");
     const galleryGrid = document.getElementById("galleryGrid");
     const closeModal = document.getElementById("closeModal");
     const lightbox = document.getElementById("lightbox");
@@ -1932,6 +1928,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
 
     function loadLazyShell(shell){
       if(!shell || shell.dataset.loaded === "true") return;
+
       const sources = JSON.parse(shell.dataset.sources || "[]");
       const alt = shell.dataset.alt || "";
       const eager = shell.dataset.eager === "true";
@@ -1992,7 +1989,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
             galleryObserver.unobserve(shell);
           }
         });
-      }, { root: modalShell, rootMargin:"420px 0px", threshold:0.01 });
+      }, { root: modalBody, rootMargin:"420px 0px", threshold:0.01 });
       shells.forEach(shell => galleryObserver.observe(shell));
     }
 
@@ -2100,8 +2097,8 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
         thumb.appendChild(createLazyImage(imagePath(category.cover), dict[category.labelKey]));
         button.appendChild(thumb);
 
-        const content = document.createElement("div");
-        content.className = "cat-content";
+        const overlay = document.createElement("div");
+        overlay.className = "cat-overlay";
 
         const topLine = document.createElement("div");
         topLine.className = "cat-topline";
@@ -2114,6 +2111,12 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
         count.className = "cat-count";
         count.textContent = `${galleryData[category.key].items.length} ${dict.photoCount}`;
 
+        topLine.appendChild(pill);
+        topLine.appendChild(count);
+
+        const bottom = document.createElement("div");
+        bottom.className = "cat-bottom";
+
         const title = document.createElement("div");
         title.className = "cat-title";
         title.textContent = dict[category.labelKey];
@@ -2122,17 +2125,16 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
         sub.className = "cat-sub";
         sub.textContent = dict.portfolioLead;
 
-        const mobileLabel = document.createElement("span");
+        const mobileLabel = document.createElement("div");
         mobileLabel.className = "mobile-cat-label";
         mobileLabel.textContent = dict[category.labelKey];
 
-        topLine.appendChild(pill);
-        topLine.appendChild(count);
-        content.appendChild(topLine);
-        content.appendChild(title);
-        content.appendChild(sub);
-        content.appendChild(mobileLabel);
-        button.appendChild(content);
+        bottom.appendChild(title);
+        bottom.appendChild(sub);
+        overlay.appendChild(topLine);
+        overlay.appendChild(bottom);
+        overlay.appendChild(mobileLabel);
+        button.appendChild(overlay);
 
         button.addEventListener("click", () => openCategory(category.key, false, button));
         fragment.appendChild(button);
@@ -2229,7 +2231,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       modal.setAttribute("aria-hidden", "false");
       setBodyLock();
 
-      modalShell.scrollTop = 0;
+      modalBody.scrollTop = 0;
       setupGalleryObserver();
 
       document.querySelectorAll("#galleryGrid .lazy-shell").forEach((shell, index) => {
@@ -2312,6 +2314,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
 
     function moveImage(step){
       if(!currentCategory) return;
+
       const items = galleryData[currentCategory].items;
       currentIndex = (currentIndex + step + items.length) % items.length;
 
@@ -2401,7 +2404,7 @@ Poniżej cały kod w częściach, w poprawnej kolejności, do skopiowania.
       }
 
       if(modal.classList.contains("open")){
-        trapFocus(e, modalShell);
+        trapFocus(e, modalPanel);
         if(e.key === "Escape") closeCategory();
       }
     });
