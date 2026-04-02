@@ -12,344 +12,371 @@
   <meta property="og:image" content="images/DSCF4051.jpg" />
   <style>
     :root {
-      --bg: #0a0a0a;
-      --surface: #111111;
-      --panel: rgba(255,255,255,.06);
-      --border: rgba(212,175,119,.18);
-      --text: #f4f0e8;
-      --muted: rgba(244,240,232,.78);
+      /* Premium 2026 dark luxury palette */
+      --bg: #0c0c0c;
+      --surface: #161616;
+      --panel: rgba(255,255,255,.035);
+      --border: rgba(212, 175, 119, .12);
       --accent: #d4af77;
-      --accent-glow: #d4af77;
+      --text: #f4f1e9;
+      --muted: #b8b0a0;
+      --shadow: 0 25px 70px -15px rgba(0,0,0,.65);
+      --glow: 0 0 35px -10px rgba(212,175,119,.25);
+      --container: 1380px;
+      --transition: 380ms cubic-bezier(0.23, 1, 0.32, 1);
       --header-h: 92px;
-      --transition: 420ms cubic-bezier(0.23, 1, 0.32, 1);
-      --fs-body: clamp(15px, 0.9vw + 13px, 17px);
-      --fs-h1: clamp(3.2rem, 5.8vw, 4.8rem);
-      --fs-h2: clamp(2.1rem, 3.4vw, 3rem);
-      --fs-h3: clamp(1.35rem, 2vw, 1.75rem);
-      --fs-lead: clamp(1.05rem, 1.1vw + 0.8rem, 1.2rem);
+      /* Refined typography – editorial scale */
+      --fs-body: clamp(15px, 0.52vw + 13.5px, 16.8px);
+      --lh-body: 1.68;
+      --fs-h1: clamp(2.6rem, 3.8vw, 3.85rem);
+      --fs-h2: clamp(1.85rem, 2.6vw, 2.75rem);
+      --fs-h3: clamp(1.35rem, 1.7vw, 1.72rem);
+      --fs-lead: clamp(1.05rem, 0.62vw + .92rem, 1.18rem);
+      --fs-small: clamp(0.9rem, 0.4vw + .82rem, 0.98rem);
+      --text-max: 68ch;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    * { box-sizing: border-box; margin:0; padding:0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: Inter, system-ui, -apple-system, sans-serif;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.68;
+      line-height: var(--lh-body);
       font-size: var(--fs-body);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
     body.locked { overflow: hidden; }
-
     .sr-only {
-      position: absolute;
-      width: 1px; height: 1px;
-      padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0,0,0,0);
-      white-space: nowrap; border: 0;
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0,0,0,0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
     }
-
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
+    button {
+      font: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .container {
+      width: min(var(--container), 100% - 48px);
+      margin: 0 auto;
+    }
 
-    /* HEADER */
+    /* ==================== PREMIUM HEADER ==================== */
     .site-header {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      background: rgba(10,10,10,.92);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(212,175,119,.12);
-      padding-top: env(safe-area-inset-top, 0);
+      background: rgba(12,12,12,.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding-top: env(safe-area-inset-top);
       transition: background var(--transition);
     }
     .header-inner {
-      max-width: 1420px;
-      margin: 0 auto;
-      padding: 0 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       min-height: var(--header-h);
+      padding: 0 12px;
     }
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 1.15rem;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      letter-spacing: -.02em;
+      font-size: 1.15rem;
+      color: var(--text);
     }
     .brand-dot {
-      width: 11px; height: 11px;
+      width: 11px;
+      height: 11px;
       background: var(--accent);
       border-radius: 50%;
-      box-shadow: 0 0 22px var(--accent-glow);
+      box-shadow: var(--glow);
+      flex-shrink: 0;
     }
     .nav {
       display: flex;
-      gap: 32px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
+      gap: 8px;
+      align-items: center;
     }
     .nav a {
-      padding: 8px 0;
-      position: relative;
-      transition: color var(--transition);
+      padding: 10px 22px;
+      border-radius: 9999px;
+      font-size: .92rem;
+      letter-spacing: -.01em;
+      color: var(--muted);
+      transition: all var(--transition);
     }
-    .nav a:after {
-      content: "";
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 0; height: 2px;
-      background: var(--accent);
-      transition: width var(--transition);
+    .nav a:hover {
+      color: var(--text);
+      background: rgba(212,175,119,.08);
     }
-    .nav a:hover:after { width: 100%; }
     .lang {
       display: flex;
-      background: rgba(255,255,255,.06);
+      background: var(--panel);
+      border: 1px solid var(--border);
       border-radius: 9999px;
       padding: 4px;
-      border: 1px solid rgba(212,175,119,.15);
+      gap: 3px;
     }
     .lang button {
-      padding: 8px 22px;
+      padding: 7px 18px;
       border-radius: 9999px;
-      font-size: 0.86rem;
-      font-weight: 500;
+      font-size: .85rem;
       transition: all var(--transition);
     }
-    .lang button.active,
-    .lang button:hover {
+    .lang button.active {
       background: var(--accent);
       color: #111;
-      box-shadow: 0 4px 14px rgba(212,175,119,.3);
+      box-shadow: var(--glow);
+    }
+    .top-switch {
+      padding: 12px 0 6px;
     }
     .view-switch {
-      padding: 10px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 26px;
       border-radius: 9999px;
+      background: linear-gradient(90deg, rgba(212,175,119,.15), rgba(255,255,255,.04));
       border: 1px solid var(--border);
-      background: rgba(212,175,119,.08);
-      font-size: 0.88rem;
-      font-weight: 500;
+      color: var(--text);
+      font-size: .88rem;
+      box-shadow: var(--shadow);
       transition: all var(--transition);
-      white-space: nowrap;
     }
-    .view-switch:hover {
-      background: var(--accent);
-      color: #111;
-      transform: translateY(-1px);
-    }
+    .view-switch:hover { transform: translateY(-1px); box-shadow: 0 18px 40px -10px rgba(212,175,119,.3); }
 
-    /* HERO */
+    /* ==================== CINEMATIC HERO ==================== */
     .hero {
       min-height: 100dvh;
       display: flex;
       align-items: center;
       position: relative;
-      background: linear-gradient(180deg, rgba(10,10,10,.65) 0%, rgba(10,10,10,.35) 42%, rgba(10,10,10,.75) 100%),
-                  url("images/DSCF4051.jpg") center 26% / cover no-repeat;
-      overflow: hidden;
+      background: 
+        linear-gradient(180deg, rgba(12,12,12,.65) 0%, rgba(12,12,12,.35) 38%, transparent 78%),
+        linear-gradient(90deg, rgba(12,12,12,.75) 0%, rgba(12,12,12,.25) 100%),
+        url("images/DSCF4051.jpg") center 22% / cover no-repeat;
+      isolation: isolate;
     }
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 70%, rgba(212,175,119,.14), transparent 60%);
+      background: radial-gradient(circle at 30% 70%, rgba(212,175,119,.09), transparent 60%);
       pointer-events: none;
-      animation: heroPulse 25s ease infinite;
+      animation: heroBreath 18s ease infinite;
     }
-    @keyframes heroPulse {
-      0%,100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
+    @keyframes heroBreath { 50% { opacity: .85; } }
     .hero-content {
-      max-width: 1420px;
-      margin: 0 auto;
-      padding: 0 32px;
       position: relative;
       z-index: 2;
-      width: 100%;
+      max-width: 820px;
+      padding-left: 2rem;
     }
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
+      font-size: .72rem;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      padding: 10px 28px;
-      border-radius: 9999px;
-      background: rgba(212,175,119,.12);
       color: var(--accent);
-      margin-bottom: 24px;
-      border: 1px solid rgba(212,175,119,.25);
+      border: 1px solid rgba(212,175,119,.3);
+      padding: 6px 18px 6px 22px;
+      border-radius: 9999px;
+      margin-bottom: 18px;
+      background: rgba(12,12,12,.6);
     }
     .hero h1 {
       font-size: var(--fs-h1);
       line-height: 1.05;
-      letter-spacing: -0.06em;
+      letter-spacing: -.055em;
       max-width: 14ch;
       margin-bottom: 22px;
+      text-wrap: balance;
     }
     .hero p {
       font-size: var(--fs-lead);
-      max-width: 48ch;
       color: var(--muted);
-      margin-bottom: 42px;
+      max-width: var(--text-max);
+      margin-bottom: 36px;
     }
-    .hero-actions {
+    .actions {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
     }
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 58px;
+      min-height: 52px;
       padding: 0 32px;
       border-radius: 9999px;
-      font-size: 1.02rem;
+      font-size: .95rem;
       font-weight: 500;
-      letter-spacing: -0.02em;
+      letter-spacing: -.01em;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
       transition: all var(--transition);
-      position: relative;
-      overflow: hidden;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      background: rgba(212,175,119,.15);
+      border-color: var(--accent);
+      box-shadow: var(--glow);
     }
     .btn.primary {
-      background: linear-gradient(90deg, var(--accent), #e6c99a);
+      background: linear-gradient(90deg, var(--accent), #e8c88f);
       color: #111;
-      box-shadow: 0 10px 30px rgba(212,175,119,.4);
-    }
-    .btn.primary:hover {
-      transform: scale(1.04);
-      box-shadow: 0 16px 38px rgba(212,175,119,.5);
-    }
-    .btn.secondary {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.05);
-    }
-    .btn.secondary:hover {
-      border-color: var(--accent);
-      background: rgba(212,175,119,.1);
+      border-color: transparent;
     }
 
-    /* SECTIONS */
-    section {
-      padding: 120px 0;
-      max-width: 1420px;
-      margin: 0 auto;
-      scroll-margin-top: calc(var(--header-h) + 40px);
-    }
+    /* ==================== SECTION HEADING ==================== */
+    section { padding: 120px 0; scroll-margin-top: calc(var(--header-h) + 40px); }
     .section-head {
-      max-width: 720px;
-      margin-bottom: 68px;
-      padding: 0 32px;
+      max-width: 760px;
+      margin-bottom: 58px;
     }
     .section-head span {
-      font-size: 0.76rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
       display: block;
+      color: var(--accent);
+      font-size: .73rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
       margin-bottom: 12px;
     }
     .section-head h2 {
       font-size: var(--fs-h2);
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      margin-bottom: 18px;
+      line-height: 1.08;
+      letter-spacing: -.04em;
+      max-width: 22ch;
     }
     .section-head p {
+      margin-top: 16px;
       font-size: var(--fs-lead);
       color: var(--muted);
-      max-width: 52ch;
+      max-width: var(--text-max);
     }
 
-    /* ABOUT */
+    /* ==================== ABOUT – NEW COMPOSITION ==================== */
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 64px;
       align-items: center;
-      padding: 0 32px;
     }
-    .about-photo {
-      border-radius: 32px;
+    .about-image {
+      border-radius: 28px;
       overflow: hidden;
-      box-shadow: 40px 40px 80px rgba(0,0,0,.6);
+      box-shadow: var(--shadow);
       position: relative;
     }
-    .about-photo::after {
+    .about-image::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(212,175,119,.12), transparent 70%);
+      background: linear-gradient(180deg, transparent 70%, rgba(12,12,12,.4));
       pointer-events: none;
     }
-    .about-text {
+    .about-copy {
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 28px;
     }
-    .about-text h3 {
+    .about-copy h3 {
       font-size: var(--fs-h3);
-      line-height: 1.25;
-      letter-spacing: -0.03em;
+      line-height: 1.2;
+      letter-spacing: -.025em;
     }
-    .about-text p {
+    .about-copy p {
       color: var(--muted);
-      font-size: 1.02rem;
-      line-height: 1.75;
+      font-size: var(--fs-small);
+      max-width: 52ch;
     }
 
-    /* PORTFOLIO CATEGORIES */
-    #categoriesGrid {
+    /* ==================== PORTFOLIO – CURATED THUMBNAIL GALLERY ==================== */
+    .categories {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 28px;
-      padding: 0 32px;
     }
     .cat {
       background: var(--surface);
-      border-radius: 28px;
+      border-radius: 24px;
       overflow: hidden;
-      border: 1px solid rgba(212,175,119,.12);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
       transition: all var(--transition);
-      box-shadow: 0 20px 40px rgba(0,0,0,.3);
+      display: flex;
+      flex-direction: column;
     }
     .cat:hover {
-      transform: translateY(-12px);
+      transform: translateY(-8px);
       border-color: var(--accent);
-      box-shadow: 0 32px 70px rgba(212,175,119,.22);
+      box-shadow: 0 30px 60px -15px rgba(212,175,119,.25);
     }
     .cat-thumb {
-      height: 260px;
+      aspect-ratio: 16 / 11;
       position: relative;
+      overflow: hidden;
     }
+    .cat-thumb img, .cat-thumb .lazy-shell {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 420ms cubic-bezier(0.23,1,.32,1);
+    }
+    .cat:hover .cat-thumb img { transform: scale(1.04); }
     .cat-label {
-      padding: 24px 28px 28px;
-      font-size: 1.15rem;
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.05rem;
       font-weight: 500;
-      letter-spacing: -0.02em;
+      letter-spacing: -.02em;
+    }
+    .cat-pill {
+      font-size: .8rem;
+      padding: 4px 14px;
+      background: rgba(212,175,119,.12);
+      color: var(--accent);
+      border-radius: 9999px;
+      letter-spacing: .04em;
     }
 
-    /* CONTACT */
+    /* ==================== CONTACT – LUXURY CARDS ==================== */
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 28px;
-      padding: 0 32px;
+      gap: 24px;
     }
     .contact-card {
       background: var(--surface);
-      border-radius: 28px;
-      padding: 42px 36px;
-      border: 1px solid rgba(212,175,119,.12);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px 34px;
+      box-shadow: var(--shadow);
       transition: all var(--transition);
     }
     .contact-card:hover {
@@ -357,296 +384,279 @@
       transform: translateY(-4px);
     }
     .contact-card strong {
-      font-size: 1.1rem;
       display: block;
+      font-size: 1.1rem;
       margin-bottom: 8px;
     }
     .contact-card span {
       display: block;
       color: var(--muted);
-      font-size: 1.02rem;
-      margin-bottom: 28px;
-      word-break: break-all;
+      margin-bottom: 24px;
+      font-size: var(--fs-small);
     }
 
-    /* FOOTER */
+    /* ==================== FOOTER ==================== */
     .footer {
-      background: #0a0a0a;
-      padding: 72px 32px 40px;
-      border-top: 1px solid rgba(212,175,119,.1);
-      font-size: 0.9rem;
-      color: var(--muted);
+      padding: 68px 0 42px;
+      background: #080808;
+      color: #8c887f;
+      font-size: .9rem;
+      border-top: 1px solid var(--border);
     }
     .footer-inner {
-      max-width: 1420px;
-      margin: 0 auto;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 24px;
+      gap: 20px;
     }
 
-    /* MOBILE VIEW OVERRIDES */
-    body.mobile-view .site-header { min-height: 78px; }
-    body.mobile-view .header-inner { padding: 0 24px; }
-    body.mobile-view .nav { display: none; }
-    body.mobile-view .hero { min-height: 92dvh; background-position: 62% 22%; }
-    body.mobile-view .about-grid,
-    body.mobile-view #categoriesGrid,
-    body.mobile-view .contact-grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-    body.mobile-view section { padding: 80px 0; }
+    /* ==================== MOBILE VIEW OVERRIDES ==================== */
+    body.mobile-view .site-header { background: rgba(12,12,12,.96); }
+    body.mobile-view .hero { min-height: auto; padding: 140px 0 80px; background-position: 58% 18%; }
+    body.mobile-view .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    body.mobile-view .categories { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    body.mobile-view .cat-thumb { aspect-ratio: 4 / 3; }
+    body.mobile-view section { padding: 78px 0; }
+    body.mobile-view .contact-grid { grid-template-columns: 1fr; }
 
-    /* MODAL */
-    .modal {
+    /* ==================== MODAL & LIGHTBOX – PREMIUM 2026 ==================== */
+    .modal, .lightbox {
       position: fixed;
       inset: 0;
       z-index: 9999;
       display: none;
       align-items: center;
       justify-content: center;
-      background: rgba(10,10,10,.94);
-      backdrop-filter: blur(24px);
+      background: rgba(8,8,8,.92);
+      backdrop-filter: blur(22px);
     }
-    .modal.open { display: flex; }
+    .modal.open, .lightbox.open { display: flex; animation: modalFade 280ms cubic-bezier(0.23,1,.32,1); }
+    @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
+    
     .modal-shell {
-      width: min(1280px, 96%);
+      width: min(1280px, 100% - 32px);
       max-height: 92dvh;
-      background: #111111;
-      border-radius: 32px;
-      border: 1px solid rgba(212,175,119,.2);
-      box-shadow: 0 40px 100px rgba(0,0,0,.7);
+      background: #161616;
+      border-radius: 28px;
+      border: 1px solid rgba(212,175,119,.15);
       overflow: hidden;
-      animation: modalPop 420ms cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    @keyframes modalPop {
-      from { opacity: 0; transform: scale(0.94) translateY(30px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
+      box-shadow: 0 40px 110px -20px rgba(0,0,0,.8);
     }
     .modal-top {
-      padding: 32px 40px 20px;
+      padding: 28px 32px 18px;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 1px solid rgba(212,175,119,.15);
+      border-bottom: 1px solid var(--border);
     }
-    .modal h3 { font-size: 2rem; letter-spacing: -0.04em; }
-    .modal-meta { color: var(--muted); font-size: 0.95rem; }
+    .modal h3 { font-size: 1.85rem; letter-spacing: -.03em; }
+    .modal-meta { color: var(--muted); font-size: .9rem; }
     .close-btn {
-      width: 48px; height: 48px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(212,175,119,.25);
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
-      line-height: 1;
-      transition: all var(--transition);
+      font-size: 26px;
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      transition: all .2s ease;
     }
     .close-btn:hover { background: var(--accent); color: #111; transform: rotate(90deg); }
+    
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 18px;
-      padding: 40px;
+      padding: 32px;
     }
     .gallery-item {
-      border-radius: 20px;
+      border-radius: 18px;
       overflow: hidden;
-      aspect-ratio: 1 / 1;
-      box-shadow: 0 12px 28px rgba(0,0,0,.4);
-      transition: transform 340ms cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: var(--shadow);
+      transition: transform 280ms cubic-bezier(0.23,1,.32,1);
     }
-    .gallery-item:hover { transform: scale(1.04); }
-
-    /* LIGHTBOX */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(10,10,10,.96);
-      backdrop-filter: blur(18px);
-    }
-    .lightbox.open { display: flex; }
+    .gallery-item:hover { transform: scale(1.03); }
+    
+    /* STRICT LIGHTBOX CONSTRAINT – FIXED FOR PREMIUM SCALE */
     .lightbox-inner {
       position: relative;
-      max-width: 92vw;
-      max-height: 92vh;
-      animation: lightboxFade 280ms ease;
-    }
-    @keyframes lightboxFade {
-      from { opacity: 0; transform: scale(0.92); }
-      to { opacity: 1; transform: scale(1); }
+      max-width: 94vw;
+      max-height: 92dvh;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .lightbox img {
       max-width: 88vw;
       max-height: 88vh;
       object-fit: contain;
-      border-radius: 18px;
-      box-shadow: 0 30px 90px rgba(0,0,0,.75);
+      border-radius: 14px;
+      box-shadow: 0 40px 100px -15px rgba(0,0,0,.75);
       background: #111;
     }
     .lightbox .close-btn {
       position: absolute;
-      top: -24px;
-      right: -24px;
+      top: 28px;
+      right: 28px;
       z-index: 10;
+      width: 34px;
+      height: 34px;
+      font-size: 22px;
     }
+    /* Mobile lightbox overrides */
+    body.mobile-view .lightbox img { max-width: 92vw; max-height: 86vh; }
+    body.mobile-view .lightbox .close-btn { top: 18px; right: 18px; width: 32px; height: 32px; }
 
-    /* LAZY + FALLBACK */
+    /* Lazy loading shimmer */
     .lazy-shell {
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, #1f1f1f 25%, #2a2a2a 50%, #1f1f1f 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.8s linear infinite;
+      background: linear-gradient(90deg, #222 8%, #2a2a2a 18%, #222 33%);
+      background-size: 300% 100%;
+      animation: shimmer 1.4s linear infinite;
+      min-height: 100%;
     }
     .lazy-shell.loaded { animation: none; background: none; }
-    @keyframes shimmer { to { background-position: -200% 0; } }
-    .image-fallback {
-      padding: 40px 24px;
-      text-align: center;
-      background: rgba(212,175,119,.06);
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+    @keyframes shimmer { to { background-position: -300% 0; } }
 
-    /* SCROLL REVEAL */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 800ms cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 620ms cubic-bezier(0.23,1,.32,1); }
+    .reveal.revealed { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 820px) {
-      section { padding: 80px 0; }
-      .about-grid { gap: 40px; }
-      .hero-actions { flex-direction: column; }
-      .btn { min-height: 52px; width: 100%; }
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="header-inner">
-      <div class="brand">
-        <span class="brand-dot"></span>
-        <span>Rafał Wilk</span>
-      </div>
+    <div class="container">
       <div class="top-switch">
         <a class="view-switch" id="viewToggle" href="?view=mobile">Przejdź do wersji mobilnej</a>
       </div>
-      <nav class="nav">
-        <a href="#about" data-i18n="navAbout">Over mij</a>
-        <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
-        <a href="#contact" data-i18n="navContact">Contact</a>
-      </nav>
-      <div class="lang">
-        <button class="active" data-lang="nl" type="button">NL</button>
-        <button data-lang="en" type="button">EN</button>
-        <button data-lang="pl" type="button">PL</button>
+      <div class="header-inner">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <span>Rafał Wilk</span>
+        </div>
+        <div class="nav">
+          <nav class="nav">
+            <a href="#about" data-i18n="navAbout">Over mij</a>
+            <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+            <a href="#contact" data-i18n="navContact">Contact</a>
+          </nav>
+          <div class="lang">
+            <button class="active" data-lang="nl" type="button">NL</button>
+            <button data-lang="en" type="button">EN</button>
+            <button data-lang="pl" type="button">PL</button>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="top">
-      <div class="hero-content">
-        <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
-        <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer, licht en karakter</h1>
-        <p data-i18n="heroText">Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
-          <a class="btn secondary" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
+  <div id="pageRoot">
+    <main>
+      <!-- DRAMATIC HERO -->
+      <section class="hero" id="top">
+        <div class="container">
+          <div class="hero-content">
+            <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
+            <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer, licht en karakter</h1>
+            <p data-i18n="heroText">Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.</p>
+            <div class="actions">
+              <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
+              <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="section-head">
-        <span data-i18n="aboutEyebrow">Over mij</span>
-        <h2 data-i18n="aboutTitle">Een persoonlijke blik vertaald naar verzorgde en doordachte beelden</h2>
-        <p data-i18n="aboutLead">Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.</p>
-      </div>
-      <div class="about-grid">
-        <div class="about-photo card" id="aboutPhotoWrap"></div>
-        <div class="about-text card">
-          <h3 data-i18n="aboutBoxTitle">Fotografie is voor mij meer dan alleen foto's maken</h3>
-          <p data-i18n="aboutP1">Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.</p>
-          <p data-i18n="aboutP2">In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.</p>
+      <!-- ABOUT – REFINED SPLIT COMPOSITION -->
+      <section id="about">
+        <div class="container">
+          <div class="section-head reveal">
+            <span data-i18n="aboutEyebrow">Over mij</span>
+            <h2 data-i18n="aboutTitle">Een persoonlijke blik vertaald naar verzorgde en doordachte beelden</h2>
+            <p data-i18n="aboutLead">Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.</p>
+          </div>
+          <div class="about-grid">
+            <div class="about-image reveal" id="aboutPhotoWrap"></div>
+            <div class="about-copy reveal">
+              <h3 data-i18n="aboutBoxTitle">Fotografie is voor mij meer dan alleen foto's maken</h3>
+              <p data-i18n="aboutP1">Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.</p>
+              <p data-i18n="aboutP2">In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- PORTFOLIO -->
-    <section id="portfolio">
-      <div class="section-head">
-        <span data-i18n="portfolioEyebrow">Portfolio</span>
-        <h2 data-i18n="portfolioTitle">Selecties uit mijn fotografisch werk</h2>
-        <p data-i18n="portfolioLead">Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.</p>
-      </div>
-      <div id="categoriesGrid"></div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="section-head">
-        <span data-i18n="contactEyebrow">Contact</span>
-        <h2 data-i18n="contactTitle">Neem rechtstreeks contact met mij op</h2>
-        <p data-i18n="contactLead">Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.</p>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-card">
-          <strong>Instagram</strong>
-          <span>@fotodisogno</span>
-          <a class="btn secondary" href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
+      <!-- PORTFOLIO – CURATED PREMIUM THUMBNAIL GALLERY -->
+      <section id="portfolio">
+        <div class="container">
+          <div class="section-head reveal">
+            <span data-i18n="portfolioEyebrow">Portfolio</span>
+            <h2 data-i18n="portfolioTitle">Selecties uit mijn fotografisch werk</h2>
+            <p data-i18n="portfolioLead">Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.</p>
+          </div>
+          <div class="categories" id="categoriesGrid"></div>
         </div>
-        <div class="contact-card">
-          <strong>E-mail</strong>
-          <span>fotodisogno@gmail.com</span>
-          <a class="btn secondary" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Open</a>
+      </section>
+
+      <!-- CONTACT – LUXURY BRAND AREA -->
+      <section id="contact">
+        <div class="container">
+          <div class="section-head reveal">
+            <span data-i18n="contactEyebrow">Contact</span>
+            <h2 data-i18n="contactTitle">Neem rechtstreeks contact met mij op</h2>
+            <p data-i18n="contactLead">Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.</p>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-card reveal">
+              <strong>Instagram</strong>
+              <span>@fotodisogno</span>
+              <a class="btn" href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
+            </div>
+            <div class="contact-card reveal">
+              <strong>E-mail</strong>
+              <span>fotodisogno@gmail.com</span>
+              <a class="btn" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Open</a>
+            </div>
+            <div class="contact-card reveal">
+              <strong>WhatsApp</strong>
+              <span>31 0644747733</span>
+              <a class="btn" href="https://wa.me/310644747733" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
+            </div>
+          </div>
         </div>
-        <div class="contact-card">
-          <strong>WhatsApp</strong>
-          <span>31 0644747733</span>
-          <a class="btn secondary" href="https://wa.me/310644747733" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
-        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© Rafał Wilk</div>
+        <div data-i18n="legalNotice">Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming.</div>
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div>© Rafał Wilk</div>
-      <div data-i18n="legalNotice">Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming.</div>
-    </div>
-  </footer>
-
-  <!-- MOBILE BOTTOM NAV -->
-  <nav class="mobile-bottom-nav" aria-label="Mobile navigation" style="display:none;position:fixed;bottom:20px;left:20px;right:20px;z-index:200;background:rgba(17,17,17,.96);backdrop-filter:blur(20px);border-radius:24px;border:1px solid rgba(212,175,119,.2);padding:12px 16px;box-shadow:0 20px 50px rgba(0,0,0,.5);">
-    <a href="#top" data-i18n="navHome" style="flex:1;text-align:center;padding:14px 0;font-size:0.92rem;font-weight:500;">Start</a>
-    <a href="#portfolio" data-i18n="navPortfolio" style="flex:1;text-align:center;padding:14px 0;font-size:0.92rem;font-weight:500;">Portfolio</a>
-    <a href="#contact" data-i18n="navContact" style="flex:1;text-align:center;padding:14px 0;font-size:0.92rem;font-weight:500;">Contact</a>
-  </nav>
+    <!-- Mobile bottom navigation -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+      <a href="#top" data-i18n="navHome">Start</a>
+      <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </nav>
+  </div>
 
   <!-- MODAL -->
   <div class="modal" id="modal" aria-hidden="true">
     <div class="modal-shell" id="modalShell" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
       <div class="modal-top">
         <div>
-          <div class="modal-kicker" data-i18n="modalKicker" style="color:var(--accent);font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;">Portfolio</div>
+          <div class="modal-kicker" data-i18n="modalKicker">Portfolio</div>
           <h3 id="modalTitle"></h3>
           <div class="modal-meta" id="modalMeta"></div>
         </div>
@@ -656,11 +666,11 @@
     </div>
   </div>
 
-  <!-- LIGHTBOX -->
+  <!-- LIGHTBOX – STRICTLY CONSTRAINED -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lightbox-inner" id="lightboxInner" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" tabindex="-1">
       <h2 id="lightboxTitle" class="sr-only">Image preview</h2>
-      <button class="close-btn" id="closeLightbox" type="button" aria-label="Close" style="background:#111;border:1px solid var(--accent);">×</button>
+      <button class="close-btn" id="closeLightbox" type="button" aria-label="Close">×</button>
       <img id="lightboxImage" src="" alt="" />
     </div>
   </div>
@@ -797,6 +807,7 @@
         lightboxTitle: "Foto bekijken"
       }
     };
+
     const categoriesMeta = [
       { key: "portrait", labelKey: "cat1", cover: "DSCF4051-2.jpg" },
       { key: "street", labelKey: "cat2", cover: "A7407052.jpg" },
@@ -805,6 +816,7 @@
       { key: "travel", labelKey: "cat5", cover: "DSC02526.avif" },
       { key: "creative", labelKey: "cat6", cover: "DSC_5304.jpg" }
     ];
+
     const galleryData = {
       portrait: {
         titleKey: "galleryTitlePortrait",
@@ -889,8 +901,9 @@
         ]
       }
     };
+
     const aboutImage = "ChatGPT Image 28 mar 2026, 16_46_19";
-    const pageRoot = document.getElementById("pageRoot") || document.body;
+    const pageRoot = document.getElementById("pageRoot");
     const nodes = document.querySelectorAll("[data-i18n]");
     const langButtons = document.querySelectorAll(".lang button");
     const categoriesGrid = document.getElementById("categoriesGrid");
@@ -907,8 +920,10 @@
     const lightboxImage = document.getElementById("lightboxImage");
     const closeLightbox = document.getElementById("closeLightbox");
     const viewToggle = document.getElementById("viewToggle");
+    const mobileBottomNav = document.querySelector(".mobile-bottom-nav");
+
     const pageUrl = new URL(window.location.href);
-    const mediaQuery = window.matchMedia("(max-width: 820px)");
+    const mediaQuery = window.matchMedia("(max-width: 860px)");
     const urlLang = pageUrl.searchParams.get("lang");
     const forcedView = pageUrl.searchParams.get("view");
     const hasForcedView = forcedView === "mobile" || forcedView === "desktop";
@@ -926,12 +941,13 @@
     function imagePath(fileName){ return encodePath(`images/${fileName}`); }
     function getCandidateImagePaths(fileName){
       if(hasExtension(fileName)) return [imagePath(fileName)];
-      const extensions = ["avif", "webp", "jpg", "jpeg", "png"];
+      const extensions = ["avif","webp","jpg","jpeg","png"];
       return extensions.map(ext => imagePath(`${fileName}.${ext}`));
     }
     function createFallback(src){
       const fallback = document.createElement("div");
       fallback.className = "image-fallback";
+      fallback.style.cssText = "display:flex;align-items:center;justify-content:center;padding:28px;text-align:center;color:#999;background:#222;font-size:0.88rem;border-radius:12px;height:100%;";
       fallback.textContent = `${translations[currentLang].imageMissingNamed} ${decodeURIComponent((src || "").split("/").pop() || "")}`;
       return fallback;
     }
@@ -965,28 +981,37 @@
       shell.dataset.loaded = "true";
       shell.appendChild(img);
     }
+
     function setupCategoryObserver(){
       if(categoryObserver) categoryObserver.disconnect();
       const shells = Array.from(document.querySelectorAll("#categoriesGrid .lazy-shell"));
       if(!("IntersectionObserver" in window)){ shells.forEach(loadLazyShell); return; }
-      categoryObserver = new IntersectionObserver((entries) => {
+      categoryObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-          if(entry.isIntersecting){ loadLazyShell(entry.target); categoryObserver.unobserve(entry.target); }
+          if(entry.isIntersecting){
+            loadLazyShell(entry.target);
+            categoryObserver.unobserve(entry.target);
+          }
         });
-      }, { rootMargin: "280px 0px", threshold: 0.01 });
-      shells.forEach(shell => categoryObserver.observe(shell));
+      }, { rootMargin: "260px 0px", threshold: 0.1 });
+      shells.forEach(s => categoryObserver.observe(s));
     }
+
     function setupGalleryObserver(){
       if(galleryObserver) galleryObserver.disconnect();
       const shells = Array.from(document.querySelectorAll("#galleryGrid .lazy-shell"));
       if(!("IntersectionObserver" in window)){ shells.forEach(loadLazyShell); return; }
-      galleryObserver = new IntersectionObserver((entries) => {
+      galleryObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-          if(entry.isIntersecting){ loadLazyShell(entry.target); galleryObserver.unobserve(entry.target); }
+          if(entry.isIntersecting){
+            loadLazyShell(entry.target);
+            galleryObserver.unobserve(entry.target);
+          }
         });
-      }, { root: modalShell, rootMargin: "420px 0px", threshold: 0.01 });
-      shells.forEach(shell => galleryObserver.observe(shell));
+      }, { root: modalShell, rootMargin: "420px 0px", threshold: 0.1 });
+      shells.forEach(s => galleryObserver.observe(s));
     }
+
     function buildSwitchHref(targetView){
       const url = new URL(window.location.href);
       url.searchParams.set("lang", currentLang);
@@ -1002,12 +1027,16 @@
     function updateUrlLanguageOnly(){
       const url = new URL(window.location.href);
       url.searchParams.set("lang", currentLang);
-      if(hasForcedView) url.searchParams.set("view", forcedView); else url.searchParams.delete("view");
-      history.replaceState(history.state || { overlay: null }, "", `${url.pathname}${url.search}${url.hash}`);
+      if(hasForcedView) url.searchParams.set("view", forcedView);
+      else url.searchParams.delete("view");
+      history.replaceState(history.state || {}, "", `${url.pathname}${url.search}${url.hash}`);
     }
     function applyTranslations(){
       const dict = translations[currentLang];
-      nodes.forEach(node => { if(dict[node.dataset.i18n]) node.textContent = dict[node.dataset.i18n]; });
+      nodes.forEach(node => {
+        const key = node.dataset.i18n;
+        if(dict[key]) node.textContent = dict[key];
+      });
       document.documentElement.lang = currentLang;
       updateViewToggle();
       lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
@@ -1016,12 +1045,14 @@
         modalMeta.textContent = `${galleryData[currentCategory].items.length} ${dict.photoCount}`;
       }
     }
+
     function renderAboutPhoto(){
       aboutPhotoWrap.innerHTML = "";
       const shell = createLazyImage(getCandidateImagePaths(aboutImage), "Rafał Wilk", true);
       aboutPhotoWrap.appendChild(shell);
       loadLazyShell(shell);
     }
+
     function renderCategories(){
       const dict = translations[currentLang];
       categoriesGrid.innerHTML = "";
@@ -1033,20 +1064,27 @@
         button.dataset.category = category.key;
         button.setAttribute("aria-haspopup", "dialog");
         button.setAttribute("aria-controls", "modal");
-        const thumb = document.createElement("div");
-        thumb.className = "cat-thumb";
-        thumb.appendChild(createLazyImage(imagePath(category.cover), dict[category.labelKey]));
-        button.appendChild(thumb);
-        const label = document.createElement("div");
-        label.className = "cat-label";
-        label.textContent = dict[category.labelKey];
-        button.appendChild(label);
+
+        const thumbWrap = document.createElement("div");
+        thumbWrap.className = "cat-thumb";
+        thumbWrap.appendChild(createLazyImage(imagePath(category.cover), dict[category.labelKey]));
+        button.appendChild(thumbWrap);
+
+        const labelRow = document.createElement("div");
+        labelRow.className = "cat-label";
+        labelRow.innerHTML = `
+          <span>${dict[category.labelKey]}</span>
+          <span class="cat-pill">${dict[category.labelKey]}</span>
+        `;
+        button.appendChild(labelRow);
+
         button.addEventListener("click", () => openCategory(category.key, false, button));
         fragment.appendChild(button);
       });
       categoriesGrid.appendChild(fragment);
       setupCategoryObserver();
     }
+
     function setBackgroundInert(isInert){
       if("inert" in pageRoot) pageRoot.inert = isInert;
       else pageRoot.setAttribute("aria-hidden", isInert ? "true" : "false");
@@ -1056,21 +1094,27 @@
       document.body.classList.toggle("locked", locked);
       setBackgroundInert(locked);
     }
+
     function ensureBaseState(){
-      if(!history.state || typeof history.state.overlay === "undefined") history.replaceState({ overlay: null }, "", location.href);
+      if(!history.state || typeof history.state.overlay === "undefined"){
+        history.replaceState({ overlay: null }, "", location.href);
+      }
     }
+
     function getFocusableElements(container){
-      const selectors = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
-      return Array.from(container.querySelectorAll(selectors)).filter(el => !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length));
+      const selectors = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+      return Array.from(container.querySelectorAll(selectors)).filter(el => el.offsetWidth || el.offsetHeight);
     }
     function trapFocus(e, container){
       if(e.key !== "Tab") return;
       const focusables = getFocusableElements(container);
-      if(focusables.length === 0){ e.preventDefault(); container.focus(); return; }
-      const first = focusables[0], last = focusables[focusables.length - 1];
+      if(!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length-1];
       if(e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if(!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
+
     function openCategory(category, fromHistory = false, openerEl = null){
       currentCategory = category;
       currentIndex = 0;
@@ -1098,50 +1142,55 @@
       setBodyLock();
       modalShell.scrollTop = 0;
       setupGalleryObserver();
-      document.querySelectorAll("#galleryGrid .lazy-shell").forEach((shell, index) => { if(index < (isMobileVersion ? 12 : 6)) loadLazyShell(shell); });
-      closeModal.focus();
       if(!fromHistory) history.pushState({ overlay: "category", category }, "", location.href);
     }
+
     function closeCategory(fromHistory = false){
       modal.classList.remove("open");
       modal.setAttribute("aria-hidden", "true");
       setBodyLock();
-      if(!isMobileVersion) window.scrollTo(0, lastScrollY);
       if(galleryObserver) galleryObserver.disconnect();
-      if(lastActiveElement && typeof lastActiveElement.focus === "function") lastActiveElement.focus();
+      if(lastActiveElement) lastActiveElement.focus();
       if(!fromHistory && history.state && history.state.overlay === "category") history.back();
     }
-    function resolveLightboxCandidates(item){ return getCandidateImagePaths(item.src); }
+
+    function resolveLightboxCandidates(item){
+      return getCandidateImagePaths(item.src);
+    }
+
     function openLightbox(category, index, fromHistory = false, openerEl = null){
       currentCategory = category;
       currentIndex = index;
       const dict = translations[currentLang];
-      lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
       const item = galleryData[category].items[index];
       const candidates = resolveLightboxCandidates(item);
       if(openerEl) lastActiveElement = openerEl;
       lightboxImage.src = "";
       lightboxImage.alt = item.alt;
       const temp = new Image();
-      tryLoadImage(temp, candidates, 0, () => { lightboxImage.src = temp.src; }, () => { lightboxImage.src = ""; });
+      tryLoadImage(temp, candidates, 0,
+        () => { lightboxImage.src = temp.src; },
+        () => { lightboxImage.src = ""; }
+      );
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden", "false");
       setBodyLock();
-      closeLightbox.focus();
       if(!fromHistory) history.pushState({ overlay: "lightbox", category, index }, "", location.href);
     }
+
     function closeLightboxOnly(){
       lightbox.classList.remove("open");
       lightbox.setAttribute("aria-hidden", "true");
       lightboxImage.src = "";
-      lightboxImage.alt = "";
       setBodyLock();
     }
+
     function closeImage(fromHistory = false){
       closeLightboxOnly();
-      if(lastActiveElement && typeof lastActiveElement.focus === "function") lastActiveElement.focus();
+      if(lastActiveElement) lastActiveElement.focus();
       if(!fromHistory && history.state && history.state.overlay === "lightbox") history.back();
     }
+
     function moveImage(step){
       if(!currentCategory) return;
       const items = galleryData[currentCategory].items;
@@ -1150,33 +1199,43 @@
       const candidates = resolveLightboxCandidates(item);
       lightboxImage.alt = item.alt;
       const temp = new Image();
-      tryLoadImage(temp, candidates, 0, () => { lightboxImage.src = temp.src; }, () => { lightboxImage.src = ""; });
+      tryLoadImage(temp, candidates, 0,
+        () => { lightboxImage.src = temp.src; },
+        () => { lightboxImage.src = ""; }
+      );
       history.replaceState({ overlay: "lightbox", category: currentCategory, index: currentIndex }, "", location.href);
     }
+
     function syncViewMode(){
       document.body.classList.toggle("mobile-view", isMobileVersion);
-      if(modal.classList.contains("open")){ modal.classList.remove("open"); modal.setAttribute("aria-hidden", "true"); }
-      if(lightbox.classList.contains("open")){ lightbox.classList.remove("open"); lightbox.setAttribute("aria-hidden", "true"); lightboxImage.src = ""; lightboxImage.alt = ""; }
+      if(modal.classList.contains("open")) modal.classList.remove("open");
+      if(lightbox.classList.contains("open")) lightbox.classList.remove("open");
       setBodyLock();
       history.replaceState({ overlay: null }, "", location.href);
       applyTranslations();
       renderCategories();
       renderAboutPhoto();
     }
+
+    // Language switch
     langButtons.forEach(button => {
       button.addEventListener("click", () => {
         currentLang = button.dataset.lang;
-        langButtons.forEach(btn => btn.classList.toggle("active", btn === button));
+        langButtons.forEach(b => b.classList.toggle("active", b === button));
         updateUrlLanguageOnly();
         applyTranslations();
         renderCategories();
         renderAboutPhoto();
       });
     });
+
+    // Modal / Lightbox controls
     closeModal.addEventListener("click", () => closeCategory());
     modal.addEventListener("click", e => { if(e.target === modal) closeCategory(); });
     closeLightbox.addEventListener("click", () => closeImage());
     lightbox.addEventListener("click", e => { if(e.target === lightbox) closeImage(); });
+
+    // Keyboard
     document.addEventListener("keydown", e => {
       if(lightbox.classList.contains("open")){
         trapFocus(e, lightboxInner);
@@ -1190,44 +1249,54 @@
         if(e.key === "Escape") closeCategory();
       }
     });
+
+    // History
     window.addEventListener("popstate", event => {
       const state = event.state || { overlay: null };
       if(state.overlay === "lightbox"){
-        if(!modal.classList.contains("open") && currentCategory !== state.category) openCategory(state.category, true, null);
-        openLightbox(state.category, state.index ?? 0, true, null);
+        if(!modal.classList.contains("open")) openCategory(state.category, true);
+        openLightbox(state.category, state.index ?? 0, true);
         return;
       }
       if(state.overlay === "category"){
         if(lightbox.classList.contains("open")) closeLightboxOnly();
-        openCategory(state.category, true, null);
+        openCategory(state.category, true);
         return;
       }
       if(lightbox.classList.contains("open")) closeLightboxOnly();
       if(modal.classList.contains("open")) closeCategory(true);
     });
+
+    // Responsive
     if(!hasForcedView){
-      const mediaHandler = (event) => { isMobileVersion = event.matches; syncViewMode(); };
-      if(typeof mediaQuery.addEventListener === "function") mediaQuery.addEventListener("change", mediaHandler);
-      else if(typeof mediaQuery.addListener === "function") mediaQuery.addListener(mediaHandler);
+      mediaQuery.addEventListener("change", e => {
+        isMobileVersion = e.matches;
+        syncViewMode();
+      });
     }
+
+    // Scroll reveal
+    function initScrollReveal(){
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) entry.target.classList.add("revealed");
+        });
+      }, { threshold: 0.15 });
+      reveals.forEach(el => observer.observe(el));
+    }
+
     function init(){
       ensureBaseState();
-      langButtons.forEach(btn => { btn.classList.toggle("active", btn.dataset.lang === currentLang); });
+      langButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.lang === currentLang));
       document.body.classList.toggle("mobile-view", isMobileVersion);
       applyTranslations();
       renderAboutPhoto();
       renderCategories();
       setBodyLock();
-
-      // Scroll reveal
-      const reveals = document.querySelectorAll('.reveal, .section-head, .about-grid, #categoriesGrid, .contact-grid');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      }, { threshold: 0.15 });
-      reveals.forEach(el => { el.classList.add('reveal'); observer.observe(el); });
+      initScrollReveal();
     }
+
     init();
   </script>
 </body>
