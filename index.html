@@ -26,7 +26,7 @@
     .glow-hover::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 30%, rgba(212,191,168,0.3), transparent 70%); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
     .masonry-item:hover .glow-hover::after { opacity: 1; }
 
-    /* POPRAWIONY LIGHTBOX */
+    /* POPRAWIONY LIGHTBOX – zdjęcia nie są za duże */
     #lightbox {
       display: none;
     }
@@ -35,18 +35,19 @@
     }
     .lightbox-content {
       position: relative;
-      max-width: 95vw;
-      max-height: 95vh;
+      max-width: 96vw;
+      max-height: 96vh;
+      padding: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     #lightbox-img {
-      max-width: 95vw;
-      max-height: 90vh;
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
       border-radius: 24px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
       background: #111;
     }
   </style>
@@ -149,7 +150,7 @@
 
   <footer class="bg-black py-12 text-center text-[#a38f6f] text-sm">© Rafał Wilk 2026 • Wszystkie prawa zastrzeżone</footer>
 
-  <!-- LIGHTBOX – NAPRAWIONY (całe zdjęcia widoczne) -->
+  <!-- LIGHTBOX – NAPRAWIONY (zdjęcia nie są za duże) -->
   <div id="lightbox" onclick="if(event.target.id==='lightbox')hideLightbox()" class="hidden fixed inset-0 bg-black/95 z-[9999] items-center justify-center p-6">
     <div class="lightbox-content">
       <button onclick="hideLightbox()" class="absolute -top-6 -right-6 text-5xl text-white hover:text-[#d4bfa8] transition-colors z-10">✕</button>
@@ -211,7 +212,7 @@
       Object.keys(galleryData).forEach(k => allPhotos = allPhotos.concat(galleryData[k]));
       renderPortfolio(allPhotos);
       initAnimations();
-      console.log("%c✅ Wersja 6.3 – lightbox naprawiony (całe zdjęcia widoczne, bez obcinania) GOTOWE!", "color:#d4bfa8; font-size:14px");
+      console.log("%c✅ Wersja 6.4 – lightbox naprawiony (zdjęcia nie są za duże, całe widoczne) GOTOWE!", "color:#d4bfa8; font-size:14px");
     };
   </script>
 </body>
