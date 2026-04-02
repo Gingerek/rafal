@@ -25,6 +25,30 @@
     .masonry-item:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 35px 60px -15px rgb(212 191 168 / 0.4); }
     .glow-hover::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 30%, rgba(212,191,168,0.3), transparent 70%); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
     .masonry-item:hover .glow-hover::after { opacity: 1; }
+
+    /* POPRAWIONY LIGHTBOX */
+    #lightbox {
+      display: none;
+    }
+    #lightbox.flex {
+      display: flex;
+    }
+    .lightbox-content {
+      position: relative;
+      max-width: 95vw;
+      max-height: 95vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox-img {
+      max-width: 95vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 24px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      background: #111;
+    }
   </style>
 </head>
 <body class="bg-[#0a0a0a] text-[#f5f5f5]">
@@ -49,7 +73,7 @@
     </div>
   </nav>
 
-  <!-- HERO – DSCF4051.jpg (kobieta z kotem) -->
+  <!-- HERO – DSCF4051.jpg -->
   <section class="hero-section">
     <div class="hero-bg"></div>
     <div class="light-ray"></div>
@@ -66,14 +90,12 @@
     </div>
   </section>
 
-  <!-- O MNIE – TWOJE ZDJĘCIE A7406441 OBOK HISTORII -->
+  <!-- O MNIE – A7406441 obok tekstu -->
   <section id="o-mnie" class="max-w-screen-2xl mx-auto px-8 py-28">
     <div class="grid md:grid-cols-12 gap-16 items-center">
-      <!-- LEWA KOLUMNA – TWOJE ZDJĘCIE -->
       <div class="md:col-span-5">
         <img src="images/A7406441.jpg" alt="Rafał Wilk" class="rounded-3xl shadow-2xl w-full" loading="lazy">
       </div>
-      <!-- PRAWA KOLUMNA – HISTORIA O TOBIE -->
       <div class="md:col-span-7">
         <span class="uppercase text-[#d4bfa8] text-sm tracking-widest">Moja historia</span>
         <h2 id="o-mnie-title" class="logo-font text-5xl leading-tight mt-4 mb-8">Nie fotografuję świata.<br>Fotografuję to, co w nim najcichsze i najprawdziwsze.</h2>
@@ -127,11 +149,11 @@
 
   <footer class="bg-black py-12 text-center text-[#a38f6f] text-sm">© Rafał Wilk 2026 • Wszystkie prawa zastrzeżone</footer>
 
-  <!-- LIGHTBOX -->
+  <!-- LIGHTBOX – NAPRAWIONY (całe zdjęcia widoczne) -->
   <div id="lightbox" onclick="if(event.target.id==='lightbox')hideLightbox()" class="hidden fixed inset-0 bg-black/95 z-[9999] items-center justify-center p-6">
-    <div class="max-w-6xl w-full relative">
+    <div class="lightbox-content">
       <button onclick="hideLightbox()" class="absolute -top-6 -right-6 text-5xl text-white hover:text-[#d4bfa8] transition-colors z-10">✕</button>
-      <img id="lightbox-img" src="" class="w-full rounded-3xl shadow-2xl" alt="">
+      <img id="lightbox-img" src="" alt="">
     </div>
   </div>
 
@@ -189,7 +211,7 @@
       Object.keys(galleryData).forEach(k => allPhotos = allPhotos.concat(galleryData[k]));
       renderPortfolio(allPhotos);
       initAnimations();
-      console.log("%c✅ Wersja 6.2 – hero DSCF4051.jpg + Twoje zdjęcie A7406441 w sekcji O mnie GOTOWE!", "color:#d4bfa8; font-size:14px");
+      console.log("%c✅ Wersja 6.3 – lightbox naprawiony (całe zdjęcia widoczne, bez obcinania) GOTOWE!", "color:#d4bfa8; font-size:14px");
     };
   </script>
 </body>
