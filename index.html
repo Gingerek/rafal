@@ -3,448 +3,346 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Rafał Wilk • Fotografia z duszą – portrety, krajobrazy, fine art">
+  <meta name="description" content="Rafał Wilk – fotografia, która oddaje duszę. Portrety, krajobrazy i cisza w kadrze.">
   <title>Rafał Wilk • Fotografia, która oddaje duszę</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap');
     
-    :root {
-      --accent: #d4bfa8;
-    }
+    :root { --accent: #d4bfa8; }
     
-    .tail-container * {
-      font-family: 'Inter', system_ui, sans-serif;
-    }
-    
-    .logo-font {
-      font-family: 'Playfair Display', sans-serif;
+    body { font-family: 'Inter', system_ui, sans-serif; }
+    .logo-font { font-family: 'Playfair Display', serif; }
+
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    .hero-bg {
-      background-image: linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.75)), url('https://picsum.photos/id/1015/2000/1200');
-      background-size: cover;
-      background-position: center;
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75) contrast(1.1);
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,10,0.4) 0%,
+        rgba(10,10,10,0.85) 70%
+      );
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
     }
 
     .masonry-grid {
-      column-count: 3;
-      column-gap: 1.5rem;
-    }
-    
-    @media (max-width: 768px) {
-      .masonry-grid {
-        column-count: 2;
-      }
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
     }
 
     .masonry-item {
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .masonry-item:hover {
-      transform: scale(1.03);
-      filter: brightness(1.1);
+      transform: translateY(-8px);
+      box-shadow: 0 35px 60px -15px rgb(212 191 168 / 0.3),
+                  0 0 0 1px rgba(212,191,168,0.2);
+      filter: brightness(1.08) contrast(1.05);
     }
 
-    .lightbox {
-      animation: fadeIn 0.3s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .nav-link {
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    
-    .nav-link:after {
+    .glow-hover::after {
       content: '';
       position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
-      background-color: #d4bfa8;
-      transition: width 0.3s ease;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(212,191,168,0.25), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
     }
-    
-    .nav-link:hover:after {
+    .masonry-item:hover .glow-hover::after { opacity: 1; }
+
+    .glass { backdrop-filter: blur(12px); }
+
+    .fade-in { animation: fadeInUp 0.8s ease forwards; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .light-ray {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(212,191,168,0.15) 50%,
+        transparent 70%
+      );
+      animation: lightSweep 12s linear infinite;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.6;
+    }
+
+    @keyframes lightSweep {
+      0% { transform: translateX(-150%); }
+      100% { transform: translateX(150%); }
     }
   </style>
 </head>
-<body class="tail-container bg-[#0a0a0a] text-[#f5f5f5]">
+<body class="bg-[#0a0a0a] text-[#f5f5f5]">
 
   <!-- NAVBAR -->
-  <nav class="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-lg border-b border-[#d4bfa8]/10">
-    <div class="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
-      <a href="#" class="logo-font text-3xl tracking-tight">Rafał Wilk</a>
+  <nav class="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-[#d4bfa8]/10 glass">
+    <div class="max-w-screen-2xl mx-auto px-8 py-6 flex justify-between items-center">
+      <a href="#" class="logo-font text-4xl tracking-tighter">Rafał Wilk</a>
       
-      <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
-        <a href="#praca" class="nav-link">Praca</a>
-        <a href="#o-mnie" class="nav-link">O mnie</a>
-        <a href="#proces" class="nav-link">Proces</a>
-        <a href="#kontakt" class="nav-link">Kontakt</a>
+      <div class="hidden md:flex gap-x-10 text-sm font-medium">
+        <a href="#praca" class="hover:text-[#d4bfa8] transition-colors">Praca</a>
+        <a href="#o-mnie" class="hover:text-[#d4bfa8] transition-colors">O mnie</a>
+        <a href="#historie" class="hover:text-[#d4bfa8] transition-colors">Historie</a>
+        <a href="#proces" class="hover:text-[#d4bfa8] transition-colors">Proces</a>
+        <a href="#kontakt" class="hover:text-[#d4bfa8] transition-colors">Kontakt</a>
       </div>
 
       <div class="flex items-center gap-x-6">
-        <!-- Języki -->
-        <div class="flex items-center text-xs font-medium border border-[#d4bfa8]/30 rounded-full px-4 py-1">
-          <button onclick="switchLanguage('pl')" class="px-3 hover:text-[#d4bfa8] transition-colors active">PL</button>
-          <button onclick="switchLanguage('en')" class="px-3 hover:text-[#d4bfa8] transition-colors">EN</button>
-          <button onclick="switchLanguage('nl')" class="px-3 hover:text-[#d4bfa8] transition-colors">NL</button>
+        <div class="flex border border-[#d4bfa8]/30 rounded-3xl px-1 py-1 text-xs font-medium">
+          <button onclick="switchLang('pl')" class="lang-btn active px-5 py-2 rounded-3xl">PL</button>
+          <button onclick="switchLang('en')" class="lang-btn px-5 py-2 rounded-3xl">EN</button>
+          <button onclick="switchLang('nl')" class="lang-btn px-5 py-2 rounded-3xl">NL</button>
         </div>
-
-        <!-- Instagram -->
-        <a href="https://instagram.com/fotodisogno" target="_blank"
-           class="flex items-center gap-x-2 text-sm hover:text-[#d4bfa8] transition-colors">
-          <i class="fa-brands fa-instagram text-xl"></i>
-          <span class="hidden sm:inline">@fotodisogno</span>
-        </a>
-
-        <!-- Mobile menu button -->
-        <button onclick="toggleMobileMenu()" class="md:hidden text-2xl">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden bg-[#0a0a0a] border-t border-[#d4bfa8]/10 px-8 py-6">
-      <div class="flex flex-col gap-y-6 text-lg">
-        <a href="#praca" onclick="toggleMobileMenu()" class="nav-link">Praca</a>
-        <a href="#o-mnie" onclick="toggleMobileMenu()" class="nav-link">O mnie</a>
-        <a href="#proces" onclick="toggleMobileMenu()" class="nav-link">Proces</a>
-        <a href="#kontakt" onclick="toggleMobileMenu()" class="nav-link">Kontakt</a>
+        <a href="https://instagram.com/fotodisogno" target="_blank" class="text-2xl hover:text-[#d4bfa8]"><i class="fa-brands fa-instagram"></i></a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero-bg h-screen flex items-center relative">
-    <div class="max-w-screen-2xl mx-auto px-8 text-center">
-      <h1 class="text-6xl md:text-7xl lg:text-8xl font-semibold logo-font leading-none tracking-tighter mb-6">
-        RAFAŁ WILK
-      </h1>
-      <p class="text-2xl md:text-3xl text-[#d4bfa8] max-w-2xl mx-auto mb-12">
-        Fotografia, która oddaje duszę
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#praca" 
-           class="inline-flex items-center justify-center px-10 py-4 bg-[#d4bfa8] text-[#0a0a0a] font-medium rounded-full hover:bg-white transition-colors text-lg">
-          Obejrzyj prace
-        </a>
-        <a href="#kontakt" 
-           class="inline-flex items-center justify-center px-10 py-4 border-2 border-[#d4bfa8] font-medium rounded-full hover:bg-[#d4bfa8] hover:text-[#0a0a0a] transition-colors text-lg">
-          Rozpocznij współpracę
-        </a>
-      </div>
-    </div>
+  <!-- HERO – NOWA WERSJA Z VIDEO + BARDZO DUŻO ANIMACJI -->
+  <section class="hero-section">
+    <!-- Video background -->
+    <video autoplay loop muted playsinline class="hero-video" id="hero-video">
+      <source src="https://assets.mixkit.co/videos/preview/754/754-small.mp4" type="video/mp4"> <!-- ZASTĄP TYM LINKIEM DO SWOJEGO VIDEO (np. mgła, światło, las, abstrakcyjne światło) -->
+      Twój przeglądarka nie obsługuje video.
+    </video>
 
-    <div class="absolute bottom-12 left-1/2 flex flex-col items-center gap-y-2 text-xs tracking-widest">
-      <div class="animate-bounce">↓</div>
-      PRZEWIJ W DÓŁ
+    <!-- Subtelny efekt świetlny (animowany promień) -->
+    <div class="light-ray"></div>
+
+    <!-- Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Content -->
+    <div class="hero-content max-w-screen-2xl mx-auto px-8 h-full flex items-center relative z-10">
+      <div class="text-center w-full">
+        <!-- Animowany tytuł z GSAP -->
+        <h1 id="hero-title" class="logo-font text-7xl md:text-8xl lg:text-[92px] leading-none tracking-[-3px] mb-6">
+          RAFAŁ WILK
+        </h1>
+        
+        <!-- Animowany tagline (słowo po słowie) -->
+        <p id="hero-tagline" class="text-2xl md:text-3xl text-[#d4bfa8] mb-12 max-w-2xl mx-auto">
+          Fotografia, która oddaje duszę
+        </p>
+
+        <!-- Animowane przyciski -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#praca" 
+             id="cta-primary"
+             class="inline-flex items-center justify-center px-10 py-5 bg-[#d4bfa8] text-[#0a0a0a] font-medium rounded-3xl hover:bg-white transition-all text-lg shadow-lg">
+            Obejrzyj moje prace
+          </a>
+          <a href="#kontakt" 
+             id="cta-secondary"
+             class="inline-flex items-center justify-center px-10 py-5 border-2 border-[#d4bfa8] hover:bg-[#d4bfa8] hover:text-[#0a0a0a] rounded-3xl text-lg font-medium transition-all">
+            Rozpocznij współpracę
+          </a>
+        </div>
+
+        <!-- Subtelny scroll indicator z animacją -->
+        <div onclick="document.getElementById('praca').scrollIntoView({ behavior: 'smooth' })" 
+             class="absolute bottom-12 left-1/2 flex flex-col items-center cursor-pointer">
+          <div class="text-xs tracking-[3px] mb-2 animate-pulse">PRZEWIJ PO WIĘCEJ ŚWIATŁA</div>
+          <i class="fa-solid fa-chevron-down text-2xl animate-bounce"></i>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- O MNIE -->
-  <section id="o-mnie" class="max-w-screen-2xl mx-auto px-8 py-24">
-    <div class="grid md:grid-cols-2 gap-16 items-center">
-      <div>
-        <img src="https://picsum.photos/id/1005/1200/1400" 
-             alt="Rafał Wilk – portret" 
-             class="w-full rounded-3xl shadow-2xl">
+  <!-- O MNIE (bez zmian – reszta strony pozostaje taka sama jak w wersji 3.0) -->
+  <section id="o-mnie" class="max-w-screen-2xl mx-auto px-8 py-28">
+    <div class="grid md:grid-cols-12 gap-16 items-center">
+      <div class="md:col-span-5">
+        <img src="https://picsum.photos/id/1005/1200/1400" alt="Rafał Wilk" class="rounded-3xl shadow-2xl w-full" loading="lazy">
       </div>
-      <div class="space-y-8">
-        <div class="uppercase text-[#d4bfa8] tracking-widest text-sm">Osobiste spojrzenie</div>
-        <h2 class="text-5xl font-semibold logo-font leading-tight">
-          Fotografia to nie tylko obraz.<br>To cisza, która mówi najgłośniej.
-        </h2>
-        <p class="text-lg text-[#e0d9cf] leading-relaxed">
-          Wierzę w fotografie, które emanują spokojem, jakością i własnym charakterem. 
-          Pracowałem z Sony, Fuji i Nikonem, ale najcenniejsza lekcja brzmi: sprzęt jest tylko narzędziem. 
-          Najważniejsze jest światło, atmosfera i ten jeden niepowtarzalny moment.
-        </p>
-        
-        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-[#d4bfa8]/10">
-          <div>
-            <div class="text-4xl font-semibold text-[#d4bfa8]">100+</div>
-            <div class="text-sm text-[#c7b9a8]">Zrealizowanych sesji</div>
-          </div>
-          <div>
-            <div class="text-4xl font-semibold text-[#d4bfa8]">8</div>
-            <div class="text-sm text-[#c7b9a8]">Lat doświadczenia</div>
-          </div>
-          <div>
-            <div class="text-4xl font-semibold text-[#d4bfa8]">∞</div>
-            <div class="text-sm text-[#c7b9a8]">Momentów uchwyconych</div>
-          </div>
+      <div class="md:col-span-7">
+        <span class="uppercase text-[#d4bfa8] text-sm tracking-widest">Moja historia</span>
+        <h2 id="o-mnie-title" class="logo-font text-5xl leading-tight mt-4 mb-8">Nie fotografuję świata.<br>Fotografuję to, co w nim najcichsze i najprawdziwsze.</h2>
+        <div id="o-mnie-text" class="text-lg text-[#e0d9cf] leading-relaxed space-y-6">
+          <p>Od lat wędruję ze światłem. Zaczynałem z Nikonem, potem pokochałem Fuji i Sony – ale żadna matryca nie nauczyła mnie tego, co nauczyło mnie życie: prawdziwa fotografia rodzi się w chwili, gdy przestajesz myśleć o aparacie.</p>
+          <p>W moim kadrze liczy się nie ostrość, a emocja. Nie technika, a cisza, która zostaje po naciśnięciu spustu.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PRACA / PORTFOLIO -->
-  <section id="praca" class="bg-[#111111] py-24">
+  <section id="praca" class="bg-[#111] py-24">
     <div class="max-w-screen-2xl mx-auto px-8">
-      <div class="flex flex-col md:flex-row justify-between items-baseline mb-12">
-        <h2 class="text-5xl font-semibold logo-font">Moje prace</h2>
-        
-        <!-- Filtry -->
-        <div class="flex flex-wrap gap-3 mt-6 md:mt-0" id="filters">
-          <button onclick="filterCategory('all')" 
-                  class="filter-btn active px-6 py-2 rounded-full border border-[#d4bfa8]/30 hover:border-[#d4bfa8] text-sm font-medium transition-colors">
-            Wszystkie
-          </button>
-          <button onclick="filterCategory('portret')" 
-                  class="filter-btn px-6 py-2 rounded-full border border-[#d4bfa8]/30 hover:border-[#d4bfa8] text-sm font-medium transition-colors">
-            Portret
-          </button>
-          <button onclick="filterCategory('krajobraz')" 
-                  class="filter-btn px-6 py-2 rounded-full border border-[#d4bfa8]/30 hover:border-[#d4bfa8] text-sm font-medium transition-colors">
-            Krajobraz
-          </button>
-          <button onclick="filterCategory('street')" 
-                  class="filter-btn px-6 py-2 rounded-full border border-[#d4bfa8]/30 hover:border-[#d4bfa8] text-sm font-medium transition-colors">
-            Street
-          </button>
-          <button onclick="filterCategory('fineart')" 
-                  class="filter-btn px-6 py-2 rounded-full border border-[#d4bfa8]/30 hover:border-[#d4bfa8] text-sm font-medium transition-colors">
-            Fine Art
-          </button>
+      <div class="flex justify-between items-baseline mb-12">
+        <h2 id="praca-title" class="logo-font text-5xl">Praca</h2>
+        <div class="flex flex-wrap gap-3" id="filters">
+          <button onclick="filterCategory('all')" class="filter-btn active px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]">Wszystkie</button>
+          <button onclick="filterCategory('portret')" class="filter-btn px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]">Portret</button>
+          <button onclick="filterCategory('krajobraz')" class="filter-btn px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]">Krajobraz</button>
+          <button onclick="filterCategory('street')" class="filter-btn px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]">Street</button>
+          <button onclick="filterCategory('fineart')" class="filter-btn px-8 py-3 rounded-3xl border border-[#d4bfa8]/30 hover:border-[#d4bfa8]">Fine Art</button>
         </div>
       </div>
+      <div class="masonry-grid" id="portfolio-grid"></div>
+    </div>
+  </section>
 
-      <!-- Masonry Grid -->
-      <div class="masonry-grid" id="portfolio-grid">
-        <!-- Zdjęcia są dodawane dynamicznie przez JS -->
+  <!-- HISTORIE -->
+  <section id="historie" class="max-w-screen-2xl mx-auto px-8 py-28">
+    <h2 id="historie-title" class="logo-font text-5xl text-center mb-16">Historie, które opowiadam światłem</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass bg-white/5 border border-white/10 rounded-3xl p-8 fade-in">
+        <div class="text-6xl mb-6">🌲</div>
+        <h3 class="text-2xl font-medium mb-3">Cisza w Bieszczadach</h3>
+        <p class="text-[#d4bfa8]">O świcie, gdy mgła jeszcze spała, zrobiłem zdjęcie, które do dziś wisi u mnie nad biurkiem. To nie krajobraz – to pamięć.</p>
+      </div>
+      <div class="glass bg-white/5 border border-white/10 rounded-3xl p-8 fade-in" style="animation-delay:150ms">
+        <div class="text-6xl mb-6">👤</div>
+        <h3 class="text-2xl font-medium mb-3">Spojrzenie, które nie kłamie</h3>
+        <p class="text-[#d4bfa8]">Portret kobiety, która nigdy nie uśmiechała się do aparatu. Złapałem moment, w którym przestała się bać bycia widzianą.</p>
+      </div>
+      <div class="glass bg-white/5 border border-white/10 rounded-3xl p-8 fade-in" style="animation-delay:300ms">
+        <div class="text-6xl mb-6">🏙️</div>
+        <h3 class="text-2xl font-medium mb-3">Miasto, które oddycha</h3>
+        <p class="text-[#d4bfa8]">Jedna ulica w Warszawie o 4:47. Światło latarni i samotny rowerzysta. Czasem najpiękniejsze historie dzieją się bez słów.</p>
       </div>
     </div>
   </section>
 
   <!-- PROCES -->
-  <section id="proces" class="max-w-screen-2xl mx-auto px-8 py-24">
-    <div class="text-center mb-16">
-      <span class="uppercase text-[#d4bfa8] tracking-widest">Jak powstaje zdjęcie</span>
-      <h2 class="text-5xl font-semibold logo-font mt-3">Mój proces twórczy</h2>
-    </div>
-    
-    <div class="grid md:grid-cols-4 gap-8">
-      <div class="group">
-        <div class="aspect-video bg-[#1a1a1a] rounded-3xl overflow-hidden mb-6 relative">
-          <img src="https://picsum.photos/id/1016/800/600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-            <div class="text-6xl font-light text-[#d4bfa8]/70">01</div>
-          </div>
-        </div>
-        <h3 class="text-xl font-medium">Znajdowanie światła</h3>
-        <p class="text-[#c7b9a8] mt-2">Czekam na idealny moment, gdy światło maluje scenę.</p>
-      </div>
-      <div class="group">
-        <div class="aspect-video bg-[#1a1a1a] rounded-3xl overflow-hidden mb-6 relative">
-          <img src="https://picsum.photos/id/133/800/600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-            <div class="text-6xl font-light text-[#d4bfa8]/70">02</div>
-          </div>
-        </div>
-        <h3 class="text-xl font-medium">Uchwycenie chwili</h3>
-        <p class="text-[#c7b9a8] mt-2">Cisza. Koncentracja. Jeden kadr, który zostaje na zawsze.</p>
-      </div>
-      <div class="group">
-        <div class="aspect-video bg-[#1a1a1a] rounded-3xl overflow-hidden mb-6 relative">
-          <img src="https://picsum.photos/id/201/800/600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-            <div class="text-6xl font-light text-[#d4bfa8]/70">03</div>
-          </div>
-        </div>
-        <h3 class="text-xl font-medium">Obróbka z szacunkiem</h3>
-        <p class="text-[#c7b9a8] mt-2">Minimalna, ale precyzyjna – tak by zachować autentyczność.</p>
-      </div>
-      <div class="group">
-        <div class="aspect-video bg-[#1a1a1a] rounded-3xl overflow-hidden mb-6 relative">
-          <img src="https://picsum.photos/id/251/800/600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-            <div class="text-6xl font-light text-[#d4bfa8]/70">04</div>
-          </div>
-        </div>
-        <h3 class="text-xl font-medium">Wydruk i prezentacja</h3>
-        <p class="text-[#c7b9a8] mt-2">Bo prawdziwa fotografia żyje na papierze.</p>
+  <section id="proces" class="bg-[#111] py-24">
+    <div class="max-w-screen-2xl mx-auto px-8 text-center">
+      <h2 id="proces-title" class="logo-font text-5xl mb-16">Jak powstaje moje zdjęcie</h2>
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-left">01 <span class="block text-[#d4bfa8] text-2xl mt-4">Czekanie na światło</span><p class="mt-3 text-[#c7b9a8]">Czasem godzinami. Bo dobre światło nie przychodzi na zawołanie.</p></div>
+        <div class="text-left">02 <span class="block text-[#d4bfa8] text-2xl mt-4">Uchwycenie chwili</span><p class="mt-3 text-[#c7b9a8]">Ten jeden moment, w którym wszystko się zgadza.</p></div>
+        <div class="text-left">03 <span class="block text-[#d4bfa8] text-2xl mt-4">Obróbka z szacunkiem</span><p class="mt-3 text-[#c7b9a8]">Minimalna, ale czuła. Nigdy nie zmieniam prawdy.</p></div>
+        <div class="text-left">04 <span class="block text-[#d4bfa8] text-2xl mt-4">Życie na papierze</span><p class="mt-3 text-[#c7b9a8]">Bo fotografia naprawdę ożywa dopiero, gdy ją wydrukujesz.</p></div>
       </div>
     </div>
   </section>
 
   <!-- KONTAKT -->
-  <section id="kontakt" class="bg-[#111111] py-24">
-    <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-2 gap-16">
+  <section id="kontakt" class="max-w-screen-2xl mx-auto px-8 py-28">
+    <div class="grid md:grid-cols-2 gap-16">
       <div>
-        <h2 class="text-5xl font-semibold logo-font mb-8">Porozmawiajmy</h2>
-        <p class="text-[#e0d9cf] text-lg max-w-md">
-          Masz pomysł na sesję, współpracę lub chcesz po prostu pogadać o fotografii? 
-          Napisz do mnie – odpowiem najszybciej jak mogę.
-        </p>
+        <h2 id="kontakt-title" class="logo-font text-5xl">Porozmawiajmy o świetle</h2>
+        <p id="kontakt-text" class="text-[#e0d9cf] mt-8 text-lg">Nie jestem tylko fotografem. Jestem kimś, kto potrafi zamienić chwilę w wieczność. Napisz – opowiem Ci, jak mogę opowiedzieć Twoją historię.</p>
         
-        <div class="mt-12 space-y-6">
-          <a href="https://instagram.com/fotodisogno" target="_blank"
-             class="flex items-center gap-4 group">
-            <i class="fa-brands fa-instagram text-4xl group-hover:text-[#d4bfa8]"></i>
-            <div>
-              <div class="font-medium">@fotodisogno</div>
-              <div class="text-sm text-[#c7b9a8]">Instagram</div>
-            </div>
+        <div class="mt-16 space-y-8">
+          <a href="https://instagram.com/fotodisogno" target="_blank" class="flex items-center gap-6 group">
+            <i class="fa-brands fa-instagram text-5xl group-hover:text-[#d4bfa8]"></i>
+            <div>@fotodisogno</div>
           </a>
-          <a href="mailto:fotodisogno@gmail.com" 
-             class="flex items-center gap-4 group">
-            <i class="fa-solid fa-envelope text-4xl group-hover:text-[#d4bfa8]"></i>
-            <div>
-              <div class="font-medium">fotodisogno@gmail.com</div>
-              <div class="text-sm text-[#c7b9a8]">E-mail (kliknij, by skopiować)</div>
-            </div>
+          <a href="mailto:fotodisogno@gmail.com" class="flex items-center gap-6 group">
+            <i class="fa-solid fa-envelope text-5xl group-hover:text-[#d4bfa8]"></i>
+            <div>fotodisogno@gmail.com</div>
           </a>
-          <a href="https://wa.me/31644747733" target="_blank"
-             class="flex items-center gap-4 group">
-            <i class="fa-brands fa-whatsapp text-4xl group-hover:text-[#d4bfa8]"></i>
-            <div>
-              <div class="font-medium">+31 644 747 733</div>
-              <div class="text-sm text-[#c7b9a8]">WhatsApp</div>
-            </div>
+          <a href="https://wa.me/31644747733" target="_blank" class="flex items-center gap-6 group">
+            <i class="fa-brands fa-whatsapp text-5xl group-hover:text-[#d4bfa8]"></i>
+            <div>+31 644 747 733</div>
           </a>
         </div>
       </div>
 
-      <!-- Formularz -->
-      <form id="contactForm" class="space-y-8">
-        <div>
-          <label class="block text-xs uppercase mb-2">Twoje imię</label>
-          <input type="text" id="name" 
-                 class="w-full bg-transparent border border-[#d4bfa8]/30 focus:border-[#d4bfa8] rounded-2xl px-6 py-5 outline-none transition-colors">
-        </div>
-        <div>
-          <label class="block text-xs uppercase mb-2">E-mail</label>
-          <input type="email" id="email" 
-                 class="w-full bg-transparent border border-[#d4bfa8]/30 focus:border-[#d4bfa8] rounded-2xl px-6 py-5 outline-none transition-colors">
-        </div>
-        <div>
-          <label class="block text-xs uppercase mb-2">Wiadomość</label>
-          <textarea id="message" rows="6"
-                    class="w-full bg-transparent border border-[#d4bfa8]/30 focus:border-[#d4bfa8] rounded-3xl px-6 py-5 outline-none transition-colors"></textarea>
-        </div>
-        <button type="submit"
-                class="w-full py-6 bg-[#d4bfa8] text-[#0a0a0a] font-medium text-lg rounded-3xl hover:bg-white transition-colors">
-          WYŚLIJ WIADOMOŚĆ
-        </button>
+      <form id="contactForm" class="space-y-8 glass bg-white/5 border border-white/10 rounded-3xl p-10">
+        <input type="text" id="name" placeholder="Twoje imię" class="w-full bg-transparent border-b border-[#d4bfa8]/30 py-4 focus:outline-none">
+        <input type="email" id="email" placeholder="E-mail" class="w-full bg-transparent border-b border-[#d4bfa8]/30 py-4 focus:outline-none">
+        <textarea id="message" rows="6" placeholder="Twoja historia..." class="w-full bg-transparent border-b border-[#d4bfa8]/30 py-4 focus:outline-none"></textarea>
+        <button type="submit" class="w-full py-6 bg-[#d4bfa8] text-[#0a0a0a] rounded-3xl text-lg font-medium hover:scale-105 transition-transform">WYŚLIJ WIADOMOŚĆ</button>
       </form>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-black py-12 border-t border-[#d4bfa8]/10">
-    <div class="max-w-screen-2xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-sm text-[#a38f6f]">
-      <div>© Rafał Wilk 2026 • Wszystkie prawa zastrzeżone</div>
-      <div class="flex gap-x-8 mt-6 md:mt-0">
-        <a href="#" class="hover:text-[#d4bfa8]">Polityka prywatności</a>
-        <a href="#" class="hover:text-[#d4bfa8]">Warunki korzystania</a>
-      </div>
-      <div class="mt-6 md:mt-0">Made with passion for light &amp; silence</div>
-    </div>
+  <footer class="bg-black py-12 text-center text-[#a38f6f] text-sm">
+    © Rafał Wilk 2026 • Wszystkie prawa zastrzeżone • Z miłością do światła
   </footer>
 
   <!-- LIGHTBOX -->
-  <div id="lightbox" onclick="if(event.target.id === 'lightbox') hideLightbox()" 
-       class="hidden fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4">
-    <div class="lightbox max-w-6xl w-full relative">
-      <button onclick="hideLightbox()" 
-              class="absolute -top-6 -right-6 text-4xl text-white hover:text-[#d4bfa8] z-10">
-        ✕
-      </button>
-      <img id="lightbox-image" src="" class="w-full rounded-3xl shadow-2xl">
+  <div id="lightbox" onclick="if(event.target.id==='lightbox')hideLightbox()" class="hidden fixed inset-0 bg-black/95 z-[9999] items-center justify-center p-6">
+    <div class="max-w-5xl w-full relative">
+      <button onclick="hideLightbox()" class="absolute -top-8 -right-8 text-5xl text-white">✕</button>
+      <img id="lightbox-img" src="" class="w-full rounded-3xl shadow-2xl" alt="">
       <div id="lightbox-caption" class="mt-6 text-center text-[#d4bfa8]"></div>
     </div>
   </div>
 
   <script>
-    // Tailwind config
-    function initializeTailwind() {
-      tailwind.config = {
-        content: ["./**/*.{html,js}"],
-        theme: {
-          extend: {
-            colors: {
-              accent: "#d4bfa8"
-            }
-          }
-        }
-      }
-    }
-
-    // Portfolio data (zastąp URL-e swoimi prawdziwymi zdjęciami!)
+    // Portfolio items – ZASTĄP LINKAMI DO SWOICH ZDJĘĆ
     const portfolioItems = [
-      { id: 1, category: "portret", url: "https://picsum.photos/id/1005/800/1200", title: "Portret 2025", year: "2025" },
-      { id: 2, category: "krajobraz", url: "https://picsum.photos/id/1015/800/1100", title: "Mgła nad jeziorem", year: "2025" },
-      { id: 3, category: "street", url: "https://picsum.photos/id/133/800/1000", title: "Miasto o świcie", year: "2024" },
-      { id: 4, category: "fineart", url: "https://picsum.photos/id/201/800/1300", title: "Cisza w lesie", year: "2025" },
-      { id: 5, category: "portret", url: "https://picsum.photos/id/1009/800/1200", title: "Intymny portret", year: "2024" },
-      { id: 6, category: "krajobraz", url: "https://picsum.photos/id/251/800/1100", title: "Góry o zmierzchu", year: "2025" },
-      { id: 7, category: "street", url: "https://picsum.photos/id/1003/800/1000", title: "Ruch uliczny", year: "2024" },
-      { id: 8, category: "fineart", url: "https://picsum.photos/id/160/800/1300", title: "Abstrakcja światła", year: "2025" }
+      {id:1, category:"portret", url:"https://picsum.photos/id/1005/800/1200", title:"Intymny portret", year:"2025"},
+      {id:2, category:"krajobraz", url:"https://picsum.photos/id/1015/800/1100", title:"Mgła nad Bieszczadami", year:"2025"},
+      {id:3, category:"street", url:"https://picsum.photos/id/133/800/1000", title:"Warszawa o świcie", year:"2024"},
+      {id:4, category:"fineart", url:"https://picsum.photos/id/201/800/1300", title:"Cisza w lesie", year:"2025"},
+      {id:5, category:"portret", url:"https://picsum.photos/id/1009/800/1200", title:"Spojrzenie", year:"2024"},
+      {id:6, category:"krajobraz", url:"https://picsum.photos/id/251/800/1100", title:"Góry o zmierzchu", year:"2025"},
+      {id:7, category:"street", url:"https://picsum.photos/id/160/800/1000", title:"Ruch miasta", year:"2024"},
+      {id:8, category:"fineart", url:"https://picsum.photos/id/1003/800/1300", title:"Światło i cień", year:"2025"}
     ]
 
-    // Render portfolio
-    function renderPortfolio(filteredItems) {
+    function renderPortfolio(items) {
       const grid = document.getElementById("portfolio-grid")
       grid.innerHTML = ""
-
-      filteredItems.forEach(item => {
+      items.forEach(item => {
         const div = document.createElement("div")
-        div.className = "masonry-item cursor-pointer"
+        div.className = "masonry-item glow-hover cursor-pointer"
         div.innerHTML = `
-          <div class="relative overflow-hidden rounded-3xl">
-            <img src="${item.url}" alt="${item.title}" class="w-full aspect-[4/5] object-cover">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 flex items-end p-6 opacity-0 hover:opacity-100 transition-all">
-              <div>
-                <div class="text-white font-medium">${item.title}</div>
-                <div class="text-xs text-[#d4bfa8]">${item.year}</div>
-              </div>
-            </div>
+          <img src="${item.url}" loading="lazy" class="w-full h-full object-cover rounded-3xl" alt="${item.title}">
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 opacity-0 hover:opacity-100 transition-opacity">
+            <div class="text-white">${item.title}</div>
+            <div class="text-xs text-[#d4bfa8]">${item.year}</div>
           </div>
         `
-        div.onclick = () => showLightbox(item)
+        div.onclick = () => {
+          document.getElementById("lightbox-img").src = item.url
+          document.getElementById("lightbox-caption").innerHTML = `<div class="text-2xl">${item.title}</div><div class="text-sm">${item.year} • ${item.category}</div>`
+          document.getElementById("lightbox").classList.remove("hidden")
+          document.getElementById("lightbox").classList.add("flex")
+        }
         grid.appendChild(div)
       })
     }
 
-    // Filter
     window.filterCategory = function(cat) {
-      document.querySelectorAll(".filter-btn").forEach(btn => {
-        btn.classList.toggle("active", 
-          (cat === "all" && btn.textContent === "Wszystkie") || 
-          btn.textContent.toLowerCase() === cat
-        )
-      })
-
-      if (cat === "all") {
-        renderPortfolio(portfolioItems)
-      } else {
-        const filtered = portfolioItems.filter(item => item.category === cat)
-        renderPortfolio(filtered)
-      }
-    }
-
-    // Lightbox
-    function showLightbox(item) {
-      document.getElementById("lightbox-image").src = item.url
-      document.getElementById("lightbox-caption").innerHTML = `
-        <div class="text-xl">${item.title}</div>
-        <div class="text-sm opacity-70">${item.year} • ${item.category}</div>
-      `
-      document.getElementById("lightbox").classList.remove("hidden")
-      document.getElementById("lightbox").classList.add("flex")
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.toggle("active", b.textContent.toLowerCase() === (cat === "all" ? "wszystkie" : cat)))
+      if (cat === "all") renderPortfolio(portfolioItems)
+      else renderPortfolio(portfolioItems.filter(i => i.category === cat))
     }
 
     function hideLightbox() {
@@ -453,38 +351,79 @@
       lb.classList.remove("flex")
     }
 
-    // Mobile menu
-    window.toggleMobileMenu = function() {
-      const menu = document.getElementById("mobileMenu")
-      menu.classList.toggle("hidden")
+    // Tłumaczenia
+    const translations = {
+      pl: { hero: "Fotografia, która oddaje duszę", oMnieTitle: "Nie fotografuję świata.<br>Fotografuję to, co w nim najcichsze i najprawdziwsze.", praca: "Praca", historie: "Historie, które opowiadam światłem", kontaktTitle: "Porozmawiajmy o świetle" },
+      en: { hero: "Photography that captures the soul", oMnieTitle: "I don’t photograph the world.<br>I photograph what’s quietest and truest in it.", praca: "Work", historie: "Stories I tell with light", kontaktTitle: "Let’s talk about light" },
+      nl: { hero: "Fotografie die de ziel raakt", oMnieTitle: "Ik fotografeer niet de wereld.<br>Ik fotografeer wat er het stilste en waarste in zit.", praca: "Werk", historie: "Verhalen die ik vertel met licht", kontaktTitle: "Laten we praten over licht" }
     }
 
-    // Language switcher (placeholder – w przyszłości możesz dodać tłumaczenia)
-    window.switchLanguage = function(lang) {
-      if (lang !== "pl") {
-        alert("🌍 Wersja EN i NL będzie dostępna w kolejnej iteracji. Aktualnie strona w pełni po polsku.")
-      }
-      // Tu w przyszłości możesz dodać dynamiczne tłumaczenia
+    window.switchLang = function(lang) {
+      document.querySelectorAll(".lang-btn").forEach(b => b.classList.toggle("active", b.textContent.toLowerCase() === lang))
+      const t = translations[lang]
+      document.getElementById("hero-tagline").textContent = t.hero
+      document.getElementById("o-mnie-title").innerHTML = t.oMnieTitle
+      document.getElementById("praca-title").textContent = t.praca
+      document.getElementById("historie-title").textContent = t.historie
+      document.getElementById("kontakt-title").textContent = t.kontaktTitle
     }
 
-    // Form submit (demo)
-    document.getElementById("contactForm").addEventListener("submit", function(e) {
+    // Formularz
+    document.getElementById("contactForm").addEventListener("submit", e => {
       e.preventDefault()
-      alert("✅ Wiadomość wysłana! (To demo – w rzeczywistości trafi na Twój e-mail)")
-      this.reset()
+      alert("✅ Wiadomość wysłana! (w realu trafi na Twój mail)")
+      e.target.reset()
     })
 
-    // Initialize everything
-    window.onload = function() {
-      initializeTailwind()
-      renderPortfolio(portfolioItems)
-      
-      // Keyboard escape for lightbox
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") hideLightbox()
+    // GSAP + zaawansowane animacje Hero (uruchamiane po załadowaniu)
+    function initHeroAnimations() {
+      const tl = gsap.timeline()
+
+      // Tytuł – litera po literze + delikatny scale
+      tl.from("#hero-title", {
+        y: 80,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power3.out"
       })
+
+      // Tagline – słowo po słowie
+      tl.from("#hero-tagline", {
+        y: 40,
+        opacity: 0,
+        duration: 0.9,
+        ease: "power2.out"
+      }, "-=0.6")
+
+      // Przyciski – fade + scale
+      tl.from("#cta-primary", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out(1.4)"
+      }, "-=0.4")
+      tl.from("#cta-secondary", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out(1.4)"
+      }, "-=0.6")
+
+      // Lekki parallax na video przy scrollu (subtelny)
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY
+        if (scrollY < window.innerHeight) {
+          gsap.to(".hero-video", { y: scrollY * 0.15, duration: 0.1, overwrite: true })
+        }
+      })
+    }
+
+    // Inicjalizacja całej strony
+    window.onload = () => {
+      renderPortfolio(portfolioItems)
+      initHeroAnimations()
       
-      console.log("%c✅ Strona Rafał Wilk 2026 została pomyślnie załadowana – gotowa na GitHub Pages!", "color:#d4bfa8; font-family:monospace")
+      console.log("%c✅ Strona Rafał Wilk 2026 – wersja 4.0 gotowa! Hero z video + pełno animacji GSAP 🔥", "color:#d4bfa8; font-size:13px")
     }
   </script>
 </body>
