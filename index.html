@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -692,6 +692,7 @@
 
     .lightbox-inner {
       position: relative;
+      width: 100%;
       max-width: 96vw;
       max-height: 92dvh;
       display: flex;
@@ -700,13 +701,43 @@
       gap: 14px;
     }
 
-    .lightbox-media {
+    .lightbox-viewport {
+      width: min(88vw, 1600px);
+      max-width: 88vw;
+      max-height: 88dvh;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      overscroll-behavior-x: contain;
+      touch-action: pan-x;
+      border-radius: 16px;
+    }
+
+    .lightbox-viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .lightbox-track {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .lightbox-slide {
+      min-width: 100%;
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      padding: 0 4px;
     }
 
-    .lightbox img {
+    .lightbox-slide img,
+    .lightbox-slide .image-fallback {
       width: auto;
       height: auto;
       max-width: 88vw;
@@ -1256,11 +1287,24 @@
       width: 100%;
       height: 100%;
       padding: 16px 10px calc(16px + env(safe-area-inset-bottom, 0px));
-      justify-content: center;
+      gap: 0;
     }
 
-    body.mobile-view .lightbox img {
-      max-width: calc(100vw - 90px);
+    body.mobile-view .lightbox-viewport {
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      max-height: 100%;
+      border-radius: 0;
+    }
+
+    body.mobile-view .lightbox-slide {
+      padding: 0 6px;
+    }
+
+    body.mobile-view .lightbox-slide img,
+    body.mobile-view .lightbox-slide .image-fallback {
+      max-width: calc(100vw - 20px);
       max-height: calc(100dvh - 50px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
       border-radius: 14px;
     }
@@ -1268,6 +1312,10 @@
     body.mobile-view .lightbox .close-btn {
       top: calc(10px + env(safe-area-inset-top, 0px));
       right: 10px;
+    }
+
+    body.mobile-view .lightbox-arrow {
+      display: none;
     }
 
     body.mobile-view .contact-grid {
@@ -1574,6 +1622,8 @@
   </div>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="close-btn" id="closeLightbox" type="button" aria-label="Close">×</button>
+
     <div
       class="lightbox-inner"
       id="lightboxInner"
@@ -1584,11 +1634,10 @@
     >
       <h2 id="lightboxTitle" class="sr-only">Image preview</h2>
 
-      <button class="close-btn" id="closeLightbox" type="button" aria-label="Close">×</button>
       <button class="lightbox-arrow" id="prevImage" type="button" aria-label="Previous image">‹</button>
 
-      <div class="lightbox-media">
-        <img id="lightboxImage" src="" alt="" />
+      <div class="lightbox-viewport" id="lightboxViewport">
+        <div class="lightbox-track" id="lightboxTrack"></div>
       </div>
 
       <button class="lightbox-arrow" id="nextImage" type="button" aria-label="Next image">›</button>
@@ -1861,7 +1910,8 @@
     const lightbox = document.getElementById("lightbox");
     const lightboxInner = document.getElementById("lightboxInner");
     const lightboxTitle = document.getElementById("lightboxTitle");
-    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxViewport = document.getElementById("lightboxViewport");
+    const lightboxTrack = document.getElementById("lightboxTrack");
     const closeLightbox = document.getElementById("closeLightbox");
     const prevImageButton = document.getElementById("prevImage");
     const nextImageButton = document.getElementById("nextImage");
@@ -1889,6 +1939,7 @@
     let categoryObserver = null;
     let aboutObserver = null;
     let lastActiveElement = null;
+    let lightboxScrollFrame = null;
 
     function hasExtension(fileName) {
       return /\.[a-z0-9]+$/i.test(fileName);
@@ -2262,6 +2313,89 @@
       }
     }
 
+    function createLightboxSlide(item, index, initialIndex) {
+      const slide = document.createElement("div");
+      slide.className = "lightbox-slide";
+      slide.dataset.index = String(index);
+
+      const img = document.createElement("img");
+      img.alt = item.alt;
+      img.decoding = "async";
+      img.loading = Math.abs(index - initialIndex) <= 1 ? "eager" : "lazy";
+
+      slide.appendChild(img);
+
+      tryLoadImage(
+        img,
+        getFullSources(item),
+        0,
+        () => {},
+        (failedSrc) => {
+          slide.innerHTML = "";
+          slide.appendChild(createFallback(failedSrc));
+        }
+      );
+
+      return slide;
+    }
+
+    function renderLightboxSlides(category, startIndex) {
+      const data = galleryData[category];
+      const fragment = document.createDocumentFragment();
+
+      lightboxTrack.innerHTML = "";
+
+      data.items.forEach((item, index) => {
+        fragment.appendChild(createLightboxSlide(item, index, startIndex));
+      });
+
+      lightboxTrack.appendChild(fragment);
+    }
+
+    function scrollLightboxToIndex(index, smooth = true, updateHistory = true) {
+      if (!currentCategory) {
+        return;
+      }
+
+      const items = galleryData[currentCategory].items;
+      const safeIndex = Math.max(0, Math.min(index, items.length - 1));
+      currentIndex = safeIndex;
+
+      const scrollLeft = lightboxViewport.clientWidth * safeIndex;
+      lightboxViewport.scrollTo({
+        left: scrollLeft,
+        behavior: smooth ? "smooth" : "auto"
+      });
+
+      if (updateHistory) {
+        history.replaceState(
+          { overlay: "lightbox", category: currentCategory, index: currentIndex },
+          "",
+          location.href
+        );
+      }
+    }
+
+    function syncLightboxIndexFromScroll() {
+      if (!currentCategory) {
+        return;
+      }
+
+      const items = galleryData[currentCategory].items;
+      const width = Math.max(lightboxViewport.clientWidth, 1);
+      const index = Math.round(lightboxViewport.scrollLeft / width);
+      const safeIndex = Math.max(0, Math.min(index, items.length - 1));
+
+      if (safeIndex !== currentIndex) {
+        currentIndex = safeIndex;
+        history.replaceState(
+          { overlay: "lightbox", category: currentCategory, index: currentIndex },
+          "",
+          location.href
+        );
+      }
+    }
+
     function openCategory(category, fromHistory = false, openerEl = null) {
       currentCategory = category;
       currentIndex = 0;
@@ -2345,38 +2479,21 @@
       currentIndex = index;
 
       const dict = translations[currentLang];
-      const item = galleryData[category].items[index];
-      const candidates = getFullSources(item);
 
       lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
+      renderLightboxSlides(category, index);
 
       if (openerEl) {
         lastActiveElement = openerEl;
       }
 
-      lightboxImage.src = "";
-      lightboxImage.alt = item.alt;
-      lightboxImage.decoding = "async";
-      lightboxImage.loading = "eager";
-
-      const temp = new Image();
-      temp.decoding = "async";
-
-      tryLoadImage(
-        temp,
-        candidates,
-        0,
-        () => {
-          lightboxImage.src = temp.src;
-        },
-        () => {
-          lightboxImage.src = "";
-        }
-      );
-
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden", "false");
       setBodyLock();
+
+      requestAnimationFrame(() => {
+        scrollLightboxToIndex(index, false, false);
+      });
 
       closeLightbox.focus();
 
@@ -2388,8 +2505,8 @@
     function closeLightboxOnly() {
       lightbox.classList.remove("open");
       lightbox.setAttribute("aria-hidden", "true");
-      lightboxImage.src = "";
-      lightboxImage.alt = "";
+      lightboxTrack.innerHTML = "";
+      lightboxViewport.scrollLeft = 0;
       setBodyLock();
     }
 
@@ -2411,32 +2528,8 @@
       }
 
       const items = galleryData[currentCategory].items;
-      currentIndex = (currentIndex + step + items.length) % items.length;
-
-      const item = items[currentIndex];
-      const candidates = getFullSources(item);
-      lightboxImage.alt = item.alt;
-
-      const temp = new Image();
-      temp.decoding = "async";
-
-      tryLoadImage(
-        temp,
-        candidates,
-        0,
-        () => {
-          lightboxImage.src = temp.src;
-        },
-        () => {
-          lightboxImage.src = "";
-        }
-      );
-
-      history.replaceState(
-        { overlay: "lightbox", category: currentCategory, index: currentIndex },
-        "",
-        location.href
-      );
+      const nextIndex = (currentIndex + step + items.length) % items.length;
+      scrollLightboxToIndex(nextIndex, true, true);
     }
 
     function syncViewMode() {
@@ -2450,8 +2543,8 @@
       if (lightbox.classList.contains("open")) {
         lightbox.classList.remove("open");
         lightbox.setAttribute("aria-hidden", "true");
-        lightboxImage.src = "";
-        lightboxImage.alt = "";
+        lightboxTrack.innerHTML = "";
+        lightboxViewport.scrollLeft = 0;
       }
 
       setBodyLock();
@@ -2524,6 +2617,21 @@
         closeImage();
       }
     });
+
+    lightboxViewport.addEventListener("scroll", () => {
+      if (!lightbox.classList.contains("open")) {
+        return;
+      }
+
+      if (lightboxScrollFrame) {
+        return;
+      }
+
+      lightboxScrollFrame = requestAnimationFrame(() => {
+        syncLightboxIndexFromScroll();
+        lightboxScrollFrame = null;
+      });
+    }, { passive: true });
 
     document.addEventListener("keydown", (event) => {
       if (lightbox.classList.contains("open")) {
@@ -2599,9 +2707,23 @@
     window.addEventListener("resize", () => {
       updateHeaderHeight();
       setBodyLock();
+
+      if (lightbox.classList.contains("open") && currentCategory) {
+        requestAnimationFrame(() => {
+          scrollLightboxToIndex(currentIndex, false, false);
+        });
+      }
     });
 
-    window.addEventListener("orientationchange", updateHeaderHeight);
+    window.addEventListener("orientationchange", () => {
+      updateHeaderHeight();
+
+      if (lightbox.classList.contains("open") && currentCategory) {
+        requestAnimationFrame(() => {
+          scrollLightboxToIndex(currentIndex, false, false);
+        });
+      }
+    });
 
     function init() {
       ensureBaseState();
