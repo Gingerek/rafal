@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -42,13 +41,11 @@
 
       --fs-body: clamp(15px, 0.55vw + 13px, 16.5px);
       --lh-body: 1.62;
-      --fs-h1: clamp(2.05rem, 3.6vw, 3.35rem);
       --fs-h2: clamp(1.7rem, 2.35vw, 2.55rem);
       --fs-h3: clamp(1.18rem, 1.35vw + .9rem, 1.55rem);
       --fs-lead: clamp(.98rem, .55vw + .86rem, 1.08rem);
       --fs-small: clamp(.86rem, .35vw + .78rem, .95rem);
       --text-max: 62ch;
-      --lead-max: 48ch;
     }
 
     * {
@@ -130,7 +127,7 @@
       left: 0;
       right: 0;
       z-index: 30;
-      background: rgba(5, 5, 5, .82);
+      background: rgba(5, 5, 5, .76);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255, 255, 255, .05);
@@ -249,17 +246,13 @@
     }
 
     .hero {
+      position: relative;
       min-height: 100svh;
       min-height: 100dvh;
-      display: grid;
-      align-items: end;
-      padding:
-        calc(var(--header-h) + 46px + env(safe-area-inset-top, 0px))
-        0
-        max(64px, env(safe-area-inset-bottom, 16px));
-      position: relative;
+      padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
       overflow: hidden;
       isolation: isolate;
+      background: #030303;
     }
 
     .hero-media {
@@ -272,7 +265,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 24%;
+      object-position: center 20%;
+      transform: scale(1.045);
+      filter: brightness(.92) saturate(1.02);
     }
 
     .hero::before {
@@ -281,8 +276,8 @@
       inset: 0;
       z-index: 1;
       background:
-        linear-gradient(90deg, rgba(5, 5, 5, .88) 0%, rgba(5, 5, 5, .66) 32%, rgba(5, 5, 5, .18) 60%, rgba(5, 5, 5, .34) 100%),
-        linear-gradient(to top, rgba(5, 5, 5, .88) 0%, rgba(5, 5, 5, .34) 38%, rgba(5, 5, 5, .1) 70%, rgba(5, 5, 5, .22) 100%);
+        linear-gradient(to bottom, rgba(5, 5, 5, .28) 0%, rgba(5, 5, 5, .08) 24%, rgba(5, 5, 5, .12) 54%, rgba(5, 5, 5, .76) 100%),
+        linear-gradient(90deg, rgba(5, 5, 5, .16) 0%, rgba(5, 5, 5, .02) 35%, rgba(5, 5, 5, .02) 65%, rgba(5, 5, 5, .22) 100%);
       pointer-events: none;
     }
 
@@ -292,84 +287,25 @@
       left: 0;
       right: 0;
       bottom: 0;
-      height: 160px;
+      height: 180px;
       z-index: 1;
-      background: linear-gradient(to top, var(--bg), transparent);
+      background: linear-gradient(to top, var(--bg) 0%, rgba(5, 5, 5, .82) 35%, transparent 100%);
       pointer-events: none;
     }
 
-    .hero-copy {
-      position: relative;
+    .hero-frame {
+      position: absolute;
+      inset: calc(var(--header-h) + 20px) 24px 24px 24px;
       z-index: 2;
-      max-width: 680px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, .1);
-      color: var(--muted);
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      font-size: .68rem;
-      margin-bottom: 16px;
-      background: rgba(5, 5, 5, .22);
-    }
-
-    h1 {
-      font-size: var(--fs-h1);
-      line-height: 1.03;
-      letter-spacing: -.045em;
-      max-width: 16ch;
-      margin-bottom: 14px;
-      text-wrap: balance;
-    }
-
-    .hero p {
-      font-size: var(--fs-lead);
-      max-width: var(--lead-max);
-      color: var(--muted);
-      margin-bottom: 22px;
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      min-height: 44px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, .04);
-      box-shadow: var(--shadow);
-      font-size: .92rem;
-      transition:
-        transform var(--transition),
-        background var(--transition),
-        border-color var(--transition);
-      text-align: center;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, .07);
-      border-color: rgba(209, 179, 132, .25);
-    }
-
-    .btn.primary {
-      background: linear-gradient(135deg, rgba(209, 179, 132, .24), rgba(255, 255, 255, .04));
-      border-color: rgba(209, 179, 132, .28);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .01));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02);
+      pointer-events: none;
     }
 
     section {
-      padding: 76px 0;
+      padding: 86px 0;
       scroll-margin-top: calc(var(--header-h) + 24px + env(safe-area-inset-top, 0px));
     }
 
@@ -783,6 +719,30 @@
       font-size: .93rem;
     }
 
+    .btn {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .04);
+      box-shadow: var(--shadow);
+      font-size: .92rem;
+      transition:
+        transform var(--transition),
+        background var(--transition),
+        border-color var(--transition);
+      text-align: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, .07);
+      border-color: rgba(209, 179, 132, .25);
+    }
+
     .footer {
       padding: 22px 0 calc(44px + env(safe-area-inset-bottom, 0px));
       color: rgba(243, 237, 228, .48);
@@ -882,14 +842,18 @@
       }
 
       .hero {
-        padding:
-          calc(var(--header-h) + 24px + env(safe-area-inset-top, 0px))
-          0
-          max(50px, env(safe-area-inset-bottom, 16px));
+        min-height: 82svh;
+        min-height: 82dvh;
       }
 
       .hero-media img {
-        object-position: 60% 22%;
+        object-position: 58% 18%;
+        transform: scale(1.03);
+      }
+
+      .hero-frame {
+        inset: calc(var(--header-h) + 14px) 12px 12px 12px;
+        border-radius: 24px;
       }
 
       section {
@@ -919,7 +883,6 @@
         padding: 22px;
       }
 
-      .actions .btn,
       .contact-card .btn {
         width: 100%;
       }
@@ -1004,59 +967,32 @@
       border-radius: 28px;
       overflow: hidden;
       box-shadow: 0 24px 54px rgba(0, 0, 0, .38);
-      padding: 28px 0 22px;
+      padding-top: 0;
     }
 
     body.mobile-view .hero::before {
       background:
-        linear-gradient(180deg, rgba(5, 5, 5, .14) 0%, rgba(5, 5, 5, .22) 26%, rgba(5, 5, 5, .74) 74%, rgba(5, 5, 5, .9) 100%),
-        linear-gradient(90deg, rgba(5, 5, 5, .6) 0%, rgba(5, 5, 5, .12) 48%, rgba(5, 5, 5, .34) 100%);
+        linear-gradient(180deg, rgba(5, 5, 5, .08) 0%, rgba(5, 5, 5, .06) 22%, rgba(5, 5, 5, .16) 60%, rgba(5, 5, 5, .82) 100%);
     }
 
     body.mobile-view .hero::after {
-      display: none;
+      height: 120px;
+    }
+
+    body.mobile-view .hero-media {
+      position: relative;
+      inset: auto;
+      min-height: 68svh;
+      min-height: 68dvh;
     }
 
     body.mobile-view .hero-media img {
-      object-position: 62% 18%;
+      object-position: 60% 18%;
+      transform: scale(1.035);
     }
 
-    body.mobile-view .hero-copy {
-      max-width: 100%;
-    }
-
-    body.mobile-view .eyebrow {
-      font-size: .56rem;
-      padding: 6px 9px;
-      margin-bottom: 10px;
-    }
-
-    body.mobile-view h1 {
-      font-size: clamp(1.22rem, 4.9vw, 1.62rem);
-      line-height: 1.09;
-      margin-bottom: 10px;
-      max-width: 18ch;
-      letter-spacing: -.03em;
-    }
-
-    body.mobile-view .hero p {
-      font-size: clamp(.86rem, 1.25vw + .78rem, .96rem);
-      max-width: 34ch;
-      margin-bottom: 14px;
-    }
-
-    body.mobile-view .actions {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
-
-    body.mobile-view .actions .btn {
-      width: 100%;
-      min-height: 40px;
-      font-size: .84rem;
-      padding: 10px 14px;
-      box-shadow: none;
+    body.mobile-view .hero-frame {
+      display: none;
     }
 
     body.mobile-view section {
@@ -1193,15 +1129,6 @@
       body.mobile-view .mobile-cat-label {
         font-size: clamp(.64rem, .9vw + .56rem, .72rem);
         min-height: 2.3em;
-      }
-
-      body.mobile-view h1 {
-        font-size: clamp(1.14rem, 4.6vw, 1.46rem);
-      }
-
-      body.mobile-view .hero p {
-        font-size: clamp(.84rem, 1.1vw + .76rem, .92rem);
-        max-width: 32ch;
       }
     }
 
@@ -1448,7 +1375,7 @@
 
   <div id="pageRoot">
     <main>
-      <section class="hero" id="top">
+      <section class="hero" id="top" aria-label="Hero image">
         <div class="hero-media" aria-hidden="true">
           <img
             src="images/DSCF4051.jpg"
@@ -1460,21 +1387,7 @@
             decoding="async"
           />
         </div>
-
-        <div class="container">
-          <div class="hero-copy">
-            <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
-            <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer, licht en karakter</h1>
-            <p data-i18n="heroText">
-              Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie,
-              detail en een rustige visuele kracht.
-            </p>
-            <div class="actions">
-              <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
-              <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
-            </div>
-          </div>
-        </div>
+        <div class="hero-frame" aria-hidden="true"></div>
       </section>
 
       <section id="about">
@@ -1653,11 +1566,6 @@
         navAbout: "O mnie",
         navPortfolio: "Portfolio",
         navContact: "Kontakt",
-        heroEyebrow: "Portfolio fotograficzne",
-        heroTitle: "Fotografia oparta na świetle, atmosferze i wyrazistym obrazie",
-        heroText: "Witaj na mojej stronie, gdzie pokazuję fotografie budowane kompozycją, detalem i spokojną siłą wizualną.",
-        heroBtn1: "Zobacz portfolio",
-        heroBtn2: "Skontaktuj się",
         aboutEyebrow: "O mnie",
         aboutTitle: "Osobliwe spojrzenie przełożone na dopracowane i świadome kadry",
         aboutLead: "Wierzę w fotografię, która nie tylko dobrze wygląda, ale również niesie jakość, spokój i własny charakter.",
@@ -1703,11 +1611,6 @@
         navAbout: "About",
         navPortfolio: "Portfolio",
         navContact: "Contact",
-        heroEyebrow: "Photography portfolio",
-        heroTitle: "Photography shaped by light, atmosphere and a refined visual language",
-        heroText: "Welcome to my portfolio, where I present images built on composition, detail and a calm visual strength.",
-        heroBtn1: "View portfolio",
-        heroBtn2: "Get in touch",
         aboutEyebrow: "About",
         aboutTitle: "A personal way of seeing translated into thoughtful and carefully crafted images",
         aboutLead: "I believe in photography that not only looks strong, but also carries quality, calmness and a distinct character.",
@@ -1753,11 +1656,6 @@
         navAbout: "Over mij",
         navPortfolio: "Portfolio",
         navContact: "Contact",
-        heroEyebrow: "Fotografieportfolio",
-        heroTitle: "Fotografie met aandacht voor sfeer, licht en karakter",
-        heroText: "Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.",
-        heroBtn1: "Bekijk portfolio",
-        heroBtn2: "Neem contact op",
         aboutEyebrow: "Over mij",
         aboutTitle: "Een persoonlijke blik vertaald naar verzorgde en doordachte beelden",
         aboutLead: "Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.",
@@ -2176,7 +2074,6 @@
 
       translationNodes.forEach((node) => {
         const key = node.dataset.i18n;
-
         if (dict[key]) {
           node.textContent = dict[key];
         }
@@ -2190,7 +2087,6 @@
       closeLightbox.setAttribute("aria-label", dict.closeLabel);
       prevImageButton.setAttribute("aria-label", dict.prevImage);
       nextImageButton.setAttribute("aria-label", dict.nextImage);
-
       lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
 
       updateMeta();
@@ -2742,4 +2638,3 @@
   </script>
 </body>
 </html>
-
