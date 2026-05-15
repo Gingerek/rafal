@@ -30,9 +30,7 @@
     "@type": "Person",
     "name": "Rafał Wilk",
     "url": "",
-    "sameAs": [
-      "https://instagram.com/fotodisogno"
-    ],
+    "sameAs": ["https://instagram.com/fotodisogno"],
     "jobTitle": "Photographer",
     "email": "mailto:fotodisogno@gmail.com"
   }
@@ -131,6 +129,7 @@
       display: block;
       max-width: 100%;
       -webkit-user-drag: none;
+      user-select: none;
     }
 
     button {
@@ -2437,6 +2436,10 @@
     }
 
     function openCategory(category, fromHistory = false, openerEl = null) {
+      if (!galleryData[category]) {
+        return;
+      }
+
       currentCategory = category;
       currentIndex = 0;
 
@@ -2484,118 +2487,155 @@
         }
       });
 
-      closeModal.focus();
-
       if (!fromHistory) {
-        history.pushState({ overlay: "category", category }, "", location.href);
+        history.pushState({ overlay: "modal", category }, "", location.href);
       }
+
+      requestAnimationFrame(() => {
+        modalShell.focus({ preventScroll: true });
+      });
     }
 
     function closeCategory(fromHistory = false) {
+      if (!modal.classList.contains("open")) {
+        return;
+      }
+
       modal.classList.remove("open");
       modal.setAttribute("aria-hidden", "true");
 
       if (galleryObserver) {
         galleryObserver.disconnect();
+        galleryObserver = null;
       }
 
-      setBodyLock();
+      galleryGrid.innerHTML = "";
 
-      if (!isMobileVersion) {
-        window.scrollTo(0, lastScrollY);
+      if (!lightbox.classList.contains("open")) {
+        setBodyLock();
       }
 
-      if (lastActiveElement && typeof lastActiveElement.focus === "function") {
-        lastActiveElement.focus();
-      }
-
-      if (!fromHistory && history.state && history.state.overlay === "category") {
+      if (!fromHistory && history.state && history.state.overlay === "modal") {
         history.back();
+      } else {
+        requestAnimationFrame(() => {
+          if (lastActiveElement && typeof lastActiveElement.focus === "function") {
+            lastActiveElement.focus({ preventScroll: true });
+          }
+
+          window.scrollTo({ top: lastScrollY, behavior: "auto" });
+        });
       }
     }
 
-    function openLightbox(category, index, fromHistory = false, openerEl = null) {
-      currentCategory = category;
-      currentIndex = index;
-
-      const dict = translations[currentLang];
-
-      lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
-      renderLightboxSlides(category, index);
-
-      if (openerEl) {
-        lastActiveElement = openerEl;
+    function openLightbox(index = 0, fromHistory = false) {
+      if (!currentCategory || !galleryData[currentCategory]) {
+        return;
       }
+
+      currentIndex = Number(index) || 0;
+      renderLightboxSlides(currentCategory, currentIndex);
 
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden", "false");
       setBodyLock();
 
       requestAnimationFrame(() => {
-        scrollLightboxToIndex(index, false, false);
+        scrollLightboxToIndex(currentIndex, false, false);
+        lightboxInner.focus({ preventScroll: true });
       });
 
-      closeLightbox.focus();
-
       if (!fromHistory) {
-        history.pushState({ overlay: "lightbox", category, index }, "", location.href);
+        history.pushState(
+          { overlay: "lightbox", category: currentCategory, index: currentIndex },
+          "",
+          location.href
+        );
       }
     }
 
-    function closeLightboxOnly() {
+    function closeLightboxPanel(fromHistory = false) {
+      if (!lightbox.classList.contains("open")) {
+        return;
+      }
+
       lightbox.classList.remove("open");
       lightbox.setAttribute("aria-hidden", "true");
       lightboxTrack.innerHTML = "";
-      lightboxViewport.scrollLeft = 0;
+
       setBodyLock();
-    }
-
-    function closeImage(fromHistory = false) {
-      closeLightboxOnly();
-
-      if (lastActiveElement && typeof lastActiveElement.focus === "function") {
-        lastActiveElement.focus();
-      }
 
       if (!fromHistory && history.state && history.state.overlay === "lightbox") {
         history.back();
+      } else {
+        requestAnimationFrame(() => {
+          modalShell.focus({ preventScroll: true });
+        });
       }
     }
 
-    function moveImage(step) {
+    function closeAllOverlays(fromHistory = false) {
+      if (lightbox.classList.contains("open")) {
+        closeLightboxPanel(true);
+      }
+
+      if (modal.classList.contains("open")) {
+        closeCategory(true);
+      }
+
+      setBodyLock();
+
+      if (!fromHistory) {
+        history.replaceState({ overlay: null }, "", location.href);
+      }
+
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: lastScrollY, behavior: "auto" });
+
+        if (lastActiveElement && typeof lastActiveElement.focus === "function") {
+          lastActiveElement.focus({ preventScroll: true });
+        }
+      });
+    }
+
+    function goPrevImage() {
       if (!currentCategory) {
         return;
       }
 
-      const items = galleryData[currentCategory].items;
-      const nextIndex = (currentIndex + step + items.length) % items.length;
-      scrollLightboxToIndex(nextIndex, true, true);
+      const total = galleryData[currentCategory].items.length;
+      const nextIndex = currentIndex <= 0 ? total - 1 : currentIndex - 1;
+      scrollLightboxToIndex(nextIndex);
     }
 
-    function syncViewMode() {
+    function goNextImage() {
+      if (!currentCategory) {
+        return;
+      }
+
+      const total = galleryData[currentCategory].items.length;
+      const nextIndex = currentIndex >= total - 1 ? 0 : currentIndex + 1;
+      scrollLightboxToIndex(nextIndex);
+    }
+
+    function applyViewMode() {
       document.body.classList.toggle("mobile-view", isMobileVersion);
-
-      if (modal.classList.contains("open")) {
-        modal.classList.remove("open");
-        modal.setAttribute("aria-hidden", "true");
-      }
-
-      if (lightbox.classList.contains("open")) {
-        lightbox.classList.remove("open");
-        lightbox.setAttribute("aria-hidden", "true");
-        lightboxTrack.innerHTML = "";
-        lightboxViewport.scrollLeft = 0;
-      }
-
-      setBodyLock();
-      history.replaceState({ overlay: null }, "", location.href);
-      applyTranslations();
+      updateViewToggle();
       renderCategories();
-      renderAboutPhoto();
-      requestAnimationFrame(updateHeaderHeight);
+      updateHeaderHeight();
     }
 
-    function changeLanguage(nextLang) {
+    function handleLanguageClick(event) {
+      const link = event.target.closest("[data-lang]");
+
+      if (!link) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const nextLang = link.dataset.lang;
+
       if (!translations[nextLang]) {
         return;
       }
@@ -2604,91 +2644,46 @@
       updateUrlLanguageOnly();
       applyTranslations();
       renderCategories();
-
-      if (modal.classList.contains("open") && currentCategory) {
-        openCategory(currentCategory, true);
-      }
     }
 
-    function changeView(nextView) {
-      const url = new URL(window.location.href);
-      url.searchParams.set("lang", currentLang);
-      url.searchParams.set("view", nextView);
-      history.replaceState({ overlay: null }, "", `${url.pathname}${url.search}${url.hash}`);
-
-      isMobileVersion = nextView === "mobile";
-      syncViewMode();
-    }
-
-    categoriesGrid.addEventListener("click", (event) => {
+    function handleCategoryClick(event) {
       const button = event.target.closest("[data-category]");
+
       if (!button) {
         return;
       }
 
       openCategory(button.dataset.category, false, button);
-    });
+    }
 
-    galleryGrid.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-index]");
-      if (!button || !currentCategory) {
+    function handleGalleryClick(event) {
+      const button = event.target.closest(".gallery-item");
+
+      if (!button) {
         return;
       }
 
-      openLightbox(currentCategory, Number(button.dataset.index), false, button);
-    });
+      openLightbox(Number(button.dataset.index) || 0);
+    }
 
-    closeModal.addEventListener("click", () => closeCategory(false));
-    closeLightbox.addEventListener("click", () => closeImage(false));
-    prevImageButton.addEventListener("click", () => moveImage(-1));
-    nextImageButton.addEventListener("click", () => moveImage(1));
-
-    modal.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        closeCategory(false);
-      }
-    });
-
-    lightbox.addEventListener("click", (event) => {
-      if (event.target === lightbox) {
-        closeImage(false);
-      }
-    });
-
-    languageLinks.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        changeLanguage(link.dataset.lang);
-      });
-    });
-
-    viewToggle.addEventListener("click", (event) => {
-      event.preventDefault();
-      changeView(isMobileVersion ? "desktop" : "mobile");
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        if (lightbox.classList.contains("open")) {
-          closeImage(false);
-          return;
-        }
-
-        if (modal.classList.contains("open")) {
-          closeCategory(false);
-          return;
-        }
-      }
-
+    function handleKeydown(event) {
       if (lightbox.classList.contains("open")) {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeLightboxPanel();
+          return;
+        }
+
         if (event.key === "ArrowLeft") {
           event.preventDefault();
-          moveImage(-1);
+          goPrevImage();
+          return;
         }
 
         if (event.key === "ArrowRight") {
           event.preventDefault();
-          moveImage(1);
+          goNextImage();
+          return;
         }
 
         trapFocus(event, lightboxInner);
@@ -2696,74 +2691,125 @@
       }
 
       if (modal.classList.contains("open")) {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeCategory();
+          return;
+        }
+
         trapFocus(event, modalShell);
       }
-    });
+    }
 
-    lightboxViewport.addEventListener("scroll", () => {
-      if (lightboxScrollFrame) {
-        cancelAnimationFrame(lightboxScrollFrame);
-      }
-
-      lightboxScrollFrame = requestAnimationFrame(syncLightboxIndexFromScroll);
-    });
-
-    window.addEventListener("resize", () => {
-      updateHeaderHeight();
-
-      if (!hasForcedView) {
-        const nextMobileState = mediaQuery.matches;
-
-        if (nextMobileState !== isMobileVersion) {
-          isMobileVersion = nextMobileState;
-          syncViewMode();
-        }
-      }
-
-      if (lightbox.classList.contains("open")) {
-        requestAnimationFrame(() => {
-          scrollLightboxToIndex(currentIndex, false, false);
-        });
-      }
-    });
-
-    window.addEventListener("popstate", (event) => {
+    function handlePopState(event) {
       const state = event.state || { overlay: null };
 
-      if (state.overlay === "lightbox" && state.category) {
-        if (!modal.classList.contains("open")) {
-          openCategory(state.category, true);
-        }
-
-        openLightbox(state.category, Number(state.index || 0), true);
+      if (!state.overlay) {
+        closeAllOverlays(true);
         return;
       }
 
-      if (state.overlay === "category" && state.category) {
+      if (state.overlay === "modal") {
         if (lightbox.classList.contains("open")) {
-          closeLightboxOnly();
+          closeLightboxPanel(true);
         }
 
         openCategory(state.category, true);
         return;
       }
 
-      if (lightbox.classList.contains("open")) {
-        closeLightboxOnly();
+      if (state.overlay === "lightbox") {
+        if (!modal.classList.contains("open")) {
+          openCategory(state.category, true);
+        }
+
+        currentCategory = state.category;
+        openLightbox(state.index || 0, true);
+      }
+    }
+
+    function handleLightboxScroll() {
+      if (lightboxScrollFrame) {
+        cancelAnimationFrame(lightboxScrollFrame);
       }
 
-      if (modal.classList.contains("open")) {
-        closeCategory(true);
-      }
-    });
+      lightboxScrollFrame = requestAnimationFrame(syncLightboxIndexFromScroll);
+    }
 
-    ensureBaseState();
-    applyTranslations();
-    renderCategories();
-    renderAboutPhoto();
-    syncViewMode();
-    updateHeaderHeight();
+    function protectImages() {
+      document.addEventListener("contextmenu", (event) => {
+        if (event.target.closest("img, .thumb, .gallery-item, .lightbox")) {
+          event.preventDefault();
+        }
+      });
+
+      document.addEventListener("dragstart", (event) => {
+        if (event.target.closest("img")) {
+          event.preventDefault();
+        }
+      });
+    }
+
+    function init() {
+      ensureBaseState();
+
+      document.body.classList.toggle("mobile-view", isMobileVersion);
+
+      applyTranslations();
+      renderAboutPhoto();
+      renderCategories();
+      updateHeaderHeight();
+      protectImages();
+
+      languageSwitcher.addEventListener("click", handleLanguageClick);
+      categoriesGrid.addEventListener("click", handleCategoryClick);
+      galleryGrid.addEventListener("click", handleGalleryClick);
+
+      closeModal.addEventListener("click", () => closeCategory());
+      closeLightbox.addEventListener("click", () => closeLightboxPanel());
+      prevImageButton.addEventListener("click", goPrevImage);
+      nextImageButton.addEventListener("click", goNextImage);
+
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          closeCategory();
+        }
+      });
+
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+          closeLightboxPanel();
+        }
+      });
+
+      document.addEventListener("keydown", handleKeydown);
+      window.addEventListener("popstate", handlePopState);
+      lightboxViewport.addEventListener("scroll", handleLightboxScroll, { passive: true });
+
+      window.addEventListener("resize", () => {
+        updateHeaderHeight();
+
+        if (!hasForcedView) {
+          const nextMobileState = mediaQuery.matches;
+
+          if (nextMobileState !== isMobileVersion) {
+            isMobileVersion = nextMobileState;
+            applyViewMode();
+          }
+        }
+
+        if (lightbox.classList.contains("open")) {
+          scrollLightboxToIndex(currentIndex, false, false);
+        }
+      });
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(updateHeaderHeight).catch(() => {});
+      }
+    }
+
+    init();
   </script>
 </body>
 </html>
-```
+
