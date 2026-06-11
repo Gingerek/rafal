@@ -62,7 +62,7 @@
       --radius-lg: 34px;
       --radius-md: 22px;
       --fs-body: clamp(15px, .45vw + 13.5px, 17px);
-      --fs-h1: clamp(3.25rem, 8.8vw, 10.6rem);
+      --fs-h1: clamp(2.55rem, 5.9vw, 6.6rem);
       --fs-h2: clamp(2.1rem, 5.2vw, 6.2rem);
       --fs-h3: clamp(1.25rem, 1.4vw, 2rem);
       --fs-lead: clamp(1rem, .7vw + .82rem, 1.25rem);
@@ -281,7 +281,7 @@
       position: relative;
       display: grid;
       align-items: end;
-      padding: calc(var(--header-h) + 78px + env(safe-area-inset-top, 0px)) 0 58px;
+      padding: calc(var(--header-h) + 70px + env(safe-area-inset-top, 0px)) 0 72px;
       isolation: isolate;
     }
 
@@ -296,10 +296,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 24%;
-      transform: scale(1.08);
-      filter: saturate(.9) contrast(1.05) brightness(.62);
-      animation: heroDrift 18s var(--ease) infinite alternate;
+      object-position: 58% 32%;
+      transform: scale(1.06);
+      filter: saturate(.86) contrast(1.08) brightness(.54);
+      animation: heroDrift 20s var(--ease) infinite alternate;
     }
 
     .hero::before {
@@ -308,18 +308,21 @@
       inset: 0;
       z-index: -1;
       background:
-        linear-gradient(90deg, rgba(3, 3, 2, .94) 0%, rgba(3, 3, 2, .74) 34%, rgba(3, 3, 2, .18) 66%, rgba(3, 3, 2, .56) 100%),
-        linear-gradient(to top, rgba(8, 8, 6, 1) 0%, rgba(8, 8, 6, .72) 18%, rgba(8, 8, 6, .06) 62%);
+        radial-gradient(circle at 76% 42%, rgba(244, 238, 228, .08), transparent 22vw),
+        linear-gradient(90deg, rgba(3, 3, 2, .96) 0%, rgba(3, 3, 2, .84) 38%, rgba(3, 3, 2, .42) 68%, rgba(3, 3, 2, .72) 100%),
+        linear-gradient(to top, rgba(8, 8, 6, 1) 0%, rgba(8, 8, 6, .78) 20%, rgba(8, 8, 6, .12) 66%);
     }
 
     .hero-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(320px, .62fr);
-      gap: clamp(28px, 5vw, 92px);
+      grid-template-columns: minmax(0, 1fr);
       align-items: end;
     }
 
-    .hero-copy { max-width: 990px; }
+    .hero-copy {
+      max-width: 780px;
+      padding-top: clamp(70px, 9vw, 150px);
+    }
 
     .eyebrow {
       display: inline-flex;
@@ -342,17 +345,17 @@
     }
 
     h1 {
-      max-width: 9.2ch;
+      max-width: 12.5ch;
       font-family: "Playfair Display", Georgia, serif;
       font-size: var(--fs-h1);
-      line-height: .86;
-      letter-spacing: -.07em;
+      line-height: .96;
+      letter-spacing: -.045em;
       text-wrap: balance;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .hero p {
-      max-width: 56ch;
+      max-width: 48ch;
       color: var(--ink-soft);
       font-size: var(--fs-lead);
       margin-bottom: 28px;
@@ -1075,7 +1078,7 @@
 
     .mobile-bottom-nav { display: none; }
 
-    @keyframes heroDrift { from { transform: scale(1.08) translate3d(0,0,0); } to { transform: scale(1.14) translate3d(-1.5%, -1%, 0); } }
+    @keyframes heroDrift { from { transform: scale(1.06) translate3d(0,0,0); } to { transform: scale(1.11) translate3d(-1.2%, -.8%, 0); } }
     @keyframes marquee { to { transform: translateX(-50%); } }
     @keyframes shimmer { to { background-position: -220% 0; } }
     @keyframes itemIn { to { opacity: 1; transform: translateY(0); } }
@@ -1101,13 +1104,15 @@
     }
 
     @media (max-width: 760px) {
-      :root { --header-h: 72px; }
+      :root { --header-h: 72px; --fs-h1: clamp(2.35rem, 10.5vw, 4rem); }
       .container { width: min(100% - 28px, var(--container)); }
       .header-row { gap: 12px; }
       .brand span:last-child { display: none; }
       .nav { display: none; }
       .lang a { min-height: 34px; padding: 7px 10px; font-size: .72rem; }
-      .hero { padding: calc(var(--header-h) + 52px + env(safe-area-inset-top, 0px)) 0 38px; min-height: 92svh; }
+      .hero { padding: calc(var(--header-h) + 52px + env(safe-area-inset-top, 0px)) 0 48px; min-height: 88svh; }
+      .hero-copy { max-width: 640px; padding-top: 52px; }
+      h1 { max-width: 11.5ch; }
       .hero p { max-width: 38ch; }
       .actions { display: grid; grid-template-columns: 1fr; }
       .btn { width: 100%; }
@@ -1221,23 +1226,14 @@
           <div class="hero-layout">
             <div class="hero-copy reveal">
               <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
-              <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer, licht en karakter</h1>
-              <p data-i18n="heroText">Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.</p>
+              <h1 data-i18n="heroTitle">Licht, sfeer en sterke beelden</h1>
+              <p data-i18n="heroText">Een zorgvuldig opgebouwde selectie fotografie waarin compositie, detail en visuele rust centraal staan.</p>
               <div class="actions">
                 <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
                 <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
               </div>
             </div>
 
-            <aside class="hero-panel reveal" aria-hidden="true">
-              <div class="hero-panel-image">
-                <img src="images/DSCF4051-2.jpg" alt="" loading="lazy" decoding="async" />
-              </div>
-              <div class="hero-panel-line">
-                <span>Selected work</span>
-                <span>01 / 06</span>
-              </div>
-            </aside>
           </div>
         </div>
       </section>
@@ -1366,8 +1362,8 @@ const translations = {
         navPortfolio: "Portfolio",
         navContact: "Kontakt",
         heroEyebrow: "Portfolio fotograficzne",
-        heroTitle: "Fotografia oparta na świetle, atmosferze i wyrazistym obrazie",
-        heroText: "Witaj na mojej stronie, gdzie pokazuję fotografie budowane kompozycją, detalem i spokojną siłą wizualną.",
+        heroTitle: "Światło, atmosfera i mocny kadr",
+        heroText: "Starannie wybrana fotografia, w której najważniejsze są kompozycja, detal i spokojna siła obrazu.",
         heroBtn1: "Zobacz portfolio",
         heroBtn2: "Skontaktuj się",
         aboutEyebrow: "O mnie",
@@ -1416,8 +1412,8 @@ const translations = {
         navPortfolio: "Portfolio",
         navContact: "Contact",
         heroEyebrow: "Photography portfolio",
-        heroTitle: "Photography shaped by light, atmosphere and a refined visual language",
-        heroText: "Welcome to my portfolio, where I present images built on composition, detail and a calm visual strength.",
+        heroTitle: "Light, atmosphere and strong imagery",
+        heroText: "A carefully curated selection of photography built around composition, detail and quiet visual strength.",
         heroBtn1: "View portfolio",
         heroBtn2: "Get in touch",
         aboutEyebrow: "About",
@@ -1466,8 +1462,8 @@ const translations = {
         navPortfolio: "Portfolio",
         navContact: "Contact",
         heroEyebrow: "Fotografieportfolio",
-        heroTitle: "Fotografie met aandacht voor sfeer, licht en karakter",
-        heroText: "Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.",
+        heroTitle: "Licht, sfeer en sterke beelden",
+        heroText: "Een zorgvuldig opgebouwde selectie fotografie waarin compositie, detail en visuele rust centraal staan.",
         heroBtn1: "Bekijk portfolio",
         heroBtn2: "Neem contact op",
         aboutEyebrow: "Over mij",
