@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Rafał Wilk | Cinematic Photography</title>
-  <meta name="description" content="Modern portfolio van Rafał Wilk: fotografie, dronebeelden, reiscontent, vastgoedvisuals, korte video's en visuele storytelling." />
+
+  <title>Rafał Wilk | Fotografie</title>
+  <meta name="description" content="Portfolio van Rafał Wilk met fotografie gericht op sfeer, licht, compositie en karakter." />
   <meta name="author" content="Rafał Wilk" />
   <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#02050c" />
+  <meta name="theme-color" content="#080806" />
 
-  <meta property="og:title" content="Rafał Wilk | Cinematic Photography" />
-  <meta property="og:description" content="Modern portfolio van Rafał Wilk: fotografie, dronebeelden, reiscontent, vastgoedvisuals, korte video's en visuele storytelling." />
+  <meta property="og:title" content="Rafał Wilk | Fotografie" />
+  <meta property="og:description" content="Portfolio van Rafał Wilk met fotografie gericht op sfeer, licht, compositie en karakter." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="" />
   <meta property="og:image" content="images/DSCF4051.jpg" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Rafał Wilk | Cinematic Photography" />
-  <meta name="twitter:description" content="Modern portfolio van Rafał Wilk: fotografie, dronebeelden, reiscontent, vastgoedvisuals, korte video's en visuele storytelling." />
+  <meta name="twitter:title" content="Rafał Wilk | Fotografie" />
+  <meta name="twitter:description" content="Portfolio van Rafał Wilk met fotografie gericht op sfeer, licht, compositie en karakter." />
   <meta name="twitter:image" content="images/DSCF4051.jpg" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="images/DSCF4051.jpg" fetchpriority="high" />
 
   <script type="application/ld+json">
@@ -27,43 +31,60 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Rafał Wilk",
+    "url": "",
     "sameAs": ["https://instagram.com/fotodisogno"],
-    "jobTitle": "Photographer and Visual Creator",
+    "jobTitle": "Photographer",
     "email": "mailto:fotodisogno@gmail.com"
   }
   </script>
 
   <style>
     :root {
-      --bg: #02050c;
-      --bg-2: #050914;
-      --panel: rgba(255, 255, 255, .065);
-      --panel-2: rgba(255, 255, 255, .095);
-      --text: #f7f3eb;
-      --muted: rgba(247, 243, 235, .72);
-      --muted-2: rgba(247, 243, 235, .52);
-      --accent: #9ffcff;
-      --gold: #d1b384;
-      --border: rgba(159, 252, 255, .15);
-      --shadow: 0 24px 80px rgba(0, 0, 0, .48);
-      --container: 1240px;
-      --radius: 28px;
-      --ease: 260ms cubic-bezier(.22, 1, .36, 1);
-      --header-h: 92px;
-      --body-font: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      --bg: #080806;
+      --bg-deep: #030302;
+      --ink: #f4eee4;
+      --ink-soft: rgba(244, 238, 228, .74);
+      --ink-faint: rgba(244, 238, 228, .48);
+      --line: rgba(244, 238, 228, .13);
+      --line-strong: rgba(244, 238, 228, .25);
+      --paper: rgba(244, 238, 228, .045);
+      --paper-strong: rgba(244, 238, 228, .075);
+      --champagne: #d5b989;
+      --champagne-light: #f3deb0;
+      --brown: #23190f;
+      --danger: #ffdfc7;
+      --container: 1440px;
+      --header-h: 84px;
+      --ease: cubic-bezier(.19, 1, .22, 1);
+      --ease-hard: cubic-bezier(.85, 0, .15, 1);
+      --shadow-soft: 0 28px 80px rgba(0, 0, 0, .38);
+      --shadow-hard: 0 34px 110px rgba(0, 0, 0, .62);
+      --radius-lg: 34px;
+      --radius-md: 22px;
+      --fs-body: clamp(15px, .45vw + 13.5px, 17px);
+      --fs-h1: clamp(3.25rem, 8.8vw, 10.6rem);
+      --fs-h2: clamp(2.1rem, 5.2vw, 6.2rem);
+      --fs-h3: clamp(1.25rem, 1.4vw, 2rem);
+      --fs-lead: clamp(1rem, .7vw + .82rem, 1.25rem);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      background: var(--bg-deep);
+    }
+
     body {
       min-height: 100vh;
-      font-family: var(--body-font);
-      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
       background:
-        radial-gradient(circle at 12% 8%, rgba(159, 252, 255, .14), transparent 27%),
-        radial-gradient(circle at 86% 14%, rgba(209, 179, 132, .13), transparent 28%),
-        radial-gradient(circle at 58% 78%, rgba(139, 92, 246, .12), transparent 30%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 46%, var(--bg) 100%);
+        radial-gradient(circle at 20% -10%, rgba(213, 185, 137, .17), transparent 28vw),
+        radial-gradient(circle at 88% 18%, rgba(244, 238, 228, .06), transparent 34vw),
+        linear-gradient(180deg, #080806 0%, #050504 42%, #080806 100%);
+      font-size: var(--fs-body);
       line-height: 1.62;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -79,11 +100,11 @@
       z-index: -2;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(159, 252, 255, .055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(159, 252, 255, .045) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: radial-gradient(circle at top, black, transparent 74%);
-      opacity: .42;
+        linear-gradient(rgba(244, 238, 228, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244, 238, 228, .026) 1px, transparent 1px);
+      background-size: 88px 88px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.85), transparent 76%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.85), transparent 76%);
     }
 
     body::after {
@@ -92,17 +113,24 @@
       inset: 0;
       z-index: -1;
       pointer-events: none;
-      opacity: .085;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-      mix-blend-mode: overlay;
+      opacity: .34;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; user-select: none; -webkit-user-drag: none; }
-    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-    button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    img { display: block; max-width: 100%; -webkit-user-drag: none; user-select: none; }
+    button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 
-    .sr-only, .skip-link:not(:focus) {
+    a:focus-visible,
+    button:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--champagne-light);
+      outline-offset: 4px;
+    }
+
+    .sr-only,
+    .skip-link:not(:focus) {
       position: absolute !important;
       width: 1px !important;
       height: 1px !important;
@@ -118,12 +146,17 @@
       position: fixed;
       top: 14px;
       left: 14px;
-      z-index: 1000;
+      z-index: 9999;
       padding: 10px 14px;
       border-radius: 999px;
-      background: var(--accent);
-      color: #041018;
+      background: var(--champagne);
+      color: #111;
       font-weight: 800;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 44px));
+      margin-inline: auto;
     }
 
     .scroll-progress {
@@ -131,27 +164,30 @@
       top: 0;
       left: 0;
       z-index: 1000;
-      width: 0%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
-      box-shadow: 0 0 22px rgba(159, 252, 255, .5);
+      height: 2px;
+      width: 100%;
+      transform-origin: left center;
+      transform: scaleX(0);
+      background: linear-gradient(90deg, var(--champagne), rgba(244, 238, 228, .95));
+      box-shadow: 0 0 18px rgba(213, 185, 137, .42);
     }
-
-    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
 
     .site-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 50;
-      min-height: var(--header-h);
+      z-index: 90;
       padding-top: env(safe-area-inset-top, 0px);
-      background: rgba(2, 5, 12, .72);
-      border-bottom: 1px solid rgba(159, 252, 255, .11);
-      box-shadow: 0 18px 60px rgba(0, 0, 0, .28);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      transition: background 500ms var(--ease), border-color 500ms var(--ease), transform 500ms var(--ease);
+      border-bottom: 1px solid transparent;
+    }
+
+    .site-header.scrolled {
+      background: rgba(5, 5, 4, .72);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-color: rgba(244, 238, 228, .08);
     }
 
     .header-row {
@@ -159,381 +195,988 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      padding: 14px 0;
+      gap: 28px;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
-      font-weight: 850;
-      letter-spacing: .04em;
-      white-space: nowrap;
+      gap: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: .78rem;
     }
 
     .brand-mark {
       width: 38px;
       height: 38px;
-      border-radius: 999px;
+      border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: #021015;
-      font-weight: 950;
-      letter-spacing: -.04em;
-      background: conic-gradient(from 210deg, var(--accent), var(--gold), #ffffff, var(--accent));
-      box-shadow: 0 0 26px rgba(159, 252, 255, .52), inset 0 0 18px rgba(255, 255, 255, .42);
+      border: 1px solid rgba(213, 185, 137, .52);
+      background:
+        radial-gradient(circle at 35% 25%, rgba(244, 238, 228, .28), transparent 38%),
+        rgba(213, 185, 137, .08);
+      color: var(--champagne-light);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.03), 0 0 32px rgba(213,185,137,.16);
+      letter-spacing: -.05em;
+      font-size: .94rem;
     }
 
-    .brand-name {
-      background: linear-gradient(90deg, #fff, var(--accent), var(--gold));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
-    .nav-wrap { display: flex; align-items: center; gap: 10px; }
-    .nav { display: flex; align-items: center; gap: 6px; }
-    .nav a, .lang button {
-      min-height: 38px;
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px;
+      border: 1px solid rgba(244, 238, 228, .08);
+      border-radius: 999px;
+      background: rgba(244, 238, 228, .035);
+    }
+
+    .nav a,
+    .lang a {
+      min-height: 36px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 12px;
       border-radius: 999px;
-      border: 1px solid transparent;
-      color: var(--muted);
-      font-size: .88rem;
-      transition: background var(--ease), border-color var(--ease), color var(--ease), transform var(--ease);
+      padding: 8px 13px;
+      color: var(--ink-soft);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .035em;
+      transition: color 320ms var(--ease), background 320ms var(--ease), transform 320ms var(--ease);
     }
 
-    .nav a:hover, .lang button:hover, .lang button.active {
-      color: #fff;
-      background: linear-gradient(135deg, rgba(159, 252, 255, .14), rgba(255, 255, 255, .05));
-      border-color: rgba(159, 252, 255, .24);
-      box-shadow: inset 0 0 18px rgba(159, 252, 255, .045);
+    .nav a:hover,
+    .lang a:hover,
+    .lang a.active,
+    .lang a[aria-current="true"] {
+      color: var(--ink);
+      background: rgba(244, 238, 228, .08);
     }
 
     .lang {
       display: flex;
-      gap: 4px;
-      padding: 3px;
+      gap: 2px;
+      padding: 4px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, .08);
-      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(244, 238, 228, .08);
+      background: rgba(3, 3, 2, .34);
     }
+
+    main { overflow: hidden; }
 
     .hero {
-      position: relative;
       min-height: 100svh;
       min-height: 100dvh;
+      position: relative;
       display: grid;
-      align-items: center;
-      overflow: hidden;
+      align-items: end;
+      padding: calc(var(--header-h) + 78px + env(safe-area-inset-top, 0px)) 0 58px;
       isolation: isolate;
-      padding: calc(var(--header-h) + 50px) 0 80px;
     }
 
-    .hero-media { position: absolute; inset: 0; z-index: 0; }
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+
     .hero-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 25%;
-      filter: saturate(1.04) contrast(1.05) brightness(.84);
-      transform: scale(1.02);
+      object-position: center 24%;
+      transform: scale(1.08);
+      filter: saturate(.9) contrast(1.05) brightness(.62);
+      animation: heroDrift 18s var(--ease) infinite alternate;
     }
 
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      z-index: 1;
-      pointer-events: none;
+      z-index: -1;
       background:
-        radial-gradient(circle at 22% 34%, rgba(159, 252, 255, .18), transparent 24%),
-        radial-gradient(circle at 74% 16%, rgba(209, 179, 132, .12), transparent 23%),
-        linear-gradient(90deg, rgba(2, 5, 12, .96) 0%, rgba(2, 5, 12, .70) 35%, rgba(2, 5, 12, .20) 68%, rgba(2, 5, 12, .52) 100%),
-        linear-gradient(to top, rgba(2, 5, 12, .96) 0%, rgba(2, 5, 12, .42) 42%, rgba(2, 5, 12, .18) 100%);
+        linear-gradient(90deg, rgba(3, 3, 2, .94) 0%, rgba(3, 3, 2, .74) 34%, rgba(3, 3, 2, .18) 66%, rgba(3, 3, 2, .56) 100%),
+        linear-gradient(to top, rgba(8, 8, 6, 1) 0%, rgba(8, 8, 6, .72) 18%, rgba(8, 8, 6, .06) 62%);
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 170px;
-      z-index: 2;
-      pointer-events: none;
-      background: linear-gradient(to top, var(--bg), transparent);
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, .62fr);
+      gap: clamp(28px, 5vw, 92px);
+      align-items: end;
     }
 
-    .hero-copy {
-      position: relative;
-      z-index: 3;
-      max-width: 900px;
-      animation: heroIn .9s ease both;
-    }
-
-    @keyframes heroIn {
-      from { opacity: 0; transform: translateY(22px); filter: blur(8px); }
-      to { opacity: 1; transform: translateY(0); filter: blur(0); }
-    }
-
-    .eyebrow, .head span, .modal-kicker {
-      display: inline-flex;
-      width: fit-content;
-      color: var(--accent);
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      font-size: .68rem;
-      text-shadow: 0 0 18px rgba(159, 252, 255, .22);
-    }
+    .hero-copy { max-width: 990px; }
 
     .eyebrow {
-      margin-bottom: 16px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(159, 252, 255, .24);
-      background: linear-gradient(135deg, rgba(159, 252, 255, .12), rgba(255, 255, 255, .03));
-      box-shadow: inset 0 0 24px rgba(159, 252, 255, .05);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: var(--champagne-light);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: currentColor;
+      opacity: .8;
     }
 
     h1 {
-      max-width: 15ch;
-      margin-bottom: 18px;
-      font-size: clamp(2.6rem, 5.9vw, 6.2rem);
-      line-height: .98;
-      letter-spacing: -.06em;
+      max-width: 9.2ch;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: var(--fs-h1);
+      line-height: .86;
+      letter-spacing: -.07em;
       text-wrap: balance;
-      background: linear-gradient(115deg, #fff 0%, #f7f3eb 36%, var(--accent) 70%, var(--gold) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 48px rgba(159, 252, 255, .10);
+      margin-bottom: 28px;
     }
 
-    .hero p, .head p, .copy p, .service-card p, .gear-card span, .contact-card span, .contact-hero-card p, .footer {
-      color: var(--muted);
+    .hero p {
+      max-width: 56ch;
+      color: var(--ink-soft);
+      font-size: var(--fs-lead);
+      margin-bottom: 28px;
     }
 
-    .hero p { max-width: 58ch; margin-bottom: 22px; font-size: clamp(.98rem, .65vw + .88rem, 1.14rem); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-    .tags span, .chip {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(159, 252, 255, .18);
-      background: rgba(255, 255, 255, .045);
-      color: rgba(247, 243, 235, .84);
-      font-size: .8rem;
-      letter-spacing: .02em;
-      box-shadow: inset 0 0 18px rgba(159, 252, 255, .035);
-    }
-
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
     .btn {
-      position: relative;
-      min-height: 46px;
+      min-height: 48px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      padding: 12px 18px;
+      gap: 10px;
+      padding: 13px 19px;
       border-radius: 999px;
-      border: 1px solid rgba(159, 252, 255, .16);
-      background: linear-gradient(135deg, rgba(255, 255, 255, .06), rgba(159, 252, 255, .04));
-      box-shadow: 0 18px 46px rgba(0, 0, 0, .28), inset 0 0 18px rgba(255, 255, 255, .035);
-      font-size: .92rem;
-      text-align: center;
-      transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
-    }
-
-    .btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      transform: translateX(-120%);
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .22), transparent);
-      transition: transform 720ms ease;
-    }
-
-    .btn:hover { transform: translateY(-2px); border-color: rgba(159, 252, 255, .36); box-shadow: 0 22px 58px rgba(0, 0, 0, .34), 0 0 30px rgba(159, 252, 255, .10); }
-    .btn:hover::before { transform: translateX(120%); }
-    .btn.primary {
-      color: #041018;
-      font-weight: 850;
-      background: linear-gradient(135deg, var(--accent), #fff4d4 54%, var(--gold));
-      border-color: rgba(255, 255, 255, .42);
-      box-shadow: 0 18px 54px rgba(159, 252, 255, .18);
-    }
-
-    section { position: relative; padding: 82px 0; scroll-margin-top: calc(var(--header-h) + 20px); }
-    section::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 26px;
-      width: min(920px, calc(100% - 40px));
-      height: 1px;
-      transform: translateX(-50%);
-      background: linear-gradient(90deg, transparent, rgba(159, 252, 255, .18), rgba(209, 179, 132, .15), transparent);
-      pointer-events: none;
-    }
-
-    .head { max-width: 840px; margin-bottom: 28px; }
-    .head span { margin-bottom: 10px; }
-    .head h2 {
-      max-width: 22ch;
-      margin-bottom: 10px;
-      font-size: clamp(1.8rem, 3.2vw, 3.45rem);
-      line-height: 1.02;
-      letter-spacing: -.055em;
-      text-wrap: balance;
-    }
-    .head p { max-width: 64ch; font-size: clamp(.98rem, .55vw + .86rem, 1.08rem); }
-
-    .card {
+      border: 1px solid rgba(244, 238, 228, .16);
+      background: rgba(244, 238, 228, .045);
+      color: var(--ink);
+      font-weight: 800;
+      font-size: .86rem;
+      letter-spacing: .02em;
       position: relative;
       overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .026)),
-        rgba(5, 12, 21, .62);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, .07);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      transition: transform 380ms var(--ease), background 380ms var(--ease), border-color 380ms var(--ease);
     }
 
-    .card::before {
+    .btn::after {
       content: "";
       position: absolute;
       inset: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(159, 252, 255, .32), transparent 35%, rgba(209, 179, 132, .22));
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      mask-composite: exclude;
-      -webkit-mask-composite: xor;
-      opacity: .56;
+      transform: translateX(-110%) skewX(-18deg);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      transition: transform 700ms var(--ease);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: rgba(244, 238, 228, .085);
+      border-color: rgba(213, 185, 137, .34);
+    }
+
+    .btn:hover::after { transform: translateX(110%) skewX(-18deg); }
+
+    .btn.primary {
+      color: #100c08;
+      background: linear-gradient(135deg, var(--champagne-light), var(--champagne));
+      border-color: rgba(213, 185, 137, .7);
+    }
+
+    .hero-panel {
+      align-self: end;
+      border: 1px solid rgba(244, 238, 228, .14);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      background: rgba(8, 8, 6, .34);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-soft);
+      transform: translateY(-8px);
+    }
+
+    .hero-panel-image {
+      aspect-ratio: 4 / 5;
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(244, 238, 228, .04);
+      margin-bottom: 16px;
+    }
+
+    .hero-panel-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(.9) contrast(1.04);
+      transform: scale(1.02);
+    }
+
+    .hero-panel-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--ink-soft);
+      font-size: .78rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .marquee {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      background: rgba(244, 238, 228, .025);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee span {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      padding: 15px 18px;
+      color: var(--ink-faint);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .marquee span::after { content: "•"; color: var(--champagne); }
+
+    section {
+      position: relative;
+      padding: clamp(72px, 10vw, 154px) 0;
+      scroll-margin-top: calc(var(--header-h) + 28px);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(300px, .62fr);
+      gap: clamp(24px, 5vw, 82px);
+      align-items: end;
+      margin-bottom: clamp(28px, 5vw, 64px);
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--champagne);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: .7rem;
+      font-weight: 900;
+    }
+
+    h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: var(--fs-h2);
+      line-height: .92;
+      letter-spacing: -.06em;
+      text-wrap: balance;
+      max-width: 11ch;
+    }
+
+    .section-head p,
+    .about-copy p,
+    .contact-lead {
+      color: var(--ink-soft);
+      font-size: var(--fs-lead);
+      max-width: 62ch;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, .8fr) minmax(0, 1fr);
+      gap: clamp(18px, 3vw, 42px);
+      align-items: stretch;
+    }
+
+    .portrait-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 620px;
+      border: 1px solid var(--line);
+      background: rgba(244, 238, 228, .035);
+      position: relative;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .portrait-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(3,3,2,.52), transparent 52%);
       pointer-events: none;
     }
 
-    .about { display: grid; grid-template-columns: .95fr 1.05fr; gap: 18px; align-items: stretch; }
-    .about-photo { min-height: 540px; }
-    .about-photo img, .about-photo .image-fallback { width: 100%; height: 100%; min-height: 540px; object-fit: cover; object-position: 40% center; }
-    .about-photo img { filter: brightness(.82) saturate(.98) contrast(1.04); }
-    .copy { min-height: 540px; display: flex; align-items: center; padding: 30px; background: radial-gradient(circle at 80% 16%, rgba(159, 252, 255, .11), transparent 24%), radial-gradient(circle at 18% 86%, rgba(209, 179, 132, .10), transparent 25%), linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, 0)); }
-    .copy-content { position: relative; z-index: 2; display: grid; gap: 14px; }
-    .copy h3 { max-width: 30ch; font-size: clamp(1.25rem, 1.4vw, 1.65rem); line-height: 1.12; letter-spacing: -.03em; }
-
-    .future-grid, .gear-grid { display: grid; gap: 16px; }
-    .future-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-    .gear-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-    .service-card, .gear-card { display: flex; flex-direction: column; justify-content: space-between; gap: 16px; padding: 22px; transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease); }
-    .service-card { min-height: 222px; }
-    .gear-card { min-height: 166px; }
-    .service-card:hover, .gear-card:hover, .cat:hover, .contact-card:hover { transform: translateY(-6px); border-color: rgba(159, 252, 255, .34); box-shadow: 0 28px 76px rgba(0, 0, 0, .48), 0 0 34px rgba(159, 252, 255, .11); }
-    .service-icon, .gear-icon { width: 44px; height: 44px; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; color: #041018; font-weight: 950; background: linear-gradient(135deg, var(--accent), #ffffff, var(--gold)); box-shadow: 0 0 28px rgba(159, 252, 255, .18); }
-    .service-card h3, .gear-card h3 { margin: 10px 0 6px; font-size: clamp(1.02rem, .55vw + .92rem, 1.22rem); line-height: 1.14; letter-spacing: -.025em; }
-    .gear-card strong { display: block; margin-top: 4px; color: #fff; font-size: .98rem; }
-    .gear-card span, .service-card p { font-size: .92rem; }
-
-    .categories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-    .cat { min-height: 390px; padding: 12px; text-align: left; transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease); }
-    .thumb { position: absolute; inset: 12px; overflow: hidden; border-radius: 22px; background: rgba(255, 255, 255, .035); }
-    .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--ease), filter var(--ease), opacity var(--ease); }
-    .thumb::after { content: ""; position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(2, 5, 12, .88), rgba(2, 5, 12, .14) 58%, rgba(2, 5, 12, .04)); pointer-events: none; }
-    .cat:hover .thumb img { transform: scale(1.065); filter: brightness(1.06) saturate(1.07); }
-    .cat-pill { position: absolute; top: 20px; left: 20px; z-index: 4; padding: 7px 12px; border-radius: 999px; color: #041018; background: linear-gradient(135deg, var(--accent), #fff4d4); font-weight: 850; font-size: .82rem; box-shadow: 0 12px 34px rgba(0, 0, 0, .32); }
-    .cat-info { position: absolute; left: 20px; right: 20px; bottom: 20px; z-index: 4; display: grid; gap: 6px; }
-    .cat-title { color: #fff; font-size: clamp(1.22rem, 1.35vw, 1.72rem); line-height: 1.04; letter-spacing: -.04em; font-weight: 850; }
-    .cat-count { color: rgba(247, 243, 235, .68); font-size: .86rem; }
-
-    .contact-panel { display: grid; grid-template-columns: 1.15fr .85fr; gap: 18px; margin-bottom: 18px; }
-    .contact-hero-card { min-height: 250px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; padding: 28px; background: radial-gradient(circle at 84% 18%, rgba(159, 252, 255, .18), transparent 24%), radial-gradient(circle at 12% 88%, rgba(209, 179, 132, .13), transparent 27%), linear-gradient(135deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .025)); }
-    .contact-hero-card h3 { max-width: 12ch; margin-bottom: 12px; font-size: clamp(1.8rem, 3.4vw, 3.6rem); line-height: .98; letter-spacing: -.06em; background: linear-gradient(115deg, #fff, var(--accent), var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .contact-mini-card { display: grid; align-content: center; gap: 12px; padding: 24px; }
-    .contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-    .contact-card { padding: 22px; transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease); }
-    .contact-card strong { display: block; margin-bottom: 8px; }
-    .contact-card span { display: block; margin-bottom: 12px; word-break: break-word; }
-
-    .footer { padding: 26px 0 calc(42px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid rgba(159, 252, 255, .09); background: rgba(2, 5, 12, .45); font-size: .88rem; }
-    .footer .container { display: grid; gap: 8px; }
-
-    .modal, .lightbox { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(1, 4, 10, .90); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
-    .modal.open, .lightbox.open { display: flex; }
-    .modal-shell { width: min(1360px, 100%); max-height: calc(100dvh - 32px); overflow-y: auto; padding: 22px; border-radius: 30px; border: 1px solid rgba(159, 252, 255, .16); background: radial-gradient(circle at top right, rgba(159, 252, 255, .16), transparent 22%), radial-gradient(circle at bottom left, rgba(209, 179, 132, .12), transparent 24%), linear-gradient(180deg, rgba(8, 14, 24, .96), rgba(2, 5, 12, .98)); box-shadow: 0 28px 90px rgba(0, 0, 0, .56); }
-    .modal-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
-    .modal h3 { font-size: clamp(1.6rem, 2.5vw, 2.4rem); line-height: 1.02; letter-spacing: -.045em; }
-    .modal-meta { color: var(--muted); font-size: .9rem; }
-    .close-btn, .lightbox-arrow { width: 44px; height: 44px; border-radius: 999px; border: 1px solid rgba(159, 252, 255, .18); background: rgba(255, 255, 255, .065); color: var(--text); font-size: 24px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 34px rgba(0, 0, 0, .32); transition: transform var(--ease), border-color var(--ease), background var(--ease); }
-    .close-btn:hover, .lightbox-arrow:hover { transform: translateY(-2px); border-color: rgba(159, 252, 255, .38); background: rgba(159, 252, 255, .12); }
-    .gallery-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-auto-flow: dense; gap: 14px; }
-    .gallery-item { position: relative; overflow: hidden; aspect-ratio: 1 / 1; border-radius: 22px; border: 1px solid rgba(159, 252, 255, .11); background: rgba(255, 255, 255, .035); box-shadow: 0 18px 46px rgba(0, 0, 0, .38); }
-    .gallery-item:nth-child(7n + 1) { grid-column: span 2; grid-row: span 2; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--ease), filter var(--ease); }
-    .gallery-item:hover img { transform: scale(1.04); filter: brightness(1.06); }
-    .gallery-item::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(135deg, rgba(159, 252, 255, .16), transparent 42%, rgba(209, 179, 132, .12)); opacity: 0; transition: opacity var(--ease); pointer-events: none; }
-    .gallery-item:hover::after { opacity: 1; }
-
-    .lightbox { padding: 0; }
-    .lightbox-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 20px; }
-    .lightbox-image { max-width: 88vw; max-height: 88dvh; object-fit: contain; border-radius: 18px; background: #111; box-shadow: 0 28px 90px rgba(0, 0, 0, .64); }
-    .lightbox .close-btn { position: fixed; top: calc(16px + env(safe-area-inset-top, 0px)); right: 16px; z-index: 2; }
-    .lightbox-counter { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); padding: 8px 13px; border-radius: 999px; border: 1px solid rgba(159, 252, 255, .16); background: rgba(2, 5, 12, .72); color: var(--muted); font-size: .86rem; backdrop-filter: blur(14px); }
-
-    .image-fallback { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 180px; padding: 18px; text-align: center; color: rgba(247, 243, 235, .56); background: linear-gradient(135deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .02)); font-size: .86rem; }
-
-    @media (max-width: 1080px) {
-      .future-grid, .gear-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .about, .contact-panel { grid-template-columns: 1fr; }
-      .categories, .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .about-photo, .about-photo img, .about-photo .image-fallback, .copy { min-height: 440px; }
+    .portrait-card img,
+    .portrait-card .image-fallback,
+    .portrait-card .lazy-shell {
+      width: 100%;
+      height: 100%;
+      min-height: 620px;
+      object-fit: cover;
+      object-position: 42% center;
     }
 
-    @media (max-width: 820px) {
-      :root { --header-h: auto; }
-      .site-header { position: sticky; }
-      .header-row { min-height: auto; flex-direction: column; align-items: stretch; gap: 12px; }
-      .nav-wrap { flex-direction: column; align-items: stretch; gap: 8px; }
-      .nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
-      .nav a { font-size: .78rem; padding: 8px 9px; }
-      .lang { justify-content: space-between; }
-      .lang button { flex: 1; min-height: 34px; font-size: .76rem; }
-      .hero { min-height: auto; width: min(calc(100% - 24px), 780px); margin: 12px auto 18px; border-radius: 30px; border: 1px solid rgba(159, 252, 255, .13); padding: 64px 0 28px; box-shadow: 0 24px 64px rgba(0, 0, 0, .48), 0 0 36px rgba(159, 252, 255, .08); }
-      .hero::after { display: none; }
-      .hero-media img { object-position: 62% 18%; }
-      h1 { font-size: clamp(1.75rem, 10vw, 3rem); max-width: 14ch; }
-      .hero p { font-size: .92rem; }
-      .tags { gap: 6px; margin-bottom: 14px; }
-      .tags span { min-height: 28px; padding: 5px 9px; font-size: .67rem; }
+    .about-copy {
+      min-height: 620px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: clamp(26px, 5vw, 70px);
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      background:
+        linear-gradient(135deg, rgba(244, 238, 228, .07), rgba(244, 238, 228, .025)),
+        radial-gradient(circle at 92% 12%, rgba(213, 185, 137, .12), transparent 26%);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .about-copy::before {
+      content: "RW";
+      position: absolute;
+      right: -12px;
+      bottom: -42px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(8rem, 16vw, 18rem);
+      line-height: 1;
+      color: rgba(244, 238, 228, .035);
+      pointer-events: none;
+    }
+
+    .about-copy h3 {
+      font-size: var(--fs-h3);
+      line-height: 1.15;
+      letter-spacing: -.03em;
+      max-width: 26ch;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-copy p { position: relative; z-index: 1; }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .cat {
+      grid-column: span 4;
+      min-height: 470px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(244, 238, 228, .12);
+      background: rgba(244, 238, 228, .04);
+      box-shadow: var(--shadow-soft);
+      isolation: isolate;
+      transform-style: preserve-3d;
+      transition: transform 560ms var(--ease), border-color 560ms var(--ease), box-shadow 560ms var(--ease);
+    }
+
+    .cat:nth-child(1),
+    .cat:nth-child(5) { grid-column: span 5; }
+
+    .cat:nth-child(2),
+    .cat:nth-child(6) { grid-column: span 7; }
+
+    .cat:hover {
+      transform: translate3d(0, -8px, 0) rotateX(calc(var(--rx, 0) * 1deg)) rotateY(calc(var(--ry, 0) * 1deg));
+      border-color: rgba(213, 185, 137, .34);
+      box-shadow: var(--shadow-hard);
+    }
+
+    .thumb { position: absolute; inset: 0; overflow: hidden; }
+    .thumb img,
+    .thumb .image-fallback,
+    .thumb .lazy-shell { width: 100%; height: 100%; object-fit: cover; }
+    .thumb img { transition: transform 1100ms var(--ease), filter 900ms var(--ease); filter: brightness(.74) saturate(.9) contrast(1.04); }
+    .cat:hover .thumb img { transform: scale(1.08); filter: brightness(.88) saturate(1.02) contrast(1.06); }
+
+    .cat::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(to top, rgba(3,3,2,.96) 0%, rgba(3,3,2,.48) 43%, transparent 78%),
+        radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(244, 238, 228, .16), transparent 24%);
+      opacity: .96;
+      transition: opacity 500ms var(--ease);
+    }
+
+    .cat-content {
+      position: absolute;
+      left: clamp(20px, 3vw, 34px);
+      right: clamp(20px, 3vw, 34px);
+      bottom: clamp(20px, 3vw, 34px);
+      z-index: 2;
+      text-align: left;
+    }
+
+    .cat-index {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--champagne-light);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .cat-title {
+      display: block;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.1rem, 4.3vw, 5.2rem);
+      line-height: .92;
+      letter-spacing: -.055em;
+      margin-bottom: 14px;
+    }
+
+    .cat-desc {
+      display: block;
+      max-width: 42ch;
+      color: var(--ink-soft);
+      font-size: .95rem;
+      margin-bottom: 18px;
+    }
+
+    .cat-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink-faint);
+      font-size: .74rem;
+      font-weight: 900;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .cat-meta::before {
+      content: "";
+      width: 38px;
+      height: 1px;
+      background: var(--champagne);
+    }
+
+    .contact-panel {
+      border-radius: calc(var(--radius-lg) + 8px);
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(213,185,137,.12), transparent 28%),
+        linear-gradient(135deg, rgba(244,238,228,.07), rgba(244,238,228,.025));
+      padding: clamp(28px, 5vw, 76px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(320px, .6fr);
+      gap: clamp(26px, 5vw, 78px);
+      align-items: end;
+    }
+
+    .contact-panel h2 { max-width: 9ch; margin-bottom: 20px; }
+
+    .contact-grid { display: grid; gap: 12px; }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 18px;
+      border: 1px solid rgba(244, 238, 228, .11);
+      border-radius: 22px;
+      background: rgba(3,3,2,.28);
+      transition: transform 380ms var(--ease), border-color 380ms var(--ease), background 380ms var(--ease);
+    }
+
+    .contact-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(213,185,137,.32);
+      background: rgba(244,238,228,.06);
+    }
+
+    .contact-card strong { display: block; margin-bottom: 3px; }
+    .contact-card span { display: block; color: var(--ink-faint); font-size: .9rem; word-break: break-word; }
+
+    .footer {
+      padding: 34px 0 calc(46px + env(safe-area-inset-bottom, 0px));
+      color: rgba(244,238,228,.46);
+      font-size: .85rem;
+      border-top: 1px solid rgba(244,238,228,.08);
+    }
+
+    .footer .container { display: grid; gap: 8px; }
+
+    .modal,
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: grid;
+      place-items: center;
+      visibility: hidden;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .modal.open,
+    .lightbox.open {
+      visibility: visible;
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    .modal {
+      background: rgba(3, 3, 2, .74);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      transition: opacity 520ms var(--ease), visibility 520ms var(--ease);
+    }
+
+    .modal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(213,185,137,.15), transparent 28%),
+        linear-gradient(90deg, rgba(244,238,228,.045) 1px, transparent 1px),
+        linear-gradient(rgba(244,238,228,.035) 1px, transparent 1px);
+      background-size: auto, 72px 72px, 72px 72px;
+      opacity: .62;
+      pointer-events: none;
+    }
+
+    .modal-shell {
+      position: relative;
+      z-index: 1;
+      width: min(1500px, calc(100% - 34px));
+      height: min(900px, calc(100dvh - 34px));
+      border: 1px solid rgba(244,238,228,.14);
+      border-radius: 34px;
+      background: rgba(8,8,6,.88);
+      box-shadow: var(--shadow-hard);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      transform: translateY(34px) scale(.975);
+      clip-path: inset(10% 10% 10% 10% round 34px);
+      transition: transform 700ms var(--ease), clip-path 700ms var(--ease), opacity 700ms var(--ease);
+      opacity: 0;
+    }
+
+    .modal.open .modal-shell {
+      transform: translateY(0) scale(1);
+      clip-path: inset(0 0 0 0 round 34px);
+      opacity: 1;
+    }
+
+    .modal.closing .modal-shell {
+      transform: translateY(26px) scale(.982);
+      clip-path: inset(7% 7% 7% 7% round 34px);
+      opacity: 0;
+    }
+
+    .modal-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: start;
+      padding: clamp(20px, 3vw, 34px);
+      border-bottom: 1px solid rgba(244,238,228,.08);
+      background: rgba(3,3,2,.42);
+    }
+
+    .modal-kicker {
+      color: var(--champagne);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: .68rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .modal h3 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.1rem, 4vw, 5.6rem);
+      line-height: .9;
+      letter-spacing: -.06em;
+      margin-bottom: 10px;
+    }
+
+    .modal-meta {
+      color: var(--ink-faint);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .close-btn,
+    .lightbox-arrow {
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid rgba(244,238,228,.16);
+      background: rgba(244,238,228,.045);
+      font-size: 25px;
+      line-height: 1;
+      transition: transform 300ms var(--ease), background 300ms var(--ease), border-color 300ms var(--ease);
+    }
+
+    .close-btn:hover,
+    .lightbox-arrow:hover {
+      transform: scale(1.08);
+      background: rgba(244,238,228,.1);
+      border-color: rgba(213,185,137,.35);
+    }
+
+    .gallery-grid {
+      overflow-y: auto;
+      padding: clamp(16px, 2.5vw, 34px);
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-auto-rows: 132px;
+      gap: 14px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(213,185,137,.42) rgba(244,238,228,.06);
+    }
+
+    .gallery-item {
+      grid-column: span 3;
+      grid-row: span 2;
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(244,238,228,.04);
+      border: 1px solid rgba(244,238,228,.08);
+      box-shadow: 0 16px 40px rgba(0,0,0,.32);
+      transform: translateY(18px);
+      opacity: 0;
+      animation: itemIn 760ms var(--ease) forwards;
+      animation-delay: calc(var(--i, 0) * 42ms);
+    }
+
+    .gallery-item:nth-child(7n + 1) { grid-column: span 5; grid-row: span 3; }
+    .gallery-item:nth-child(7n + 4) { grid-column: span 4; grid-row: span 3; }
+    .gallery-item:nth-child(7n + 6) { grid-column: span 5; grid-row: span 2; }
+
+    .gallery-item img,
+    .gallery-item .lazy-shell,
+    .gallery-item .image-fallback { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-item img { opacity: 0; transition: opacity 520ms var(--ease), transform 900ms var(--ease), filter 700ms var(--ease); filter: brightness(.86) saturate(.94); }
+    .gallery-item img.ready { opacity: 1; }
+    .gallery-item:hover img { transform: scale(1.07); filter: brightness(1.02) saturate(1.04); }
+    .gallery-item::after {
+      content: "View";
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      z-index: 2;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(3,3,2,.66);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--ink);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 350ms var(--ease), transform 350ms var(--ease);
+    }
+    .gallery-item:hover::after { opacity: 1; transform: translateY(0); }
+
+    .lightbox {
+      background: rgba(2, 2, 1, .94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: opacity 420ms var(--ease), visibility 420ms var(--ease);
+    }
+
+    .lightbox::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(213,185,137,.11), transparent 34%);
+      opacity: .78;
+      pointer-events: none;
+    }
+
+    .lightbox-top {
+      position: fixed;
+      top: calc(18px + env(safe-area-inset-top, 0px));
+      left: 18px;
+      right: 18px;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      pointer-events: none;
+    }
+
+    .lightbox-counter {
+      min-width: 78px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(244,238,228,.14);
+      background: rgba(3,3,2,.48);
+      color: var(--ink-soft);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      pointer-events: auto;
+    }
+
+    .lightbox .close-btn { pointer-events: auto; }
+
+    .lightbox-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100dvh;
+      display: grid;
+      grid-template-columns: 76px 1fr 76px;
+      align-items: center;
+      gap: 12px;
+      padding: 72px 18px 34px;
+      transform: scale(.98);
+      opacity: 0;
+      transition: transform 560ms var(--ease), opacity 560ms var(--ease);
+    }
+
+    .lightbox.open .lightbox-inner { transform: scale(1); opacity: 1; }
+    .lightbox.closing .lightbox-inner { transform: scale(.982); opacity: 0; }
+
+    .lightbox-viewport {
+      width: 100%;
+      height: calc(100dvh - 120px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      overscroll-behavior-x: contain;
+      touch-action: pan-x;
+    }
+
+    .lightbox-viewport::-webkit-scrollbar { display: none; }
+    .lightbox-track { display: flex; height: 100%; align-items: center; }
+
+    .lightbox-slide {
+      min-width: 100%;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      padding: 0 12px;
+      perspective: 1000px;
+    }
+
+    .lightbox-slide img,
+    .lightbox-slide .image-fallback {
+      max-width: min(92vw, 1500px);
+      max-height: calc(100dvh - 134px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 20px;
+      box-shadow: 0 40px 120px rgba(0,0,0,.68);
+      background: #111;
+      opacity: .28;
+      transform: scale(.88) rotateY(5deg);
+      filter: blur(2px) brightness(.72);
+      transition: transform 700ms var(--ease), opacity 700ms var(--ease), filter 700ms var(--ease);
+    }
+
+    .lightbox-slide.is-active img,
+    .lightbox-slide.is-active .image-fallback {
+      opacity: 1;
+      transform: scale(1) rotateY(0deg);
+      filter: blur(0) brightness(1);
+      animation: activePhoto 760ms var(--ease);
+    }
+
+    .lightbox.is-next .lightbox-slide.is-active img { animation: slideFromRight 760ms var(--ease); }
+    .lightbox.is-prev .lightbox-slide.is-active img { animation: slideFromLeft 760ms var(--ease); }
+
+    .image-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: var(--ink-faint);
+      text-align: center;
+      background: rgba(244,238,228,.04);
+      font-size: .88rem;
+    }
+
+    .lazy-shell {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(110deg, rgba(244,238,228,.035) 8%, rgba(244,238,228,.1) 18%, rgba(244,238,228,.035) 33%);
+      background-size: 220% 100%;
+      animation: shimmer 1.5s linear infinite;
+    }
+
+    .lazy-shell.loaded { animation: none; background: none; }
+    .lazy-shell img { width: 100%; height: 100%; object-fit: cover; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 900ms var(--ease), transform 900ms var(--ease);
+    }
+
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+    .mobile-bottom-nav { display: none; }
+
+    @keyframes heroDrift { from { transform: scale(1.08) translate3d(0,0,0); } to { transform: scale(1.14) translate3d(-1.5%, -1%, 0); } }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes shimmer { to { background-position: -220% 0; } }
+    @keyframes itemIn { to { opacity: 1; transform: translateY(0); } }
+    @keyframes activePhoto { from { opacity: 0; transform: scale(.94); filter: blur(10px) brightness(.7); } to { opacity: 1; transform: scale(1); filter: blur(0) brightness(1); } }
+    @keyframes slideFromRight { from { opacity: 0; transform: translateX(42px) scale(.96); filter: blur(10px); } to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); } }
+    @keyframes slideFromLeft { from { opacity: 0; transform: translateX(-42px) scale(.96); filter: blur(10px); } to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); } }
+
+    @media (max-width: 1120px) {
+      .hero-layout,
+      .section-head,
+      .about-grid,
+      .contact-layout { grid-template-columns: 1fr; }
+      .hero-panel { display: none; }
+      .cat,
+      .cat:nth-child(1),
+      .cat:nth-child(2),
+      .cat:nth-child(5),
+      .cat:nth-child(6) { grid-column: span 6; min-height: 420px; }
+      .gallery-item,
+      .gallery-item:nth-child(7n + 1),
+      .gallery-item:nth-child(7n + 4),
+      .gallery-item:nth-child(7n + 6) { grid-column: span 4; grid-row: span 2; }
+    }
+
+    @media (max-width: 760px) {
+      :root { --header-h: 72px; }
+      .container { width: min(100% - 28px, var(--container)); }
+      .header-row { gap: 12px; }
+      .brand span:last-child { display: none; }
+      .nav { display: none; }
+      .lang a { min-height: 34px; padding: 7px 10px; font-size: .72rem; }
+      .hero { padding: calc(var(--header-h) + 52px + env(safe-area-inset-top, 0px)) 0 38px; min-height: 92svh; }
+      .hero p { max-width: 38ch; }
       .actions { display: grid; grid-template-columns: 1fr; }
-      .actions .btn, .contact-card .btn { width: 100%; }
-      section { padding: 58px 0; }
-      .head h2 { font-size: clamp(1.45rem, 7vw, 2.2rem); }
-      .future-grid, .gear-grid, .categories, .contact-grid, .gallery-grid { grid-template-columns: 1fr; }
-      .cat { min-height: 260px; }
-      .gallery-item:nth-child(7n + 1) { grid-column: span 1; grid-row: span 1; }
-      .contact-hero-card, .contact-mini-card { padding: 20px; min-height: auto; }
-      .contact-hero-card h3 { font-size: clamp(1.65rem, 9vw, 2.25rem); }
-      .modal { padding: 0; align-items: stretch; }
-      .modal-shell { width: 100%; max-height: 100dvh; border-radius: 0; border: 0; padding: 14px; }
-      .modal-top { position: sticky; top: 0; z-index: 5; padding: 8px 0 12px; background: linear-gradient(180deg, rgba(4, 8, 15, .98), rgba(4, 8, 15, .86)); backdrop-filter: blur(14px); }
+      .btn { width: 100%; }
+      .marquee span { padding: 12px 14px; font-size: .62rem; }
+      section { padding: 72px 0; }
+      .section-head { margin-bottom: 26px; }
+      .portrait-card,
+      .portrait-card img,
+      .portrait-card .lazy-shell,
+      .portrait-card .image-fallback,
+      .about-copy { min-height: 420px; }
+      .about-copy { padding: 26px; }
+      .categories { grid-template-columns: 1fr; gap: 14px; }
+      .cat,
+      .cat:nth-child(1),
+      .cat:nth-child(2),
+      .cat:nth-child(5),
+      .cat:nth-child(6) { grid-column: 1 / -1; min-height: 380px; border-radius: 26px; }
+      .cat-title { font-size: clamp(2.15rem, 13vw, 4.3rem); }
+      .cat-desc { display: none; }
+      .modal { align-items: stretch; justify-items: stretch; }
+      .modal-shell { width: 100%; height: 100dvh; border-radius: 0; border: 0; clip-path: inset(12% 8% 12% 8% round 28px); }
+      .modal.open .modal-shell { clip-path: inset(0 0 0 0 round 0); }
+      .modal-top { padding: calc(18px + env(safe-area-inset-top, 0px)) 14px 16px; }
+      .gallery-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: 96px; gap: 9px; padding: 12px; }
+      .gallery-item,
+      .gallery-item:nth-child(7n + 1),
+      .gallery-item:nth-child(7n + 4),
+      .gallery-item:nth-child(7n + 6) { grid-column: span 3; grid-row: span 2; border-radius: 16px; }
+      .lightbox-inner { grid-template-columns: 1fr; padding: 64px 0 18px; }
       .lightbox-arrow { display: none; }
-      .lightbox-image { max-width: calc(100vw - 20px); max-height: calc(100dvh - 62px); border-radius: 14px; }
+      .lightbox-viewport { height: calc(100dvh - 90px); }
+      .lightbox-slide { padding: 0 8px; }
+      .lightbox-slide img,
+      .lightbox-slide .image-fallback { max-width: calc(100vw - 18px); max-height: calc(100dvh - 110px); border-radius: 14px; }
+      .contact-card { grid-template-columns: 1fr; }
+      .contact-card .btn { width: 100%; }
+      .mobile-bottom-nav {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+        z-index: 80;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 8px;
+        border-radius: 22px;
+        border: 1px solid rgba(244,238,228,.1);
+        background: rgba(5,5,4,.78);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+      .mobile-bottom-nav a {
+        min-height: 40px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        color: var(--ink-soft);
+        font-size: .72rem;
+        font-weight: 800;
+        background: rgba(244,238,228,.045);
+      }
+      .footer { padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto !important; }
-      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
     }
   </style>
 </head>
@@ -547,168 +1190,151 @@
       <div class="header-row">
         <a class="brand" href="#top" aria-label="Rafał Wilk">
           <span class="brand-mark">R</span>
-          <span class="brand-name">Rafał Wilk</span>
+          <span>Rafał Wilk</span>
         </a>
 
         <div class="nav-wrap">
           <nav class="nav" aria-label="Primary navigation">
             <a href="#about" data-i18n="navAbout">Over mij</a>
-            <a href="#services" data-i18n="navServices">Creatie</a>
-            <a href="#gear" data-i18n="navGear">Gear</a>
             <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
             <a href="#contact" data-i18n="navContact">Contact</a>
           </nav>
 
           <div class="lang" id="languageSwitcher" aria-label="Language switcher">
-            <button type="button" data-lang="nl" class="active">NL</button>
-            <button type="button" data-lang="en">EN</button>
-            <button type="button" data-lang="pl">PL</button>
+            <a href="?lang=nl" data-lang="nl" lang="nl" aria-current="true">NL</a>
+            <a href="?lang=en" data-lang="en" lang="en">EN</a>
+            <a href="?lang=pl" data-lang="pl" lang="pl">PL</a>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <main id="mainContent">
-    <section class="hero" id="top">
-      <div class="hero-media" aria-hidden="true">
-        <img src="images/DSCF4051.jpg" alt="" width="1920" height="1280" fetchpriority="high" loading="eager" decoding="async" />
-      </div>
-
-      <div class="container">
-        <div class="hero-copy">
-          <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
-          <h1 data-i18n="heroTitle">Cinematic photography, drone visuals and modern storytelling</h1>
-          <p data-i18n="heroText">Ik maak beelden met licht, sfeer, compositie en emotie — van fotografie tot dronebeelden en korte video’s.</p>
-          <div class="tags" aria-label="Creative areas">
-            <span>Photography</span>
-            <span>Drone</span>
-            <span>Travel</span>
-            <span>Real estate</span>
-            <span>Short video</span>
-          </div>
-          <div class="actions">
-            <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Open portfolio</a>
-            <a class="btn" href="#contact" data-i18n="heroBtn2">Contact</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="head">
-          <span data-i18n="aboutEyebrow">Over mij</span>
-          <h2 data-i18n="aboutTitle">Een persoonlijke blik vertaald naar moderne en zorgvuldig gemaakte beelden</h2>
-          <p data-i18n="aboutLead">Voor mij is fotografie een combinatie van techniek, rust, licht en het gevoel voor het juiste moment.</p>
+  <div id="pageRoot">
+    <main id="mainContent">
+      <section class="hero" id="top">
+        <div class="hero-media" aria-hidden="true">
+          <img src="images/DSCF4051.jpg" alt="" width="1920" height="1280" fetchpriority="high" loading="eager" decoding="async" />
         </div>
 
-        <div class="about">
-          <div class="card about-photo" id="aboutPhotoWrap"></div>
-          <div class="card copy">
-            <div class="copy-content">
+        <div class="container">
+          <div class="hero-layout">
+            <div class="hero-copy reveal">
+              <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
+              <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer, licht en karakter</h1>
+              <p data-i18n="heroText">Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.</p>
+              <div class="actions">
+                <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
+                <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
+              </div>
+            </div>
+
+            <aside class="hero-panel reveal" aria-hidden="true">
+              <div class="hero-panel-image">
+                <img src="images/DSCF4051-2.jpg" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="hero-panel-line">
+                <span>Selected work</span>
+                <span>01 / 06</span>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Portrait</span><span>Street</span><span>Travel</span><span>Macro</span><span>Animals</span><span>Creative</span>
+          <span>Portrait</span><span>Street</span><span>Travel</span><span>Macro</span><span>Animals</span><span>Creative</span>
+        </div>
+      </div>
+
+      <section id="about">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <span class="section-kicker" data-i18n="aboutEyebrow">Over mij</span>
+              <h2 data-i18n="aboutTitle">Een persoonlijke blik vertaald naar verzorgde en doordachte beelden</h2>
+            </div>
+            <p data-i18n="aboutLead">Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.</p>
+          </div>
+
+          <div class="about-grid">
+            <div class="portrait-card reveal" id="aboutPhotoWrap"></div>
+            <div class="about-copy reveal">
               <h3 data-i18n="aboutBoxTitle">Fotografie is voor mij meer dan alleen foto's maken</h3>
               <p data-i18n="aboutP1">Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.</p>
-              <p data-i18n="aboutP2">Ik werk met verschillende foto- en videosystemen, waaronder Sony, Fuji en DJI. Daardoor kan ik klassieke fotografie combineren met dronebeelden, dynamische reiskaders en korte content voor social media. Licht, sfeer, compositie en het echte karakter van een plek zijn voor mij het belangrijkst.</p>
+              <p data-i18n="aboutP2">In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="services">
-      <div class="container">
-        <div class="head">
-          <span data-i18n="servicesEyebrow">Creatie</span>
-          <h2 data-i18n="servicesTitle">Meer dan fotografie: complete visuele verhalen</h2>
-          <p data-i18n="servicesLead">Ik combineer fotografie, dronebeelden, reiscontent, vastgoedvisuals en korte video’s tot één consistente stijl.</p>
-        </div>
-
-        <div class="future-grid">
-          <article class="card service-card"><div class="service-icon">01</div><div><span class="chip">Photography</span><h3 data-i18n="servicePhotoTitle">Fotografie</h3><p data-i18n="servicePhotoText">Licht, compositie, sfeer en detail in beelden die rustig, krachtig en herkenbaar blijven.</p></div></article>
-          <article class="card service-card"><div class="service-icon">02</div><div><span class="chip">Aerial</span><h3 data-i18n="serviceDroneTitle">Dronebeelden</h3><p data-i18n="serviceDroneText">Luchtperspectieven voor reizen, landschappen, locaties en moderne social media content.</p></div></article>
-          <article class="card service-card"><div class="service-icon">03</div><div><span class="chip">Travel</span><h3 data-i18n="serviceTravelTitle">Reiscontent</h3><p data-i18n="serviceTravelText">Beelden met gevoel voor plaats, kleur, licht en het verhaal achter een locatie.</p></div></article>
-          <article class="card service-card"><div class="service-icon">04</div><div><span class="chip">Spaces</span><h3 data-i18n="serviceRealEstateTitle">Vastgoedvisuals</h3><p data-i18n="serviceRealEstateText">Heldere, strakke en realistische beelden voor woningen, appartementen en verhuurlocaties.</p></div></article>
-          <article class="card service-card"><div class="service-icon">05</div><div><span class="chip">Video</span><h3 data-i18n="serviceVideoTitle">Korte video’s</h3><p data-i18n="serviceVideoText">Verticale en horizontale clips voor Instagram, portfolio, advertenties en moderne presentaties.</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="gear">
-      <div class="container">
-        <div class="head">
-          <span data-i18n="gearEyebrow">Creative kit</span>
-          <h2 data-i18n="gearTitle">Mijn huidige foto- en videosetup</h2>
-          <p data-i18n="gearLead">Een flexibele setup voor fotografie, video, dronebeelden, reisverhalen en compacte social media producties.</p>
-        </div>
-
-        <div class="gear-grid">
-          <article class="card gear-card"><div class="gear-icon">S</div><div><strong>Sony A7 IV</strong><span data-i18n="gearSony">Full-frame fotografie en video</span></div></article>
-          <article class="card gear-card"><div class="gear-icon">F</div><div><strong>Fujifilm X-T4</strong><span data-i18n="gearFuji">Kleur, karakter en mobiliteit</span></div></article>
-          <article class="card gear-card"><div class="gear-icon">D</div><div><strong>DJI Mini 4 Pro</strong><span data-i18n="gearDrone">Dronebeelden en luchtperspectief</span></div></article>
-          <article class="card gear-card"><div class="gear-icon">P</div><div><strong>DJI Pocket 3</strong><span data-i18n="gearPocket">Vloeiende video en travel shots</span></div></article>
-          <article class="card gear-card"><div class="gear-icon">A</div><div><strong>DJI Action 6</strong><span data-i18n="gearAction">Actie, beweging en dynamische beelden</span></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="portfolio">
-      <div class="container">
-        <div class="head">
-          <span data-i18n="portfolioEyebrow">Portfolio</span>
-          <h2 data-i18n="portfolioTitle">Een portfolio gebouwd op licht, plaats en sfeer</h2>
-          <p data-i18n="portfolioLead">Kies een categorie en ontdek mijn benadering van portret, straat, reizen, detail, dieren en creatieve beelden.</p>
-        </div>
-        <div class="categories" id="categoriesGrid"></div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="head">
-          <span data-i18n="contactEyebrow">Contact</span>
-          <h2 data-i18n="contactTitle">Neem rechtstreeks contact met mij op</h2>
-          <p data-i18n="contactLead">Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.</p>
-        </div>
-
-        <div class="contact-panel">
-          <div class="card contact-hero-card">
+      <section id="portfolio">
+        <div class="container">
+          <div class="section-head reveal">
             <div>
-              <h3 data-i18n="contactBigTitle">Let’s create something visual.</h3>
-              <p data-i18n="contactBigText">Fotografie, dronebeelden, reiscontent, vastgoedvisuals of een korte video — stuur mij direct een bericht.</p>
+              <span class="section-kicker" data-i18n="portfolioEyebrow">Portfolio</span>
+              <h2 data-i18n="portfolioTitle">Selecties uit mijn fotografisch werk</h2>
             </div>
-            <div class="tags"><span>Photography</span><span>Drone</span><span>Travel</span><span>Real estate</span></div>
+            <p data-i18n="portfolioLead">Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.</p>
           </div>
 
-          <div class="card contact-mini-card">
-            <strong data-i18n="contactFastTitle">Snel contact</strong>
-            <span data-i18n="contactFastText">Kies Instagram, e-mail of WhatsApp.</span>
-            <a class="btn primary" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Open</a>
+          <div class="categories reveal" id="categoriesGrid"></div>
+          <noscript><p class="noscript-note">JavaScript is required to browse the interactive gallery.</p></noscript>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="contact-panel reveal">
+            <div class="contact-layout">
+              <div>
+                <span class="section-kicker" data-i18n="contactEyebrow">Contact</span>
+                <h2 data-i18n="contactTitle">Neem rechtstreeks contact met mij op</h2>
+                <p class="contact-lead" data-i18n="contactLead">Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.</p>
+              </div>
+
+              <div class="contact-grid">
+                <div class="contact-card">
+                  <div><strong>Instagram</strong><span>@fotodisogno</span></div>
+                  <a class="btn" href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
+                </div>
+                <div class="contact-card">
+                  <div><strong>E-mail</strong><span>fotodisogno@gmail.com</span></div>
+                  <a class="btn" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Open</a>
+                </div>
+                <div class="contact-card">
+                  <div><strong>WhatsApp</strong><span>+31 6 44747733</span></div>
+                  <a class="btn" href="https://wa.me/31644747733" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
+    </main>
 
-        <div class="contact-grid">
-          <div class="card contact-card"><strong>Instagram</strong><span>@fotodisogno</span><a class="btn" href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a></div>
-          <div class="card contact-card"><strong>E-mail</strong><span>fotodisogno@gmail.com</span><a class="btn" href="mailto:fotodisogno@gmail.com" data-i18n="contactBtn">Open</a></div>
-          <div class="card contact-card"><strong>WhatsApp</strong><span>+31 6 44747733</span><a class="btn" href="https://wa.me/31644747733" target="_blank" rel="noopener noreferrer" data-i18n="contactBtn">Open</a></div>
-        </div>
+    <footer class="footer">
+      <div class="container">
+        <div>© Rafał Wilk</div>
+        <div data-i18n="legalNotice">Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming.</div>
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer class="footer">
-    <div class="container">
-      <div>© Rafał Wilk</div>
-      <div data-i18n="legalNotice">Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming.</div>
-    </div>
-  </footer>
+    <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Mobile navigation">
+      <a href="#top" data-i18n="navHome">Start</a>
+      <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </nav>
+  </div>
 
   <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-shell" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+    <div class="modal-shell" id="modalShell" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
       <div class="modal-top">
         <div>
           <div class="modal-kicker" data-i18n="modalKicker">Portfolio</div>
-          <h3 id="modalTitle">Portfolio</h3>
+          <h3 id="modalTitle">Portret</h3>
           <div class="modal-meta" id="modalMeta"></div>
         </div>
         <button class="close-btn" id="closeModal" type="button" aria-label="Close">×</button>
@@ -718,392 +1344,853 @@
   </div>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="close-btn" id="closeLightbox" type="button" aria-label="Close">×</button>
-    <div class="lightbox-stage" role="dialog" aria-modal="true" aria-label="Image preview">
+    <div class="lightbox-top">
+      <div class="lightbox-counter" id="lightboxCounter">01 / 01</div>
+      <button class="close-btn" id="closeLightbox" type="button" aria-label="Close">×</button>
+    </div>
+    <div class="lightbox-inner" id="lightboxInner" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" tabindex="-1">
+      <h2 id="lightboxTitle" class="sr-only">Image preview</h2>
       <button class="lightbox-arrow" id="prevImage" type="button" aria-label="Previous image">‹</button>
-      <div id="lightboxImageWrap"></div>
+      <div class="lightbox-viewport" id="lightboxViewport"><div class="lightbox-track" id="lightboxTrack"></div></div>
       <button class="lightbox-arrow" id="nextImage" type="button" aria-label="Next image">›</button>
-      <div class="lightbox-counter" id="lightboxCounter"></div>
     </div>
   </div>
 
   <script>
-    const translations = {
-      nl: {
-        pageTitle: "Rafał Wilk | Cinematic Photography",
-        pageDescription: "Modern portfolio van Rafał Wilk: fotografie, dronebeelden, reiscontent, vastgoedvisuals, korte video's en visuele storytelling.",
-        navAbout: "Over mij", navServices: "Creatie", navGear: "Gear", navPortfolio: "Portfolio", navContact: "Contact",
-        heroEyebrow: "Fotografieportfolio", heroTitle: "Cinematic photography, drone visuals and modern storytelling", heroText: "Ik maak beelden met licht, sfeer, compositie en emotie — van fotografie tot dronebeelden en korte video’s.", heroBtn1: "Open portfolio", heroBtn2: "Contact",
-        aboutEyebrow: "Over mij", aboutTitle: "Een persoonlijke blik vertaald naar moderne en zorgvuldig gemaakte beelden", aboutLead: "Voor mij is fotografie een combinatie van techniek, rust, licht en het gevoel voor het juiste moment.", aboutBoxTitle: "Fotografie is voor mij meer dan alleen foto's maken", aboutP1: "Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.", aboutP2: "Ik werk met verschillende foto- en videosystemen, waaronder Sony, Fuji en DJI. Daardoor kan ik klassieke fotografie combineren met dronebeelden, dynamische reiskaders en korte content voor social media. Licht, sfeer, compositie en het echte karakter van een plek zijn voor mij het belangrijkst.",
-        servicesEyebrow: "Creatie", servicesTitle: "Meer dan fotografie: complete visuele verhalen", servicesLead: "Ik combineer fotografie, dronebeelden, reiscontent, vastgoedvisuals en korte video’s tot één consistente stijl.", servicePhotoTitle: "Fotografie", servicePhotoText: "Licht, compositie, sfeer en detail in beelden die rustig, krachtig en herkenbaar blijven.", serviceDroneTitle: "Dronebeelden", serviceDroneText: "Luchtperspectieven voor reizen, landschappen, locaties en moderne social media content.", serviceTravelTitle: "Reiscontent", serviceTravelText: "Beelden met gevoel voor plaats, kleur, licht en het verhaal achter een locatie.", serviceRealEstateTitle: "Vastgoedvisuals", serviceRealEstateText: "Heldere, strakke en realistische beelden voor woningen, appartementen en verhuurlocaties.", serviceVideoTitle: "Korte video’s", serviceVideoText: "Verticale en horizontale clips voor Instagram, portfolio, advertenties en moderne presentaties.",
-        gearEyebrow: "Creative kit", gearTitle: "Mijn huidige foto- en videosetup", gearLead: "Een flexibele setup voor fotografie, video, dronebeelden, reisverhalen en compacte social media producties.", gearSony: "Full-frame fotografie en video", gearFuji: "Kleur, karakter en mobiliteit", gearDrone: "Dronebeelden en luchtperspectief", gearPocket: "Vloeiende video en travel shots", gearAction: "Actie, beweging en dynamische beelden",
-        portfolioEyebrow: "Portfolio", portfolioTitle: "Een portfolio gebouwd op licht, plaats en sfeer", portfolioLead: "Kies een categorie en ontdek mijn benadering van portret, straat, reizen, detail, dieren en creatieve beelden.", catPortrait: "Portret", catStreet: "Straat", catAnimals: "Dieren", catMacro: "Macro", catTravel: "Reizen", catCreative: "Creatief", photoCount: "foto's",
-        contactEyebrow: "Contact", contactTitle: "Neem rechtstreeks contact met mij op", contactLead: "Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.", contactBigTitle: "Let’s create something visual.", contactBigText: "Fotografie, dronebeelden, reiscontent, vastgoedvisuals of een korte video — stuur mij direct een bericht.", contactFastTitle: "Snel contact", contactFastText: "Kies Instagram, e-mail of WhatsApp.", contactBtn: "Open", modalKicker: "Portfolio", closeLabel: "Sluiten", imageMissing: "Foto niet gevonden", legalNotice: "Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming."
+const translations = {
+      pl: {
+        pageTitle: "Rafał Wilk | Fotografia",
+        pageDescription: "Portfolio Rafała Wilka z fotografią opartą na świetle, atmosferze, kompozycji i charakterze.",
+        navHome: "Start",
+        navAbout: "O mnie",
+        navPortfolio: "Portfolio",
+        navContact: "Kontakt",
+        heroEyebrow: "Portfolio fotograficzne",
+        heroTitle: "Fotografia oparta na świetle, atmosferze i wyrazistym obrazie",
+        heroText: "Witaj na mojej stronie, gdzie pokazuję fotografie budowane kompozycją, detalem i spokojną siłą wizualną.",
+        heroBtn1: "Zobacz portfolio",
+        heroBtn2: "Skontaktuj się",
+        aboutEyebrow: "O mnie",
+        aboutTitle: "Osobiste spojrzenie przełożone na dopracowane i świadome kadry",
+        aboutLead: "Wierzę w fotografię, która nie tylko dobrze wygląda, ale również niesie jakość, spokój i własny charakter.",
+        aboutBoxTitle: "Fotografia to dla mnie coś więcej niż samo robienie zdjęć",
+        aboutP1: "Fotografia towarzyszy mi od dłuższego czasu i z każdym kolejnym etapem utwierdza mnie w tym, że jest to coś naprawdę bliskiego mnie.",
+        aboutP2: "Przez ten czas pracowałem z różnymi systemami, między innymi Sony, Fuji i Nikon. Dzięki temu nauczyłem się, że choć sprzęt daje różne możliwości, to najważniejsze jest po prostu robić zdjęcia, rozwijać swoje spojrzenie i czerpać z tego satysfakcję. W fotografii najbardziej liczą się dla mnie światło, klimat i chwila.",
+        portfolioEyebrow: "Portfolio",
+        portfolioTitle: "Wybrane obszary mojej fotografii",
+        portfolioLead: "Przejrzyj różne kategorie i zobacz mój sposób patrzenia na ludzi, miejsca, detale i światło.",
+        cat1: "Portret",
+        cat2: "Ulica",
+        cat3: "Zwierzęta",
+        cat4: "Makro",
+        cat5: "Podróże",
+        cat6: "Kreatywne",
+        contactEyebrow: "Kontakt",
+        contactTitle: "Skontaktuj się ze mną bezpośrednio",
+        contactLead: "W sprawie pytań, współpracy lub zainteresowania moją fotografią możesz łatwo odezwać się przez poniższe kanały.",
+        contactBtn: "Otwórz",
+        modalKicker: "Portfolio",
+        legalNotice: "Wszelkie prawa zastrzeżone. Wszystkie zdjęcia i treści na tej stronie są chronione prawem autorskim i nie mogą być kopiowane, pobierane ani wykorzystywane bez uprzedniej pisemnej zgody.",
+        galleryTitlePortrait: "Portret",
+        galleryTitleStreet: "Ulica",
+        galleryTitleAnimals: "Zwierzęta",
+        galleryTitleMacro: "Makro",
+        galleryTitleTravel: "Podróże",
+        galleryTitleCreative: "Kreatywne",
+        imageMissingNamed: "Nie znaleziono zdjęcia:",
+        viewToggleMobile: "Przejdź do wersji mobilnej",
+        viewToggleDesktop: "Przejdź do wersji desktopowej",
+        photoCount: "zdjęć",
+        lightboxTitle: "Podgląd zdjęcia",
+        closeLabel: "Zamknij",
+        prevImage: "Poprzednie zdjęcie",
+        nextImage: "Następne zdjęcie",
+        mobileNavLabel: "Nawigacja mobilna",
+        languageSwitcherLabel: "Wybór języka"
       },
       en: {
-        pageTitle: "Rafał Wilk | Cinematic Photography",
-        pageDescription: "A modern portfolio by Rafał Wilk: photography, drone visuals, travel content, real estate visuals, short videos and visual storytelling.",
-        navAbout: "About", navServices: "Creative", navGear: "Gear", navPortfolio: "Portfolio", navContact: "Contact",
-        heroEyebrow: "Photography portfolio", heroTitle: "Cinematic photography, drone visuals and modern storytelling", heroText: "I create images shaped by light, atmosphere, composition and emotion — from photography to drone footage and short-form video.", heroBtn1: "Open portfolio", heroBtn2: "Contact",
-        aboutEyebrow: "About", aboutTitle: "A personal eye translated into modern, carefully crafted frames", aboutLead: "For me, photography combines technique, calmness, light and the sense of the right moment.", aboutBoxTitle: "Photography for me is more than just taking pictures", aboutP1: "Photography has been with me for a long time and, with every next step, it keeps confirming that it is something genuinely close to me.", aboutP2: "I work with different photo and video systems, including Sony, Fuji and DJI. This allows me to combine classic photography, aerial drone views, dynamic travel frames and short social media content. What matters most to me is light, atmosphere, composition and the real character of a place.",
-        servicesEyebrow: "Creative work", servicesTitle: "More than photography: complete visual stories", servicesLead: "I combine photography, drone footage, travel content, real estate visuals and short videos into one consistent aesthetic.", servicePhotoTitle: "Photography", servicePhotoText: "Light, composition, atmosphere and detail in images that feel calm, strong and recognizable.", serviceDroneTitle: "Drone visuals", serviceDroneText: "Aerial perspectives for travel, landscapes, locations and modern social media content.", serviceTravelTitle: "Travel content", serviceTravelText: "Images with a sense of place, colour, light and the story behind a location.", serviceRealEstateTitle: "Real estate visuals", serviceRealEstateText: "Clean, bright and realistic visuals for homes, apartments and rental locations.", serviceVideoTitle: "Short videos", serviceVideoText: "Vertical and horizontal clips for Instagram, portfolio, advertising and modern presentations.",
-        gearEyebrow: "Creative kit", gearTitle: "My current photo and video setup", gearLead: "A flexible setup for photography, video, drone footage, travel stories and compact social media productions.", gearSony: "Full-frame photography and video", gearFuji: "Colour, character and mobility", gearDrone: "Drone footage and aerial perspective", gearPocket: "Smooth video and travel shots", gearAction: "Action, movement and dynamic footage",
-        portfolioEyebrow: "Portfolio", portfolioTitle: "A portfolio shaped by light, place and atmosphere", portfolioLead: "Choose a category and explore my approach to portraits, street, travel, details, animals and creative imagery.", catPortrait: "Portrait", catStreet: "Street", catAnimals: "Animals", catMacro: "Macro", catTravel: "Travel", catCreative: "Creative", photoCount: "photos",
-        contactEyebrow: "Contact", contactTitle: "Get in touch with me directly", contactLead: "For questions, collaborations or interest in my photography, you can reach me easily through the channels below.", contactBigTitle: "Let’s create something visual.", contactBigText: "Photography, drone footage, travel content, real estate visuals or a short video — message me directly.", contactFastTitle: "Fast contact", contactFastText: "Choose Instagram, e-mail or WhatsApp.", contactBtn: "Open", modalKicker: "Portfolio", closeLabel: "Close", imageMissing: "Image not found", legalNotice: "All rights reserved. All photographs and content on this website are protected by copyright and may not be copied, downloaded or used without prior written permission."
+        pageTitle: "Rafał Wilk | Photography",
+        pageDescription: "Rafał Wilk's portfolio featuring photography shaped by light, atmosphere, composition and character.",
+        navHome: "Home",
+        navAbout: "About",
+        navPortfolio: "Portfolio",
+        navContact: "Contact",
+        heroEyebrow: "Photography portfolio",
+        heroTitle: "Photography shaped by light, atmosphere and a refined visual language",
+        heroText: "Welcome to my portfolio, where I present images built on composition, detail and a calm visual strength.",
+        heroBtn1: "View portfolio",
+        heroBtn2: "Get in touch",
+        aboutEyebrow: "About",
+        aboutTitle: "A personal way of seeing translated into thoughtful and carefully crafted images",
+        aboutLead: "I believe in photography that not only looks strong, but also carries quality, calmness and a distinct character.",
+        aboutBoxTitle: "Photography for me is more than just taking pictures",
+        aboutP1: "Photography has been with me for a long time and, with every next step, it keeps confirming that it is something genuinely close to me.",
+        aboutP2: "Over time, I worked with different systems, including Sony, Fuji and Nikon. That taught me one simple thing: gear offers different possibilities, but the most important part is simply to keep taking photos, develop your own eye and enjoy the process. In photography, what matters most to me is light, atmosphere and the moment itself.",
+        portfolioEyebrow: "Portfolio",
+        portfolioTitle: "Selected areas of my photographic work",
+        portfolioLead: "Explore different categories and discover how I approach people, places, details and light.",
+        cat1: "Portrait",
+        cat2: "Street",
+        cat3: "Animals",
+        cat4: "Macro",
+        cat5: "Travel",
+        cat6: "Creative",
+        contactEyebrow: "Contact",
+        contactTitle: "Get in touch with me directly",
+        contactLead: "For questions, collaborations or interest in my photography, you can reach me easily through the channels below.",
+        contactBtn: "Open",
+        modalKicker: "Portfolio",
+        legalNotice: "All rights reserved. All photographs and content on this website are protected by copyright and may not be copied, downloaded or used without prior written permission.",
+        galleryTitlePortrait: "Portrait",
+        galleryTitleStreet: "Street",
+        galleryTitleAnimals: "Animals",
+        galleryTitleMacro: "Macro",
+        galleryTitleTravel: "Travel",
+        galleryTitleCreative: "Creative",
+        imageMissingNamed: "Image not found:",
+        viewToggleMobile: "Switch to mobile version",
+        viewToggleDesktop: "Switch to desktop version",
+        photoCount: "photos",
+        lightboxTitle: "Image preview",
+        closeLabel: "Close",
+        prevImage: "Previous image",
+        nextImage: "Next image",
+        mobileNavLabel: "Mobile navigation",
+        languageSwitcherLabel: "Language switcher"
       },
-      pl: {
-        pageTitle: "Rafał Wilk | Cinematic Photography",
-        pageDescription: "Nowoczesne portfolio Rafała Wilka: fotografia, drone, podróże, nieruchomości, krótkie filmy i wizualne historie.",
-        navAbout: "O mnie", navServices: "Twórczość", navGear: "Sprzęt", navPortfolio: "Portfolio", navContact: "Kontakt",
-        heroEyebrow: "Portfolio fotograficzne", heroTitle: "Cinematic photography, drone visuals and modern storytelling", heroText: "Tworzę obrazy oparte na świetle, atmosferze, kompozycji i emocji — od fotografii po drone i krótkie formy wideo.", heroBtn1: "Otwórz portfolio", heroBtn2: "Kontakt",
-        aboutEyebrow: "O mnie", aboutTitle: "Osobiste spojrzenie zamienione w nowoczesne, dopracowane kadry", aboutLead: "Fotografia jest dla mnie połączeniem techniki, spokoju, światła i wyczucia momentu.", aboutBoxTitle: "Fotografia to dla mnie coś więcej niż samo robienie zdjęć", aboutP1: "Fotografia towarzyszy mi od dłuższego czasu i z każdym kolejnym etapem utwierdza mnie w tym, że jest to coś naprawdę bliskiego mnie.", aboutP2: "Pracuję z różnymi systemami foto i wideo, między innymi Sony, Fuji oraz DJI. Dzięki temu mogę łączyć klasyczną fotografię, ujęcia z drona, dynamiczne kadry podróżnicze i krótkie materiały do social media. Najważniejsze są dla mnie światło, klimat, kompozycja i prawdziwy charakter miejsca.",
-        servicesEyebrow: "Twórczość", servicesTitle: "Więcej niż fotografia: kompletne historie wizualne", servicesLead: "Łączę fotografię, drone, podróże, nieruchomości i krótkie filmy w jedną spójną estetykę.", servicePhotoTitle: "Fotografia", servicePhotoText: "Światło, kompozycja, atmosfera i detal w kadrach, które są spokojne, mocne i rozpoznawalne.", serviceDroneTitle: "Drone", serviceDroneText: "Ujęcia z powietrza do podróży, krajobrazów, lokalizacji i nowoczesnych materiałów social media.", serviceTravelTitle: "Podróże", serviceTravelText: "Obrazy z wyczuciem miejsca, koloru, światła i historii ukrytej w konkretnej lokalizacji.", serviceRealEstateTitle: "Nieruchomości", serviceRealEstateText: "Czyste, jasne i realistyczne materiały dla mieszkań, apartamentów i obiektów na wynajem.", serviceVideoTitle: "Krótkie filmy", serviceVideoText: "Pionowe i poziome klipy do Instagrama, portfolio, reklam i nowoczesnych prezentacji.",
-        gearEyebrow: "Creative kit", gearTitle: "Mój aktualny zestaw foto i wideo", gearLead: "Elastyczny zestaw do fotografii, filmu, drona, podróży i krótkich materiałów do social media.", gearSony: "Full-frame fotografia i video", gearFuji: "Kolor, charakter i mobilność", gearDrone: "Ujęcia z drona i perspektywa z powietrza", gearPocket: "Płynne video i ujęcia podróżnicze", gearAction: "Akcja, ruch i dynamiczne kadry",
-        portfolioEyebrow: "Portfolio", portfolioTitle: "Portfolio zbudowane na świetle, miejscu i atmosferze", portfolioLead: "Wybierz kategorię i zobacz moje podejście do portretu, ulicy, podróży, detalu, zwierząt i kreatywnego obrazu.", catPortrait: "Portret", catStreet: "Ulica", catAnimals: "Zwierzęta", catMacro: "Makro", catTravel: "Podróże", catCreative: "Kreatywne", photoCount: "zdjęć",
-        contactEyebrow: "Kontakt", contactTitle: "Skontaktuj się ze mną bezpośrednio", contactLead: "W sprawie pytań, współpracy lub zainteresowania moją fotografią możesz łatwo odezwać się przez poniższe kanały.", contactBigTitle: "Stwórzmy coś wizualnego.", contactBigText: "Fotografia, drone, podróże, nieruchomości albo krótki film — napisz do mnie bezpośrednio.", contactFastTitle: "Szybki kontakt", contactFastText: "Wybierz Instagram, e-mail albo WhatsApp.", contactBtn: "Otwórz", modalKicker: "Portfolio", closeLabel: "Zamknij", imageMissing: "Nie znaleziono zdjęcia", legalNotice: "Wszelkie prawa zastrzeżone. Wszystkie zdjęcia i treści na tej stronie są chronione prawem autorskim i nie mogą być kopiowane, pobierane ani wykorzystywane bez uprzedniej pisemnej zgody."
+      nl: {
+        pageTitle: "Rafał Wilk | Fotografie",
+        pageDescription: "Portfolio van Rafał Wilk met fotografie gericht op sfeer, licht, compositie en karakter.",
+        navHome: "Start",
+        navAbout: "Over mij",
+        navPortfolio: "Portfolio",
+        navContact: "Contact",
+        heroEyebrow: "Fotografieportfolio",
+        heroTitle: "Fotografie met aandacht voor sfeer, licht en karakter",
+        heroText: "Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie, detail en een rustige visuele kracht.",
+        heroBtn1: "Bekijk portfolio",
+        heroBtn2: "Neem contact op",
+        aboutEyebrow: "Over mij",
+        aboutTitle: "Een persoonlijke blik vertaald naar verzorgde en doordachte beelden",
+        aboutLead: "Ik geloof in fotografie die niet alleen mooi oogt, maar ook rust, kwaliteit en een eigen stijl uitstraalt.",
+        aboutBoxTitle: "Fotografie is voor mij meer dan alleen foto's maken",
+        aboutP1: "Fotografie gaat al langere tijd met mij mee en met elke volgende stap voel ik steeds sterker dat dit echt iets is dat dicht bij mij ligt.",
+        aboutP2: "In de loop van de tijd heb ik met verschillende systemen gewerkt, onder andere Sony, Fuji en Nikon. Daardoor heb ik één eenvoudige les geleerd: apparatuur biedt verschillende mogelijkheden, maar het belangrijkste is om gewoon foto's te blijven maken, je eigen blik te ontwikkelen en plezier te houden in het proces. In fotografie zijn licht, sfeer en het moment voor mij het belangrijkst.",
+        portfolioEyebrow: "Portfolio",
+        portfolioTitle: "Selecties uit mijn fotografisch werk",
+        portfolioLead: "Bekijk verschillende categorieën en ontdek mijn manier van kijken in uiteenlopende onderwerpen en sferen.",
+        cat1: "Portret",
+        cat2: "Straat",
+        cat3: "Dieren",
+        cat4: "Macro",
+        cat5: "Reizen",
+        cat6: "Creatief",
+        contactEyebrow: "Contact",
+        contactTitle: "Neem rechtstreeks contact met mij op",
+        contactLead: "Voor vragen, samenwerkingen of interesse in mijn fotografie kun je mij eenvoudig bereiken via onderstaande kanalen.",
+        contactBtn: "Open",
+        modalKicker: "Portfolio",
+        legalNotice: "Alle rechten voorbehouden. Alle foto's en inhoud op deze website zijn auteursrechtelijk beschermd en mogen niet worden gekopieerd, gedownload of gebruikt zonder voorafgaande schriftelijke toestemming.",
+        galleryTitlePortrait: "Portret",
+        galleryTitleStreet: "Straat",
+        galleryTitleAnimals: "Dieren",
+        galleryTitleMacro: "Macro",
+        galleryTitleTravel: "Reizen",
+        galleryTitleCreative: "Creatief",
+        imageMissingNamed: "Foto niet gevonden:",
+        viewToggleMobile: "Ga naar mobiele versie",
+        viewToggleDesktop: "Ga naar desktopversie",
+        photoCount: "foto's",
+        lightboxTitle: "Foto bekijken",
+        closeLabel: "Sluiten",
+        prevImage: "Vorige foto",
+        nextImage: "Volgende foto",
+        mobileNavLabel: "Mobiele navigatie",
+        languageSwitcherLabel: "Taalkeuze"
       }
     };
 
-    const categories = [
-      { key: "portrait", label: "catPortrait", cover: "DSCF4051-2.jpg" },
-      { key: "street", label: "catStreet", cover: "A7407052.jpg" },
-      { key: "animals", label: "catAnimals", cover: "DSCF3455.jpg" },
-      { key: "macro", label: "catMacro", cover: "A7400567.png" },
-      { key: "travel", label: "catTravel", cover: "DSC02526.avif" },
-      { key: "creative", label: "catCreative", cover: "DSC_5304.jpg" }
+    
+const categoriesMeta = [
+      { key: "portrait", labelKey: "cat1", cover: "DSCF4051-2.jpg" },
+      { key: "street", labelKey: "cat2", cover: "A7407052.jpg" },
+      { key: "animals", labelKey: "cat3", cover: "DSCF3455.jpg" },
+      { key: "macro", labelKey: "cat4", cover: "A7400567.png" },
+      { key: "travel", labelKey: "cat5", cover: "DSC02526.avif" },
+      { key: "creative", labelKey: "cat6", cover: "DSC_5304.jpg" }
     ];
 
-    const galleries = {
-      portrait: [
-        { src: "A7409293.jpg", alt: "Asia na rowerze" },
-        { src: "DSC04191-2.avif", alt: "Asia z jablkiem" },
-        { src: "A7407652.jpg", alt: "Portrait with white cap and gold face paint" },
-        { src: "A7407653.jpg", alt: "Portrait of cameraman in gold costume" },
-        { src: "A7407666.jpg", alt: "Portrait in historical costume" },
-        { src: "A7407707.jpg", alt: "Black and white portrait with camera costume" },
-        { src: "DSC03914.avif", alt: "Portrait of musician playing cello" },
-        { src: "DSC04580.avif", alt: "Portrait of drummer during performance" },
-        { src: "DSC05313-Enhanced-NR.avif", alt: "Portrait of man in orange vest" },
-        { src: "DSC05317.avif", alt: "Black and white portrait of singer with guitar" },
-        { src: "DSCF4051-2.jpg", alt: "Portrait with cat in dark background" },
-        { src: "DSC_5379.avif", alt: "Black and white portrait of smiling man" }
-      ],
-      street: [
-        { src: "A7408793.jpg", alt: "zachod slonca" },
-        { src: "A7409276.jpg", alt: "Autobus" },
-        { src: "DSC_0372.jpg", alt: "Black and white waterside landscape" },
-        { src: "A7408846.avif", alt: "Basketball hoop at sunset" },
-        { src: "DSC_3422.jpg", alt: "Italian street view" },
-        { src: "A7407052.jpg", alt: "Cyclist in fog by the lake" },
-        { src: "A7407373.jpg", alt: "Snowy bicycle in the city" },
-        { src: "A7407402.jpg", alt: "Winter walkway with figure" }
-      ],
-      animals: [
-        { src: "DSCF3455.jpg", alt: "Robin bird portrait" },
-        { src: "A7406653.avif", alt: "Seagull by the water" },
-        { src: "DSCF4010.jpg", alt: "Bird on wooden perch" },
-        { src: "A7407839.jpg", alt: "Cat close portrait" },
-        { src: "DSC_0250.jpg", alt: "White and brown cat resting" },
-        { src: "A7407059.jpg", alt: "Cat walking in snow" }
-      ],
-      macro: [
-        { src: "A7400567.png", alt: "Wildflowers in soft light" },
-        { src: "A7403102.avif", alt: "Daisy close-up" },
-        { src: "A7407521.png", alt: "Red berries close-up" },
-        { src: "DSC_0032.jpg", alt: "Red berries detail" },
-        { src: "DSC_0052.jpg", alt: "Small yellow flowers" },
-        { src: "DSC_0057.jpg", alt: "Small flower cluster" },
-        { src: "DSC_0352.jpg", alt: "White flower macro" },
-        { src: "DSC_0492.jpg", alt: "Purple flower detail" }
-      ],
-      travel: [
-        { src: "DJI_20260605013443_0005_D.jpg", alt: "wierza" },
-        { src: "A7408532.jpg", alt: "Interior photography by Rafal Wilk" },
-        { src: "DSC02526.avif", alt: "Bird with red eye on wooden perch" },
-        { src: "A7406725.jpg", alt: "Ancient Greek ruins" },
-        { src: "A7406608.jpg", alt: "Blue boat by the coast" },
-        { src: "A7406616.avif", alt: "Coastal landscape with sea and mountains" },
-        { src: "A7407232.jpg", alt: "Snowy forest with winter sunlight" },
-        { src: "A7407252-2.jpg", alt: "Black and white winter tree landscape" },
-        { src: "A7406473.avif", alt: "Aperol drinks by the lake" },
-        { src: "A7407409.jpg", alt: "Observation tower in winter" },
-        { src: "DSC04416.png", alt: "Sea view from table by the coast" },
-        { src: "DSC_0029-2.png", alt: "Windmill seen through branches" },
-        { src: "DSC_2985.avif", alt: "Coastal terrace and sea view" }
-      ],
-      creative: [
-        { src: "DSC_5304.jpg", alt: "Book with dramatic light" },
-        { src: "DSC_4824.avif", alt: "Grass silhouette at sunset" },
-        { src: "A7406311-2.avif", alt: "Decorative lantern with warm lights" },
-        { src: "A7406318-2.avif", alt: "Santa hat in festive bokeh" },
-        { src: "A7406347.avif", alt: "Abstract warm city lights" },
-        { src: "A7407223.jpg", alt: "Moon behind branches and clouds" },
-        { src: "A7407366.jpg", alt: "Candles in dark interior" },
-        { src: "A7407810.jpg", alt: "Full moon against black sky" },
-        { src: "DSC_0007-2.jpg", alt: "Abstract orange light spiral" },
-        { src: "A7409171.avif", alt: "Sun behind branches and clouds" }
-      ]
+    
+const galleryData = {
+      portrait: {
+        titleKey: "galleryTitlePortrait",
+        items: [
+          
+          { src: "A7409293.jpg", alt: "Asia na rowerze" },
+          { src: "DSC04191-2.avif", alt: "Asia z jablkiem" },
+          { src: "A7407652.jpg", alt: "Portrait with white cap and gold face paint" },
+          { src: "A7407653.jpg", alt: "Portrait of cameraman in gold costume" },
+          { src: "A7407666.jpg", alt: "Portrait in historical costume" },
+          { src: "A7407707.jpg", alt: "Black and white portrait with camera costume" },
+          { src: "DSC03914.avif", alt: "Portrait of musician playing cello" },
+          { src: "DSC04580.avif", alt: "Portrait of drummer during performance" },
+          { src: "DSC05313-Enhanced-NR.avif", alt: "Portrait of man in orange vest" },
+          { src: "DSC05317.avif", alt: "Black and white portrait of singer with guitar" },
+          { src: "DSCF4051-2.jpg", alt: "Portrait with cat in dark background" },
+          { src: "DSC_5379.avif", alt: "Black and white portrait of smiling man" }
+        ]
+      },
+      street: {
+        titleKey: "galleryTitleStreet",
+        items: [
+          
+          { src: "A7408793.jpg", alt: "zachod slonca" },
+          { src: "A7409276.jpg", alt: "Autobus" },
+          { src: "DSC_0372.jpg", alt: "Black and white waterside landscape" },
+          { src: "A7408846.avif", alt: "Basketball hoop at sunset" },
+          { src: "DSC_3422.jpg", alt: "Italian street view" },
+          { src: "A7407052.jpg", alt: "Cyclist in fog by the lake" },
+          { src: "A7407373.jpg", alt: "Snowy bicycle in the city" },
+          { src: "A7407402.jpg", alt: "Winter walkway with figure" }
+        ]
+      },
+      animals: {
+        titleKey: "galleryTitleAnimals",
+        items: [
+          { src: "DSCF3455.jpg", alt: "Robin bird portrait" },
+          { src: "A7406653.avif", alt: "Seagull by the water" },
+          { src: "DSCF4010.jpg", alt: "Bird on wooden perch" },
+          { src: "A7407839.jpg", alt: "Cat close portrait" },
+          { src: "DSC_0250.jpg", alt: "White and brown cat resting" },
+          { src: "A7407059.jpg", alt: "Cat walking in snow" }
+        ]
+      },
+      macro: {
+        titleKey: "galleryTitleMacro",
+        items: [
+          { src: "A7400567.png", alt: "Wildflowers in soft light" },
+          { src: "A7403102.avif", alt: "Daisy close-up" },
+          { src: "A7407521.png", alt: "Red berries close-up" },
+          { src: "DSC_0032.jpg", alt: "Red berries detail" },
+          { src: "DSC_0052.jpg", alt: "Small yellow flowers" },
+          { src: "DSC_0057.jpg", alt: "Small flower cluster" },
+          { src: "DSC_0352.jpg", alt: "White flower macro" },
+          { src: "DSC_0492.jpg", alt: "Purple flower detail" }
+        ]
+      },
+      travel: {
+        titleKey: "galleryTitleTravel",
+        items: [
+          
+          { src: "DJI_20260605013443_0005_D.jpg", alt: "wierza" },
+          { src: "A7408532.jpg", alt: "Interior photography by Rafal Wilk" },
+          { src: "DSC02526.avif", alt: "Bird with red eye on wooden perch" },
+          { src: "A7406725.jpg", alt: "Ancient Greek ruins" },
+          { src: "A7406608.jpg", alt: "Blue boat by the coast" },
+          { src: "A7406616.avif", alt: "Coastal landscape with sea and mountains" },
+          { src: "A7407232.jpg", alt: "Snowy forest with winter sunlight" },
+          { src: "A7407252-2.jpg", alt: "Black and white winter tree landscape" },
+          { src: "A7406473.avif", alt: "Aperol drinks by the lake" },
+          { src: "A7407409.jpg", alt: "Observation tower in winter" },
+          { src: "DSC04416.png", alt: "Sea view from table by the coast" },
+          { src: "DSC_0029-2.png", alt: "Windmill seen through branches" },
+          { src: "DSC_2985.avif", alt: "Coastal terrace and sea view" }
+        ]
+      },
+      creative: {
+        titleKey: "galleryTitleCreative",
+        items: [
+          { src: "DSC_5304.jpg", alt: "Book with dramatic light" },
+          { src: "DSC_4824.avif", alt: "Grass silhouette at sunset" },
+          { src: "A7406311-2.avif", alt: "Decorative lantern with warm lights" },
+          { src: "A7406318-2.avif", alt: "Santa hat in festive bokeh" },
+          { src: "A7406347.avif", alt: "Abstract warm city lights" },
+          { src: "A7407223.jpg", alt: "Moon behind branches and clouds" },
+          { src: "A7407366.jpg", alt: "Candles in dark interior" },
+          { src: "A7407810.jpg", alt: "Full moon against black sky" },
+          { src: "DSC_0007-2.jpg", alt: "Abstract orange light spiral" },
+          { src: "A7409171.avif", alt: "Sun behind branches and clouds" }
+        ]
+      }
     };
 
-    const state = { lang: "nl", category: null, index: 0 };
+    
     const aboutImage = "ChatGPT Image 28 mar 2026, 16_46_19";
 
-    const $ = (selector) => document.querySelector(selector);
-    const $$ = (selector) => Array.from(document.querySelectorAll(selector));
-
-    const nodes = {
-      progress: $("#scrollProgress"),
-      categories: $("#categoriesGrid"),
-      aboutPhoto: $("#aboutPhotoWrap"),
-      modal: $("#modal"),
-      modalShell: $(".modal-shell"),
-      modalTitle: $("#modalTitle"),
-      modalMeta: $("#modalMeta"),
-      gallery: $("#galleryGrid"),
-      closeModal: $("#closeModal"),
-      lightbox: $("#lightbox"),
-      lightboxImageWrap: $("#lightboxImageWrap"),
-      lightboxCounter: $("#lightboxCounter"),
-      closeLightbox: $("#closeLightbox"),
-      prev: $("#prevImage"),
-      next: $("#nextImage"),
-      languageSwitcher: $("#languageSwitcher")
+    const categoryDescriptions = {
+      nl: {
+        portrait: "Gezichten, gebaren en momenten met aandacht voor karakter en licht.",
+        street: "Stille scènes, beweging en sfeer uit het dagelijks leven.",
+        animals: "Dieren gefotografeerd met rust, nabijheid en detail.",
+        macro: "Kleine vormen, texturen en details die snel over het hoofd worden gezien.",
+        travel: "Plaatsen, landschappen en herinneringen met een filmische sfeer.",
+        creative: "Beelden waarin licht, schaduw en vorm vrijer mogen spelen."
+      },
+      en: {
+        portrait: "Faces, gestures and quiet moments shaped by character and light.",
+        street: "Everyday scenes, movement and atmosphere from public spaces.",
+        animals: "Animals photographed with calmness, proximity and detail.",
+        macro: "Small forms, textures and details that are easy to miss.",
+        travel: "Places, landscapes and memories with a cinematic mood.",
+        creative: "Images where light, shadow and form can move more freely."
+      },
+      pl: {
+        portrait: "Twarze, gesty i spokojne momenty zbudowane światłem i charakterem.",
+        street: "Codzienne sceny, ruch i atmosfera uchwycone w przestrzeni publicznej.",
+        animals: "Zwierzęta fotografowane spokojnie, blisko i z dbałością o detal.",
+        macro: "Małe formy, tekstury i szczegóły, które łatwo przeoczyć.",
+        travel: "Miejsca, krajobrazy i wspomnienia pokazane w filmowym klimacie.",
+        creative: "Kadry, w których światło, cień i forma mogą grać swobodniej."
+      }
     };
 
-    function hasExt(name) { return /\.[a-z0-9]+$/i.test(name); }
-    function pathFor(name) { return encodeURI(name.includes("/") ? name : `images/${name}`); }
-    function candidates(name) {
-      if (hasExt(name)) return [pathFor(name)];
-      return ["avif", "webp", "jpg", "jpeg", "png"].map((ext) => pathFor(`${name}.${ext}`));
+    const params = new URLSearchParams(window.location.search);
+    let currentLang = translations[params.get("lang")] ? params.get("lang") : "nl";
+    let currentCategory = null;
+    let currentIndex = 0;
+    let lastScrollY = 0;
+    let lastActiveElement = null;
+    let categoryObserver = null;
+    let galleryObserver = null;
+    let aboutObserver = null;
+    let lightboxScrollFrame = null;
+    let closeTimer = null;
+
+    const pageRoot = document.getElementById("pageRoot");
+    const siteHeader = document.getElementById("siteHeader");
+    const scrollProgress = document.getElementById("scrollProgress");
+    const translationNodes = document.querySelectorAll("[data-i18n]");
+    const languageLinks = document.querySelectorAll(".lang a");
+    const languageSwitcher = document.getElementById("languageSwitcher");
+    const categoriesGrid = document.getElementById("categoriesGrid");
+    const aboutPhotoWrap = document.getElementById("aboutPhotoWrap");
+    const modal = document.getElementById("modal");
+    const modalShell = document.getElementById("modalShell");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMeta = document.getElementById("modalMeta");
+    const galleryGrid = document.getElementById("galleryGrid");
+    const closeModal = document.getElementById("closeModal");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxInner = document.getElementById("lightboxInner");
+    const lightboxTitle = document.getElementById("lightboxTitle");
+    const lightboxViewport = document.getElementById("lightboxViewport");
+    const lightboxTrack = document.getElementById("lightboxTrack");
+    const lightboxCounter = document.getElementById("lightboxCounter");
+    const closeLightbox = document.getElementById("closeLightbox");
+    const prevImageButton = document.getElementById("prevImage");
+    const nextImageButton = document.getElementById("nextImage");
+    const mobileBottomNav = document.getElementById("mobileBottomNav");
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const metaOgTitle = document.querySelector('meta[property="og:title"]');
+    const metaOgDescription = document.querySelector('meta[property="og:description"]');
+    const metaOgUrl = document.querySelector('meta[property="og:url"]');
+    const metaOgImage = document.querySelector('meta[property="og:image"]');
+    const metaTwitterTitle = document.querySelector('meta[name="twitter:title"]');
+    const metaTwitterDescription = document.querySelector('meta[name="twitter:description"]');
+    const metaTwitterImage = document.querySelector('meta[name="twitter:image"]');
+
+    function encodePath(path) {
+      return path.split("/").map(part => encodeURIComponent(part)).join("/");
     }
 
-    function imageWithFallback(srcList, alt, className = "") {
+    function hasExtension(fileName) {
+      return /\.[a-z0-9]+$/i.test(fileName);
+    }
+
+    function imagePath(fileName) {
+      const path = fileName.includes("/") ? fileName : `images/${fileName}`;
+      return encodePath(path);
+    }
+
+    function getCandidateImagePaths(fileName) {
+      if (hasExtension(fileName)) return [imagePath(fileName)];
+      return ["avif", "webp", "jpg", "jpeg", "png"].map(ext => imagePath(`${fileName}.${ext}`));
+    }
+
+    function getThumbSources(item) { return getCandidateImagePaths(item.thumb || item.src); }
+    function getFullSources(item) { return getCandidateImagePaths(item.full || item.src); }
+
+    function createFallback(src) {
+      const fallback = document.createElement("div");
+      fallback.className = "image-fallback";
+      fallback.textContent = `${translations[currentLang].imageMissingNamed} ${decodeURIComponent((src || "").split("/").pop() || "")}`;
+      return fallback;
+    }
+
+    function createLazyImage(src, alt = "", eager = false) {
+      const shell = document.createElement("div");
+      shell.className = "lazy-shell";
+      shell.dataset.alt = alt;
+      shell.dataset.sources = JSON.stringify(Array.isArray(src) ? src : [src]);
+      if (eager) shell.dataset.eager = "true";
+      return shell;
+    }
+
+    function tryLoadImage(img, sources, index, onSuccess, onFailure) {
+      if (index >= sources.length) { onFailure(sources[0] || ""); return; }
+      img.onload = onSuccess;
+      img.onerror = () => tryLoadImage(img, sources, index + 1, onSuccess, onFailure);
+      img.src = sources[index];
+    }
+
+    function loadLazyShell(shell) {
+      if (!shell || shell.dataset.loaded === "true") return;
+      const sources = JSON.parse(shell.dataset.sources || "[]");
+      const alt = shell.dataset.alt || "";
+      const eager = shell.dataset.eager === "true";
       const img = document.createElement("img");
-      const list = Array.isArray(srcList) ? srcList : [srcList];
-      let i = 0;
-      img.alt = alt || "";
+      img.alt = alt;
       img.decoding = "async";
-      img.loading = "lazy";
-      if (className) img.className = className;
-      img.onerror = () => {
-        i += 1;
-        if (i < list.length) {
-          img.src = list[i];
-        } else {
-          const fallback = document.createElement("div");
-          fallback.className = "image-fallback";
-          fallback.textContent = `${translations[state.lang].imageMissing}: ${alt || ""}`;
-          img.replaceWith(fallback);
-        }
-      };
-      img.src = list[0];
-      return img;
+      img.loading = eager ? "eager" : "lazy";
+      tryLoadImage(img, sources, 0, () => {
+        shell.classList.add("loaded");
+        img.classList.add("ready");
+      }, failedSrc => shell.replaceWith(createFallback(failedSrc)));
+      shell.dataset.loaded = "true";
+      shell.appendChild(img);
     }
 
-    function setLang(lang) {
-      if (!translations[lang]) return;
-      state.lang = lang;
-      const dict = translations[lang];
+    function observeShells(shells, root = null, rootMargin = "360px 0px") {
+      if (!("IntersectionObserver" in window)) { shells.forEach(loadLazyShell); return null; }
+      const observer = new IntersectionObserver((entries, currentObserver) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            loadLazyShell(entry.target);
+            currentObserver.unobserve(entry.target);
+          }
+        });
+      }, { root, rootMargin, threshold: 0.01 });
+      shells.forEach(shell => observer.observe(shell));
+      return observer;
+    }
 
-      document.documentElement.lang = lang;
+    function setupCategoryObserver() {
+      if (categoryObserver) categoryObserver.disconnect();
+      categoryObserver = observeShells(Array.from(document.querySelectorAll("#categoriesGrid .lazy-shell")), null, "320px 0px");
+    }
+
+    function setupGalleryObserver() {
+      if (galleryObserver) galleryObserver.disconnect();
+      galleryObserver = observeShells(Array.from(document.querySelectorAll("#galleryGrid .lazy-shell")), galleryGrid, "520px 0px");
+    }
+
+    function setupAboutObserver() {
+      if (aboutObserver) aboutObserver.disconnect();
+      const shell = aboutPhotoWrap.querySelector(".lazy-shell");
+      if (!shell) return;
+      aboutObserver = observeShells([shell], null, "320px 0px");
+    }
+
+    function updateMeta() {
+      const dict = translations[currentLang];
+      const absoluteUrl = window.location.href;
+      const absoluteOgImage = new URL("images/DSCF4051.jpg", window.location.href).href;
       document.title = dict.pageTitle;
-      const desc = document.querySelector('meta[name="description"]');
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      const ogDesc = document.querySelector('meta[property="og:description"]');
-      const ogUrl = document.querySelector('meta[property="og:url"]');
-      const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-      const twitterDesc = document.querySelector('meta[name="twitter:description"]');
-      if (desc) desc.content = dict.pageDescription;
-      if (ogTitle) ogTitle.content = dict.pageTitle;
-      if (ogDesc) ogDesc.content = dict.pageDescription;
-      if (ogUrl) ogUrl.content = window.location.href;
-      if (twitterTitle) twitterTitle.content = dict.pageTitle;
-      if (twitterDesc) twitterDesc.content = dict.pageDescription;
+      metaDescription?.setAttribute("content", dict.pageDescription);
+      metaOgTitle?.setAttribute("content", dict.pageTitle);
+      metaOgDescription?.setAttribute("content", dict.pageDescription);
+      metaOgUrl?.setAttribute("content", absoluteUrl);
+      metaOgImage?.setAttribute("content", absoluteOgImage);
+      metaTwitterTitle?.setAttribute("content", dict.pageTitle);
+      metaTwitterDescription?.setAttribute("content", dict.pageDescription);
+      metaTwitterImage?.setAttribute("content", absoluteOgImage);
+    }
 
-      $$('[data-i18n]').forEach((el) => {
-        const key = el.dataset.i18n;
-        if (dict[key]) el.textContent = dict[key];
-      });
-
-      $$("[data-lang]").forEach((button) => {
-        button.classList.toggle("active", button.dataset.lang === lang);
-      });
-
-      nodes.closeModal.setAttribute("aria-label", dict.closeLabel);
-      nodes.closeLightbox.setAttribute("aria-label", dict.closeLabel);
-      renderCategories();
-
-      if (state.category) {
-        nodes.modalTitle.textContent = dict[categories.find((c) => c.key === state.category).label];
-        nodes.modalMeta.textContent = `${galleries[state.category].length} ${dict.photoCount}`;
-        updateLightboxCounter();
-      }
-
+    function buildLanguageHref(lang) {
       const url = new URL(window.location.href);
       url.searchParams.set("lang", lang);
-      history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+      return `${url.pathname}${url.search}${url.hash}`;
     }
 
-    function renderAbout() {
-      nodes.aboutPhoto.innerHTML = "";
-      nodes.aboutPhoto.appendChild(imageWithFallback(candidates(aboutImage), "Rafał Wilk"));
+    function updateLanguageLinks() {
+      languageLinks.forEach(link => {
+        const isActive = link.dataset.lang === currentLang;
+        link.href = buildLanguageHref(link.dataset.lang);
+        link.classList.toggle("active", isActive);
+        if (isActive) link.setAttribute("aria-current", "true");
+        else link.removeAttribute("aria-current");
+      });
+    }
+
+    function applyTranslations() {
+      const dict = translations[currentLang];
+      translationNodes.forEach(node => {
+        const key = node.dataset.i18n;
+        if (dict[key]) node.textContent = dict[key];
+      });
+      document.documentElement.lang = currentLang;
+      languageSwitcher.setAttribute("aria-label", dict.languageSwitcherLabel);
+      mobileBottomNav.setAttribute("aria-label", dict.mobileNavLabel);
+      closeModal.setAttribute("aria-label", dict.closeLabel);
+      closeLightbox.setAttribute("aria-label", dict.closeLabel);
+      prevImageButton.setAttribute("aria-label", dict.prevImage);
+      nextImageButton.setAttribute("aria-label", dict.nextImage);
+      lightboxTitle.textContent = dict.lightboxTitle || translations.en.lightboxTitle;
+      updateMeta();
+      updateLanguageLinks();
+      if (currentCategory) {
+        modalTitle.textContent = dict[galleryData[currentCategory].titleKey];
+        modalMeta.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(galleryData[currentCategory].items.length).padStart(2, "0")} · ${dict.photoCount}`;
+      }
+    }
+
+    function renderAboutPhoto() {
+      aboutPhotoWrap.innerHTML = "";
+      aboutPhotoWrap.appendChild(createLazyImage(getCandidateImagePaths(aboutImage), "Rafał Wilk"));
+      setupAboutObserver();
     }
 
     function renderCategories() {
-      const dict = translations[state.lang];
-      nodes.categories.innerHTML = "";
-      categories.forEach((cat) => {
-        const total = galleries[cat.key].length;
+      const dict = translations[currentLang];
+      const desc = categoryDescriptions[currentLang] || categoryDescriptions.en;
+      categoriesGrid.innerHTML = "";
+      const fragment = document.createDocumentFragment();
+      categoriesMeta.forEach((category, index) => {
+        const data = galleryData[category.key];
         const button = document.createElement("button");
+        button.className = "cat";
         button.type = "button";
-        button.className = "card cat";
-        button.dataset.category = cat.key;
-        button.setAttribute("aria-label", dict[cat.label]);
+        button.dataset.category = category.key;
+        button.setAttribute("aria-haspopup", "dialog");
+        button.setAttribute("aria-controls", "modal");
+        button.setAttribute("aria-label", dict[category.labelKey]);
+        button.style.setProperty("--i", index);
         button.innerHTML = `
-          <span class="cat-pill">${dict[cat.label]}</span>
           <div class="thumb"></div>
-          <div class="cat-info">
-            <strong class="cat-title">${dict[cat.label]}</strong>
-            <span class="cat-count">${total} ${dict.photoCount}</span>
-          </div>
+          <span class="cat-content">
+            <span class="cat-index">${String(index + 1).padStart(2, "0")}</span>
+            <span class="cat-title">${dict[category.labelKey]}</span>
+            <span class="cat-desc">${desc[category.key] || ""}</span>
+            <span class="cat-meta">${data.items.length} ${dict.photoCount}</span>
+          </span>
         `;
-        button.querySelector(".thumb").appendChild(imageWithFallback(pathFor(cat.cover), dict[cat.label]));
-        nodes.categories.appendChild(button);
+        button.querySelector(".thumb").appendChild(createLazyImage(imagePath(category.cover), dict[category.labelKey]));
+        button.addEventListener("pointermove", handleCardPointerMove);
+        button.addEventListener("pointerleave", () => {
+          button.style.setProperty("--rx", 0);
+          button.style.setProperty("--ry", 0);
+        });
+        fragment.appendChild(button);
       });
+      categoriesGrid.appendChild(fragment);
+      setupCategoryObserver();
     }
 
-    function openGallery(key) {
-      const dict = translations[state.lang];
-      const cat = categories.find((item) => item.key === key);
-      if (!cat || !galleries[key]) return;
+    function handleCardPointerMove(event) {
+      const card = event.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const px = x / rect.width;
+      const py = y / rect.height;
+      card.style.setProperty("--mx", `${px * 100}%`);
+      card.style.setProperty("--my", `${py * 100}%`);
+      card.style.setProperty("--rx", `${(py - .5) * -4}`);
+      card.style.setProperty("--ry", `${(px - .5) * 4}`);
+    }
 
-      state.category = key;
-      nodes.modalTitle.textContent = dict[cat.label];
-      nodes.modalMeta.textContent = `${galleries[key].length} ${dict.photoCount}`;
-      nodes.gallery.innerHTML = "";
+    function setBackgroundInert(isInert) {
+      if ("inert" in pageRoot) pageRoot.inert = isInert;
+      else pageRoot.setAttribute("aria-hidden", isInert ? "true" : "false");
+    }
 
-      galleries[key].forEach((item, index) => {
+    function setBodyLock() {
+      const locked = modal.classList.contains("open") || lightbox.classList.contains("open");
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.classList.toggle("locked", locked);
+      document.body.style.paddingRight = locked && scrollbarWidth > 0 ? `${scrollbarWidth}px` : "";
+      setBackgroundInert(locked);
+    }
+
+    function openCategory(category, fromHistory = false, openerEl = null) {
+      if (!galleryData[category]) return;
+      clearTimeout(closeTimer);
+      currentCategory = category;
+      currentIndex = 0;
+      const dict = translations[currentLang];
+      const data = galleryData[category];
+      modalTitle.textContent = dict[data.titleKey];
+      modalMeta.textContent = `${data.items.length} ${dict.photoCount}`;
+      galleryGrid.innerHTML = "";
+      const fragment = document.createDocumentFragment();
+      data.items.forEach((item, index) => {
         const button = document.createElement("button");
-        button.type = "button";
         button.className = "gallery-item";
+        button.type = "button";
         button.dataset.index = String(index);
-        button.setAttribute("aria-label", item.alt || dict[cat.label]);
-        button.appendChild(imageWithFallback(pathFor(item.src), item.alt || dict[cat.label]));
-        nodes.gallery.appendChild(button);
+        button.style.setProperty("--i", index);
+        button.setAttribute("aria-label", item.alt);
+        button.appendChild(createLazyImage(getThumbSources(item), item.alt));
+        fragment.appendChild(button);
       });
-
-      nodes.modal.classList.add("open");
-      nodes.modal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("locked");
-      requestAnimationFrame(() => nodes.modalShell.focus({ preventScroll: true }));
+      galleryGrid.appendChild(fragment);
+      if (!modal.classList.contains("open")) lastScrollY = window.scrollY;
+      if (openerEl) lastActiveElement = openerEl;
+      modal.classList.remove("closing");
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      setBodyLock();
+      galleryGrid.scrollTop = 0;
+      setupGalleryObserver();
+      document.querySelectorAll("#galleryGrid .lazy-shell").forEach((shell, index) => { if (index < 10) loadLazyShell(shell); });
+      if (!fromHistory) history.pushState({ overlay: "modal", category }, "", location.href);
+      requestAnimationFrame(() => modalShell.focus({ preventScroll: true }));
     }
 
-    function closeGallery() {
-      nodes.modal.classList.remove("open");
-      nodes.modal.setAttribute("aria-hidden", "true");
-      nodes.gallery.innerHTML = "";
-      state.category = null;
-      if (!nodes.lightbox.classList.contains("open")) document.body.classList.remove("locked");
+    function closeCategory(fromHistory = false) {
+      if (!modal.classList.contains("open")) return;
+      modal.classList.add("closing");
+      if (galleryObserver) { galleryObserver.disconnect(); galleryObserver = null; }
+      closeTimer = setTimeout(() => {
+        modal.classList.remove("open", "closing");
+        modal.setAttribute("aria-hidden", "true");
+        galleryGrid.innerHTML = "";
+        if (!lightbox.classList.contains("open")) setBodyLock();
+        if (!fromHistory && history.state && history.state.overlay === "modal") history.back();
+        else requestAnimationFrame(() => {
+          if (lastActiveElement && typeof lastActiveElement.focus === "function") lastActiveElement.focus({ preventScroll: true });
+          window.scrollTo({ top: lastScrollY, behavior: "auto" });
+        });
+      }, 420);
     }
 
-    function openLightbox(index) {
-      if (!state.category) return;
-      state.index = Number(index) || 0;
-      renderLightboxImage();
-      nodes.lightbox.classList.add("open");
-      nodes.lightbox.setAttribute("aria-hidden", "false");
-      document.body.classList.add("locked");
+    function createLightboxSlide(item, index) {
+      const slide = document.createElement("div");
+      slide.className = "lightbox-slide";
+      slide.dataset.index = String(index);
+      const sources = getFullSources(item);
+      const img = document.createElement("img");
+      img.alt = item.alt || "";
+      img.decoding = "async";
+      img.loading = Math.abs(index - currentIndex) <= 1 ? "eager" : "lazy";
+      tryLoadImage(img, sources, 0, () => img.classList.add("ready"), failedSrc => slide.replaceChildren(createFallback(failedSrc)));
+      slide.appendChild(img);
+      return slide;
     }
 
-    function closeLightbox() {
-      nodes.lightbox.classList.remove("open");
-      nodes.lightbox.setAttribute("aria-hidden", "true");
-      nodes.lightboxImageWrap.innerHTML = "";
-      if (!nodes.modal.classList.contains("open")) document.body.classList.remove("locked");
-    }
-
-    function renderLightboxImage() {
-      const items = galleries[state.category] || [];
-      const item = items[state.index];
-      if (!item) return;
-      nodes.lightboxImageWrap.innerHTML = "";
-      const img = imageWithFallback(pathFor(item.src), item.alt, "lightbox-image");
-      img.loading = "eager";
-      nodes.lightboxImageWrap.appendChild(img);
-      updateLightboxCounter();
+    function renderLightboxSlides(category) {
+      const data = galleryData[category];
+      lightboxTrack.innerHTML = "";
+      const fragment = document.createDocumentFragment();
+      data.items.forEach((item, index) => fragment.appendChild(createLightboxSlide(item, index)));
+      lightboxTrack.appendChild(fragment);
+      updateLightboxActive();
     }
 
     function updateLightboxCounter() {
-      const items = galleries[state.category] || [];
-      nodes.lightboxCounter.textContent = `${state.index + 1} / ${items.length}`;
+      if (!currentCategory) return;
+      const total = galleryData[currentCategory].items.length;
+      lightboxCounter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
     }
 
-    function moveLightbox(direction) {
-      const items = galleries[state.category] || [];
-      if (!items.length) return;
-      state.index = (state.index + direction + items.length) % items.length;
-      renderLightboxImage();
+    function updateLightboxActive() {
+      document.querySelectorAll(".lightbox-slide").forEach(slide => {
+        slide.classList.toggle("is-active", Number(slide.dataset.index) === currentIndex);
+      });
+      updateLightboxCounter();
     }
 
-    function updateProgress() {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
-      nodes.progress.style.width = `${progress}%`;
+    function openLightbox(index = 0, fromHistory = false) {
+      if (!currentCategory || !galleryData[currentCategory]) return;
+      currentIndex = Number(index) || 0;
+      renderLightboxSlides(currentCategory);
+      lightbox.classList.remove("closing", "is-next", "is-prev");
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+      setBodyLock();
+      requestAnimationFrame(() => {
+        scrollLightboxToIndex(currentIndex, false, false);
+        lightboxInner.focus({ preventScroll: true });
+      });
+      if (!fromHistory) history.pushState({ overlay: "lightbox", category: currentCategory, index: currentIndex }, "", location.href);
+    }
+
+    function closeLightboxPanel(fromHistory = false) {
+      if (!lightbox.classList.contains("open")) return;
+      lightbox.classList.add("closing");
+      setTimeout(() => {
+        lightbox.classList.remove("open", "closing", "is-next", "is-prev");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxTrack.innerHTML = "";
+        setBodyLock();
+        if (!fromHistory && history.state && history.state.overlay === "lightbox") history.back();
+        else requestAnimationFrame(() => modalShell.focus({ preventScroll: true }));
+      }, 300);
+    }
+
+    function scrollLightboxToIndex(index, smooth = true, updateHistory = true, direction = "next") {
+      if (!currentCategory) return;
+      const items = galleryData[currentCategory].items;
+      const safeIndex = Math.max(0, Math.min(index, items.length - 1));
+      currentIndex = safeIndex;
+      lightbox.classList.remove("is-next", "is-prev");
+      void lightbox.offsetWidth;
+      lightbox.classList.add(direction === "prev" ? "is-prev" : "is-next");
+      const scrollLeft = lightboxViewport.clientWidth * safeIndex;
+      lightboxViewport.scrollTo({ left: scrollLeft, behavior: smooth ? "smooth" : "auto" });
+      updateLightboxActive();
+      if (updateHistory) history.replaceState({ overlay: "lightbox", category: currentCategory, index: currentIndex }, "", location.href);
+    }
+
+    function syncLightboxIndexFromScroll() {
+      if (!currentCategory) return;
+      const items = galleryData[currentCategory].items;
+      const width = Math.max(lightboxViewport.clientWidth, 1);
+      const index = Math.round(lightboxViewport.scrollLeft / width);
+      const safeIndex = Math.max(0, Math.min(index, items.length - 1));
+      if (safeIndex !== currentIndex) {
+        currentIndex = safeIndex;
+        updateLightboxActive();
+        history.replaceState({ overlay: "lightbox", category: currentCategory, index: currentIndex }, "", location.href);
+      }
+    }
+
+    function goPrevImage() {
+      if (!currentCategory) return;
+      const total = galleryData[currentCategory].items.length;
+      scrollLightboxToIndex(currentIndex <= 0 ? total - 1 : currentIndex - 1, true, true, "prev");
+    }
+
+    function goNextImage() {
+      if (!currentCategory) return;
+      const total = galleryData[currentCategory].items.length;
+      scrollLightboxToIndex(currentIndex >= total - 1 ? 0 : currentIndex + 1, true, true, "next");
+    }
+
+    function closeAllOverlays(fromHistory = false) {
+      if (lightbox.classList.contains("open")) closeLightboxPanel(true);
+      if (modal.classList.contains("open")) closeCategory(true);
+      setBodyLock();
+      if (!fromHistory) history.replaceState({ overlay: null }, "", location.href);
+      requestAnimationFrame(() => window.scrollTo({ top: lastScrollY, behavior: "auto" }));
+    }
+
+    function handleLanguageClick(event) {
+      const link = event.target.closest("[data-lang]");
+      if (!link) return;
+      event.preventDefault();
+      const nextLang = link.dataset.lang;
+      if (!translations[nextLang]) return;
+      currentLang = nextLang;
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", currentLang);
+      history.replaceState(history.state || { overlay: null }, "", `${url.pathname}${url.search}${url.hash}`);
+      applyTranslations();
+      renderCategories();
+    }
+
+    function handleCategoryClick(event) {
+      const button = event.target.closest("[data-category]");
+      if (button) openCategory(button.dataset.category, false, button);
+    }
+
+    function handleGalleryClick(event) {
+      const button = event.target.closest(".gallery-item");
+      if (button) openLightbox(Number(button.dataset.index) || 0);
+    }
+
+    function trapFocus(event, container) {
+      if (event.key !== "Tab") return;
+      const selectors = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+      const focusable = Array.from(container.querySelectorAll(selectors)).filter(el => el.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
+
+    function handleKeydown(event) {
+      if (lightbox.classList.contains("open")) {
+        if (event.key === "Escape") { event.preventDefault(); closeLightboxPanel(); return; }
+        if (event.key === "ArrowLeft") { event.preventDefault(); goPrevImage(); return; }
+        if (event.key === "ArrowRight") { event.preventDefault(); goNextImage(); return; }
+        trapFocus(event, lightboxInner);
+        return;
+      }
+      if (modal.classList.contains("open")) {
+        if (event.key === "Escape") { event.preventDefault(); closeCategory(); return; }
+        trapFocus(event, modalShell);
+      }
+    }
+
+    function handlePopState(event) {
+      const state = event.state || { overlay: null };
+      if (!state.overlay) { closeAllOverlays(true); return; }
+      if (state.overlay === "modal") {
+        if (lightbox.classList.contains("open")) closeLightboxPanel(true);
+        openCategory(state.category, true);
+        return;
+      }
+      if (state.overlay === "lightbox") {
+        if (!modal.classList.contains("open")) openCategory(state.category, true);
+        currentCategory = state.category;
+        openLightbox(state.index || 0, true);
+      }
+    }
+
+    function updateHeaderHeight() {
+      document.documentElement.style.setProperty("--header-h", `${siteHeader.offsetHeight}px`);
+    }
+
+    function updateScrollUI() {
+      const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      const progress = Math.min(window.scrollY / max, 1);
+      scrollProgress.style.transform = `scaleX(${progress})`;
+      siteHeader.classList.toggle("scrolled", window.scrollY > 12);
+    }
+
+    function setupReveal() {
+      const items = Array.from(document.querySelectorAll(".reveal"));
+      if (!("IntersectionObserver" in window)) { items.forEach(el => el.classList.add("in-view")); return; }
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -80px 0px" });
+      items.forEach(el => observer.observe(el));
     }
 
     function protectImages() {
-      document.addEventListener("contextmenu", (event) => {
+      document.addEventListener("contextmenu", event => {
         if (event.target.closest("img, .thumb, .gallery-item, .lightbox")) event.preventDefault();
       });
-      document.addEventListener("dragstart", (event) => {
+      document.addEventListener("dragstart", event => {
         if (event.target.closest("img")) event.preventDefault();
       });
     }
 
     function init() {
-      const urlLang = new URL(window.location.href).searchParams.get("lang");
-      renderAbout();
-      setLang(translations[urlLang] ? urlLang : "nl");
-      updateProgress();
+      if (!history.state || typeof history.state.overlay === "undefined") history.replaceState({ overlay: null }, "", location.href);
+      applyTranslations();
+      renderAboutPhoto();
+      renderCategories();
+      setupReveal();
       protectImages();
-
-      nodes.languageSwitcher.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-lang]");
-        if (button) setLang(button.dataset.lang);
-      });
-
-      nodes.categories.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-category]");
-        if (button) openGallery(button.dataset.category);
-      });
-
-      nodes.gallery.addEventListener("click", (event) => {
-        const button = event.target.closest(".gallery-item");
-        if (button) openLightbox(button.dataset.index);
-      });
-
-      nodes.closeModal.addEventListener("click", closeGallery);
-      nodes.closeLightbox.addEventListener("click", closeLightbox);
-      nodes.prev.addEventListener("click", () => moveLightbox(-1));
-      nodes.next.addEventListener("click", () => moveLightbox(1));
-
-      nodes.modal.addEventListener("click", (event) => {
-        if (event.target === nodes.modal) closeGallery();
-      });
-      nodes.lightbox.addEventListener("click", (event) => {
-        if (event.target === nodes.lightbox) closeLightbox();
-      });
-
-      window.addEventListener("scroll", updateProgress, { passive: true });
-      window.addEventListener("resize", updateProgress);
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          if (nodes.lightbox.classList.contains("open")) closeLightbox();
-          else if (nodes.modal.classList.contains("open")) closeGallery();
-        }
-        if (nodes.lightbox.classList.contains("open") && event.key === "ArrowLeft") moveLightbox(-1);
-        if (nodes.lightbox.classList.contains("open") && event.key === "ArrowRight") moveLightbox(1);
-      });
+      updateHeaderHeight();
+      updateScrollUI();
+      languageSwitcher.addEventListener("click", handleLanguageClick);
+      categoriesGrid.addEventListener("click", handleCategoryClick);
+      galleryGrid.addEventListener("click", handleGalleryClick);
+      closeModal.addEventListener("click", () => closeCategory());
+      closeLightbox.addEventListener("click", () => closeLightboxPanel());
+      prevImageButton.addEventListener("click", goPrevImage);
+      nextImageButton.addEventListener("click", goNextImage);
+      modal.addEventListener("click", event => { if (event.target === modal) closeCategory(); });
+      lightbox.addEventListener("click", event => { if (event.target === lightbox) closeLightboxPanel(); });
+      document.addEventListener("keydown", handleKeydown);
+      window.addEventListener("popstate", handlePopState);
+      window.addEventListener("resize", () => { updateHeaderHeight(); if (lightbox.classList.contains("open")) scrollLightboxToIndex(currentIndex, false, false); });
+      window.addEventListener("scroll", updateScrollUI, { passive: true });
+      lightboxViewport.addEventListener("scroll", () => {
+        if (lightboxScrollFrame) cancelAnimationFrame(lightboxScrollFrame);
+        lightboxScrollFrame = requestAnimationFrame(syncLightboxIndexFromScroll);
+      }, { passive: true });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateHeaderHeight).catch(() => {});
     }
 
     init();
