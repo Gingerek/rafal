@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -1828,7 +1827,7 @@
     const galleryData = {
       portrait: {
         titleKey: "galleryTitlePortrait",
-        items:
+        items: [
           { src: "DSC04191-2.avif", alt: "Asia z jablkiem" },
           { src: "A7407652.jpg", alt: "Portrait with white cap and gold face paint" },
           { src: "A7407653.jpg", alt: "Portrait of cameraman in gold costume" },
@@ -1973,7 +1972,8 @@
     }
 
     function imagePath(fileName) {
-      return encodePath(`images/${fileName}`);
+      const path = fileName.includes("/") ? fileName : `images/${fileName}`;
+      return encodePath(path);
     }
 
     function getCandidateImagePaths(fileName) {
@@ -2813,4 +2813,3 @@
   </script>
 </body>
 </html>
-
