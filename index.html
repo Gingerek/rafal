@@ -2171,6 +2171,73 @@
       }
     }
 
+
+    /* Hero image only update */
+    .hero.hero-image-only {
+      min-height: 100svh;
+      min-height: 100dvh;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+      background: #050505;
+      isolation: isolate;
+    }
+
+    .hero.hero-image-only .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero.hero-image-only .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 62% center;
+      filter: none;
+      transform: none;
+      opacity: 1;
+    }
+
+    .hero.hero-image-only::before,
+    .hero.hero-image-only::after {
+      content: none;
+      display: none;
+    }
+
+    .hero.hero-image-only .container,
+    .hero.hero-image-only .hero-copy,
+    .hero.hero-image-only .eyebrow,
+    .hero.hero-image-only h1,
+    .hero.hero-image-only p,
+    .hero.hero-image-only .actions {
+      display: none !important;
+    }
+
+    body.mobile-view .hero.hero-image-only {
+      width: 100%;
+      min-height: 100svh;
+      min-height: 100dvh;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    body.mobile-view .hero.hero-image-only .hero-media img {
+      object-position: 62% center;
+      filter: none;
+      transform: none;
+    }
+
+    body.mobile-view .hero.hero-image-only::before,
+    body.mobile-view .hero.hero-image-only::after {
+      content: none;
+      display: none;
+    }
+
   </style>
 </head>
 
@@ -2208,7 +2275,7 @@
 
   <div id="pageRoot">
     <main id="mainContent">
-      <section class="hero" id="top">
+      <section class="hero hero-image-only" id="top" aria-label="Photography hero image">
         <div class="hero-media" aria-hidden="true">
           <img
             src="images/DSCF4051.jpg"
@@ -2219,21 +2286,6 @@
             loading="eager"
             decoding="async"
           />
-        </div>
-
-        <div class="container">
-          <div class="hero-copy">
-            <div class="eyebrow" data-i18n="heroEyebrow">Fotografieportfolio</div>
-            <h1 data-i18n="heroTitle">Fotografie met aandacht voor sfeer, licht en karakter</h1>
-            <p data-i18n="heroText">
-              Welkom op mijn portfolio, waar ik beelden laat zien die draaien om compositie,
-              detail en een rustige visuele kracht.
-            </p>
-            <div class="actions">
-              <a class="btn primary" href="#portfolio" data-i18n="heroBtn1">Bekijk portfolio</a>
-              <a class="btn" href="#contact" data-i18n="heroBtn2">Neem contact op</a>
-            </div>
-          </div>
         </div>
       </section>
 
