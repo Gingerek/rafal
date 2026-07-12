@@ -63,23 +63,44 @@
     gallery.innerHTML = '';
     project.photos.forEach((photo, index) => {
       const button = document.createElement('button');
-      button.className = 'gallery-card reveal';
+      button.className = 'gallery-card';
       button.type = 'button';
       button.dataset.photoIndex = String(index);
-      button.dataset.cursor = `OPEN ${String(index + 1).padStart(2, '0')}`;
+      button.dataset.cursor = 'View';
       button.setAttribute('aria-label', `${t('viewImage')} ${index + 1}`);
       const src = imagePath(photo.src);
       button.innerHTML = `
         <span class="gallery-media">
-          <img class="gallery-backdrop" src="${src}" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <img class="gallery-image" src="${src}" alt="${photo.alt}" loading="${index < 2 ? 'eager' : 'lazy'}" decoding="async">
+          <img class="gallery-image is-loading" src="${src}" alt="${photo.alt}" loading="lazy" fetchpriority="low" decoding="async">
         </span>
-        <span class="gallery-label"><span>${String(index + 1).padStart(2, '0')} / ${String(project.photos.length).padStart(2, '0')}</span><b>${photo.alt}</b></span>`;
+        <span class="gallery-caption">${photo.alt}</span>`;
       gallery.appendChild(button);
     });
     gallery.classList.toggle('focus-mode', state.view === 'focus');
-    observeReveals();
+    prepareGalleryImages(gallery);
     bindCursorTargets(gallery);
+    warmFirstGalleryImages();
+  }
+
+  function prepareGalleryImages(root) {
+    $$('.gallery-image', root).forEach(image => {
+      const ready = () => image.classList.remove('is-loading');
+      if (image.complete && image.naturalWidth > 0) ready();
+      else {
+        image.addEventListener('load', ready, { once: true });
+        image.addEventListener('error', ready, { once: true });
+      }
+    });
+  }
+
+  function warmFirstGalleryImages() {
+    const preload = () => project.photos.slice(0, 3).forEach(photo => {
+      const image = new Image();
+      image.decoding = 'async';
+      image.src = imagePath(photo.src);
+    });
+    if ('requestIdleCallback' in window) requestIdleCallback(preload, { timeout: 1200 });
+    else setTimeout(preload, 350);
   }
 
   function setView(view) {
@@ -116,6 +137,7 @@
     [-1, 1].forEach(offset => {
       const photo = project.photos[(index + offset + project.photos.length) % project.photos.length];
       const image = new Image();
+      image.decoding = 'async';
       image.src = imagePath(photo.src);
     });
   }
@@ -127,6 +149,7 @@
     state.zoomed = false;
     image.classList.remove('is-zoomed');
     const next = new Image();
+    next.decoding = 'async';
     next.onload = () => {
       image.src = next.src;
       image.alt = photo.alt;
@@ -179,10 +202,8 @@
 
   function setupHero() {
     const hero = $('#projectHeroImage');
-    const backdrop = $('.project-hero-backdrop');
     hero.src = imagePath(project.cover);
     hero.alt = localized(project.title);
-    backdrop.src = imagePath(project.cover);
     body.dataset.theme = project.theme || 'warm';
     const stored = sessionStorage.getItem('fotodisogno-transition-project');
     if (stored === project.id) {
@@ -190,7 +211,7 @@
       setTimeout(() => {
         hero.style.viewTransitionName = '';
         sessionStorage.removeItem('fotodisogno-transition-project');
-      }, 1500);
+      }, 1100);
     }
   }
 
@@ -213,7 +234,7 @@
       if (target.dataset.cursorBound === 'true') return;
       target.dataset.cursorBound = 'true';
       target.addEventListener('mouseenter', () => {
-        cursorLabel.textContent = target.dataset.cursor || 'OPEN';
+        cursorLabel.textContent = target.dataset.cursor || 'View';
         cursor.classList.add('active');
       });
       target.addEventListener('mouseleave', () => cursor.classList.remove('active'));
@@ -223,11 +244,33 @@
   function updateScrollState() {
     $('#projectHeader').classList.toggle('scrolled', scrollY > 18);
     const max = document.documentElement.scrollHeight - innerHeight;
-    $('#scrollProgress').style.height = `${max > 0 ? Math.min(100, scrollY / max * 100) : 0}%`;
-    const backdrop = $('.project-hero-backdrop');
-    if (backdrop && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      backdrop.style.transform = `translate3d(0,${Math.min(scrollY * .025, 22)}px,0) scale(1.06)`;
-    }
+    const progress = $('#scrollProgress');
+    if (progress) progress.style.height = `${max > 0 ? Math.min(100, scrollY / max * 100) : 0}%`;
+  }
+
+  function imageReady(image) {
+    if (!image) return Promise.resolve();
+    const decode = () => typeof image.decode === 'function' ? image.decode().catch(() => undefined) : Promise.resolve();
+    if (image.complete && image.naturalWidth > 0) return decode();
+    return new Promise(resolve => {
+      image.addEventListener('load', () => decode().finally(resolve), { once: true });
+      image.addEventListener('error', resolve, { once: true });
+    });
+  }
+
+  function windowLoaded() {
+    if (document.readyState === 'complete') return Promise.resolve();
+    return new Promise(resolve => addEventListener('load', resolve, { once: true }));
+  }
+
+  async function releaseLoadingScreen(delay = 280) {
+    const critical = $$('img[data-critical]');
+    await Promise.all([windowLoaded(), ...critical.map(imageReady)]);
+    setTimeout(() => body.classList.add('is-ready'), delay);
+  }
+
+  function markReturnHome() {
+    sessionStorage.setItem('fotodisogno-return-home', '1');
   }
 
   function init() {
@@ -235,7 +278,6 @@
     state.lang = data.translations[requested] ? requested : 'nl';
     state.view = sessionStorage.getItem('fotodisogno-gallery-view') === 'focus' ? 'focus' : 'grid';
     $('#projectYear').textContent = project.year;
-    $('#projectCount').textContent = `${String(project.photos.length).padStart(2, '0')} IMAGES`;
     $('#year').textContent = new Date().getFullYear();
     setupHero();
     applyLanguage();
@@ -250,6 +292,8 @@
       applyLanguage();
     }));
     $$('[data-view]').forEach(button => button.addEventListener('click', () => setView(button.dataset.view)));
+    $('#backHome').addEventListener('click', markReturnHome);
+    $('#brandHome').addEventListener('click', markReturnHome);
     $('#story').addEventListener('click', event => {
       const button = event.target.closest('[data-photo-index]');
       if (button) openLightbox(Number(button.dataset.photoIndex));
@@ -274,6 +318,7 @@
     addEventListener('mousemove', moveCursor, { passive: true });
     addEventListener('scroll', updateScrollState, { passive: true });
     addEventListener('resize', updateScrollState, { passive: true });
+    addEventListener('pagehide', markReturnHome);
     document.addEventListener('keydown', event => {
       if (!$('#projectLightbox').classList.contains('open')) return;
       if (event.key === 'Escape') closeLightbox();
@@ -282,12 +327,15 @@
       if (event.key.toLowerCase() === 'z') toggleZoom();
     });
     updateScrollState();
-
-    const ready = () => body.classList.add('is-ready');
-    addEventListener('load', () => setTimeout(ready, 420), { once: true });
-    if (document.readyState === 'complete') setTimeout(ready, 420);
-    setTimeout(ready, 1800);
+    releaseLoadingScreen();
   }
+
+  addEventListener('pageshow', event => {
+    if (event.persisted) {
+      body.classList.remove('is-ready');
+      releaseLoadingScreen(320);
+    }
+  });
 
   document.addEventListener('DOMContentLoaded', init);
 })();
