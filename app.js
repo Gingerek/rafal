@@ -4,9 +4,9 @@
 
   const previews = {
     people:   { src: 'DSC04191-2.avif', tint: '#241713' },
-    street:   { src: 'A7408793.jpg', tint: '#0e1b27' },
+    street:   { src: 'A7408846.avif', tint: '#0e1b27' },
     nature:   { src: 'A7403102.avif', tint: '#102017' },
-    travel:   { src: 'A7406608.jpg', tint: '#0d2029' },
+    travel:   { src: 'A7406616.avif', tint: '#0d2029' },
     creative: { src: 'A7406311-2.avif', tint: '#25150e' }
   };
 
@@ -52,21 +52,17 @@
       panel.href = projectHref(project.id);
       panel.dataset.project = project.id;
       panel.dataset.projectIndex = String(index);
-      panel.dataset.cursor = `OPEN ${String(index + 1).padStart(2, '0')}`;
+      panel.dataset.cursor = 'View';
       panel.style.setProperty('--panel-tint', config.tint);
       panel.innerHTML = `
         <div class="project-panel-copy">
-          <span class="project-panel-index">${String(index + 1).padStart(2, '0')} / ${String(data.projects.length).padStart(2, '0')}</span>
           <h3>${localized(project.title)}</h3>
           <div class="project-panel-meta"><span>${project.year}</span><span>${localized(project.location)}</span></div>
           <p>${localized(project.description)}</p>
           <span class="project-panel-link">${t('openStory')} <i aria-hidden="true">↗</i></span>
         </div>
         <div class="project-panel-media">
-          <img class="project-panel-backdrop" src="${imagePath(config.src)}" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <img class="project-panel-image" src="${imagePath(config.src)}" alt="${localized(project.title)}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async">
-          <span class="project-panel-scan" aria-hidden="true"></span>
-          <span class="project-panel-corner">FDS / ${String(index + 1).padStart(2, '0')}</span>
+          <img class="project-panel-image" src="${imagePath(config.src)}" alt="${localized(project.title)}" loading="${index === 0 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'low'}" decoding="async"${index === 0 ? ' data-critical' : ''}>
         </div>`;
 
       panel.addEventListener('click', () => {
@@ -82,28 +78,24 @@
     observeReveals();
     observePanels();
     bindCursorTargets(rail);
-    bindTilt(rail);
   }
 
   let panelObserver;
   function observePanels() {
     panelObserver?.disconnect();
     const panels = $$('.project-panel');
+    if (!('IntersectionObserver' in window)) return;
     panelObserver = new IntersectionObserver(entries => {
-      const visible = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
       if (!visible) return;
       const index = Number(visible.target.dataset.projectIndex || 0);
       state.active = index;
       panels.forEach((panel, panelIndex) => panel.classList.toggle('is-active', panelIndex === index));
-      $('#railCurrent').textContent = String(index + 1).padStart(2, '0');
-      $('#railProgress').style.width = `${((index + 1) / panels.length) * 100}%`;
       const project = data.projects[index];
       document.body.dataset.activeProject = project.id;
       const tint = previews[project.id]?.tint || '#101820';
       document.documentElement.style.setProperty('--active-glow', `${tint}66`);
-    }, { threshold: [0.24, 0.42, 0.62], rootMargin: '-12% 0px -18%' });
+    }, { threshold: [0.25, 0.5], rootMargin: '-12% 0px -18%' });
     panels.forEach(panel => panelObserver.observe(panel));
   }
 
@@ -130,19 +122,6 @@
     });
   }
 
-  function bindTilt(root = document) {
-    if (!matchMedia('(hover:hover) and (pointer:fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    $$('.project-panel', root).forEach(panel => {
-      panel.addEventListener('pointermove', event => {
-        const rect = panel.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width - .5;
-        const y = (event.clientY - rect.top) / rect.height - .5;
-        panel.style.transform = `perspective(1400px) rotateX(${(-y * 1.7).toFixed(2)}deg) rotateY(${(x * 2.1).toFixed(2)}deg)`;
-      });
-      panel.addEventListener('pointerleave', () => { panel.style.transform = ''; });
-    });
-  }
-
   const cursor = $('#cursor');
   const cursorLabel = $('#cursorLabel');
   let cursorFrame = 0;
@@ -162,7 +141,7 @@
       if (target.dataset.cursorBound === 'true') return;
       target.dataset.cursorBound = 'true';
       target.addEventListener('mouseenter', () => {
-        cursorLabel.textContent = target.dataset.cursor || 'OPEN';
+        cursorLabel.textContent = target.dataset.cursor || 'View';
         cursor.classList.add('active');
       });
       target.addEventListener('mouseleave', () => cursor.classList.remove('active'));
@@ -177,11 +156,31 @@
   function updateScrollState() {
     $('#siteHeader')?.classList.toggle('scrolled', scrollY > 18);
     const max = document.documentElement.scrollHeight - innerHeight;
-    $('#scrollProgress').style.height = `${max > 0 ? Math.min(100, scrollY / max * 100) : 0}%`;
-    const backdrop = $('.hero-backdrop');
-    if (backdrop && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      backdrop.style.transform = `translate3d(0,${Math.min(scrollY * .025, 22)}px,0) scale(1.06)`;
-    }
+    const progress = $('#scrollProgress');
+    if (progress) progress.style.height = `${max > 0 ? Math.min(100, scrollY / max * 100) : 0}%`;
+  }
+
+  function imageReady(image) {
+    if (!image) return Promise.resolve();
+    const decode = () => typeof image.decode === 'function' ? image.decode().catch(() => undefined) : Promise.resolve();
+    if (image.complete && image.naturalWidth > 0) return decode();
+    return new Promise(resolve => {
+      image.addEventListener('load', () => decode().finally(resolve), { once: true });
+      image.addEventListener('error', resolve, { once: true });
+    });
+  }
+
+  function windowLoaded() {
+    if (document.readyState === 'complete') return Promise.resolve();
+    return new Promise(resolve => addEventListener('load', resolve, { once: true }));
+  }
+
+  async function releaseLoadingScreen(forceReturnDelay = false) {
+    const returning = forceReturnDelay || sessionStorage.getItem('fotodisogno-return-home') === '1';
+    sessionStorage.removeItem('fotodisogno-return-home');
+    const critical = $$('img[data-critical]');
+    await Promise.all([windowLoaded(), ...critical.map(imageReady)]);
+    setTimeout(() => document.body.classList.add('is-ready'), returning ? 2000 : 280);
   }
 
   function init() {
@@ -208,12 +207,15 @@
     addEventListener('resize', updateScrollState, { passive: true });
     document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
     updateScrollState();
-
-    const ready = () => document.body.classList.add('is-ready');
-    addEventListener('load', () => setTimeout(ready, 420), { once: true });
-    if (document.readyState === 'complete') setTimeout(ready, 420);
-    setTimeout(ready, 1800);
+    releaseLoadingScreen();
   }
+
+  addEventListener('pageshow', event => {
+    if (event.persisted && sessionStorage.getItem('fotodisogno-return-home') === '1') {
+      document.body.classList.remove('is-ready');
+      releaseLoadingScreen(true);
+    }
+  });
 
   document.addEventListener('DOMContentLoaded', init);
 })();
