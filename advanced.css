@@ -1,15 +1,15 @@
 @view-transition{navigation:auto}
-::view-transition-old(root){animation:pageOut .38s ease both}
-::view-transition-new(root){animation:pageIn .58s cubic-bezier(.22,1,.36,1) both}
-@keyframes pageOut{to{opacity:0;filter:blur(10px);transform:scale(.992)}}
-@keyframes pageIn{from{opacity:0;filter:blur(12px);transform:scale(1.008)}}
+::view-transition-old(root){animation:pageOut .28s ease both}
+::view-transition-new(root){animation:pageIn .42s cubic-bezier(.22,1,.36,1) both}
+@keyframes pageOut{to{opacity:0;transform:scale(.996)}}
+@keyframes pageIn{from{opacity:0;transform:scale(1.004)}}
 
-.home-page{--active-glow:rgba(159,244,255,.08)}
+.home-page{--active-glow:rgba(159,244,255,.07)}
 .home-page::after{content:"";position:fixed;z-index:0;inset:0;pointer-events:none;background:
-  linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),
-  radial-gradient(680px circle at var(--pointer-x,70%) var(--pointer-y,25%),var(--active-glow),transparent 70%);
-  background-size:80px 80px,80px 80px,auto;mask-image:linear-gradient(to bottom,transparent 0,#000 18%,#000 82%,transparent 100%)}
+  linear-gradient(rgba(255,255,255,.014) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px),
+  radial-gradient(640px circle at var(--pointer-x,70%) var(--pointer-y,25%),var(--active-glow),transparent 72%);
+  background-size:96px 96px,96px 96px,auto;mask-image:linear-gradient(to bottom,transparent 0,#000 18%,#000 84%,transparent 100%)}
 .home-page>main,.home-page>.site-header,.home-page>.site-footer{position:relative;z-index:1}
 
 .project-panel[data-project="people"]{--panel-tint:#241713}
@@ -17,28 +17,15 @@
 .project-panel[data-project="nature"]{--panel-tint:#102017}
 .project-panel[data-project="travel"]{--panel-tint:#0d2029}
 .project-panel[data-project="creative"]{--panel-tint:#25150e}
-.project-panel.is-active{border-color:rgba(159,244,255,.32);box-shadow:0 0 0 1px rgba(159,244,255,.04),0 50px 130px rgba(0,0,0,.38)}
-.project-panel.is-active .project-panel-corner{color:var(--accent)}
-.project-panel::after{content:"";position:absolute;z-index:6;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 0 46%,rgba(159,244,255,.08) 49%,transparent 52%);transform:translateX(-120%);opacity:0}
-.project-panel.is-active::after{animation:panelSweep 1.2s var(--ease) .12s both}
-@keyframes panelSweep{35%{opacity:.45}to{transform:translateX(120%);opacity:0}}
-
-.project-panel-media::after{content:"";position:absolute;z-index:5;inset:0;pointer-events:none;border:1px solid rgba(255,255,255,.09);box-shadow:inset 0 0 60px rgba(0,0,0,.24)}
-.project-panel-media:hover .project-panel-scan{opacity:.18;animation:scanDrift 5s linear infinite}
-@keyframes scanDrift{to{background-position:0 64px}}
-
-.hero-image,.hero-backdrop{transition:opacity .8s ease,filter .8s ease}
-.hero::after{content:"";position:absolute;z-index:2;inset:auto 0 0;height:18vh;background:linear-gradient(to top,var(--bg),transparent);pointer-events:none}
-.hero-hud,.hero-corner{animation:heroHudIn .85s var(--ease) .55s both}
-@keyframes heroHudIn{from{opacity:0;transform:translateY(18px)}}
-
-.about-frame::after{content:"";position:absolute;inset:14px;border:1px solid rgba(159,244,255,.08);pointer-events:none}
-.contact-grid a::before{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .5s var(--ease)}
+.project-panel.is-active{border-color:rgba(159,244,255,.3);box-shadow:0 48px 120px rgba(0,0,0,.34)}
+.project-panel-media::after{content:"";position:absolute;z-index:4;inset:0;pointer-events:none;border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 0 52px rgba(0,0,0,.18)}
+.hero::after{content:"";position:absolute;z-index:2;inset:auto 0 0;height:16vh;background:linear-gradient(to top,var(--bg),transparent);pointer-events:none}
+.hero-hud{animation:heroIn .72s var(--ease) .35s both}
+@keyframes heroIn{from{opacity:0;transform:translateY(14px)}}
+.about-frame::after{content:"";position:absolute;inset:14px;border:1px solid rgba(159,244,255,.07);pointer-events:none}
+.contact-grid a::before{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .45s var(--ease)}
 .contact-grid a{position:relative}.contact-grid a:hover::before{width:100%}
 
-@media(hover:hover) and (pointer:fine){
-  [data-cursor]{cursor:none}
-  .project-panel{transition:border-color .35s ease,box-shadow .35s ease,transform .18s ease}
-}
-@media(max-width:760px){.home-page::after{background-size:48px 48px,48px 48px,auto}.project-panel::after{display:none}}
-@media(prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}.project-panel.is-active::after{animation:none;display:none}.hero-hud,.hero-corner{animation:none}}
+@media(hover:hover) and (pointer:fine){[data-cursor]{cursor:none}.project-panel{transition:border-color .3s ease,box-shadow .3s ease}}
+@media(max-width:760px){.home-page::after{background-size:58px 58px,58px 58px,auto}}
+@media(prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}.hero-hud{animation:none}}
