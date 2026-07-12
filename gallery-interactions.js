@@ -71,8 +71,8 @@
 
   function titleClass(title) {
     const length = String(title || '').trim().length;
-    if (length >= 24) return 'title-extra-long';
-    if (length >= 16) return 'title-long';
+    if (length >= 22) return 'title-extra-long';
+    if (length >= 14) return 'title-long';
     return 'title-standard';
   }
 
