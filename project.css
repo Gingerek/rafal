@@ -61,8 +61,8 @@ html.overlay-open,body.overlay-open{overflow:hidden!important;overscroll-behavio
 .lightbox-title{font:400 1.25rem/1 var(--font-display)}
 .lightbox-tools{display:flex;gap:10px}.lightbox-tool{width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:rgba(255,255,255,.035)}
 .lightbox-stage{position:absolute;inset:0;width:100vw;height:100svh;height:100dvh;display:block;padding:0;overflow:hidden}
-.lightbox-image-wrap{position:absolute;inset:0;width:100vw;height:100svh;height:100dvh;display:grid;place-items:center;padding:8px clamp(8px,4.5vw,72px);overflow:hidden;overscroll-behavior:none}
-.lightbox-image{display:block;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:contain!important;object-position:center!important;user-select:none;transition:opacity .22s ease,transform .32s var(--ease);cursor:default}
+.lightbox-image-wrap{position:absolute;inset:0;width:100vw;height:100svh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;overscroll-behavior:none}
+.project-lightbox .lightbox-image{display:block;flex:none;width:auto!important;height:auto!important;max-width:calc(100vw - 48px)!important;max-height:calc(100dvh - 48px)!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:center!important;user-select:none;transition:opacity .22s ease,transform .32s var(--ease);cursor:default}
 .lightbox-image.is-changing{opacity:.22;transform:scale(.992)}
 .lightbox-arrow{position:absolute;z-index:7;top:50%;width:48px;height:72px;color:rgba(255,255,255,.72);font:400 3.2rem/1 var(--font-display);transform:translateY(-50%)}
 .lightbox-prev{left:8px}.lightbox-next{right:8px}
@@ -81,6 +81,6 @@ html.overlay-open,body.overlay-open{overflow:hidden!important;overscroll-behavio
   .gallery-section,.project-navigation,.project-contact{width:calc(100% - 24px)}.gallery-header{align-items:flex-start;flex-direction:column}.gallery-header h2{font-size:3.2rem}
   .gallery-grid{grid-template-columns:1fr;width:min(560px,100%);gap:24px}
   .project-navigation{grid-template-columns:1fr}.project-nav-link{min-height:160px;padding:24px}.project-nav-link:last-child{justify-items:start;text-align:left;border-left:0;border-top:1px solid var(--line)}.project-nav-link:last-child>span{left:24px;right:auto}
-  .lightbox-image-wrap{padding:4px 6px}.lightbox-arrow{width:40px;height:58px;background:rgba(0,0,0,.28)}.lightbox-prev{left:0}.lightbox-next{right:0}.lightbox-title{font-size:1.1rem}.lightbox-bottom{bottom:max(8px,env(safe-area-inset-bottom))}
+  .lightbox-image-wrap{padding:6px}.project-lightbox .lightbox-image{max-width:calc(100vw - 12px)!important;max-height:calc(100dvh - 12px)!important}.lightbox-arrow{width:40px;height:58px;background:rgba(0,0,0,.28)}.lightbox-prev{left:0}.lightbox-next{right:0}.lightbox-title{font-size:1.1rem}.lightbox-bottom{bottom:max(8px,env(safe-area-inset-bottom))}
 }
 @media(prefers-reduced-motion:reduce){.project-page::after{display:none}.gallery-card,.gallery-image{transition:none!important}}
