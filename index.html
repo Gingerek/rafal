@@ -23,10 +23,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/DSCF4051.jpg" fetchpriority="high">
-  <link rel="preload" as="image" href="images/DSC04191-2.avif" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=20260712-6">
-  <link rel="stylesheet" href="advanced.css?v=20260712-6">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Rafał Wilk","url":"https://fotodisogno.com/","image":"https://fotodisogno.com/images/DSCF4051.jpg","sameAs":["https://instagram.com/fotodisogno"],"jobTitle":"Photographer","email":"mailto:fotodisogno@gmail.com"}</script>
+  <link rel="stylesheet" href="styles.css?v=20260712-7">
+  <link rel="stylesheet" href="advanced.css?v=20260712-7">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Rafał Wilk","url":"https://fotodisogno.com/","sameAs":["https://instagram.com/fotodisogno"],"jobTitle":"Photographer","email":"mailto:fotodisogno@gmail.com"}</script>
 </head>
 <body class="home-page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -58,9 +57,7 @@
 
   <main id="main">
     <section class="editorial-hero" id="top" aria-labelledby="heroTitle">
-      <figure class="hero-visual reveal-media">
-        <img id="heroImage" src="images/DSCF4051.jpg" alt="Atmospheric portrait by Rafał Wilk" fetchpriority="high" decoding="async" data-preload>
-      </figure>
+      <figure class="hero-visual reveal-media" data-responsive-slot data-source="DSCF4051.jpg" data-alt="Atmospheric portrait by Rafał Wilk" data-sizes="(max-width: 800px) 100vw, 66vw" data-image-class="hero-image" data-preload="true"></figure>
       <div class="hero-copy">
         <p class="hero-kicker" data-home-copy="heroKicker">Photography / The Netherlands</p>
         <h1 id="heroTitle"><span>Rafał</span><span>Wilk</span></h1>
@@ -80,9 +77,7 @@
     </section>
 
     <section class="manifest-section reveal" aria-label="Photography statement">
-      <figure class="manifest-visual">
-        <img src="images/A7408793.jpg" alt="Figure at sunset" loading="eager" decoding="async" data-preload>
-      </figure>
+      <figure class="manifest-visual" data-responsive-slot data-source="A7408793.jpg" data-alt="Figure at sunset" data-sizes="100vw" data-image-class="manifest-image" data-preload="true"></figure>
       <div class="manifest-copy">
         <p class="section-kicker" data-home-copy="manifestKicker">A way of seeing</p>
         <blockquote data-home-copy="manifestQuote">Light reveals what speed makes invisible.</blockquote>
@@ -90,10 +85,9 @@
     </section>
 
     <section class="about-section" id="about">
-      <div class="about-visual reveal">
-        <figure class="about-frame">
-          <img src="images/ChatGPT%20Image%2028%20mar%202026,%2016_46_19.png" alt="Rafał Wilk" loading="lazy" decoding="async">
-        </figure>
+      <div class="about-signature reveal" aria-label="Rafał Wilk, photographer based in the Netherlands">
+        <span class="about-monogram" aria-hidden="true">RW</span>
+        <div class="about-signature-meta"><span>Rafał Wilk</span><span>Photographer</span><span>The Netherlands</span></div>
       </div>
       <div class="about-copy reveal">
         <p class="section-kicker" data-i18n="aboutEyebrow">About</p>
@@ -118,7 +112,8 @@
   </main>
 
   <footer class="site-footer"><span>FotodiSogno © <b id="year"></b></span><span>Rafał Wilk · The Netherlands</span></footer>
-  <script src="project-data.js" defer></script>
-  <script src="app.js?v=20260712-6" defer></script>
+  <script src="responsive-image-data.js?v=20260712-7" defer></script>
+  <script src="project-data.js?v=20260712-7" defer></script>
+  <script src="app.js?v=20260712-7" defer></script>
 </body>
 </html>
