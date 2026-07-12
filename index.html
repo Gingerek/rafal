@@ -7,7 +7,7 @@
   <meta name="description" content="FotodiSogno is the photography portfolio of Rafał Wilk: portraits, street stories, travel, nature and visual experiments.">
   <meta name="author" content="Rafał Wilk">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#080807">
+  <meta name="theme-color" content="#090909">
   <link rel="canonical" href="https://fotodisogno.com/">
 
   <meta property="og:type" content="website">
@@ -23,7 +23,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/DSCF4051.jpg" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
 
@@ -71,17 +71,18 @@
     <section class="hero" id="top" aria-labelledby="heroTitle">
       <img class="hero-image" src="images/DSCF4051.jpg" alt="Atmospheric portrait by Rafał Wilk" width="1920" height="1280" fetchpriority="high" decoding="async">
       <div class="hero-shade" aria-hidden="true"></div>
-      <div class="hero-content">
-        <p class="eyebrow" data-i18n="heroEyebrow">Photography portfolio</p>
-        <h1 id="heroTitle">FotodiSogno</h1>
-        <p class="hero-lead" data-i18n="heroLead">Photography shaped by light, atmosphere and the quiet strength of a moment.</p>
-        <p class="hero-meta" data-i18n="heroMeta">Portrait · Street · Travel · Visual stories</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#work" data-i18n="heroCtaWork">View selected work</a>
-          <a class="button button-ghost" href="#contact" data-i18n="heroCtaContact">Contact</a>
+      <h1 class="sr-only" id="heroTitle">FotodiSogno — Photography by Rafał Wilk</h1>
+
+      <div class="hero-caption">
+        <div>
+          <p class="hero-caption-name">Rafał Wilk</p>
+          <p class="hero-caption-type" data-i18n="heroEyebrow">Photography portfolio</p>
         </div>
+        <a class="hero-view-link" href="#work">
+          <span data-i18n="heroCtaWork">View selected work</span>
+          <span aria-hidden="true">↘</span>
+        </a>
       </div>
-      <a class="scroll-cue" href="#work" aria-label="Scroll to selected work"><span></span></a>
     </section>
 
     <section class="section work-section" id="work">
