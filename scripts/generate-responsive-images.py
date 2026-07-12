@@ -11,8 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT / "images"
 OUTPUT_DIR = SOURCE_DIR / "responsive"
 DATA_FILE = ROOT / "responsive-image-data.js"
+PROJECT_DATA_FILE = ROOT / "project-data.js"
 WIDTHS = (480, 800, 1200, 1800)
-EXTENSIONS = {".jpg", ".jpeg", ".png", ".avif", ".webp"}
+IMAGE_PATTERN = re.compile(r'["\']([^"\']+\.(?:jpe?g|png|avif|webp))["\']', re.IGNORECASE)
+ALWAYS_USED = {"DSCF4051.jpg", "A7408793.jpg"}
 
 
 def safe_name(path: Path) -> str:
@@ -22,23 +24,26 @@ def safe_name(path: Path) -> str:
 
 def save_variant(image: Image.Image, destination: Path, fmt: str) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
-    save_image = image
     if fmt == "AVIF":
-        save_image.save(destination, "AVIF", quality=66, speed=6)
+        image.save(destination, "AVIF", quality=66, speed=6)
     else:
-        save_image.save(destination, "WEBP", quality=76, method=6)
+        image.save(destination, "WEBP", quality=76, method=6)
+
+
+def referenced_images() -> list[Path]:
+    source_text = PROJECT_DATA_FILE.read_text(encoding="utf-8")
+    names = set(IMAGE_PATTERN.findall(source_text)) | ALWAYS_USED
+    return sorted(
+        path for name in names
+        if (path := SOURCE_DIR / name).is_file()
+    )
 
 
 def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     manifest: dict[str, dict[str, object]] = {}
 
-    sources = sorted(
-        path for path in SOURCE_DIR.iterdir()
-        if path.is_file() and path.suffix.lower() in EXTENSIONS
-    )
-
-    for source in sources:
+    for source in referenced_images():
         try:
             with Image.open(source) as opened:
                 image = ImageOps.exif_transpose(opened)
@@ -49,11 +54,9 @@ def main() -> None:
                 variants: list[dict[str, object]] = []
 
                 generated_widths = [width for width in WIDTHS if width < original_width]
-                if not generated_widths or generated_widths[-1] != min(1800, original_width):
-                    generated_widths.append(min(1800, original_width))
-                generated_widths = sorted(set(generated_widths))
+                generated_widths.append(min(1800, original_width))
 
-                for width in generated_widths:
+                for width in sorted(set(generated_widths)):
                     height = max(1, round(original_height * width / original_width))
                     resized = image.resize((width, height), Image.Resampling.LANCZOS)
                     avif_path = OUTPUT_DIR / f"{slug}-{width}.avif"
