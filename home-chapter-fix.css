@@ -12,25 +12,23 @@
 }
 
 .home-page .project-chapter::before{
-  background:
-    linear-gradient(90deg,rgba(255,255,255,.018),transparent 34%),
-    linear-gradient(145deg,var(--chapter-bg),#070707 78%)!important;
+  background:linear-gradient(145deg,var(--chapter-bg),#080808 82%)!important;
   opacity:1!important;
 }
 
 .home-page .project-chapter::after{
   left:clamp(24px,5vw,86px)!important;
   right:clamp(24px,5vw,86px)!important;
-  background:rgba(255,255,255,.1)!important;
+  background:rgba(255,255,255,.09)!important;
 }
 
-.home-page .project-chapter[data-project="people"]{--chapter-bg:#100c0a}
-.home-page .project-chapter[data-project="street"]{--chapter-bg:#090d10}
-.home-page .project-chapter[data-project="nature"]{--chapter-bg:#0b0f0b}
-.home-page .project-chapter[data-project="travel"]{--chapter-bg:#0a0d0f}
-.home-page .project-chapter[data-project="creative"]{--chapter-bg:#100b09}
+.home-page .project-chapter[data-project="people"]{--chapter-bg:#0d0b0a}
+.home-page .project-chapter[data-project="street"]{--chapter-bg:#090b0d}
+.home-page .project-chapter[data-project="nature"]{--chapter-bg:#0a0d0a}
+.home-page .project-chapter[data-project="travel"]{--chapter-bg:#090c0d}
+.home-page .project-chapter[data-project="creative"]{--chapter-bg:#0d0a09}
 
-/* Keep every text element in one deliberate editorial column */
+/* One deliberate text column */
 .home-page .project-chapter .chapter-copy,
 .home-page .layout-panorama .chapter-copy,
 .home-page .layout-portrait .chapter-copy,
@@ -88,9 +86,7 @@
   color:rgba(244,241,235,.52);
 }
 
-.home-page .project-chapter .chapter-meta::before{
-  content:none!important;
-}
+.home-page .project-chapter .chapter-meta::before{content:none!important}
 
 .home-page .project-chapter .chapter-copy>p,
 .home-page .layout-panorama .chapter-copy>p,
@@ -108,7 +104,7 @@
   line-height:1.62;
 }
 
-/* Image block: calm frame, no visual collisions */
+/* The photo itself is the visual object — no black stage, glow or oversized frame */
 .home-page .project-chapter .chapter-media,
 .home-page .layout-portrait .chapter-media,
 .home-page .layout-panorama .chapter-media,
@@ -118,78 +114,119 @@
   width:100%;
   min-width:0;
   min-height:0;
-  justify-items:center!important;
-  overflow:visible;
+  display:grid!important;
+  place-items:center!important;
+  overflow:visible!important;
+  background:transparent!important;
 }
 
 .home-page .project-chapter .chapter-media>a{
-  width:100%!important;
+  position:relative;
+  display:inline-grid!important;
+  place-items:center!important;
+  justify-self:center!important;
+  width:max-content!important;
+  max-width:100%!important;
   min-height:0!important;
-  padding:clamp(14px,1.5vw,24px);
-  background:rgba(0,0,0,.28);
-  border:1px solid rgba(255,255,255,.07);
-  box-shadow:0 34px 90px rgba(0,0,0,.32);
-  overflow:hidden;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  filter:none!important;
+  overflow:visible!important;
 }
 
 .home-page .project-chapter .chapter-media .responsive-picture{
+  display:block!important;
+  width:auto!important;
+  max-width:100%!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
   transform:none!important;
 }
 
 .home-page .project-chapter .chapter-image,
 .home-page .project-chapter .chapter-secondary-image{
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
   max-width:100%!important;
-  max-height:72vh!important;
+  max-height:76vh!important;
+  margin:0!important;
+  padding:0!important;
   object-fit:contain!important;
+  object-position:center!important;
+  background:transparent!important;
+  border:1px solid rgba(244,241,235,.17)!important;
+  border-radius:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  filter:none!important;
   transform:none!important;
 }
 
-/* Preserve the travel diptych but remove the stretched layout */
+.home-page .project-chapter:hover .chapter-image,
+.home-page .project-chapter:hover .chapter-secondary-image{
+  filter:none!important;
+  opacity:1!important;
+}
+
+/* Travel diptych: two clean photographs, each with its own fine border */
 .home-page .layout-diptych .chapter-media>a{
   display:grid!important;
+  width:100%!important;
+  max-width:100%!important;
   grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)!important;
   gap:clamp(10px,1.4vw,22px)!important;
   align-items:center;
 }
 
 .home-page .layout-diptych .chapter-media .responsive-picture{
-  background:#080808!important;
+  display:grid!important;
+  width:100%!important;
+  place-items:center!important;
+  background:transparent!important;
 }
 
-/* One compact CTA in the lower-left corner */
+.home-page .layout-diptych .chapter-image,
+.home-page .layout-diptych .chapter-secondary-image{
+  max-height:68vh!important;
+}
+
+/* Compact action placed directly over the photograph */
 .home-page .project-chapter .chapter-action,
 .home-page .layout-diptych .chapter-action{
-  left:clamp(24px,2.2vw,40px)!important;
+  left:clamp(14px,1.5vw,24px)!important;
   right:auto!important;
-  bottom:clamp(24px,2.2vw,40px)!important;
+  bottom:clamp(14px,1.5vw,24px)!important;
   transform:none!important;
   gap:8px!important;
-  padding:12px 14px!important;
-  border:1px solid rgba(255,255,255,.3)!important;
-  border-radius:2px;
-  background:rgba(5,5,5,.76)!important;
-  box-shadow:0 12px 30px rgba(0,0,0,.28);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
+  padding:10px 12px!important;
+  border:1px solid rgba(255,255,255,.34)!important;
+  border-radius:0!important;
+  background:rgba(5,5,5,.72)!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
   text-shadow:none;
 }
 
-.home-page .project-chapter .chapter-action span{
-  padding:0!important;
-}
-
-.home-page .project-chapter .chapter-action i{
-  padding:0 0 0 3px!important;
-}
+.home-page .project-chapter .chapter-action span{padding:0!important}
+.home-page .project-chapter .chapter-action i{padding:0 0 0 3px!important}
 
 .home-page .project-chapter .chapter-media>a:hover .chapter-action,
 .home-page .project-chapter .chapter-media>a:focus-visible .chapter-action{
   transform:translateY(-2px)!important;
-  border-color:rgba(255,255,255,.62)!important;
-  background:rgba(5,5,5,.9)!important;
+  border-color:rgba(255,255,255,.68)!important;
+  background:rgba(5,5,5,.86)!important;
 }
 
-/* Alternate only the order, never the internal text structure */
+/* Alternate only the order */
 @media(min-width:821px){
   .home-page .project-chapter:nth-child(even){
     grid-template-columns:minmax(0,1.58fr) minmax(330px,.42fr)!important;
@@ -230,9 +267,7 @@
     padding:0 4px!important;
   }
   .home-page .project-chapter .chapter-media,
-  .home-page .project-chapter:nth-child(even) .chapter-media{
-    order:2!important;
-  }
+  .home-page .project-chapter:nth-child(even) .chapter-media{order:2!important}
   .home-page .project-chapter .chapter-copy h3,
   .home-page .project-chapter .chapter-copy h3.title-long,
   .home-page .project-chapter .chapter-copy h3.title-extra-long{
@@ -240,16 +275,24 @@
     font-size:clamp(3.4rem,15vw,5.7rem)!important;
   }
   .home-page .project-chapter .chapter-media>a{
-    padding:8px;
+    width:100%!important;
+  }
+  .home-page .project-chapter .chapter-media .responsive-picture{
+    width:100%!important;
+  }
+  .home-page .project-chapter .chapter-image,
+  .home-page .project-chapter .chapter-secondary-image{
+    width:100%!important;
+    max-height:none!important;
   }
   .home-page .layout-diptych .chapter-media>a{
     grid-template-columns:1fr!important;
   }
   .home-page .project-chapter .chapter-action,
   .home-page .layout-diptych .chapter-action{
-    left:18px!important;
-    bottom:18px!important;
-    padding:10px 12px!important;
+    left:12px!important;
+    bottom:12px!important;
+    padding:9px 11px!important;
   }
 }
 
