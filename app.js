@@ -136,7 +136,6 @@
           <h3>${escapeHtml(localized(project.title))}</h3>
           <div class="chapter-meta"><span>${project.year}</span><span>${escapeHtml(localized(project.location))}</span></div>
           <p>${escapeHtml(localized(project.description))}</p>
-          <a class="text-link" href="${projectHref(project.id)}" data-cursor="View"><span>${escapeHtml(t('openStory'))}</span><i aria-hidden="true">↗</i></a>
         </div>`;
 
       const image = $('.chapter-image', chapter);
