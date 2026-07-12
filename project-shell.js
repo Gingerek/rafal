@@ -43,7 +43,7 @@
       <section class="project-continuation reveal" aria-label="Project navigation">
         <div class="continuation-top">
           <a class="previous-project-link" id="previousProject" href="#"><span aria-hidden="true">←</span><small data-i18n="previousProject">Previous project</small><strong></strong></a>
-          <p data-i18n="continueStory">Continue to the next series</p>
+          <p data-i18n="continueStory">Continue to the next gallery</p>
         </div>
         <a class="next-project-canvas" id="nextProject" href="#" data-cursor="Next">
           <div class="next-project-media" id="nextProjectMedia"></div>
@@ -51,7 +51,17 @@
         </a>
       </section>
 
-      <section class="project-contact reveal"><h2 data-i18n="projectContact">Have a project in mind?</h2><a class="text-link" href="mailto:fotodisogno@gmail.com"><span data-i18n="projectContactCta">Get in touch</span><i aria-hidden="true">↗</i></a></section>
+      <section class="project-contact reveal">
+        <div class="project-contact-intro">
+          <h2 data-i18n="projectContact">Have a project in mind?</h2>
+          <p data-i18n="contactLead">Tell me briefly what you have in mind. I am easiest to reach by e-mail or WhatsApp.</p>
+        </div>
+        <div class="contact-details-list" aria-label="Contact details">
+          <a class="contact-detail-row" href="mailto:fotodisogno@gmail.com" aria-label="E-mail: fotodisogno@gmail.com"><small>E-mail</small><strong>fotodisogno@gmail.com</strong><i aria-hidden="true">↗</i></a>
+          <a class="contact-detail-row" href="https://wa.me/31644747733" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp: +31 6 44 74 77 33"><small>WhatsApp</small><strong>+31 6 44 74 77 33</strong><i aria-hidden="true">↗</i></a>
+          <a class="contact-detail-row" href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" aria-label="Instagram: @fotodisogno"><small>Instagram</small><strong>@fotodisogno</strong><i aria-hidden="true">↗</i></a>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer"><span>FotodiSogno © <b id="year"></b></span><span>Rafał Wilk · The Netherlands</span></footer>
