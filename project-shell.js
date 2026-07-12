@@ -3,6 +3,7 @@
   const body = document.body;
   const project = data?.projects.find(item => item.id === body.dataset.project);
   if (!project) return;
+
   const title = project.title.en;
   const cover = `../../images/${encodeURIComponent(project.cover)}`;
 
@@ -33,10 +34,7 @@
       </section>
 
       <section class="gallery-section" aria-label="${title} photography">
-        <header class="gallery-header reveal">
-          <h2>Selected frames</h2>
-          <div class="view-switch" role="group" aria-label="Gallery layout"><button type="button" class="active" data-view="grid">GRID</button><button type="button" data-view="focus">FOCUS</button></div>
-        </header>
+        <header class="gallery-header reveal"><h2>Selected frames</h2></header>
         <div class="gallery-grid" id="story"></div>
       </section>
 
