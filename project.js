@@ -1,11 +1,12 @@
 (() => {
   const data = window.FOTODISOGNO;
   if (!data) return;
+
   const body = document.body;
   const project = data.projects.find(item => item.id === body.dataset.project);
   if (!project) return;
 
-  const state = { lang: 'nl', index: 0, touchX: 0, touchY: 0, uiTimer: 0, view: 'grid' };
+  const state = { lang: 'nl', index: 0, touchX: 0, touchY: 0, uiTimer: 0 };
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const t = key => data.translations[state.lang]?.[key] || data.translations.en[key] || key;
@@ -34,10 +35,12 @@
       button.classList.toggle('active', active);
       button.setAttribute('aria-pressed', String(active));
     });
+
     $('#projectTitle').textContent = localized(project.title);
     $('#projectDescription').textContent = localized(project.description);
     $('#projectLocation').textContent = localized(project.location);
     $('#lightboxProjectTitle').textContent = localized(project.title);
+
     const home = `../../?lang=${state.lang}#work`;
     $('#backHome').href = home;
     $('#brandHome').href = home;
@@ -61,6 +64,7 @@
   function renderGallery() {
     const gallery = $('#story');
     gallery.innerHTML = '';
+
     project.photos.forEach((photo, index) => {
       const button = document.createElement('button');
       button.className = 'gallery-card';
@@ -76,7 +80,7 @@
         <span class="gallery-caption">${photo.alt}</span>`;
       gallery.appendChild(button);
     });
-    gallery.classList.toggle('focus-mode', state.view === 'focus');
+
     prepareGalleryImages(gallery);
     bindCursorTargets(gallery);
     warmFirstGalleryImages();
@@ -101,13 +105,6 @@
     });
     if ('requestIdleCallback' in window) requestIdleCallback(preload, { timeout: 1200 });
     else setTimeout(preload, 350);
-  }
-
-  function setView(view) {
-    state.view = view === 'focus' ? 'focus' : 'grid';
-    $('#story').classList.toggle('focus-mode', state.view === 'focus');
-    $$('[data-view]').forEach(button => button.classList.toggle('active', button.dataset.view === state.view));
-    sessionStorage.setItem('fotodisogno-gallery-view', state.view);
   }
 
   let revealObserver;
@@ -146,6 +143,7 @@
     const image = $('#lightboxImage');
     const photo = project.photos[state.index];
     if (animate) image.classList.add('is-changing');
+
     const next = new Image();
     next.decoding = 'async';
     next.onload = () => {
@@ -155,6 +153,7 @@
     };
     next.onerror = () => image.classList.remove('is-changing');
     next.src = imagePath(photo.src);
+
     $('#lightboxCounter').textContent = `${String(state.index + 1).padStart(2, '0')} / ${String(project.photos.length).padStart(2, '0')}`;
     $('#lightboxProgressBar').style.width = `${((state.index + 1) / project.photos.length) * 100}%`;
     preloadAround(state.index);
@@ -222,7 +221,7 @@
     document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`);
     if (!cursor || cursorFrame) return;
     cursorFrame = requestAnimationFrame(() => {
-      cursor.style.transform = `translate(${event.clientX}px,${event.clientY}px) translate(-50%,-50%) scale(${cursor.classList.contains('active') ? 1 : .55})`;
+      cursor.style.transform = `translate(${event.clientX}px,${event.clientY}px) translate(-50%, -50%) scale(${cursor.classList.contains('active') ? 1 : .55})`;
       cursorFrame = 0;
     });
   }
@@ -273,15 +272,15 @@
   }
 
   function init() {
+    sessionStorage.removeItem('fotodisogno-gallery-view');
     const requested = new URL(location.href).searchParams.get('lang');
     state.lang = data.translations[requested] ? requested : 'nl';
-    state.view = sessionStorage.getItem('fotodisogno-gallery-view') === 'focus' ? 'focus' : 'grid';
     $('#projectYear').textContent = project.year;
     $('#year').textContent = new Date().getFullYear();
+
     setupHero();
     applyLanguage();
     renderGallery();
-    setView(state.view);
     $$('.gallery-header,.project-navigation,.project-contact').forEach(node => node.classList.add('reveal'));
     observeReveals();
     bindCursorTargets();
@@ -290,7 +289,7 @@
       state.lang = button.dataset.lang;
       applyLanguage();
     }));
-    $$('[data-view]').forEach(button => button.addEventListener('click', () => setView(button.dataset.view)));
+
     $('#backHome').addEventListener('click', markReturnHome);
     $('#brandHome').addEventListener('click', markReturnHome);
     $('#story').addEventListener('click', event => {
@@ -300,14 +299,19 @@
     $('#closeLightbox').addEventListener('click', closeLightbox);
     $('#previousPhoto').addEventListener('click', () => moveLightbox(-1));
     $('#nextPhoto').addEventListener('click', () => moveLightbox(1));
+
     const stage = $('#lightboxStage');
-    stage.addEventListener('pointerdown', event => { state.touchX = event.clientX; state.touchY = event.clientY; });
+    stage.addEventListener('pointerdown', event => {
+      state.touchX = event.clientX;
+      state.touchY = event.clientY;
+    });
     stage.addEventListener('pointerup', event => {
       const dx = event.clientX - state.touchX;
       const dy = event.clientY - state.touchY;
       if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.25) moveLightbox(dx < 0 ? 1 : -1);
     });
     stage.addEventListener('pointermove', showLightboxUI, { passive: true });
+
     const lightbox = $('#projectLightbox');
     lightbox.addEventListener('wheel', preventViewportScroll, { passive: false });
     lightbox.addEventListener('touchmove', preventViewportScroll, { passive: false });
@@ -315,6 +319,7 @@
       showLightboxUI();
       if (event.target === lightbox) closeLightbox();
     });
+
     addEventListener('mousemove', moveCursor, { passive: true });
     addEventListener('scroll', updateScrollState, { passive: true });
     addEventListener('resize', updateScrollState, { passive: true });
@@ -325,6 +330,7 @@
       if (event.key === 'ArrowLeft') moveLightbox(-1);
       if (event.key === 'ArrowRight') moveLightbox(1);
     });
+
     updateScrollState();
     releaseLoadingScreen();
   }
