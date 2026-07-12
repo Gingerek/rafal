@@ -6,6 +6,12 @@
   const project = data.projects.find(item => item.id === body.dataset.project);
   if (!project) return;
 
+  const localCopy = {
+    nl: { view: 'Bekijk foto’s' },
+    en: { view: 'View photographs' },
+    pl: { view: 'Zobacz fotografie' }
+  };
+
   const state = { lang: 'nl', index: 0, touchX: 0, touchY: 0, uiTimer: 0 };
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -39,7 +45,7 @@
     $('#projectTitle').textContent = localized(project.title);
     $('#projectDescription').textContent = localized(project.description);
     $('#projectLocation').textContent = localized(project.location);
-    $('#lightboxProjectTitle').textContent = localized(project.title);
+    $('.project-opening .text-link span').textContent = localCopy[state.lang]?.view || localCopy.en.view;
 
     const home = `../../?lang=${state.lang}#work`;
     $('#backHome').href = home;
@@ -72,18 +78,13 @@
       button.dataset.photoIndex = String(index);
       button.dataset.cursor = 'View';
       button.setAttribute('aria-label', `${t('viewImage')} ${index + 1}`);
-      const src = imagePath(photo.src);
-      button.innerHTML = `
-        <span class="gallery-media">
-          <img class="gallery-image is-loading" src="${src}" alt="${photo.alt}" loading="lazy" fetchpriority="low" decoding="async">
-        </span>
-        <span class="gallery-caption">${photo.alt}</span>`;
+      const preload = index < 6;
+      button.innerHTML = `<span class="gallery-media"><img class="gallery-image is-loading" src="${imagePath(photo.src)}" alt="${photo.alt}" loading="${preload ? 'eager' : 'lazy'}" fetchpriority="${index < 2 ? 'high' : 'auto'}" decoding="async"${preload ? ' data-preload' : ''}></span>`;
       gallery.appendChild(button);
     });
 
     prepareGalleryImages(gallery);
     bindCursorTargets(gallery);
-    warmFirstGalleryImages();
   }
 
   function prepareGalleryImages(root) {
@@ -95,16 +96,6 @@
         image.addEventListener('error', ready, { once: true });
       }
     });
-  }
-
-  function warmFirstGalleryImages() {
-    const preload = () => project.photos.slice(0, 3).forEach(photo => {
-      const image = new Image();
-      image.decoding = 'async';
-      image.src = imagePath(photo.src);
-    });
-    if ('requestIdleCallback' in window) requestIdleCallback(preload, { timeout: 1200 });
-    else setTimeout(preload, 350);
   }
 
   let revealObserver;
@@ -150,32 +141,26 @@
   function fitLightboxImage(image, naturalWidth = image?.naturalWidth, naturalHeight = image?.naturalHeight) {
     if (!image || !naturalWidth || !naturalHeight) return;
     const viewport = viewportSize();
-    const edge = viewport.width <= 760 ? 6 : 24;
+    const edge = viewport.width <= 760 ? 5 : 16;
     const availableWidth = Math.max(1, viewport.width - edge * 2);
     const availableHeight = Math.max(1, viewport.height - edge * 2);
     const scale = Math.min(availableWidth / naturalWidth, availableHeight / naturalHeight);
-    const width = Math.max(1, Math.floor(naturalWidth * scale));
-    const height = Math.max(1, Math.floor(naturalHeight * scale));
-
-    image.style.setProperty('width', `${width}px`, 'important');
-    image.style.setProperty('height', `${height}px`, 'important');
+    image.style.setProperty('width', `${Math.max(1, Math.floor(naturalWidth * scale))}px`, 'important');
+    image.style.setProperty('height', `${Math.max(1, Math.floor(naturalHeight * scale))}px`, 'important');
     image.style.setProperty('max-width', 'none', 'important');
     image.style.setProperty('max-height', 'none', 'important');
     image.style.setProperty('object-fit', 'contain', 'important');
   }
 
   function fitCurrentLightboxImage() {
-    const lightbox = $('#projectLightbox');
     const image = $('#lightboxImage');
-    if (!lightbox?.classList.contains('open') || !image?.naturalWidth) return;
-    fitLightboxImage(image);
+    if ($('#projectLightbox')?.classList.contains('open') && image?.naturalWidth) fitLightboxImage(image);
   }
 
   function updateLightboxPhoto(animate = true) {
     const image = $('#lightboxImage');
     const photo = project.photos[state.index];
     if (animate) image.classList.add('is-changing');
-
     const next = new Image();
     next.decoding = 'async';
     next.onload = () => {
@@ -186,9 +171,7 @@
     };
     next.onerror = () => image.classList.remove('is-changing');
     next.src = imagePath(photo.src);
-
     $('#lightboxCounter').textContent = `${String(state.index + 1).padStart(2, '0')} / ${String(project.photos.length).padStart(2, '0')}`;
-    $('#lightboxProgressBar').style.width = `${((state.index + 1) / project.photos.length) * 100}%`;
     preloadAround(state.index);
   }
 
@@ -196,7 +179,7 @@
     const lightbox = $('#projectLightbox');
     lightbox.classList.remove('ui-hidden');
     clearTimeout(state.uiTimer);
-    state.uiTimer = setTimeout(() => lightbox.classList.add('ui-hidden'), 2400);
+    state.uiTimer = setTimeout(() => lightbox.classList.add('ui-hidden'), 2000);
   }
 
   function openLightbox(index) {
@@ -252,11 +235,9 @@
   const cursorLabel = $('#cursorLabel');
   let cursorFrame = 0;
   function moveCursor(event) {
-    document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`);
-    document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`);
     if (!cursor || cursorFrame) return;
     cursorFrame = requestAnimationFrame(() => {
-      cursor.style.transform = `translate(${event.clientX}px,${event.clientY}px) translate(-50%, -50%) scale(${cursor.classList.contains('active') ? 1 : .55})`;
+      cursor.style.transform = `translate(${event.clientX}px,${event.clientY}px) translate(-50%,-50%) scale(${cursor.classList.contains('active') ? 1 : .58})`;
       cursorFrame = 0;
     });
   }
@@ -281,25 +262,27 @@
     if (progress) progress.style.height = `${max > 0 ? Math.min(100, scrollY / max * 100) : 0}%`;
   }
 
-  function imageReady(image) {
-    if (!image) return Promise.resolve();
-    const decode = () => typeof image.decode === 'function' ? image.decode().catch(() => undefined) : Promise.resolve();
-    if (image.complete && image.naturalWidth > 0) return decode();
+  function waitForImage(image) {
+    if (image.complete && image.naturalWidth > 0) return image.decode?.().catch(() => undefined) || Promise.resolve();
     return new Promise(resolve => {
-      image.addEventListener('load', () => decode().finally(resolve), { once: true });
+      image.addEventListener('load', resolve, { once: true });
       image.addEventListener('error', resolve, { once: true });
     });
   }
 
-  function windowLoaded() {
-    if (document.readyState === 'complete') return Promise.resolve();
-    return new Promise(resolve => addEventListener('load', resolve, { once: true }));
-  }
-
-  async function releaseLoadingScreen(delay = 280) {
-    const critical = $$('img[data-critical]');
-    await Promise.all([windowLoaded(), ...critical.map(imageReady)]);
-    setTimeout(() => body.classList.add('is-ready'), delay);
+  async function releaseLoadingScreen() {
+    const progress = $('#bootProgress');
+    const images = $$('img[data-preload]');
+    let completed = 0;
+    const update = () => {
+      completed += 1;
+      if (progress) progress.textContent = `${Math.round(completed / Math.max(1, images.length) * 100)}%`;
+    };
+    if (progress) progress.textContent = images.length ? '0%' : '100%';
+    await Promise.all(images.map(image => waitForImage(image).finally(update)));
+    await document.fonts?.ready?.catch?.(() => undefined);
+    if (progress) progress.textContent = '100%';
+    setTimeout(() => body.classList.add('is-ready'), 320);
   }
 
   function markReturnHome() {
@@ -307,16 +290,14 @@
   }
 
   function init() {
-    sessionStorage.removeItem('fotodisogno-gallery-view');
     const requested = new URL(location.href).searchParams.get('lang');
     state.lang = data.translations[requested] ? requested : 'nl';
     $('#projectYear').textContent = project.year;
     $('#year').textContent = new Date().getFullYear();
-
     setupHero();
     applyLanguage();
     renderGallery();
-    $$('.gallery-header,.project-navigation,.project-contact').forEach(node => node.classList.add('reveal'));
+    $$('.project-navigation,.project-contact').forEach(node => node.classList.add('reveal'));
     observeReveals();
     bindCursorTargets();
 
@@ -324,7 +305,6 @@
       state.lang = button.dataset.lang;
       applyLanguage();
     }));
-
     $('#backHome').addEventListener('click', markReturnHome);
     $('#brandHome').addEventListener('click', markReturnHome);
     $('#story').addEventListener('click', event => {
@@ -336,10 +316,7 @@
     $('#nextPhoto').addEventListener('click', () => moveLightbox(1));
 
     const stage = $('#lightboxStage');
-    stage.addEventListener('pointerdown', event => {
-      state.touchX = event.clientX;
-      state.touchY = event.clientY;
-    });
+    stage.addEventListener('pointerdown', event => { state.touchX = event.clientX; state.touchY = event.clientY; });
     stage.addEventListener('pointerup', event => {
       const dx = event.clientX - state.touchX;
       const dy = event.clientY - state.touchY;
@@ -352,15 +329,12 @@
     lightbox.addEventListener('touchmove', preventViewportScroll, { passive: false });
     lightbox.addEventListener('click', event => {
       showLightboxUI();
-      if (event.target === lightbox) closeLightbox();
+      if (event.target === lightbox || event.target === stage || event.target.classList.contains('lightbox-image-wrap')) closeLightbox();
     });
 
     addEventListener('mousemove', moveCursor, { passive: true });
     addEventListener('scroll', updateScrollState, { passive: true });
-    addEventListener('resize', () => {
-      updateScrollState();
-      fitCurrentLightboxImage();
-    }, { passive: true });
+    addEventListener('resize', () => { updateScrollState(); fitCurrentLightboxImage(); }, { passive: true });
     window.visualViewport?.addEventListener('resize', fitCurrentLightboxImage, { passive: true });
     document.addEventListener('keydown', event => {
       if (!lightbox.classList.contains('open')) return;
@@ -372,13 +346,6 @@
     updateScrollState();
     releaseLoadingScreen();
   }
-
-  addEventListener('pageshow', event => {
-    if (event.persisted) {
-      body.classList.remove('is-ready');
-      releaseLoadingScreen(320);
-    }
-  });
 
   document.addEventListener('DOMContentLoaded', init);
 })();
