@@ -21,22 +21,21 @@
   <meta name="twitter:image" content="https://fotodisogno.com/images/DSCF4051.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/DSCF4051.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="images/DSC04191-2.avif" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="advanced.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Rafał Wilk","url":"https://fotodisogno.com/","image":"https://fotodisogno.com/images/DSCF4051.jpg","sameAs":["https://instagram.com/fotodisogno"],"jobTitle":"Photographer","email":"mailto:fotodisogno@gmail.com"}</script>
 </head>
 <body class="home-page" data-active-project="people">
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="boot-screen" id="bootScreen" aria-hidden="true"><span>FOTODISOGNO</span><i></i></div>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel">OPEN</span></div>
+  <div class="boot-screen" id="bootScreen" aria-hidden="true"><span>FotodiSogno</span></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel">View</span></div>
   <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
 
   <header class="site-header" id="siteHeader">
     <a class="brand" href="#top" aria-label="FotodiSogno — home">
-      <span class="brand-mark">FDS</span>
       <span><b>FotodiSogno</b><small>Rafał Wilk Photography</small></span>
     </a>
     <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu"><span></span><span></span></button>
@@ -56,33 +55,28 @@
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="heroTitle">
-      <img class="hero-backdrop" src="images/DSCF4051.jpg" alt="" aria-hidden="true" fetchpriority="high">
-      <img class="hero-image" id="heroImage" src="images/DSCF4051.jpg" alt="Atmospheric portrait by Rafał Wilk" fetchpriority="high" decoding="async">
+      <img class="hero-image" id="heroImage" src="images/DSCF4051.jpg" alt="Atmospheric portrait by Rafał Wilk" fetchpriority="high" decoding="async" data-critical>
       <div class="hero-overlay" aria-hidden="true"></div>
       <h1 class="sr-only" id="heroTitle">FotodiSogno — Photography by Rafał Wilk</h1>
       <div class="hero-hud">
-        <p><span>01</span><b>RAFAŁ WILK</b></p>
-        <p class="hero-statement" data-i18n="heroEyebrow">Photography portfolio</p>
-        <a href="#work" class="hud-link"><span data-i18n="heroCtaWork">View selected work</span><i>↓</i></a>
+        <div><b>Rafał Wilk</b><small data-i18n="heroEyebrow">Photography portfolio</small></div>
+        <a href="#work" class="hud-link"><span data-i18n="heroCtaWork">View selected work</span><i aria-hidden="true">↓</i></a>
       </div>
-      <div class="hero-corner" aria-hidden="true"><span>LIGHT</span><span>ATMOSPHERE</span><span>MOMENT</span></div>
     </section>
 
     <section class="projects-section" id="work">
       <header class="projects-heading">
-        <p class="section-code">02 / SELECTED UNIVERSES</p>
+        <p class="section-label" data-i18n="workEyebrow">Selected work</p>
         <div>
           <h2 data-i18n="workTitle">Images that define my way of seeing</h2>
           <p data-i18n="workIntro">A focused selection of people, places and details in which light sets the atmosphere.</p>
         </div>
       </header>
       <div class="project-rail" id="projectRail" aria-label="Photography projects"></div>
-      <div class="rail-status" aria-hidden="true"><span id="railCurrent">01</span><i><b id="railProgress"></b></i><span>05</span></div>
     </section>
 
     <section class="signal-section" aria-label="Photography statement">
       <div class="signal-orb" aria-hidden="true"></div>
-      <p>FOTODISOGNO / VISUAL FIELD NOTES / 2026</p>
       <blockquote>Light reveals what speed makes invisible.</blockquote>
     </section>
 
@@ -91,10 +85,9 @@
         <div class="about-frame">
           <img src="images/ChatGPT%20Image%2028%20mar%202026,%2016_46_19.png" alt="Rafał Wilk" loading="lazy" decoding="async">
         </div>
-        <span class="frame-index">03 / ABOUT</span>
       </div>
       <div class="about-copy">
-        <p class="section-code" data-i18n="aboutEyebrow">About</p>
+        <p class="section-label" data-i18n="aboutEyebrow">About</p>
         <h2 data-i18n="aboutTitle">I photograph what is easy to overlook</h2>
         <p class="about-lead" data-i18n="aboutLead">People, places and brief moments in which light creates atmosphere.</p>
         <p data-i18n="aboutBody">I look for natural emotion, calm compositions and images that remain in memory longer than the event itself. My work moves between portrait, street, travel and visual detail.</p>
@@ -104,18 +97,18 @@
     </section>
 
     <section class="contact-section" id="contact">
-      <p class="section-code">04 / CONTACT</p>
+      <p class="section-label" data-i18n="navContact">Contact</p>
       <h2 data-i18n="contactTitle">Have an idea for a shoot or collaboration?</h2>
       <p data-i18n="contactLead">Tell me briefly what you have in mind. I am easiest to reach by e-mail or WhatsApp.</p>
       <div class="contact-grid">
-        <a href="mailto:fotodisogno@gmail.com" data-cursor="MAIL"><span>01</span><b>E-mail</b><i>↗</i></a>
-        <a href="https://wa.me/31644747733" target="_blank" rel="noopener noreferrer" data-cursor="CHAT"><span>02</span><b>WhatsApp</b><i>↗</i></a>
-        <a href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" data-cursor="OPEN"><span>03</span><b>Instagram</b><i>↗</i></a>
+        <a href="mailto:fotodisogno@gmail.com" data-cursor="Mail"><b>E-mail</b><i aria-hidden="true">↗</i></a>
+        <a href="https://wa.me/31644747733" target="_blank" rel="noopener noreferrer" data-cursor="Chat"><b>WhatsApp</b><i aria-hidden="true">↗</i></a>
+        <a href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" data-cursor="Open"><b>Instagram</b><i aria-hidden="true">↗</i></a>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer"><span>FOTODISOGNO © <b id="year"></b></span><span>RAFAŁ WILK / THE NETHERLANDS</span></footer>
+  <footer class="site-footer"><span>FotodiSogno © <b id="year"></b></span><span>Rafał Wilk · The Netherlands</span></footer>
   <script src="project-data.js" defer></script>
   <script src="app.js" defer></script>
 </body>
