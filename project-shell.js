@@ -51,7 +51,7 @@
     <footer class="site-footer"><span>FotodiSogno © <b id="year"></b></span><span>Rafał Wilk · The Netherlands</span></footer>
 
     <div class="project-lightbox" id="projectLightbox" aria-hidden="true">
-      <div class="lightbox-top lightbox-ui"><span class="lightbox-title" id="lightboxProjectTitle">${title}</span><div class="lightbox-tools"><button class="lightbox-tool" id="zoomLightbox" type="button" aria-label="Zoom" title="Zoom">＋</button><button class="lightbox-tool" id="closeLightbox" type="button" aria-label="Close" title="Close">×</button></div></div>
+      <div class="lightbox-top lightbox-ui"><span class="lightbox-title" id="lightboxProjectTitle">${title}</span><div class="lightbox-tools"><button class="lightbox-tool" id="closeLightbox" type="button" aria-label="Close" title="Close">×</button></div></div>
       <div class="lightbox-stage" id="lightboxStage"><button class="lightbox-arrow lightbox-prev lightbox-ui" id="previousPhoto" type="button" aria-label="Previous photo">‹</button><div class="lightbox-image-wrap"><img class="lightbox-image" id="lightboxImage" src="" alt=""></div><button class="lightbox-arrow lightbox-next lightbox-ui" id="nextPhoto" type="button" aria-label="Next photo">›</button></div>
       <div class="lightbox-bottom lightbox-ui"><span class="lightbox-counter" id="lightboxCounter">01 / 01</span><span class="lightbox-progress" aria-hidden="true"><span id="lightboxProgressBar"></span></span></div>
     </div>`);
