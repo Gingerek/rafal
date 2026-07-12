@@ -36,7 +36,8 @@
         hint.setAttribute('aria-hidden', 'true');
         link.appendChild(hint);
       }
-      hint.innerHTML = `<span>${copy[lang].gallery}</span><strong>${project?.photos?.length || ''}</strong><i>↗</i>`;
+      const markup = `<span>${copy[lang].gallery}</span><strong>${project?.photos?.length || ''}</strong><i>↗</i>`;
+      if (hint.innerHTML !== markup) hint.innerHTML = markup;
     });
   };
 
@@ -50,7 +51,8 @@
         hint.setAttribute('aria-hidden', 'true');
         card.appendChild(hint);
       }
-      hint.innerHTML = `<span>${copy[lang].photo}</span><i>↗</i>`;
+      const markup = `<span>${copy[lang].photo}</span><i>↗</i>`;
+      if (hint.innerHTML !== markup) hint.innerHTML = markup;
     });
   };
 
@@ -61,10 +63,10 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     refresh();
-    const observer = new MutationObserver(() => refresh());
+    const observer = new MutationObserver(refresh);
     ['projectRail', 'story'].forEach(id => {
       const node = document.getElementById(id);
-      if (node) observer.observe(node, { childList: true, subtree: true });
+      if (node) observer.observe(node, { childList: true });
     });
     document.querySelectorAll('[data-lang]').forEach(button => {
       button.addEventListener('click', () => setTimeout(refresh, 0));
