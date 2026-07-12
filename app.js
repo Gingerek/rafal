@@ -3,11 +3,32 @@
   if (!data) return;
 
   const previews = {
-    people:   { src: 'DSC04191-2.avif', tint: '#241713' },
-    street:   { src: 'A7408846.avif', tint: '#0e1b27' },
-    nature:   { src: 'A7403102.avif', tint: '#102017' },
-    travel:   { src: 'A7406616.avif', tint: '#0d2029' },
-    creative: { src: 'A7406311-2.avif', tint: '#25150e' }
+    people:   { src: 'DSC04191-2.avif', tint: '#21140f' },
+    street:   { src: 'A7408846.avif', tint: '#0b1721' },
+    nature:   { src: 'A7403102.avif', tint: '#0d1b12' },
+    travel:   { src: 'A7406616.avif', tint: '#0a1a20' },
+    creative: { src: 'A7406311-2.avif', tint: '#21120c' }
+  };
+
+  const homeCopy = {
+    nl: {
+      heroKicker: 'Fotografie / Nederland',
+      heroIntro: 'Stille beelden van mensen, plaatsen en korte momenten die door licht worden gevormd.',
+      manifestKicker: 'Een manier van kijken',
+      manifestQuote: 'Licht onthult wat snelheid onzichtbaar maakt.'
+    },
+    en: {
+      heroKicker: 'Photography / The Netherlands',
+      heroIntro: 'Quiet photographs of people, places and brief moments shaped by light.',
+      manifestKicker: 'A way of seeing',
+      manifestQuote: 'Light reveals what speed makes invisible.'
+    },
+    pl: {
+      heroKicker: 'Fotografia / Holandia',
+      heroIntro: 'Spokojne fotografie ludzi, miejsc i krótkich chwil kształtowanych przez światło.',
+      manifestKicker: 'Sposób patrzenia',
+      manifestQuote: 'Światło odsłania to, czego nie widać w pośpiechu.'
+    }
   };
 
   const state = { lang: 'nl', active: 0 };
@@ -18,10 +39,14 @@
   const imagePath = file => `images/${file.split('/').map(encodeURIComponent).join('/')}`;
   const projectHref = id => `projects/${id}/?lang=${state.lang}`;
 
-  function updateLanguage() {
+  function updateStaticCopy() {
     document.documentElement.lang = state.lang;
     $$('[data-i18n]').forEach(node => {
       const value = t(node.dataset.i18n);
+      if (value) node.textContent = value;
+    });
+    $$('[data-home-copy]').forEach(node => {
+      const value = homeCopy[state.lang]?.[node.dataset.homeCopy] || homeCopy.en[node.dataset.homeCopy];
       if (value) node.textContent = value;
     });
     $$('[data-lang]').forEach(button => {
@@ -29,6 +54,7 @@
       button.classList.toggle('active', active);
       button.setAttribute('aria-pressed', String(active));
     });
+
     const url = new URL(location.href);
     url.searchParams.set('lang', state.lang);
     history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
@@ -37,7 +63,21 @@
       : state.lang === 'nl'
         ? 'FotodiSogno — Fotografie door Rafał Wilk'
         : 'FotodiSogno — Photography by Rafał Wilk';
-    renderProjects();
+  }
+
+  function renderHeroIndex() {
+    const index = $('#heroProjectIndex');
+    if (!index) return;
+    index.innerHTML = data.projects.map((project, projectIndex) => `
+      <a href="#chapter-${project.id}" data-index="${projectIndex}">
+        <span>${localized(project.title)}</span><i aria-hidden="true">↘</i>
+      </a>`).join('');
+  }
+
+  function transitionToProject(event, project, image) {
+    if (!image) return;
+    image.style.viewTransitionName = `project-${project.id}`;
+    sessionStorage.setItem('fotodisogno-transition-project', project.id);
   }
 
   function renderProjects() {
@@ -46,57 +86,59 @@
     rail.innerHTML = '';
 
     data.projects.forEach((project, index) => {
-      const config = previews[project.id] || { src: project.cover, tint: '#101820' };
-      const panel = document.createElement('a');
-      panel.className = 'project-panel reveal';
-      panel.href = projectHref(project.id);
-      panel.dataset.project = project.id;
-      panel.dataset.projectIndex = String(index);
-      panel.dataset.cursor = 'View';
-      panel.style.setProperty('--panel-tint', config.tint);
-      panel.innerHTML = `
-        <div class="project-panel-copy">
-          <h3>${localized(project.title)}</h3>
-          <div class="project-panel-meta"><span>${project.year}</span><span>${localized(project.location)}</span></div>
-          <p>${localized(project.description)}</p>
-          <span class="project-panel-link">${t('openStory')} <i aria-hidden="true">↗</i></span>
+      const config = previews[project.id] || { src: project.cover, tint: '#111111' };
+      const chapter = document.createElement('article');
+      chapter.className = 'project-chapter reveal';
+      chapter.id = `chapter-${project.id}`;
+      chapter.dataset.project = project.id;
+      chapter.dataset.projectIndex = String(index);
+      chapter.style.setProperty('--chapter-tint', config.tint);
+      chapter.innerHTML = `
+        <div class="chapter-media">
+          <a href="${projectHref(project.id)}" data-cursor="View" aria-label="${t('openStory')}: ${localized(project.title)}">
+            <img class="chapter-image" src="${imagePath(config.src)}" alt="${localized(project.title)}" loading="eager" fetchpriority="${index < 2 ? 'high' : 'auto'}" decoding="async" data-preload>
+          </a>
         </div>
-        <div class="project-panel-media">
-          <img class="project-panel-image" src="${imagePath(config.src)}" alt="${localized(project.title)}" loading="${index === 0 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'low'}" decoding="async"${index === 0 ? ' data-critical' : ''}>
+        <div class="chapter-copy">
+          <h3>${localized(project.title)}</h3>
+          <div class="chapter-meta"><span>${project.year}</span><span>${localized(project.location)}</span></div>
+          <p>${localized(project.description)}</p>
+          <a class="text-link" href="${projectHref(project.id)}" data-cursor="View"><span>${t('openStory')}</span><i aria-hidden="true">↗</i></a>
         </div>`;
 
-      panel.addEventListener('click', () => {
-        const image = $('.project-panel-image', panel);
-        if (image) {
-          image.style.viewTransitionName = `project-${project.id}`;
-          sessionStorage.setItem('fotodisogno-transition-project', project.id);
-        }
-      });
-      rail.appendChild(panel);
+      const image = $('.chapter-image', chapter);
+      $$('a[href]', chapter).forEach(link => link.addEventListener('click', event => transitionToProject(event, project, image)));
+      rail.appendChild(chapter);
     });
 
     observeReveals();
-    observePanels();
+    observeChapters();
     bindCursorTargets(rail);
   }
 
-  let panelObserver;
-  function observePanels() {
-    panelObserver?.disconnect();
-    const panels = $$('.project-panel');
+  function updateLanguage() {
+    updateStaticCopy();
+    renderHeroIndex();
+    renderProjects();
+  }
+
+  let chapterObserver;
+  function observeChapters() {
+    chapterObserver?.disconnect();
+    const chapters = $$('.project-chapter');
     if (!('IntersectionObserver' in window)) return;
-    panelObserver = new IntersectionObserver(entries => {
+    chapterObserver = new IntersectionObserver(entries => {
       const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
       if (!visible) return;
       const index = Number(visible.target.dataset.projectIndex || 0);
       state.active = index;
-      panels.forEach((panel, panelIndex) => panel.classList.toggle('is-active', panelIndex === index));
+      chapters.forEach((chapter, chapterIndex) => chapter.classList.toggle('is-active', chapterIndex === index));
+      $$('#heroProjectIndex a').forEach((link, linkIndex) => link.classList.toggle('active', linkIndex === index));
       const project = data.projects[index];
-      document.body.dataset.activeProject = project.id;
-      const tint = previews[project.id]?.tint || '#101820';
-      document.documentElement.style.setProperty('--active-glow', `${tint}66`);
-    }, { threshold: [0.25, 0.5], rootMargin: '-12% 0px -18%' });
-    panels.forEach(panel => panelObserver.observe(panel));
+      const tint = previews[project.id]?.tint || '#111111';
+      document.documentElement.style.setProperty('--page-tint', tint);
+    }, { threshold: [0.25, 0.5, 0.72], rootMargin: '-10% 0px -14%' });
+    chapters.forEach(chapter => chapterObserver.observe(chapter));
   }
 
   let revealObserver;
@@ -114,7 +156,7 @@
             revealObserver.unobserve(entry.target);
           }
         });
-      }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+      }, { rootMargin: '0px 0px -7% 0px', threshold: .07 });
     }
     items.forEach(item => {
       item.classList.add('reveal-observed');
@@ -126,11 +168,9 @@
   const cursorLabel = $('#cursorLabel');
   let cursorFrame = 0;
   function moveCursor(event) {
-    document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`);
-    document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`);
     if (!cursor || cursorFrame) return;
     cursorFrame = requestAnimationFrame(() => {
-      cursor.style.transform = `translate(${event.clientX}px,${event.clientY}px) translate(-50%,-50%) scale(${cursor.classList.contains('active') ? 1 : .55})`;
+      cursor.style.transform = `translate(${event.clientX}px,${event.clientY}px) translate(-50%,-50%) scale(${cursor.classList.contains('active') ? 1 : .58})`;
       cursorFrame = 0;
     });
   }
@@ -160,27 +200,29 @@
     if (progress) progress.style.height = `${max > 0 ? Math.min(100, scrollY / max * 100) : 0}%`;
   }
 
-  function imageReady(image) {
-    if (!image) return Promise.resolve();
-    const decode = () => typeof image.decode === 'function' ? image.decode().catch(() => undefined) : Promise.resolve();
-    if (image.complete && image.naturalWidth > 0) return decode();
+  function waitForImage(image) {
+    if (image.complete && image.naturalWidth > 0) return image.decode?.().catch(() => undefined) || Promise.resolve();
     return new Promise(resolve => {
-      image.addEventListener('load', () => decode().finally(resolve), { once: true });
+      image.addEventListener('load', resolve, { once: true });
       image.addEventListener('error', resolve, { once: true });
     });
-  }
-
-  function windowLoaded() {
-    if (document.readyState === 'complete') return Promise.resolve();
-    return new Promise(resolve => addEventListener('load', resolve, { once: true }));
   }
 
   async function releaseLoadingScreen(forceReturnDelay = false) {
     const returning = forceReturnDelay || sessionStorage.getItem('fotodisogno-return-home') === '1';
     sessionStorage.removeItem('fotodisogno-return-home');
-    const critical = $$('img[data-critical]');
-    await Promise.all([windowLoaded(), ...critical.map(imageReady)]);
-    setTimeout(() => document.body.classList.add('is-ready'), returning ? 2000 : 280);
+    const progress = $('#bootProgress');
+    const images = $$('img[data-preload]');
+    let completed = 0;
+    const update = () => {
+      completed += 1;
+      if (progress) progress.textContent = `${Math.round(completed / Math.max(1, images.length) * 100)}%`;
+    };
+    if (progress) progress.textContent = images.length ? '0%' : '100%';
+    await Promise.all(images.map(image => waitForImage(image).finally(update)));
+    await document.fonts?.ready?.catch?.(() => undefined);
+    if (progress) progress.textContent = '100%';
+    setTimeout(() => document.body.classList.add('is-ready'), returning ? 2000 : 320);
   }
 
   function init() {
@@ -188,7 +230,7 @@
     state.lang = data.translations[requested] ? requested : 'nl';
     $('#year').textContent = new Date().getFullYear();
     updateLanguage();
-    $$('.projects-heading,.signal-section,.about-visual,.about-copy,.contact-section').forEach(node => node.classList.add('reveal'));
+    $$('.projects-heading,.manifest-section,.about-visual,.about-copy,.contact-section').forEach(node => node.classList.add('reveal'));
     observeReveals();
     bindCursorTargets();
 
