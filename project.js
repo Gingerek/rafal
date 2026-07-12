@@ -6,18 +6,37 @@
   const project = data.projects.find(item => item.id === body.dataset.project);
   if (!project) return;
 
+  const imageManifest = window.FOTODISOGNO_IMAGES || {};
   const localCopy = {
     nl: { view: 'Bekijk foto’s' },
     en: { view: 'View photographs' },
     pl: { view: 'Zobacz fotografie' }
   };
-
   const state = { lang: 'nl', index: 0, touchX: 0, touchY: 0, uiTimer: 0 };
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const t = key => data.translations[state.lang]?.[key] || data.translations.en[key] || key;
   const localized = value => value?.[state.lang] || value?.en || '';
   const imagePath = file => `../../images/${file.split('/').map(encodeURIComponent).join('/')}`;
+  const escapeHtml = value => String(value).replace(/[&<>"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[char]));
+
+  function responsivePicture(file, alt, options = {}) {
+    const {
+      className = '', sizes = '100vw', loading = 'lazy', fetchpriority = 'auto', preload = false
+    } = options;
+    const meta = imageManifest[file];
+    const fallback = imagePath(file);
+    const common = `class="${className}" alt="${escapeHtml(alt)}" loading="${loading}" fetchpriority="${fetchpriority}" decoding="async"${preload ? ' data-preload' : ''}`;
+    if (!meta?.variants?.length) return `<img src="${fallback}" ${common}>`;
+    const avif = meta.variants.map(item => `../../${item.avif} ${item.width}w`).join(',');
+    const webp = meta.variants.map(item => `../../${item.webp} ${item.width}w`).join(',');
+    const fallbackVariant = `../../${meta.variants[meta.variants.length - 1].webp}`;
+    return `<picture class="responsive-picture">
+      <source type="image/avif" srcset="${avif}" sizes="${sizes}">
+      <source type="image/webp" srcset="${webp}" sizes="${sizes}">
+      <img src="${fallbackVariant}" width="${meta.width}" height="${meta.height}" sizes="${sizes}" ${common}>
+    </picture>`;
+  }
 
   function setMeta() {
     const title = localized(project.title);
@@ -28,6 +47,30 @@
     $('meta[property="og:description"]')?.setAttribute('content', description);
     $('meta[property="og:image"]')?.setAttribute('content', `https://fotodisogno.com/images/${encodeURIComponent(project.cover)}`);
     $('link[rel="canonical"]')?.setAttribute('href', `https://fotodisogno.com/projects/${project.id}/`);
+  }
+
+  function projectNeighbours() {
+    const index = data.projects.findIndex(item => item.id === project.id);
+    return {
+      previous: data.projects[(index - 1 + data.projects.length) % data.projects.length],
+      next: data.projects[(index + 1) % data.projects.length]
+    };
+  }
+
+  function renderContinuation(next) {
+    const media = $('#nextProjectMedia');
+    if (!media) return;
+    media.innerHTML = responsivePicture(next.preview || next.cover, localized(next.title), {
+      className: 'next-project-image',
+      sizes: '(max-width:760px) 100vw, 86vw',
+      loading: 'lazy', fetchpriority: 'low'
+    });
+    const link = $('#nextProject');
+    link.addEventListener('click', () => {
+      const image = $('.next-project-image', media);
+      if (image) image.style.viewTransitionName = `project-${next.id}`;
+      sessionStorage.setItem('fotodisogno-transition-project', next.id);
+    }, { once: true });
   }
 
   function applyLanguage() {
@@ -51,15 +94,14 @@
     $('#backHome').href = home;
     $('#brandHome').href = home;
 
-    const index = data.projects.findIndex(item => item.id === project.id);
-    const previous = data.projects[(index - 1 + data.projects.length) % data.projects.length];
-    const next = data.projects[(index + 1) % data.projects.length];
+    const { previous, next } = projectNeighbours();
     const previousLink = $('#previousProject');
     const nextLink = $('#nextProject');
     previousLink.href = `../${previous.id}/?lang=${state.lang}`;
-    nextLink.href = `../${next.id}/?lang=${state.lang}`;
     previousLink.querySelector('strong').textContent = localized(previous.title);
+    nextLink.href = `../${next.id}/?lang=${state.lang}`;
     nextLink.querySelector('strong').textContent = localized(next.title);
+    renderContinuation(next);
 
     const url = new URL(location.href);
     url.searchParams.set('lang', state.lang);
@@ -72,15 +114,20 @@
     gallery.innerHTML = '';
 
     project.photos.forEach((photo, index) => {
-      const button = document.createElement('button');
-      button.className = 'gallery-card';
-      button.type = 'button';
-      button.dataset.photoIndex = String(index);
-      button.dataset.cursor = 'View';
-      button.setAttribute('aria-label', `${t('viewImage')} ${index + 1}`);
-      const preload = index < 6;
-      button.innerHTML = `<span class="gallery-media"><img class="gallery-image is-loading" src="${imagePath(photo.src)}" alt="${photo.alt}" loading="${preload ? 'eager' : 'lazy'}" fetchpriority="${index < 2 ? 'high' : 'auto'}" decoding="async"${preload ? ' data-preload' : ''}></span>`;
-      gallery.appendChild(button);
+      const item = document.createElement('figure');
+      item.className = `gallery-item${photo.note ? ' has-note' : ''}`;
+      const preload = index < 4;
+      const note = localized(photo.note);
+      item.innerHTML = `
+        <button class="gallery-card" type="button" data-photo-index="${index}" data-cursor="View" aria-label="${escapeHtml(t('viewImage'))} ${index + 1}">
+          <span class="gallery-media">${responsivePicture(photo.src, photo.alt, {
+            className: 'gallery-image is-loading',
+            sizes: '(max-width:720px) 94vw, (max-width:1050px) 46vw, (max-width:1500px) 31vw, 24vw',
+            loading: preload ? 'eager' : 'lazy', fetchpriority: index < 2 ? 'high' : 'auto', preload
+          })}</span>
+        </button>
+        ${note ? `<figcaption class="gallery-note">${escapeHtml(note)}</figcaption>` : ''}`;
+      gallery.appendChild(item);
     });
 
     prepareGalleryImages(gallery);
@@ -144,7 +191,7 @@
     const edge = viewport.width <= 760 ? 5 : 16;
     const availableWidth = Math.max(1, viewport.width - edge * 2);
     const availableHeight = Math.max(1, viewport.height - edge * 2);
-    const scale = Math.min(availableWidth / naturalWidth, availableHeight / naturalHeight);
+    const scale = Math.min(availableWidth / naturalWidth, availableHeight / naturalHeight, 1.6);
     image.style.setProperty('width', `${Math.max(1, Math.floor(naturalWidth * scale))}px`, 'important');
     image.style.setProperty('height', `${Math.max(1, Math.floor(naturalHeight * scale))}px`, 'important');
     image.style.setProperty('max-width', 'none', 'important');
@@ -218,7 +265,7 @@
 
   function setupHero() {
     const hero = $('#projectHeroImage');
-    hero.src = imagePath(project.cover);
+    if (!hero) return;
     hero.alt = localized(project.title);
     body.dataset.theme = project.theme || 'warm';
     const stored = sessionStorage.getItem('fotodisogno-transition-project');
@@ -282,7 +329,7 @@
     await Promise.all(images.map(image => waitForImage(image).finally(update)));
     await document.fonts?.ready?.catch?.(() => undefined);
     if (progress) progress.textContent = '100%';
-    setTimeout(() => body.classList.add('is-ready'), 320);
+    setTimeout(() => body.classList.add('is-ready'), 260);
   }
 
   function markReturnHome() {
@@ -297,13 +344,14 @@
     setupHero();
     applyLanguage();
     renderGallery();
-    $$('.project-navigation,.project-contact').forEach(node => node.classList.add('reveal'));
+    $$('.project-continuation,.project-contact').forEach(node => node.classList.add('reveal'));
     observeReveals();
     bindCursorTargets();
 
     $$('[data-lang]').forEach(button => button.addEventListener('click', () => {
       state.lang = button.dataset.lang;
       applyLanguage();
+      renderGallery();
     }));
     $('#backHome').addEventListener('click', markReturnHome);
     $('#brandHome').addEventListener('click', markReturnHome);

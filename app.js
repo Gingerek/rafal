@@ -2,14 +2,10 @@
   const data = window.FOTODISOGNO;
   if (!data) return;
 
-  const previews = {
-    people:   { src: 'DSC04191-2.avif', tint: '#21140f' },
-    street:   { src: 'A7408846.avif', tint: '#0b1721' },
-    nature:   { src: 'A7403102.avif', tint: '#0d1b12' },
-    travel:   { src: 'A7406616.avif', tint: '#0a1a20' },
-    creative: { src: 'A7406311-2.avif', tint: '#21120c' }
+  const imageManifest = window.FOTODISOGNO_IMAGES || {};
+  const themeTints = {
+    warm: '#21140f', cool: '#0b1721', forest: '#0d1b12', sea: '#0a1a20', ember: '#21120c'
   };
-
   const homeCopy = {
     nl: {
       heroKicker: 'Fotografie / Nederland',
@@ -38,6 +34,39 @@
   const localized = value => value?.[state.lang] || value?.en || '';
   const imagePath = file => `images/${file.split('/').map(encodeURIComponent).join('/')}`;
   const projectHref = id => `projects/${id}/?lang=${state.lang}`;
+  const escapeHtml = value => String(value).replace(/[&<>"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[char]));
+
+  function responsivePicture(file, alt, options = {}) {
+    const {
+      className = '', sizes = '100vw', loading = 'lazy', fetchpriority = 'auto', preload = false
+    } = options;
+    const meta = imageManifest[file];
+    const fallback = imagePath(file);
+    const common = `class="${className}" alt="${escapeHtml(alt)}" loading="${loading}" fetchpriority="${fetchpriority}" decoding="async"${preload ? ' data-preload' : ''}`;
+    if (!meta?.variants?.length) return `<img src="${fallback}" ${common}>`;
+
+    const avif = meta.variants.map(item => `${item.avif} ${item.width}w`).join(',');
+    const webp = meta.variants.map(item => `${item.webp} ${item.width}w`).join(',');
+    const fallbackVariant = meta.variants[meta.variants.length - 1]?.webp || fallback;
+    return `<picture class="responsive-picture">
+      <source type="image/avif" srcset="${avif}" sizes="${sizes}">
+      <source type="image/webp" srcset="${webp}" sizes="${sizes}">
+      <img src="${fallbackVariant}" width="${meta.width}" height="${meta.height}" sizes="${sizes}" ${common}>
+    </picture>`;
+  }
+
+  function hydrateStaticImages() {
+    $$('[data-responsive-slot]').forEach(slot => {
+      const file = slot.dataset.source;
+      const alt = slot.dataset.alt || '';
+      const sizes = slot.dataset.sizes || '100vw';
+      const className = slot.dataset.imageClass || '';
+      const preload = slot.dataset.preload === 'true';
+      slot.innerHTML = responsivePicture(file, alt, {
+        className, sizes, loading: preload ? 'eager' : 'lazy', fetchpriority: preload ? 'high' : 'auto', preload
+      });
+    });
+  }
 
   function updateStaticCopy() {
     document.documentElement.lang = state.lang;
@@ -70,11 +99,11 @@
     if (!index) return;
     index.innerHTML = data.projects.map((project, projectIndex) => `
       <a href="#chapter-${project.id}" data-index="${projectIndex}">
-        <span>${localized(project.title)}</span><i aria-hidden="true">↘</i>
+        <span>${escapeHtml(localized(project.title))}</span><i aria-hidden="true">↘</i>
       </a>`).join('');
   }
 
-  function transitionToProject(event, project, image) {
+  function transitionToProject(project, image) {
     if (!image) return;
     image.style.viewTransitionName = `project-${project.id}`;
     sessionStorage.setItem('fotodisogno-transition-project', project.id);
@@ -86,28 +115,32 @@
     rail.innerHTML = '';
 
     data.projects.forEach((project, index) => {
-      const config = previews[project.id] || { src: project.cover, tint: '#111111' };
+      const preview = project.preview || project.cover;
       const chapter = document.createElement('article');
       chapter.className = 'project-chapter reveal';
       chapter.id = `chapter-${project.id}`;
       chapter.dataset.project = project.id;
       chapter.dataset.projectIndex = String(index);
-      chapter.style.setProperty('--chapter-tint', config.tint);
+      chapter.style.setProperty('--chapter-tint', themeTints[project.theme] || '#111111');
       chapter.innerHTML = `
         <div class="chapter-media">
-          <a href="${projectHref(project.id)}" data-cursor="View" aria-label="${t('openStory')}: ${localized(project.title)}">
-            <img class="chapter-image" src="${imagePath(config.src)}" alt="${localized(project.title)}" loading="eager" fetchpriority="${index < 2 ? 'high' : 'auto'}" decoding="async" data-preload>
+          <a href="${projectHref(project.id)}" data-cursor="View" aria-label="${escapeHtml(t('openStory'))}: ${escapeHtml(localized(project.title))}">
+            ${responsivePicture(preview, localized(project.title), {
+              className: 'chapter-image',
+              sizes: '(max-width: 760px) 92vw, (max-width: 1100px) 86vw, 58vw',
+              loading: 'eager', fetchpriority: index < 2 ? 'high' : 'auto', preload: true
+            })}
           </a>
         </div>
         <div class="chapter-copy">
-          <h3>${localized(project.title)}</h3>
-          <div class="chapter-meta"><span>${project.year}</span><span>${localized(project.location)}</span></div>
-          <p>${localized(project.description)}</p>
-          <a class="text-link" href="${projectHref(project.id)}" data-cursor="View"><span>${t('openStory')}</span><i aria-hidden="true">↗</i></a>
+          <h3>${escapeHtml(localized(project.title))}</h3>
+          <div class="chapter-meta"><span>${project.year}</span><span>${escapeHtml(localized(project.location))}</span></div>
+          <p>${escapeHtml(localized(project.description))}</p>
+          <a class="text-link" href="${projectHref(project.id)}" data-cursor="View"><span>${escapeHtml(t('openStory'))}</span><i aria-hidden="true">↗</i></a>
         </div>`;
 
       const image = $('.chapter-image', chapter);
-      $$('a[href]', chapter).forEach(link => link.addEventListener('click', event => transitionToProject(event, project, image)));
+      $$('a[href]', chapter).forEach(link => link.addEventListener('click', () => transitionToProject(project, image)));
       rail.appendChild(chapter);
     });
 
@@ -135,8 +168,7 @@
       chapters.forEach((chapter, chapterIndex) => chapter.classList.toggle('is-active', chapterIndex === index));
       $$('#heroProjectIndex a').forEach((link, linkIndex) => link.classList.toggle('active', linkIndex === index));
       const project = data.projects[index];
-      const tint = previews[project.id]?.tint || '#111111';
-      document.documentElement.style.setProperty('--page-tint', tint);
+      document.documentElement.style.setProperty('--page-tint', themeTints[project.theme] || '#111111');
     }, { threshold: [0.25, 0.5, 0.72], rootMargin: '-10% 0px -14%' });
     chapters.forEach(chapter => chapterObserver.observe(chapter));
   }
@@ -222,15 +254,16 @@
     await Promise.all(images.map(image => waitForImage(image).finally(update)));
     await document.fonts?.ready?.catch?.(() => undefined);
     if (progress) progress.textContent = '100%';
-    setTimeout(() => document.body.classList.add('is-ready'), returning ? 2000 : 320);
+    setTimeout(() => document.body.classList.add('is-ready'), returning ? 2000 : 260);
   }
 
   function init() {
     const requested = new URL(location.href).searchParams.get('lang');
     state.lang = data.translations[requested] ? requested : 'nl';
     $('#year').textContent = new Date().getFullYear();
+    hydrateStaticImages();
     updateLanguage();
-    $$('.projects-heading,.manifest-section,.about-visual,.about-copy,.contact-section').forEach(node => node.classList.add('reveal'));
+    $$('.projects-heading,.manifest-section,.about-signature,.about-copy,.contact-section').forEach(node => node.classList.add('reveal'));
     observeReveals();
     bindCursorTargets();
 
