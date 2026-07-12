@@ -13,18 +13,57 @@
   <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="FotodiSogno — Photography by Rafał Wilk"><meta name="twitter:description" content="Portraits, street stories, travel, nature and visual experiments by Rafał Wilk."><meta name="twitter:image" content="https://fotodisogno.com/images/DSCF4051.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/DSCF4051.jpg" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="advanced.css">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="advanced.css"><link rel="stylesheet" href="homepage-fixes.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Rafał Wilk","url":"https://fotodisogno.com/","image":"https://fotodisogno.com/images/DSCF4051.jpg","sameAs":["https://instagram.com/fotodisogno"],"jobTitle":"Photographer","email":"mailto:fotodisogno@gmail.com"}</script>
 </head>
 <body class="home-page">
-  <a class="skip-link" href="#main">Skip to content</a><div class="page-intro" aria-hidden="true"><span>FotodiSogno</span></div><div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel">View</span></div>
-  <header class="site-header" id="siteHeader"><a class="brand" href="#top" aria-label="FotodiSogno — home"><span class="brand-name">FotodiSogno</span><span class="brand-sub">Rafał Wilk Photography</span></a><button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu"><span></span><span></span></button><div class="header-panel" id="siteNav"><nav class="main-nav" aria-label="Primary navigation"><a href="#work" data-i18n="navWork">Selected work</a><a href="#about" data-i18n="navAbout">About</a><a href="#contact" data-i18n="navContact">Contact</a></nav><div class="language-switcher" aria-label="Language"><button type="button" data-lang="nl">NL</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="pl">PL</button></div></div></header>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-intro" aria-hidden="true"><span>FotodiSogno</span></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel">View</span></div>
+  <div class="ambient-light" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#top" aria-label="FotodiSogno — home"><span class="brand-name">FotodiSogno</span><span class="brand-sub">Rafał Wilk Photography</span></a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu"><span></span><span></span></button>
+    <div class="header-panel" id="siteNav"><nav class="main-nav" aria-label="Primary navigation"><a href="#work" data-i18n="navWork">Selected work</a><a href="#about" data-i18n="navAbout">About</a><a href="#contact" data-i18n="navContact">Contact</a></nav><div class="language-switcher" aria-label="Language"><button type="button" data-lang="nl">NL</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="pl">PL</button></div></div>
+  </header>
+
   <main id="main">
-    <section class="hero" id="top" aria-labelledby="heroTitle"><img class="hero-image image-fade" id="heroImage" src="images/DSCF4051.jpg" alt="Atmospheric portrait by Rafał Wilk" width="1920" height="1280" fetchpriority="high" decoding="async"><div class="hero-shade" aria-hidden="true"></div><h1 class="sr-only" id="heroTitle">FotodiSogno — Photography by Rafał Wilk</h1><div class="hero-caption"><div><p class="hero-caption-name">Rafał Wilk</p><p class="hero-caption-type" data-i18n="heroEyebrow">Photography portfolio</p></div><a class="hero-view-link" href="#work"><span data-i18n="heroCtaWork">View selected work</span><span aria-hidden="true">↘</span></a></div></section>
-    <section class="section work-section" id="work"><div class="section-heading"><p class="eyebrow" data-i18n="workEyebrow">Selected work</p><h2 data-i18n="workTitle">Images that define my way of seeing</h2><p data-i18n="workIntro">A focused selection of people, places and details in which light sets the atmosphere.</p></div><div class="featured-grid" aria-label="Featured photography"><a class="featured featured-main project-link" href="projects/people/" data-project-link="people" data-cursor="view"><img class="image-fade" src="images/A7409293.jpg" alt="Portrait from the People collection" loading="lazy" decoding="async" sizes="(max-width: 760px) 100vw, 66vw"><span><span class="featured-meta">2024—2026 · Netherlands</span><b data-project-title="people">People & Portraits</b><small data-i18n="openStory">View series</small></span></a><a class="featured project-link" href="projects/travel/" data-project-link="travel" data-cursor="view"><img class="image-fade" src="images/DJI_20260605013443_0005_D.jpg" alt="Travel photograph from Italy" loading="lazy" decoding="async" sizes="(max-width: 760px) 100vw, 34vw"><span><span class="featured-meta">2026 · Italy</span><b data-project-title="travel">Travel Notes</b><small data-i18n="openStory">View series</small></span></a><a class="featured project-link" href="projects/street/" data-project-link="street" data-cursor="view"><img class="image-fade" src="images/A7407052.jpg" alt="Cyclist in fog by a lake" loading="lazy" decoding="async" sizes="(max-width: 760px) 100vw, 34vw"><span><span class="featured-meta">2024—2026 · Europe</span><b data-project-title="street">Street & Stories</b><small data-i18n="openStory">View series</small></span></a></div><div class="collections-header"><h3 data-i18n="collectionsTitle">All projects</h3><p data-i18n="collectionsIntro">Five visual stories, each with its own rhythm and atmosphere.</p></div><div class="collection-grid" id="collectionGrid"></div></section>
+    <section class="hero" id="top" aria-labelledby="heroTitle">
+      <img class="hero-image image-fade" id="heroImage" src="images/DSCF4051.jpg" alt="Atmospheric portrait by Rafał Wilk" width="1920" height="1280" fetchpriority="high" decoding="async">
+      <div class="hero-shade" aria-hidden="true"></div><h1 class="sr-only" id="heroTitle">FotodiSogno — Photography by Rafał Wilk</h1>
+      <div class="hero-caption"><div><p class="hero-caption-name">Rafał Wilk</p><p class="hero-caption-type" data-i18n="heroEyebrow">Photography portfolio</p></div><a class="hero-view-link" href="#work"><span data-i18n="heroCtaWork">View selected work</span><span aria-hidden="true">↘</span></a></div>
+    </section>
+
+    <section class="section work-section" id="work">
+      <div class="section-heading"><p class="eyebrow" data-i18n="workEyebrow">Selected work</p><h2 data-i18n="workTitle">Images that define my way of seeing</h2><p data-i18n="workIntro">A focused selection of people, places and details in which light sets the atmosphere.</p></div>
+      <div class="project-index-shell" id="projectIndex">
+        <div class="project-list" id="projectList"></div>
+        <div class="project-preview-column">
+          <a class="project-preview project-link" id="projectPreviewLink" href="projects/people/" data-project-link="people" data-cursor="open">
+            <div class="project-preview-media" id="projectPreviewMedia">
+              <img class="project-preview-image is-active" id="previewImageA" src="images/DSC04191-2.avif" alt="" decoding="async">
+              <img class="project-preview-image" id="previewImageB" src="" alt="" decoding="async">
+              <div class="project-preview-shade" aria-hidden="true"></div>
+              <span class="project-preview-number" id="projectPreviewNumber">01</span>
+            </div>
+            <div class="project-preview-copy"><div><span class="project-preview-meta" id="projectPreviewMeta"></span><h3 id="projectPreviewTitle"></h3></div><p id="projectPreviewDescription"></p></div>
+          </a>
+          <div class="project-preview-progress" aria-hidden="true"><span id="projectPreviewProgress"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-break" id="visualBreak" aria-label="Winter landscape">
+      <img class="visual-break-image image-fade" id="visualBreakImage" src="images/A7407232.jpg" alt="Snowy forest in winter sunlight" loading="lazy" decoding="async">
+      <div class="visual-break-overlay" aria-hidden="true"></div><p>Light <span>/</span> Place <span>/</span> Moment</p>
+    </section>
+
     <section class="section about-section" id="about"><div class="about-image-wrap"><img class="image-fade" id="aboutImage" src="images/ChatGPT%20Image%2028%20mar%202026,%2016_46_19.png" alt="Rafał Wilk" loading="lazy" decoding="async" sizes="(max-width: 980px) 100vw, 45vw"></div><div class="about-copy"><p class="eyebrow" data-i18n="aboutEyebrow">About</p><h2 data-i18n="aboutTitle">I photograph what is easy to overlook</h2><p class="about-lead" data-i18n="aboutLead">People, places and brief moments in which light creates atmosphere.</p><p data-i18n="aboutBody">I look for natural emotion, calm compositions and images that remain in memory longer than the event itself. My work moves between portrait, street, travel and visual detail.</p><div class="about-facts"><span data-i18n="aboutLocation">Based in the Netherlands</span><span data-i18n="aboutAvailability">Available for selected collaborations and travel projects</span></div><a class="text-link" href="#contact" data-i18n="aboutCta">Start a conversation</a></div></section>
+
     <section class="section contact-section" id="contact"><div class="contact-copy"><p class="eyebrow" data-i18n="contactEyebrow">Contact</p><h2 data-i18n="contactTitle">Have an idea for a shoot or collaboration?</h2><p data-i18n="contactLead">Tell me briefly what you have in mind. I am easiest to reach by e-mail or WhatsApp.</p></div><div class="contact-actions"><a class="contact-link" href="mailto:fotodisogno@gmail.com" data-cursor="open"><span>E-mail</span><strong data-i18n="emailAction">Write a message</strong></a><a class="contact-link" href="https://wa.me/31644747733" target="_blank" rel="noopener noreferrer" data-cursor="open"><span>WhatsApp</span><strong data-i18n="whatsappAction">Start a conversation</strong></a><a class="contact-link" href="https://instagram.com/fotodisogno" target="_blank" rel="noopener noreferrer" data-cursor="open"><span>Instagram</span><strong data-i18n="instagramAction">Follow @fotodisogno</strong></a></div></section>
   </main>
+
   <footer class="site-footer"><div><span class="footer-brand">FotodiSogno</span><span>© <span id="year"></span> Rafał Wilk</span></div><p data-i18n="copyright">All photographs and content are protected by copyright and may not be used without written permission.</p></footer>
   <script src="project-data.js" defer></script><script src="app.js" defer></script>
 </body>
