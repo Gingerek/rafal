@@ -1,0 +1,60 @@
+/* Preserve the complete original photographs and restore fixed interface layers. */
+.home-page .site-header { position: fixed; z-index: 50; }
+.home-page .page-intro { position: fixed; z-index: 500; }
+.home-page .cursor { position: fixed; z-index: 200; }
+.home-page .ambient-light { position: fixed; z-index: 0; }
+.home-page main,
+.home-page .site-footer { position: relative; z-index: 1; }
+
+/* Main photograph: full original frame, never cropped or enlarged. */
+.home-page .hero {
+  isolation: isolate;
+  background: #0b0b0b;
+}
+.home-page .hero::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -5%;
+  background: url("images/DSCF4051.jpg") center / cover no-repeat;
+  filter: blur(34px) brightness(.42) saturate(.82);
+  transform: scale(1.08);
+  opacity: .72;
+}
+.home-page .hero-image {
+  z-index: 1;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+  filter: none !important;
+}
+.home-page .hero-shade { z-index: 2; background: linear-gradient(180deg,rgba(8,8,8,.14),transparent 52%,rgba(8,8,8,.5)); }
+.home-page .hero-caption { z-index: 3; }
+
+/* About photograph: keep the complete source image and its natural proportions. */
+.home-page .about-image-wrap {
+  min-height: 0 !important;
+  height: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #090909;
+}
+.home-page .about-image-wrap img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+}
+
+@media (max-width: 760px) {
+  .home-page .hero::before { filter: blur(25px) brightness(.4) saturate(.8); }
+  .home-page .hero-image { object-fit: contain !important; }
+}
