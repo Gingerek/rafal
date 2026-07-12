@@ -4,8 +4,13 @@
   const project = data?.projects.find(item => item.id === body.dataset.project);
   if (!project) return;
 
+  const manifest = window.FOTODISOGNO_IMAGES || {};
   const title = project.title.en;
-  const cover = `../../images/${encodeURIComponent(project.cover)}`;
+  const imagePath = file => `../../images/${file.split('/').map(encodeURIComponent).join('/')}`;
+  const meta = manifest[project.cover];
+  const heroMarkup = meta?.variants?.length
+    ? `<picture class="responsive-picture"><source type="image/avif" srcset="${meta.variants.map(item => `../../${item.avif} ${item.width}w`).join(',')}" sizes="(max-width:760px) 100vw, 62vw"><source type="image/webp" srcset="${meta.variants.map(item => `../../${item.webp} ${item.width}w`).join(',')}" sizes="(max-width:760px) 100vw, 62vw"><img id="projectHeroImage" src="../../${meta.variants[meta.variants.length - 1].webp}" width="${meta.width}" height="${meta.height}" alt="${title}" fetchpriority="high" decoding="async" data-preload></picture>`
+    : `<img id="projectHeroImage" src="${imagePath(project.cover)}" alt="${title}" fetchpriority="high" decoding="async" data-preload>`;
 
   body.insertAdjacentHTML('afterbegin', `
     <a class="skip-link" href="#projectMain">Skip to content</a>
@@ -21,9 +26,7 @@
 
     <main id="projectMain">
       <section class="project-opening" aria-labelledby="projectTitle">
-        <figure class="project-opening-media reveal-media">
-          <img id="projectHeroImage" src="${cover}" alt="${title}" fetchpriority="high" decoding="async" data-preload>
-        </figure>
+        <figure class="project-opening-media reveal-media">${heroMarkup}</figure>
         <div class="project-opening-copy">
           <div class="project-meta"><span id="projectLocation">${project.location.en}</span><span id="projectYear">${project.year}</span></div>
           <h1 id="projectTitle">${title}</h1>
@@ -33,13 +36,20 @@
       </section>
 
       <section class="gallery-section" aria-label="${title} photography">
+        <header class="gallery-heading"><p class="section-kicker" data-i18n="selectedFrames">Selected photographs</p></header>
         <div class="gallery-grid" id="story"></div>
       </section>
 
-      <nav class="project-navigation reveal" aria-label="Project navigation">
-        <a class="project-nav-link" id="previousProject" href="#"><small data-i18n="previousProject">Previous project</small><strong></strong><span aria-hidden="true">←</span></a>
-        <a class="project-nav-link" id="nextProject" href="#"><small data-i18n="nextProject">Next project</small><strong></strong><span aria-hidden="true">→</span></a>
-      </nav>
+      <section class="project-continuation reveal" aria-label="Project navigation">
+        <div class="continuation-top">
+          <a class="previous-project-link" id="previousProject" href="#"><span aria-hidden="true">←</span><small data-i18n="previousProject">Previous project</small><strong></strong></a>
+          <p data-i18n="continueStory">Continue to the next series</p>
+        </div>
+        <a class="next-project-canvas" id="nextProject" href="#" data-cursor="Next">
+          <div class="next-project-media" id="nextProjectMedia"></div>
+          <div class="next-project-copy"><small data-i18n="nextProject">Next project</small><strong></strong><span aria-hidden="true">↗</span></div>
+        </a>
+      </section>
 
       <section class="project-contact reveal"><h2 data-i18n="projectContact">Have a project in mind?</h2><a class="text-link" href="mailto:fotodisogno@gmail.com"><span data-i18n="projectContactCta">Get in touch</span><i aria-hidden="true">↗</i></a></section>
     </main>
