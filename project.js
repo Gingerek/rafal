@@ -139,6 +139,38 @@
     });
   }
 
+  function viewportSize() {
+    const viewport = window.visualViewport;
+    return {
+      width: Math.max(1, Math.round(viewport?.width || document.documentElement.clientWidth || innerWidth)),
+      height: Math.max(1, Math.round(viewport?.height || innerHeight))
+    };
+  }
+
+  function fitLightboxImage(image, naturalWidth = image?.naturalWidth, naturalHeight = image?.naturalHeight) {
+    if (!image || !naturalWidth || !naturalHeight) return;
+    const viewport = viewportSize();
+    const edge = viewport.width <= 760 ? 6 : 24;
+    const availableWidth = Math.max(1, viewport.width - edge * 2);
+    const availableHeight = Math.max(1, viewport.height - edge * 2);
+    const scale = Math.min(availableWidth / naturalWidth, availableHeight / naturalHeight);
+    const width = Math.max(1, Math.floor(naturalWidth * scale));
+    const height = Math.max(1, Math.floor(naturalHeight * scale));
+
+    image.style.setProperty('width', `${width}px`, 'important');
+    image.style.setProperty('height', `${height}px`, 'important');
+    image.style.setProperty('max-width', 'none', 'important');
+    image.style.setProperty('max-height', 'none', 'important');
+    image.style.setProperty('object-fit', 'contain', 'important');
+  }
+
+  function fitCurrentLightboxImage() {
+    const lightbox = $('#projectLightbox');
+    const image = $('#lightboxImage');
+    if (!lightbox?.classList.contains('open') || !image?.naturalWidth) return;
+    fitLightboxImage(image);
+  }
+
   function updateLightboxPhoto(animate = true) {
     const image = $('#lightboxImage');
     const photo = project.photos[state.index];
@@ -149,6 +181,7 @@
     next.onload = () => {
       image.src = next.src;
       image.alt = photo.alt;
+      fitLightboxImage(image, next.naturalWidth, next.naturalHeight);
       requestAnimationFrame(() => image.classList.remove('is-changing'));
     };
     next.onerror = () => image.classList.remove('is-changing');
@@ -168,12 +201,12 @@
 
   function openLightbox(index) {
     state.index = index;
-    updateLightboxPhoto(false);
     const lightbox = $('#projectLightbox');
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
     body.classList.add('overlay-open');
     document.documentElement.classList.add('overlay-open');
+    updateLightboxPhoto(false);
     showLightboxUI();
     requestAnimationFrame(() => $('#closeLightbox').focus({ preventScroll: true }));
   }
@@ -184,7 +217,9 @@
     lightbox.setAttribute('aria-hidden', 'true');
     body.classList.remove('overlay-open');
     document.documentElement.classList.remove('overlay-open');
-    $('#lightboxImage').src = '';
+    const image = $('#lightboxImage');
+    image.src = '';
+    image.removeAttribute('style');
     clearTimeout(state.uiTimer);
   }
 
@@ -322,8 +357,11 @@
 
     addEventListener('mousemove', moveCursor, { passive: true });
     addEventListener('scroll', updateScrollState, { passive: true });
-    addEventListener('resize', updateScrollState, { passive: true });
-    addEventListener('pagehide', markReturnHome);
+    addEventListener('resize', () => {
+      updateScrollState();
+      fitCurrentLightboxImage();
+    }, { passive: true });
+    window.visualViewport?.addEventListener('resize', fitCurrentLightboxImage, { passive: true });
     document.addEventListener('keydown', event => {
       if (!lightbox.classList.contains('open')) return;
       if (event.key === 'Escape') closeLightbox();
