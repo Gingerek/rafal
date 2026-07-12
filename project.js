@@ -5,7 +5,7 @@
   const project = data.projects.find(item => item.id === body.dataset.project);
   if (!project) return;
 
-  const state = { lang: 'nl', index: 0, touchX: 0, touchY: 0, uiTimer: 0, zoomed: false, view: 'grid' };
+  const state = { lang: 'nl', index: 0, touchX: 0, touchY: 0, uiTimer: 0, view: 'grid' };
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const t = key => data.translations[state.lang]?.[key] || data.translations.en[key] || key;
@@ -146,8 +146,6 @@
     const image = $('#lightboxImage');
     const photo = project.photos[state.index];
     if (animate) image.classList.add('is-changing');
-    state.zoomed = false;
-    image.classList.remove('is-zoomed');
     const next = new Image();
     next.decoding = 'async';
     next.onload = () => {
@@ -155,6 +153,7 @@
       image.alt = photo.alt;
       requestAnimationFrame(() => image.classList.remove('is-changing'));
     };
+    next.onerror = () => image.classList.remove('is-changing');
     next.src = imagePath(photo.src);
     $('#lightboxCounter').textContent = `${String(state.index + 1).padStart(2, '0')} / ${String(project.photos.length).padStart(2, '0')}`;
     $('#lightboxProgressBar').style.width = `${((state.index + 1) / project.photos.length) * 100}%`;
@@ -175,6 +174,7 @@
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
     body.classList.add('overlay-open');
+    document.documentElement.classList.add('overlay-open');
     showLightboxUI();
     requestAnimationFrame(() => $('#closeLightbox').focus({ preventScroll: true }));
   }
@@ -184,6 +184,7 @@
     lightbox.classList.remove('open', 'ui-hidden');
     lightbox.setAttribute('aria-hidden', 'true');
     body.classList.remove('overlay-open');
+    document.documentElement.classList.remove('overlay-open');
     $('#lightboxImage').src = '';
     clearTimeout(state.uiTimer);
   }
@@ -194,10 +195,8 @@
     showLightboxUI();
   }
 
-  function toggleZoom() {
-    state.zoomed = !state.zoomed;
-    $('#lightboxImage').classList.toggle('is-zoomed', state.zoomed);
-    showLightboxUI();
+  function preventViewportScroll(event) {
+    if ($('#projectLightbox').classList.contains('open')) event.preventDefault();
   }
 
   function setupHero() {
@@ -299,8 +298,6 @@
       if (button) openLightbox(Number(button.dataset.photoIndex));
     });
     $('#closeLightbox').addEventListener('click', closeLightbox);
-    $('#zoomLightbox').addEventListener('click', toggleZoom);
-    $('#lightboxImage').addEventListener('dblclick', toggleZoom);
     $('#previousPhoto').addEventListener('click', () => moveLightbox(-1));
     $('#nextPhoto').addEventListener('click', () => moveLightbox(1));
     const stage = $('#lightboxStage');
@@ -311,20 +308,22 @@
       if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.25) moveLightbox(dx < 0 ? 1 : -1);
     });
     stage.addEventListener('pointermove', showLightboxUI, { passive: true });
-    $('#projectLightbox').addEventListener('click', event => {
+    const lightbox = $('#projectLightbox');
+    lightbox.addEventListener('wheel', preventViewportScroll, { passive: false });
+    lightbox.addEventListener('touchmove', preventViewportScroll, { passive: false });
+    lightbox.addEventListener('click', event => {
       showLightboxUI();
-      if (event.target === $('#projectLightbox')) closeLightbox();
+      if (event.target === lightbox) closeLightbox();
     });
     addEventListener('mousemove', moveCursor, { passive: true });
     addEventListener('scroll', updateScrollState, { passive: true });
     addEventListener('resize', updateScrollState, { passive: true });
     addEventListener('pagehide', markReturnHome);
     document.addEventListener('keydown', event => {
-      if (!$('#projectLightbox').classList.contains('open')) return;
+      if (!lightbox.classList.contains('open')) return;
       if (event.key === 'Escape') closeLightbox();
       if (event.key === 'ArrowLeft') moveLightbox(-1);
       if (event.key === 'ArrowRight') moveLightbox(1);
-      if (event.key.toLowerCase() === 'z') toggleZoom();
     });
     updateScrollState();
     releaseLoadingScreen();
