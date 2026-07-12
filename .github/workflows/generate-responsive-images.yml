@@ -7,6 +7,7 @@ on:
       - agent/professional-image-system
     paths:
       - "images/**"
+      - "project-data.js"
       - "scripts/generate-responsive-images.py"
       - ".github/workflows/generate-responsive-images.yml"
   workflow_dispatch:
