@@ -4,7 +4,35 @@
   clip-path:none!important;
 }
 
-.hero-visual,
+/* The homepage hero must stay inside its own section. */
+.home-page .editorial-hero{
+  position:relative!important;
+  z-index:1!important;
+  isolation:isolate!important;
+  overflow:hidden!important;
+}
+
+.home-page .hero-visual,
+.home-page .hero-visual .responsive-picture{
+  min-width:0!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+  clip-path:none!important;
+  contain:paint;
+}
+
+.home-page .projects-section{
+  position:relative!important;
+  z-index:2!important;
+  isolation:isolate!important;
+  background:var(--bg)!important;
+}
+
+.home-page .projects-heading{
+  position:relative!important;
+  z-index:3!important;
+}
+
 .manifest-visual,
 .chapter-media,
 .project-opening-media,
@@ -13,7 +41,6 @@
   overflow:visible!important;
 }
 
-.hero-visual .responsive-picture,
 .manifest-visual .responsive-picture,
 .chapter-media .responsive-picture,
 .project-opening-media .responsive-picture,
