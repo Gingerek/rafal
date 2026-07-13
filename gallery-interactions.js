@@ -36,6 +36,14 @@
 
   const imageManifest = window.FOTODISOGNO_IMAGES || {};
   const layoutClasses = ['layout-classic', 'layout-panorama', 'layout-portrait', 'layout-diptych', 'layout-finale'];
+  const projectLayouts = {
+    people: 'layout-classic',
+    street: 'layout-panorama',
+    animals: 'layout-portrait',
+    nature: 'layout-classic',
+    travel: 'layout-diptych',
+    creative: 'layout-finale'
+  };
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const escapeHtml = value => String(value).replace(/[&<>\"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[char]));
@@ -110,12 +118,12 @@
     if (!chapters.length) return;
     const lang = currentLanguage();
 
-    chapters.forEach((chapter, index) => {
+    chapters.forEach(chapter => {
       const project = data.projects.find(item => item.id === chapter.dataset.project);
       if (!project) return;
 
       chapter.classList.remove(...layoutClasses);
-      chapter.classList.add(layoutClasses[index] || 'layout-classic');
+      chapter.classList.add(projectLayouts[project.id] || 'layout-classic');
 
       const title = $('.chapter-copy h3', chapter);
       if (title) {
@@ -137,7 +145,7 @@
       const markup = galleryHintMarkup(project, lang);
       if (hint.innerHTML !== markup) hint.innerHTML = markup;
 
-      if (index === 3) {
+      if (project.id === 'travel') {
         const secondPhoto = project.photos?.find(photo => photo.src !== project.preview && photo.src !== project.cover);
         if (secondPhoto && !$('.chapter-secondary-picture', link)) {
           hint.insertAdjacentHTML('beforebegin', responsivePicture(secondPhoto.src, `${localized(project.title)} — 2`));
