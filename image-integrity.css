@@ -1,0 +1,115 @@
+/* Global image-integrity layer: every photographic frame keeps its natural proportions. */
+.reveal-media,
+.project-chapter .chapter-media{
+  clip-path:none!important;
+}
+
+.hero-visual,
+.manifest-visual,
+.chapter-media,
+.project-opening-media,
+.gallery-media,
+.next-project-media{
+  overflow:visible!important;
+}
+
+.hero-visual .responsive-picture,
+.manifest-visual .responsive-picture,
+.chapter-media .responsive-picture,
+.project-opening-media .responsive-picture,
+.gallery-media .responsive-picture,
+.next-project-media .responsive-picture{
+  max-width:100%!important;
+  background:transparent!important;
+  overflow:visible!important;
+  clip-path:none!important;
+}
+
+.hero-image,
+.manifest-image,
+.chapter-image,
+.chapter-secondary-image,
+#projectHeroImage,
+.gallery-image,
+.next-project-image{
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  clip-path:none!important;
+  border-image:none!important;
+}
+
+.hero-image{
+  width:auto!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:100%!important;
+}
+
+.manifest-image{
+  width:100%!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:none!important;
+}
+
+.chapter-image,
+.chapter-secondary-image{
+  width:auto!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:76vh!important;
+}
+
+.project-opening-media #projectHeroImage{
+  width:auto!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:100%!important;
+}
+
+.gallery-media,
+.gallery-media .responsive-picture{
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+}
+
+.gallery-image{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:none!important;
+  transform:none!important;
+}
+
+.next-project-image{
+  width:auto!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:68vh!important;
+}
+
+/* Do not let editorial layout helpers crop individual photographs. */
+.gallery-card,
+.gallery-item,
+.gallery-grid,
+.chapter-media>a,
+.next-project-canvas{
+  clip-path:none!important;
+}
+
+@media(max-width:760px){
+  .hero-image,
+  .manifest-image,
+  .chapter-image,
+  .chapter-secondary-image,
+  #projectHeroImage,
+  .gallery-image,
+  .next-project-image{
+    width:100%!important;
+    height:auto!important;
+    max-height:none!important;
+  }
+}
