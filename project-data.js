@@ -4,52 +4,52 @@ window.FOTODISOGNO = {
       navWork: "Geselecteerd werk", navAbout: "Over mij", navContact: "Contact",
       heroEyebrow: "Fotografieportfolio", heroCtaWork: "Bekijk geselecteerd werk",
       workEyebrow: "Geselecteerd werk", workTitle: "Beelden die mijn manier van kijken bepalen",
-      workIntro: "Een gerichte selectie van mensen, plaatsen en details waarin licht de sfeer bepaalt.",
-      openStory: "Bekijk serie", aboutEyebrow: "Over mij",
+      workIntro: "Een gerichte selectie van mensen, plaatsen, dieren en details waarin licht de sfeer bepaalt.",
+      openStory: "Bekijk de galerij", aboutEyebrow: "Over mij",
       aboutTitle: "Ik fotografeer wat gemakkelijk onopgemerkt blijft",
       aboutLead: "Mensen, plaatsen en korte momenten waarin licht de sfeer bepaalt.",
-      aboutBody: "Ik zoek naar natuurlijke emotie, rustige composities en beelden die langer in het geheugen blijven dan de gebeurtenis zelf. Mijn werk beweegt tussen portret, straat, reizen en visueel detail.",
+      aboutBody: "Ik zoek naar natuurlijke emotie, rustige composities en beelden die langer in het geheugen blijven dan de gebeurtenis zelf. Mijn werk beweegt tussen portret, straat, dieren, reizen en visueel detail.",
       aboutLocation: "Gevestigd in Nederland", aboutAvailability: "Beschikbaar voor geselecteerde samenwerkingen en reisprojecten",
       aboutCta: "Begin een gesprek", contactTitle: "Heb je een idee voor een shoot of samenwerking?",
       contactLead: "Vertel kort wat je in gedachten hebt. Via e-mail of WhatsApp ben ik het gemakkelijkst bereikbaar.",
-      backHome: "Terug naar portfolio", viewImage: "Bekijk foto", nextProject: "Volgend project",
+      backHome: "Terug naar portfolio", viewImage: "Foto openen", nextProject: "Volgend project",
       previousProject: "Vorig project", close: "Sluiten", previous: "Vorige foto", next: "Volgende foto",
       projectContact: "Een project in gedachten?", projectContactCta: "Neem contact op",
-      selectedFrames: "Geselecteerde beelden", continueStory: "Ga verder naar de volgende serie"
+      selectedFrames: "Geselecteerde beelden", continueStory: "Ga verder naar de volgende galerij"
     },
     en: {
       navWork: "Selected work", navAbout: "About", navContact: "Contact",
       heroEyebrow: "Photography portfolio", heroCtaWork: "View selected work",
       workEyebrow: "Selected work", workTitle: "Images that define my way of seeing",
-      workIntro: "A focused selection of people, places and details in which light sets the atmosphere.",
-      openStory: "View series", aboutEyebrow: "About",
+      workIntro: "A focused selection of people, places, animals and details in which light sets the atmosphere.",
+      openStory: "View gallery", aboutEyebrow: "About",
       aboutTitle: "I photograph what is easy to overlook",
       aboutLead: "People, places and brief moments in which light creates atmosphere.",
-      aboutBody: "I look for natural emotion, calm compositions and images that remain in memory longer than the event itself. My work moves between portrait, street, travel and visual detail.",
+      aboutBody: "I look for natural emotion, calm compositions and images that remain in memory longer than the event itself. My work moves between portrait, street, animals, travel and visual detail.",
       aboutLocation: "Based in the Netherlands", aboutAvailability: "Available for selected collaborations and travel projects",
       aboutCta: "Start a conversation", contactTitle: "Have an idea for a shoot or collaboration?",
       contactLead: "Tell me briefly what you have in mind. I am easiest to reach by e-mail or WhatsApp.",
-      backHome: "Back to portfolio", viewImage: "View image", nextProject: "Next project",
+      backHome: "Back to portfolio", viewImage: "Open photo", nextProject: "Next project",
       previousProject: "Previous project", close: "Close", previous: "Previous photo", next: "Next photo",
       projectContact: "Have a project in mind?", projectContactCta: "Get in touch",
-      selectedFrames: "Selected photographs", continueStory: "Continue to the next series"
+      selectedFrames: "Selected photographs", continueStory: "Continue to the next gallery"
     },
     pl: {
       navWork: "Wybrane prace", navAbout: "O mnie", navContact: "Kontakt",
       heroEyebrow: "Portfolio fotograficzne", heroCtaWork: "Zobacz wybrane prace",
       workEyebrow: "Wybrane prace", workTitle: "Kadry, które określają mój sposób patrzenia",
-      workIntro: "Świadoma selekcja ludzi, miejsc i detali, w których światło buduje atmosferę.",
-      openStory: "Zobacz serię", aboutEyebrow: "O mnie",
+      workIntro: "Świadoma selekcja ludzi, miejsc, zwierząt i detali, w których światło buduje atmosferę.",
+      openStory: "Zobacz galerię", aboutEyebrow: "O mnie",
       aboutTitle: "Fotografuję to, co łatwo przeoczyć",
       aboutLead: "Ludzi, miejsca i krótkie momenty, w których światło buduje atmosferę.",
-      aboutBody: "Szukam naturalnych emocji, spokojnych kompozycji i obrazów, które zostają w pamięci dłużej niż samo wydarzenie. Moja fotografia porusza się między portretem, ulicą, podróżą i wizualnym detalem.",
+      aboutBody: "Szukam naturalnych emocji, spokojnych kompozycji i obrazów, które zostają w pamięci dłużej niż samo wydarzenie. Moja fotografia porusza się między portretem, ulicą, zwierzętami, podróżą i wizualnym detalem.",
       aboutLocation: "Mieszkam w Holandii", aboutAvailability: "Dostępny dla wybranych współprac i projektów podróżniczych",
       aboutCta: "Rozpocznij rozmowę", contactTitle: "Masz pomysł na zdjęcia lub współpracę?",
       contactLead: "Napisz krótko, co masz na myśli. Najłatwiej skontaktować się ze mną przez e-mail lub WhatsApp.",
-      backHome: "Wróć do portfolio", viewImage: "Zobacz zdjęcie", nextProject: "Następny projekt",
+      backHome: "Wróć do portfolio", viewImage: "Otwórz zdjęcie", nextProject: "Następny projekt",
       previousProject: "Poprzedni projekt", close: "Zamknij", previous: "Poprzednie zdjęcie", next: "Następne zdjęcie",
       projectContact: "Masz pomysł na projekt?", projectContactCta: "Skontaktuj się",
-      selectedFrames: "Wybrane fotografie", continueStory: "Przejdź do następnej serii"
+      selectedFrames: "Wybrane fotografie", continueStory: "Przejdź do następnej galerii"
     }
   },
   projects: [
@@ -96,25 +96,41 @@ window.FOTODISOGNO = {
       ]
     },
     {
-      id: "nature", theme: "forest", year: "2024—2026", cover: "DSCF3455.jpg", preview: "A7403102.avif",
-      title: { nl: "Natuur & Detail", en: "Nature & Detail", pl: "Natura i Detal" },
+      id: "animals", theme: "forest", year: "2024—2026", cover: "DSCF3455.jpg", preview: "A7407839.jpg",
+      title: { nl: "Dieren", en: "Animals", pl: "Zwierzęta" },
       description: {
-        nl: "Dieren, planten en kleine details die pas zichtbaar worden wanneer je vertraagt.",
-        en: "Animals, plants and small details that reveal themselves when you slow down.",
-        pl: "Zwierzęta, rośliny i drobne detale, które ujawniają się dopiero, gdy zwalniasz."
+        nl: "Dieren vastgelegd met aandacht voor karakter, beweging en natuurlijk licht.",
+        en: "Animals photographed with attention to character, movement and natural light.",
+        pl: "Zwierzęta fotografowane z uwagą na charakter, ruch i naturalne światło."
       },
       location: { nl: "Nederland", en: "The Netherlands", pl: "Holandia" },
       photos: [
-        { src: "DSCF3455.jpg", alt: "Robin portrait", note: { nl: "Een ontmoeting op ooghoogte, zonder haast.", en: "An eye-level encounter without urgency.", pl: "Spotkanie na wysokości oczu, bez pośpiechu." } },
+        { src: "DSCF3455.jpg", alt: "Robin bird portrait", note: { nl: "Een ontmoeting op ooghoogte, zonder haast.", en: "An eye-level encounter without urgency.", pl: "Spotkanie na wysokości oczu, bez pośpiechu." } },
         { src: "A7406653.avif", alt: "Seagull by the water" },
         { src: "DSCF4010.jpg", alt: "Bird on a wooden perch" },
         { src: "A7407839.jpg", alt: "Close portrait of a cat" },
         { src: "DSC_0250.jpg", alt: "White and brown cat resting" },
-        { src: "A7407059.jpg", alt: "Cat walking in snow" },
-        { src: "A7403102.avif", alt: "Daisy close-up", note: { nl: "De schaal verandert, maar de aandacht blijft hetzelfde.", en: "The scale changes, but the attention remains the same.", pl: "Zmienia się skala, ale nie uważność." } },
+        { src: "A7407059.jpg", alt: "Cat walking in snow", note: { nl: "De reeks eindigt met beweging in een stille winteromgeving.", en: "The series closes with movement in a quiet winter setting.", pl: "Serię zamyka ruch w spokojnej, zimowej scenerii." } }
+      ]
+    },
+    {
+      id: "nature", theme: "forest", year: "2024—2026", cover: "A7400567.png", preview: "A7403102.avif",
+      title: { nl: "Macro & Detail", en: "Macro & Detail", pl: "Makro i Detal" },
+      description: {
+        nl: "Planten, vormen en kleine details die pas zichtbaar worden wanneer je vertraagt.",
+        en: "Plants, forms and small details that reveal themselves when you slow down.",
+        pl: "Rośliny, formy i drobne detale, które ujawniają się dopiero, gdy zwalniasz."
+      },
+      location: { nl: "Nederland", en: "The Netherlands", pl: "Holandia" },
+      photos: [
+        { src: "A7400567.png", alt: "Wildflowers in soft light", note: { nl: "Een klein landschap opgebouwd uit licht en zachte vormen.", en: "A small landscape built from light and soft forms.", pl: "Mały krajobraz zbudowany ze światła i miękkich form." } },
+        { src: "A7403102.avif", alt: "Daisy close-up" },
         { src: "A7407521.png", alt: "Red berries close-up" },
+        { src: "DSC_0032.jpg", alt: "Red berries detail" },
+        { src: "DSC_0052.jpg", alt: "Small yellow flowers" },
+        { src: "DSC_0057.jpg", alt: "Small flower cluster" },
         { src: "DSC_0352.jpg", alt: "White flower macro" },
-        { src: "DSC_0492.jpg", alt: "Purple flower detail" }
+        { src: "DSC_0492.jpg", alt: "Purple flower detail", note: { nl: "De reeks eindigt bij kleur, structuur en een enkel detail.", en: "The series closes with colour, texture and a single detail.", pl: "Serię zamykają kolor, faktura i pojedynczy detal." } }
       ]
     },
     {
