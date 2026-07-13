@@ -1,0 +1,16 @@
+.cursor{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+}
+
+@media(hover:hover) and (pointer:fine){
+  [data-cursor],
+  a,
+  button,
+  .gallery-card,
+  .chapter-media a,
+  .next-project-canvas{
+    cursor:pointer!important;
+  }
+}
