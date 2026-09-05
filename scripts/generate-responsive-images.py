@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT / "images"
 OUTPUT_DIR = SOURCE_DIR / "responsive"
 DATA_FILE = ROOT / "responsive-image-data.js"
-PROJECT_DATA_FILE = ROOT / "project-data.js"
+PROJECT_DATA_FILES = [ROOT / "project-data.js", ROOT / "eclipse-2026.js"]
 WIDTHS = (480, 800, 1200, 1800)
 IMAGE_PATTERN = re.compile(r'["\']([^"\']+\.(?:jpe?g|png|avif|webp))["\']', re.IGNORECASE)
 ALWAYS_USED = {"DSCF4051.jpg", "A7408793.jpg"}
@@ -31,7 +31,11 @@ def save_variant(image: Image.Image, destination: Path, fmt: str) -> None:
 
 
 def referenced_images() -> list[Path]:
-    source_text = PROJECT_DATA_FILE.read_text(encoding="utf-8")
+    source_text = "\n".join(
+        path.read_text(encoding="utf-8")
+        for path in PROJECT_DATA_FILES
+        if path.is_file()
+    )
     names = set(IMAGE_PATTERN.findall(source_text)) | ALWAYS_USED
     return sorted(
         path for name in names
