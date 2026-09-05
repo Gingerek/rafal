@@ -6,8 +6,8 @@
     id: 'solar-eclipse-2026',
     theme: 'ember',
     year: '2026',
-    cover: 'A7409171.avif',
-    preview: 'A7409171.avif',
+    cover: 'DSC00139.avif',
+    preview: 'DSC00139.avif',
     title: {
       nl: 'Zonsverduistering 2026',
       en: 'Solar Eclipse 2026',
@@ -23,6 +23,15 @@
       en: 'New series',
       pl: 'Nowa seria'
     },
-    photos: []
+    photos: [
+      { src: 'DSC00139.avif', alt: 'Solar eclipse crescent against a black sky' },
+      { src: 'DSC00111.avif', alt: 'Partial solar eclipse crescent against a black sky' },
+      { src: 'DSC00250.avif', alt: 'Partial solar eclipse seen through tree branches' },
+      { src: 'DSC00240.avif', alt: 'Solar eclipse framed by branches and leaves' },
+      { src: 'DSC00238.avif', alt: 'Partial solar eclipse glowing behind tree branches' },
+      { src: 'DSC00235.avif', alt: 'Partial solar eclipse above silhouetted trees' },
+      { src: 'DSC00230.avif', alt: 'Solar eclipse beside a silhouetted tree' },
+      { src: 'DSC00229.avif', alt: 'Partial solar eclipse over silhouetted trees and clouds' }
+    ]
   });
 })();
