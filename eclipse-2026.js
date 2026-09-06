@@ -25,8 +25,8 @@
     },
     photos: [
       { src: 'DSC00139.avif', alt: 'Solar eclipse crescent against a black sky' },
-      { src: 'eclipse-DSC00111-v3.jpg', alt: 'Partial solar eclipse crescent against a black sky' },
-      { src: 'eclipse-DSC00250-v3.jpg', alt: 'Partial solar eclipse seen through tree branches' },
+      { src: 'eclipse-DSC00111-v4.jpg', alt: 'Partial solar eclipse crescent against a black sky' },
+      { src: 'eclipse-DSC00250-v4.jpg', alt: 'Partial solar eclipse seen through tree branches' },
       { src: 'DSC00240.png', alt: 'Solar eclipse framed by branches and leaves' },
       { src: 'DSC00238.avif', alt: 'Partial solar eclipse glowing behind tree branches' },
       { src: 'DSC00235.webp', alt: 'Partial solar eclipse above silhouetted trees' },
