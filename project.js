@@ -122,7 +122,7 @@
 
     project.photos.forEach((photo, index) => {
       const item = document.createElement('figure');
-      item.className = `gallery-item${photo.note ? ' has-note' : ''}`;
+      item.className = `gallery-item reveal${photo.note ? ' has-note' : ''}`;
       const preload = index < 4;
       const note = localized(photo.note);
       item.innerHTML = `
@@ -139,6 +139,7 @@
 
     prepareGalleryImages(gallery);
     bindCursorTargets(gallery);
+    observeReveals();
   }
 
   function prepareGalleryImages(root) {

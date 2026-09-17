@@ -22,9 +22,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" type="image/avif" href="images/responsive/A7408793-jpg-1200.avif" imagesrcset="images/responsive/A7408793-jpg-480.avif 480w, images/responsive/A7408793-jpg-800.avif 800w, images/responsive/A7408793-jpg-1200.avif 1200w, images/responsive/A7408793-jpg-1620.avif 1620w" imagesizes="(max-width:760px) 100vw, 70vw" fetchpriority="high">
+  <link rel="preload" as="image" type="image/avif" href="images/responsive/A7408793-jpg-1200.avif" imagesrcset="images/responsive/A7408793-jpg-480.avif 480w, images/responsive/A7408793-jpg-800.avif 800w, images/responsive/A7408793-jpg-1200.avif 1200w, images/responsive/A7408793-jpg-1620.avif 1620w" imagesizes="100vw" fetchpriority="high">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Rafał Wilk","url":"https://fotodisogno.com/","image":"https://fotodisogno.com/images/ChatGPT%20Image%2028%20mar%202026,%2016_46_19.png","sameAs":["https://instagram.com/fotodisogno"],"jobTitle":"Photographer","email":"mailto:fotodisogno@gmail.com","telephone":"+31644747733"}</script>
-  <link rel="stylesheet" href="studio.css?v=20260917-2">
+  <link rel="stylesheet" href="studio.css?v=20260917-3">
+  <link rel="stylesheet" href="portfolio.css?v=20260917-3">
 </head>
 <body class="home-page">
   <a class="skip-link" href="#main" data-studio="skip">Naar de inhoud</a>
@@ -50,41 +51,55 @@
   </header>
 
   <main id="main">
-    <section class="cinema-hero" id="top" aria-labelledby="heroTitle">
-      <div class="hero-topline"><p class="hero-kicker" data-studio="heroKicker">Rafał Wilk / Fotografie / Nederland</p><span>Portfolio / 2026</span></div>
-      <figure class="cinema-frame">
-        <div id="heroMedia" style="display:contents">
-          <picture><source type="image/avif" srcset="images/responsive/A7408793-jpg-480.avif 480w, images/responsive/A7408793-jpg-800.avif 800w, images/responsive/A7408793-jpg-1200.avif 1200w, images/responsive/A7408793-jpg-1620.avif 1620w" sizes="(max-width:760px) 100vw, 70vw"><img src="images/responsive/A7408793-jpg-1200.webp" width="1620" height="1080" alt="Sunset over a coastal bay" fetchpriority="high" decoding="async"></picture>
+    <section class="cinema-hero" id="top" aria-labelledby="heroTitle" aria-roledescription="slideshow">
+      <figure class="cinema-frame" aria-label="Photography by Rafał Wilk">
+        <div id="heroMedia">
+          <div class="hero-slide is-current"><picture><source type="image/avif" srcset="images/responsive/A7408793-jpg-480.avif 480w, images/responsive/A7408793-jpg-800.avif 800w, images/responsive/A7408793-jpg-1200.avif 1200w, images/responsive/A7408793-jpg-1620.avif 1620w" sizes="100vw"><img src="images/responsive/A7408793-jpg-1200.webp" width="1620" height="1080" alt="Sunset over a coastal bay" fetchpriority="high" decoding="async"></picture></div>
         </div>
         <div class="hero-shade" aria-hidden="true"></div>
       </figure>
+      <div class="hero-topline"><p class="hero-kicker" data-studio="heroKicker">Fotograaf / Nederland</p><span>FotodiSogno</span></div>
       <div class="cinema-copy">
-        <h1 id="heroTitle"><span data-studio="heroLine">Verhalen</span><em data-studio="heroAccent">in licht.</em></h1>
-        <p data-studio="heroIntro">Mensen, plaatsen en de momenten daartussen. Gezien door mijn lens.</p>
-        <a href="#work" class="text-link"><span data-i18n="heroCtaWork">Bekijk geselecteerd werk</span><i aria-hidden="true">↗</i></a>
+        <p class="hero-pretitle" data-studio="heroIntro">Licht. Mensen. Het onverwachte.</p>
+        <h1 id="heroTitle">Rafał <em>Wilk.</em></h1>
+        <a href="#selectedFrames" class="text-link hero-explore"><span data-studio="explore">Ontdek mijn fotografie</span><i aria-hidden="true">↓</i></a>
       </div>
       <div class="hero-bottom">
-        <div class="hero-credit"><b id="heroCaption" aria-live="polite">Licht aan de kust</b><span>© Rafał Wilk / FotodiSogno</span></div>
-        <div class="hero-controls" role="group" aria-label="Portfolio highlights"><button type="button" data-frame="0" aria-pressed="true">01</button><button type="button" data-frame="1" aria-pressed="false">02</button><button type="button" data-frame="2" aria-pressed="false">03</button></div>
+        <div class="hero-credit"><span id="heroFrameNumber">01 / 03</span><b id="heroCaption">Het laatste licht</b></div>
+        <div class="hero-controls" role="group" aria-label="Photography slideshow">
+          <button type="button" data-frame="0" aria-pressed="true"><span>01</span><i aria-hidden="true"></i></button>
+          <button type="button" data-frame="1" aria-pressed="false"><span>02</span><i aria-hidden="true"></i></button>
+          <button type="button" data-frame="2" aria-pressed="false"><span>03</span><i aria-hidden="true"></i></button>
+          <button type="button" id="heroPause" aria-pressed="false" aria-label="Pause slideshow"><span aria-hidden="true">Ⅱ</span></button>
+        </div>
       </div>
     </section>
-    <nav class="collection-index" id="heroProjectIndex" aria-label="Fotografiecollecties"></nav>
 
+    <section class="selected-frames" id="selectedFrames" aria-labelledby="framesTitle">
+      <header class="frames-heading reveal">
+        <div><p class="section-kicker" data-studio="framesKicker">Een eerste indruk</p><h2 id="framesTitle" data-studio="framesTitle">Even blijven kijken.</h2></div>
+        <div class="frames-navigation"><p data-studio="framesHint">Een paar beelden om in te verdwalen.</p><div class="film-buttons"><button id="filmPrevious" type="button" aria-label="Previous photographs">←</button><button id="filmNext" type="button" aria-label="Next photographs">→</button></div></div>
+      </header>
+      <div class="filmstrip" id="filmstrip" tabindex="0" aria-label="Selected photographs"></div>
+      <div class="filmstrip-bottom"><span data-studio="filmHint">Schuif om te ontdekken. Open een foto om meer te zien.</span><span id="filmCount">01 / 06</span></div>
+    </section>
+
+    <nav class="collection-index" id="heroProjectIndex" aria-label="Fotografiecollecties"></nav>
 
     <section class="projects-section" id="work">
       <header class="projects-heading reveal">
         <p class="section-kicker"><span class="section-number">01 /</span><span data-i18n="workEyebrow">Geselecteerd werk</span></p>
         <h2 data-studio="workTitle">Images that define my way of seeing</h2>
-        <p data-i18n="workIntro">A focused selection of people, places, animals and details in which light sets the atmosphere.</p>
+        <p data-studio="workIntro">A focused selection of people, places, animals and details in which light sets the atmosphere.</p>
       </header>
       <div class="project-grid" id="projectRail" aria-label="Photography projects"></div><noscript><p><a href="projects/people/">Mensen &amp; Portretten</a> · <a href="projects/street/">Straat &amp; Verhalen</a> · <a href="projects/animals/">Dieren</a> · <a href="projects/nature/">Macro &amp; Detail</a> · <a href="projects/travel/">Reisnotities</a> · <a href="projects/creative/">Creatief Licht</a> · <a href="projects/solar-eclipse-2026/">Zonsverduistering 2026</a></p></noscript>
     </section>
 
-    <section class="manifest-section reveal" aria-label="Photography statement">
+    <section class="manifest-section" aria-label="Photography statement">
       <figure class="manifest-visual"><img src="images/responsive/DSCF4051-jpg-800.webp" width="1766" height="2048" alt="Portrait of a woman with a cat by Rafał Wilk" loading="lazy" decoding="async"></figure>
       <div class="manifest-copy">
         <p class="section-kicker" data-studio="manifestKicker">A way of seeing</p>
-        <blockquote data-studio="manifestQuote">Light reveals what speed makes invisible.</blockquote><span class="signature">Rafał Wilk</span>
+        <blockquote class="reveal" data-studio="manifestQuote">Light reveals what speed makes invisible.</blockquote><span class="signature">Rafał Wilk</span>
       </div>
     </section>
 
@@ -114,10 +129,15 @@
     </section>
   </main>
 
+  <dialog class="frame-lightbox" id="frameLightbox" aria-labelledby="lightboxTitle">
+    <div class="frame-lightbox-top"><span id="lightboxTitle">FotodiSogno</span><button id="frameClose" type="button" aria-label="Close photograph">×</button></div>
+    <div class="frame-stage" id="frameStage"><button id="framePrevious" class="frame-arrow previous" type="button" aria-label="Previous photograph">‹</button><img id="frameImage" alt=""><span id="frameStatus" role="status"></span><button id="frameNext" class="frame-arrow next" type="button" aria-label="Next photograph">›</button></div>
+    <div class="frame-lightbox-bottom"><span id="frameCounter"></span><a id="frameCollection" href="#work"><span></span><i aria-hidden="true">↗</i></a></div>
+  </dialog>
   <footer class="site-footer"><span>FotodiSogno © <b id="year"></b></span><span>Rafał Wilk · The Netherlands</span></footer>
   <script src="responsive-image-data.js?v=20260905-1" defer></script>
   <script src="project-data.js?v=20260713-animals" defer></script>
   <script src="eclipse-2026.js?v=20260905-3" defer></script>
-  <script src="studio.js?v=20260917-2" defer></script>
+  <script src="studio.js?v=20260917-3" defer></script>
 </body>
 </html>
