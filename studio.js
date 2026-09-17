@@ -41,7 +41,7 @@
     $('#menuToggle').setAttribute('aria-label',t($('#menuToggle').getAttribute('aria-expanded')==='true'?'closeMenu':'menu'));
     $('#heroProjectIndex').setAttribute('aria-label',t('collections'));
     $('#heroProjectIndex').innerHTML=data.projects.map((p,i)=>`<a href="#chapter-${p.id}"><small>${String(i+1).padStart(2,'0')}</small>${escape(local(p.title))}</a>`).join('');
-    $('#projectRail').innerHTML=data.projects.map((p,i)=>`<article class="portfolio-card reveal" id="chapter-${p.id}"><a class="card-link" href="projects/${p.id}/?lang=${lang}" aria-label="${escape(t('openStory')+': '+local(p.title))}"><span class="card-image">${picture(p.preview||p.cover,local(p.title))}<span class="card-count">${p.photos.length} ${t('photos')}</span><span class="card-open" aria-hidden="true">↗</span></span><div class="card-heading"><h3>${escape(local(p.title))}</h3><span aria-hidden="true">${String(i+1).padStart(2,'0')}</span></div></a><div class="card-details"><span>${escape(local(p.location))}</span><span>${p.year.replace('—','–')}</span></div><p>${escape(local(p.description).replaceAll(' — ','. '))}</p></article>`).join('');
+    $('#projectRail').innerHTML=data.projects.map((p,i)=>`<article class="portfolio-card reveal" id="chapter-${p.id}"><a class="card-link" href="projects/${p.id}/?lang=${lang}" aria-label="${escape(t('openStory')+': '+local(p.title))}"><span class="card-image">${picture(p.preview||p.cover,local(p.title))}<span class="card-count">${p.photos.length} ${t('photos')}</span><span class="card-open" aria-hidden="true">↗</span></span><div class="card-heading"><h3>${escape(local(p.title))}</h3><span aria-hidden="true">${String(i+1).padStart(2,'0')}</span></div></a><div class="card-details"><span>${escape(local(p.location))}</span><span>${p.year.replace('—','–')}</span></div><p>${escape(local(p.description).replaceAll(' — ',', '))}</p></article>`).join('');
     updateFrameLabels();
     document.title=lang==='pl'?'FotodiSogno | Fotografia Rafała Wilka':lang==='nl'?'FotodiSogno | Fotografie door Rafał Wilk':'FotodiSogno | Photography by Rafał Wilk';
     const url=new URL(location.href);url.searchParams.set('lang',lang);history.replaceState(null,'',url.pathname+url.search+url.hash);
@@ -61,7 +61,7 @@
     if(request!==frameRequest)return;
     const target=$('#heroMedia');
     const change=()=>{target.replaceChildren(...holder.childNodes);frameIndex=index;updateFrameLabels()};
-    if(document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches){target.style.viewTransitionName='hero-photograph';const transition=document.startViewTransition(change);transition.finished.finally(()=>target.style.viewTransitionName='')}
+    if(document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches){target.style.viewTransitionName='hero-photograph';const transition=document.startViewTransition(change);transition.finished.catch(()=>{}).finally(()=>target.style.viewTransitionName='')}
     else change();
   }
   function closeMenu(){
