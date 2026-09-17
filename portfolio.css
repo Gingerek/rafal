@@ -52,7 +52,7 @@
 .project-page .brand b{font:400 1.8rem/1 var(--font-display);letter-spacing:-.035em}
 .project-page .project-opening h1,.project-page .project-opening h1.title-long,.project-page .project-opening h1.title-extra-long{font:400 clamp(3.5rem,6.7vw,8rem)/1.04 var(--font-display)!important;letter-spacing:-.04em!important}
 .project-page .project-opening-copy .project-meta{font-size:.75rem;color:#b9bbb2}
-.project-page .gallery-item.reveal{transition:opacity .9s var(--ease),transform 1s var(--ease)}
+.project-page .gallery-item.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform 1s var(--ease)}.project-page .gallery-item.reveal.visible{opacity:1;transform:none}
 .project-page .gallery-action{background:#0a0c0bbb;border:1px solid #ffffff50;padding:10px 14px;font-size:.75rem!important;letter-spacing:.03em}
 .project-page .next-project-copy strong{font:400 clamp(3rem,6vw,7rem)/1 var(--font-display);letter-spacing:-.03em}
 .project-page .project-contact h2{font:400 clamp(3.2rem,6vw,7rem)/1.05 var(--font-display);letter-spacing:-.03em}
