@@ -13,6 +13,8 @@
     pl: { view: 'Zobacz fotografie' }
   };
   const state = { lang: 'nl', index: 0, touchX: 0, touchY: 0, uiTimer: 0 };
+  let lightboxTrigger = null;
+  let lightboxRequest = 0;
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const t = key => data.translations[state.lang]?.[key] || data.translations.en[key] || key;
@@ -86,6 +88,11 @@
     });
 
     $('#projectTitle').textContent = localized(project.title);
+    $('#projectLightbox').setAttribute('aria-label', localized(project.title));
+    [['closeLightbox', 'close'], ['previousPhoto', 'previous'], ['nextPhoto', 'next']].forEach(([id, key]) => {
+      $(`#${id}`).setAttribute('aria-label', t(key));
+      $(`#${id}`).setAttribute('title', t(key));
+    });
     $('#projectDescription').textContent = localized(project.description);
     $('#projectLocation').textContent = localized(project.location);
     $('.project-opening .text-link span').textContent = localCopy[state.lang]?.view || localCopy.en.view;
@@ -205,12 +212,14 @@
   }
 
   function updateLightboxPhoto(animate = true) {
+    const request = ++lightboxRequest;
     const image = $('#lightboxImage');
     const photo = project.photos[state.index];
     if (animate) image.classList.add('is-changing');
     const next = new Image();
     next.decoding = 'async';
     next.onload = () => {
+      if (request !== lightboxRequest || !$('#projectLightbox').classList.contains('open')) return;
       image.src = next.src;
       image.alt = photo.alt;
       fitLightboxImage(image, next.naturalWidth, next.naturalHeight);
@@ -230,27 +239,32 @@
   }
 
   function openLightbox(index) {
+    lightboxTrigger = document.activeElement;
     state.index = index;
     const lightbox = $('#projectLightbox');
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
     body.classList.add('overlay-open');
     document.documentElement.classList.add('overlay-open');
+    $$('#projectMain, .project-header, .site-footer').forEach(node => { node.inert = true; });
     updateLightboxPhoto(false);
     showLightboxUI();
     requestAnimationFrame(() => $('#closeLightbox').focus({ preventScroll: true }));
   }
 
   function closeLightbox() {
+    lightboxRequest += 1;
     const lightbox = $('#projectLightbox');
     lightbox.classList.remove('open', 'ui-hidden');
     lightbox.setAttribute('aria-hidden', 'true');
     body.classList.remove('overlay-open');
     document.documentElement.classList.remove('overlay-open');
     const image = $('#lightboxImage');
-    image.src = '';
+    image.removeAttribute('src');
     image.removeAttribute('style');
     clearTimeout(state.uiTimer);
+    $$('#projectMain, .project-header, .site-footer').forEach(node => { node.inert = false; });
+    lightboxTrigger?.focus({ preventScroll: true });
   }
 
   function moveLightbox(direction) {
@@ -386,6 +400,13 @@
     window.visualViewport?.addEventListener('resize', fitCurrentLightboxImage, { passive: true });
     document.addEventListener('keydown', event => {
       if (!lightbox.classList.contains('open')) return;
+      if (event.key === 'Tab') {
+        const controls = [$('#closeLightbox'), $('#previousPhoto'), $('#nextPhoto')];
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        showLightboxUI();
+      }
       if (event.key === 'Escape') closeLightbox();
       if (event.key === 'ArrowLeft') moveLightbox(-1);
       if (event.key === 'ArrowRight') moveLightbox(1);
