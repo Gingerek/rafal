@@ -9,7 +9,7 @@
   const imagePath = file => `../../images/${file.split('/').map(encodeURIComponent).join('/')}`;
   const meta = manifest[project.cover];
   const heroMarkup = meta?.variants?.length
-    ? `<picture class="responsive-picture"><source type="image/avif" srcset="${meta.variants.map(item => `../../${item.avif} ${item.width}w`).join(',')}" sizes="(max-width:760px) 100vw, 62vw"><source type="image/webp" srcset="${meta.variants.map(item => `../../${item.webp} ${item.width}w`).join(',')}" sizes="(max-width:760px) 100vw, 62vw"><img id="projectHeroImage" src="../../${meta.variants[meta.variants.length - 1].webp}" width="${meta.width}" height="${meta.height}" alt="${title}" fetchpriority="high" decoding="async" data-preload></picture>`
+    ? `<picture class="responsive-picture"><source type="image/avif" srcset="${meta.variants.map(item => `../../${item.avif} ${item.width}w`).join(',')}" sizes="(max-width:820px) 92vw, 62vw"><source type="image/webp" srcset="${meta.variants.map(item => `../../${item.webp} ${item.width}w`).join(',')}" sizes="(max-width:820px) 92vw, 62vw"><img id="projectHeroImage" src="../../${meta.variants[meta.variants.length - 1].webp}" width="${meta.width}" height="${meta.height}" alt="${title}" fetchpriority="high" decoding="async" data-preload></picture>`
     : `<img id="projectHeroImage" src="${imagePath(project.cover)}" alt="${title}" fetchpriority="high" decoding="async" data-preload>`;
 
   body.insertAdjacentHTML('afterbegin', `
@@ -67,12 +67,14 @@
     <footer class="site-footer"><span>FotodiSogno © <b id="year"></b></span><span>Rafał Wilk · The Netherlands</span></footer>
 
     <div class="project-lightbox" id="projectLightbox" aria-hidden="true" role="dialog" aria-modal="true">
+      <span class="project-lightbox-title" id="projectLightboxTitle"></span>
       <button class="lightbox-close lightbox-ui" id="closeLightbox" type="button" aria-label="Close" title="Close">×</button>
       <div class="lightbox-stage" id="lightboxStage">
         <button class="lightbox-arrow lightbox-prev lightbox-ui" id="previousPhoto" type="button" aria-label="Previous photo">‹</button>
-        <div class="lightbox-image-wrap"><img class="lightbox-image" id="lightboxImage" src="" alt=""></div>
+        <div class="lightbox-image-wrap"><img class="lightbox-image" id="lightboxImage" alt=""></div>
         <button class="lightbox-arrow lightbox-next lightbox-ui" id="nextPhoto" type="button" aria-label="Next photo">›</button>
       </div>
+      <span class="lightbox-status" id="lightboxStatus" role="status"></span>
       <span class="lightbox-counter lightbox-ui" id="lightboxCounter">01 / 01</span>
     </div>`);
 })();
