@@ -191,3 +191,4 @@ window.FOTODISOGNO = {
     }
   ]
 };
+// gallery-image-build: 2026-09-18-batch2
