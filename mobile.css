@@ -63,7 +63,7 @@
   .home-page .hero-kicker { font-size: .6875rem; letter-spacing: .13em; }
   .home-page .cinema-copy { order: 1; padding: 36px 0 0; margin: auto 0 0; }
   .home-page .cinema-copy h1 { font-size: clamp(2.6rem, 12vw, 5.5rem); line-height: 1.08; max-width: 100%; white-space: nowrap; }
-  .home-page .cinema-copy h1 .hero-surname { display: inline; margin-left: 0; }
+  .home-page .cinema-copy h1 .hero-surname { display: inline; margin-left: .12em; }
   .home-page .cinema-copy > p { font-size: .6875rem; letter-spacing: .08em; max-width: 29ch; margin: 0 0 16px; line-height: 1.6; }
   .home-page .hero-explore { margin-top: 18px; min-height: 48px; gap: 34px; padding: 10px 0; font-size: .875rem; }
   .home-page .hero-bottom { order: 2; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; margin-top: 24px; padding-top: 14px; }
@@ -201,7 +201,7 @@
   .home-page .cinema-hero { height: auto; min-height: 480px; max-height: none; padding-top: calc(var(--header-h) + 22px); }
   .home-page .cinema-copy { padding-top: 28px; }
   .home-page .cinema-copy h1 { font-size: clamp(3rem, 8vw, 5rem); white-space: nowrap; }
-  .home-page .cinema-copy h1 .hero-surname { display: inline; margin-left: 0; }
+  .home-page .cinema-copy h1 .hero-surname { display: inline; margin-left: .12em; }
   .home-page .cinema-copy > p { max-width: none; margin-bottom: 12px; }
   .home-page .hero-explore { margin-top: 10px; }
   .home-page .hero-bottom { margin-top: 16px; }

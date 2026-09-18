@@ -14,8 +14,8 @@
 .home-page .hero-shade{display:block;background:linear-gradient(180deg,#0009 0%,transparent 30%,#0001 48%,#000b 85%,#000d 100%)}
 .home-page .hero-topline{align-items:start}.home-page .hero-kicker{color:#eeece6;letter-spacing:.15em;font-size:.75rem}.home-page .hero-topline>span{display:none}
 .home-page .cinema-copy{margin:auto 0 0;padding:70px 0 35px;max-width:none;pointer-events:auto}
-.home-page .cinema-copy h1{font:400 clamp(4.5rem,8.2vw,9rem)/1 var(--font-display);letter-spacing:-.055em;color:#fff;text-shadow:0 3px 20px #0002;white-space:nowrap}
-.home-page .cinema-copy h1 .hero-surname{display:inline;font:inherit;letter-spacing:-.05em;color:#fff}
+.home-page .cinema-copy h1{font:400 clamp(4.5rem,8.2vw,9rem)/1 var(--font-display);letter-spacing:-.025em;color:#fff;text-shadow:0 3px 20px #0002;white-space:nowrap}
+.home-page .cinema-copy h1 .hero-surname{display:inline;font:inherit;letter-spacing:inherit;margin-left:.12em;color:#fff}
 .home-page .cinema-copy>p{font-size:.875rem;line-height:1.5;letter-spacing:.12em;text-transform:uppercase;color:#f0eeea;margin:0 0 20px;max-width:none}
 .home-page .hero-explore{margin-top:25px;font-size:.875rem;border-color:#ffffff80;padding-bottom:10px;gap:70px}.home-page .hero-explore:hover i{transform:translateY(5px)}
 .home-page .hero-bottom{margin-top:30px;align-items:center;border-top:1px solid #ffffff35;padding-top:23px}
