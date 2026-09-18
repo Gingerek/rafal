@@ -1,0 +1,12 @@
+/* Fine white photo borders, restricted to the home page. */
+.home-page main .film-photo img,
+.home-page main .card-main img,
+.home-page main .featured-images img,
+.home-page main .manifest-visual img,
+.home-page main .about-photo > img {
+  box-sizing: border-box;
+  border: 1px solid #fff;
+}
+.home-page .cinema-frame {
+  border: 1px solid #fff !important;
+}
