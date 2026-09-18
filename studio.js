@@ -8,22 +8,23 @@
   const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const motion=matchMedia('(prefers-reduced-motion: reduce)');
   const mobile=matchMedia('(max-width:820px), (max-width:1000px) and (max-height:520px) and (pointer:coarse)');
-  const hoverPhotos=matchMedia('(hover:hover) and (pointer:fine)');
   const copy={
     nl:{heroKicker:'Fotograaf / Nederland',heroIntro:'Portretten · Straat · Reizen',explore:'Ontdek mijn fotografie',workTitle:'Series en projecten',workIntro:'Van een blik op straat tot het laatste licht aan de kust. Kies een serie en kijk verder.',manifestKicker:'Mijn manier van kijken',manifestQuote:'Soms is één moment genoeg.',heroFrame:'Het laatste licht',portraitFrame:'Stilte in de ochtend',streetFrame:'Als de dag vertraagt',photos:'foto’s',choose:'Toon foto',role:'Fotograaf',menu:'Menu openen',closeMenu:'Menu sluiten',skip:'Naar de inhoud',collections:'Fotografiecollecties',framesKicker:'Een eerste indruk',framesTitle:'Geselecteerde fotografie',framesHint:'Een selectie uit mijn collecties.',filmHint:'Schuif om te ontdekken. Open een foto om meer te zien.',pause:'Diavoorstelling pauzeren',play:'Diavoorstelling afspelen',previous:'Vorige foto',next:'Volgende foto',close:'Foto sluiten',open:'Foto openen',loading:'Foto laden…',failed:'Deze foto kon niet worden geladen. Probeer de volgende foto.',collection:'Bekijk de hele serie',previousFrames:'Vorige beelden',nextFrames:'Volgende beelden',frameTitles:['Karakter in zwart-wit','Aan de waterkant','Een kleine ontmoeting','Een ochtend in stilte','Dichterbij','Een ander licht']},
     en:{heroKicker:'Photographer / The Netherlands',heroIntro:'Portraits · Street · Travel',explore:'Explore my photography',workTitle:'Series and projects',workIntro:'From a passing glance to the last light on the coast. Choose a series and look a little closer.',manifestKicker:'My way of seeing',manifestQuote:'Sometimes, one moment is enough.',heroFrame:'The last light',portraitFrame:'A quiet morning',streetFrame:'When the day slows down',photos:'photos',choose:'Show photograph',role:'Photographer',menu:'Open menu',closeMenu:'Close menu',skip:'Skip to content',collections:'Photography collections',framesKicker:'A first impression',framesTitle:'Selected photographs',framesHint:'A selection from my collections.',filmHint:'Scroll to explore. Open a photograph to look closer.',pause:'Pause slideshow',play:'Play slideshow',previous:'Previous photograph',next:'Next photograph',close:'Close photograph',open:'Open photograph',loading:'Loading photograph…',failed:'This photograph could not load. Try the next photograph.',collection:'View the full series',previousFrames:'Previous photographs',nextFrames:'Next photographs',frameTitles:['Character in black and white','By the water','A small encounter','A quiet morning','A closer look','A different light']},
     pl:{heroKicker:'Fotograf / Holandia',heroIntro:'Portrety · Ulica · Podróże',explore:'Odkryj moje fotografie',workTitle:'Serie i projekty',workIntro:'Od spojrzenia na ulicy po ostatnie światło na wybrzeżu. Wybierz serię i zobacz więcej.',manifestKicker:'Mój sposób patrzenia',manifestQuote:'Czasem wystarczy jeden moment.',heroFrame:'Ostatnie światło',portraitFrame:'Cisza poranka',streetFrame:'Kiedy dzień zwalnia',photos:'zdjęć',choose:'Pokaż zdjęcie',role:'Fotograf',menu:'Otwórz menu',closeMenu:'Zamknij menu',skip:'Przejdź do treści',collections:'Kolekcje fotograficzne',framesKicker:'Pierwsze spojrzenie',framesTitle:'Wybrane fotografie',framesHint:'Wybór zdjęć z moich kolekcji.',filmHint:'Przewiń i odkrywaj. Otwórz zdjęcie, żeby zobaczyć więcej.',pause:'Wstrzymaj pokaz',play:'Włącz pokaz',previous:'Poprzednie zdjęcie',next:'Następne zdjęcie',close:'Zamknij zdjęcie',open:'Otwórz zdjęcie',loading:'Wczytywanie zdjęcia…',failed:'Nie udało się wczytać tego zdjęcia. Spróbuj przejść do następnego.',collection:'Zobacz całą serię',previousFrames:'Poprzednie kadry',nextFrames:'Następne kadry',frameTitles:['Charakter w czerni i bieli','Nad wodą','Małe spotkanie','Cisza poranka','Z bliska','Inne światło']}
   };
-  const frames=[
-    {src:'A7408793.jpg',key:'heroFrame',alt:'Sunset over a coastal bay'},
-    {src:'A7407052.jpg',key:'portraitFrame',alt:'A cyclist in the morning fog'},
-    {src:'A7408846.avif',key:'streetFrame',alt:'Basketball hoop at sunset'}
-  ];
   const selection=[
-    {src:'A7407707.jpg',project:'people'},{src:'A7406608.jpg',project:'travel'},
-    {src:'DSCF3455.jpg',project:'animals'},{src:'A7407052.jpg',project:'street'},
-    {src:'A7403102.avif',project:'nature'},{src:'DSC_5304.jpg',project:'creative'}
+    {src:'A7408793.jpg',project:'street'}, {src:'A7407052.jpg',project:'street'},
+    {src:'A7407707.jpg',project:'people'}, {src:'DSCF3455.jpg',project:'animals'},
+    {src:'A7403102.avif',project:'nature'}, {src:'A7406608.jpg',project:'travel'},
+    {src:'DSC_5304.jpg',project:'creative'}
   ];
+  const featureCopy={
+    nl:{eyebrow:'Persoonlijk project',intro:'Van een brandende bladzijde tot een spiraal van licht. Een serie rond licht, vorm en warme kleuren.',open:'Ontdek het project',titles:['Het laatste licht','Een ochtend in stilte','Karakter in zwart-wit','Een kleine ontmoeting','Dichterbij','Aan de waterkant','Een ander licht']},
+    en:{eyebrow:'Personal project',intro:'From a burning page to a spiral of light. A series exploring light, form and warm colours.',open:'Explore the project',titles:['The last light','A quiet morning','Character in black and white','A small encounter','A closer look','By the water','A different light']},
+    pl:{eyebrow:'Projekt autorski',intro:'Od płonącej kartki po spiralę światła. Seria poświęcona światłu, formie i ciepłym barwom.',open:'Odkryj projekt',titles:['Ostatnie światło','Cisza poranka','Charakter w czerni i bieli','Małe spotkanie','Z bliska','Nad wodą','Inne światło']}
+  };
+  Object.keys(copy).forEach(key=>copy[key].frameTitles=featureCopy[key].titles);
   let lang=new URL(location.href).searchParams.get('lang');
   if(!copy[lang])lang='nl';
   const t=key=>copy[lang][key]||data.translations[lang][key]||key;
@@ -57,64 +58,22 @@
     $('#heroProjectIndex').setAttribute('aria-label',t('collections'));
     $('#heroProjectIndex').innerHTML=data.projects.map((p,i)=>`<a href="#chapter-${p.id}"><small>${String(i+1).padStart(2,'0')}</small>${escape(local(p.title))}</a>`).join('');
     $('#projectRail').innerHTML=data.projects.map((p,i)=>{
-      const alternate=hoverPhotos.matches&&p.photos.find(photo=>photo.src!==(p.preview||p.cover));
-      return `<article class="portfolio-card reveal" id="chapter-${p.id}"><a class="card-link" href="projects/${p.id}/?lang=${lang}" aria-label="${escape(t('openStory')+': '+local(p.title))}"><span class="card-image"><span class="card-main">${picture(p.preview||p.cover,local(p.title))}</span>${alternate?`<span class="card-alternate" aria-hidden="true">${picture(alternate.src,'')}</span>`:''}<span class="card-count">${p.photos.length} ${t('photos')}</span><span class="card-open" aria-hidden="true">↗</span></span><div class="card-heading"><h3>${escape(local(p.title))}</h3><span aria-hidden="true">${String(i+1).padStart(2,'0')}</span></div></a><div class="card-details"><span>${escape(local(p.location))}</span><span>${p.year.replace('—','–')}</span></div><p>${escape(local(p.description).replaceAll(' — ',', '))}</p></article>`;
+      const accent=window.FOTODISOGNO_EXHIBITION?.[p.id]?.accent||'#c2b395';
+      return `<article class="portfolio-card reveal" id="chapter-${p.id}" style="--series-accent:${accent}"><a class="card-link" data-project-link="${p.id}" data-entry="${escape(p.preview||p.cover)}" href="projects/${p.id}/?lang=${lang}&amp;frame=${encodeURIComponent(p.preview||p.cover)}" aria-label="${escape(t('openStory')+': '+local(p.title))}"><span class="card-image"><span class="card-main">${picture(p.preview||p.cover,local(p.title))}</span><span class="card-count">${p.photos.length} ${t('photos')}</span><span class="card-open" aria-hidden="true">↗</span></span><div class="card-heading"><h3>${escape(local(p.title))}</h3><span aria-hidden="true">${String(i+1).padStart(2,'0')}</span></div></a><div class="card-details"><span>${escape(local(p.location))}</span><span>${p.year.replace('—','–')}</span></div><p>${escape(local(p.description).replaceAll(' — ',', '))}</p></article>`;
     }).join('');
     const savedScroll=$('#filmstrip').scrollLeft;
-    $('#filmstrip').innerHTML=selection.map((p,i)=>`<figure class="film-frame"><button class="film-photo" data-selection="${i}" type="button" aria-label="${escape(t('open')+': '+copy[lang].frameTitles[i])}">${picture(p.src,copy[lang].frameTitles[i],{sizes:'(max-width:820px) 90vw, 42vw'})}</button><figcaption><span>${escape(copy[lang].frameTitles[i])}</span><small>${String(i+1).padStart(2,'0')}</small></figcaption></figure>`).join('');
+    $('#filmstrip').innerHTML=selection.map((p,i)=>`<figure class="film-frame" style="--photo-ratio:${manifest[p.src]?.width / manifest[p.src]?.height || 1}"><button class="film-photo" data-selection="${i}" type="button" aria-label="${escape(t('open')+': '+copy[lang].frameTitles[i])}">${picture(p.src,copy[lang].frameTitles[i],{sizes:'(max-width:820px) 90vw, 42vw'})}</button><figcaption><span>${escape(copy[lang].frameTitles[i])}</span><small>${String(i+1).padStart(2,'0')}</small></figcaption></figure>`).join('');
     $('#filmstrip').scrollLeft=savedScroll;
     [['filmPrevious','previousFrames'],['filmNext','nextFrames'],['framePrevious','previous'],['frameNext','next'],['frameClose','close']].forEach(([id,key])=>$('#'+id).setAttribute('aria-label',t(key)));
-    updateHeroLabels();updateFilm();
+    $('#heroCaption').textContent=t('heroFrame');updateFilm();
+    const featured=data.projects.find(p=>p.id==='creative'),feature=featureCopy[lang];
+    $('#featuredProject').innerHTML=`<a class="featured-images reveal" data-project-link="creative" data-entry="${featured.cover}" href="projects/creative/?lang=${lang}&amp;frame=${encodeURIComponent(featured.cover)}" aria-label="${escape(t('openStory')+': '+local(featured.title))}"><span data-transition-image>${picture(featured.cover,local(featured.title),{sizes:'(max-width:820px) 60vw, 35vw'})}</span><span class="featured-secondary" aria-hidden="true">${picture('DSC_0007-2.jpg','',{sizes:'(max-width:820px) 30vw, 18vw'})}</span></a><div class="featured-copy reveal"><p class="section-kicker">${feature.eyebrow}</p><h2 id="featuredTitle">${escape(local(featured.title))}</h2><p>${feature.intro}</p><a class="text-link" data-project-link="creative" data-entry="${featured.cover}" href="projects/creative/?lang=${lang}&amp;frame=${encodeURIComponent(featured.cover)}"><span>${feature.open}</span><i aria-hidden="true">↗</i></a><div class="featured-meta"><span>${featured.photos.length} ${t('photos')}</span><span>${featured.year.replace('—','–')}</span></div></div>`;
     document.title=lang==='pl'?'FotodiSogno | Rafał Wilk, fotografia':lang==='nl'?'FotodiSogno | Rafał Wilk, fotograaf':'FotodiSogno | Rafał Wilk, photographer';
     const url=new URL(location.href);url.searchParams.set('lang',lang);history.replaceState(null,'',url.pathname+url.search+url.hash);
     observe();
   }
 
-  // A slow photographic sequence, paused when off-screen or hidden.
-  let frameIndex=0,frameRequest=0,heroTimer=0,heroVisible=true;
-  let userPaused=motion.matches,focusPaused=false;
-  function playing(){return !userPaused&&!focusPaused&&heroVisible&&!document.hidden&&!document.documentElement.classList.contains('menu-open')}
-  function updateHeroLabels(){
-    $('#heroCaption').textContent=t(frames[frameIndex].key);
-    $('#heroFrameNumber').textContent=`${String(frameIndex+1).padStart(2,'0')} / 03`;
-    $$('[data-frame]').forEach((el,i)=>{el.setAttribute('aria-pressed',String(i===frameIndex));el.setAttribute('aria-label',`${t('choose')} ${i+1}: ${t(frames[i].key)}`)});
-    $('#heroPause').setAttribute('aria-label',t(userPaused?'play':'pause'));
-    $('#heroPause').setAttribute('aria-pressed',String(userPaused));
-    $('#heroPause span').textContent=userPaused?'▶':'Ⅱ';
-  }
-  function scheduleHero(){
-    clearTimeout(heroTimer);
-    $$('[data-frame]').forEach(el=>el.classList.remove('is-running'));
-    document.body.classList.toggle('hero-is-paused',!playing());
-    if(!playing())return;
-    const active=$(`[data-frame="${frameIndex}"]`);
-    void active.offsetWidth;active.classList.add('is-running');
-    heroTimer=setTimeout(()=>showFrame((frameIndex+1)%frames.length),8000);
-  }
-  async function showFrame(index,manual=false){
-    if(manual){userPaused=true;focusPaused=false;clearTimeout(heroTimer)}
-    if(index===frameIndex){updateHeroLabels();scheduleHero();return}
-    const request=++frameRequest;
-    let target=$(`#heroMedia [data-hero-index="${index}"]`);
-    if(!target){
-      target=document.createElement('div');target.className='hero-slide';target.dataset.heroIndex=index;target.setAttribute('aria-hidden','true');
-      target.innerHTML=picture(frames[index].src,frames[index].alt,{eager:true,sizes:'(max-width:820px) 150vh, 100vw'});
-      $('#heroMedia').appendChild(target);
-    }
-    try{await target.querySelector('img').decode()}catch{scheduleHero();return}
-    if(request!==frameRequest)return;
-    if(!manual&&!playing()){scheduleHero();return}
-    $$('#heroMedia .hero-slide').forEach(el=>{el.classList.toggle('is-current',el===target);el.setAttribute('aria-hidden',String(el!==target))});
-    frameIndex=index;updateHeroLabels();scheduleHero();
-  }
-  $('#heroMedia .hero-slide').dataset.heroIndex='0';
-  $$('[data-frame]').forEach(el=>el.addEventListener('click',()=>showFrame(Number(el.dataset.frame),true)));
-  $('#heroPause').addEventListener('click',()=>{userPaused=!userPaused;focusPaused=false;frameRequest++;updateHeroLabels();scheduleHero()});
-  $('.hero-controls').addEventListener('focusin',()=>{focusPaused=true;scheduleHero()});
-  $('.hero-controls').addEventListener('focusout',e=>{if(!$('.hero-controls').contains(e.relatedTarget)){focusPaused=false;scheduleHero()}});
-  document.addEventListener('visibilitychange',scheduleHero);
-  if('IntersectionObserver' in window)new IntersectionObserver(entries=>{heroVisible=entries[0].isIntersecting;scheduleHero()},{threshold:.2}).observe($('.cinema-hero'));
-  motion.addEventListener('change',()=>{userPaused=motion.matches;updateHeroLabels();scheduleHero();observe()});
+  motion.addEventListener('change',()=>{observe();updateScroll()});
 
   // Native scrolling supports touch, keyboard, buttons and mouse dragging.
   const film=$('#filmstrip');
@@ -153,7 +112,7 @@
     const title=copy[lang].frameTitles[selectionIndex];
     $('#lightboxTitle').textContent=title;
     $('#frameCounter').textContent=`${String(selectionIndex+1).padStart(2,'0')} / ${String(selection.length).padStart(2,'0')}`;
-    $('#frameCollection').href=`projects/${p.project}/?lang=${lang}`;$('#frameCollection span').textContent=t('collection');
+    $('#frameCollection').href=`projects/${p.project}/?lang=${lang}&frame=${encodeURIComponent(p.src)}`;$('#frameCollection').dataset.projectLink=p.project;$('#frameCollection').dataset.entry=p.src;$('#frameCollection').dataset.returnSelection=String(selectionIndex);$('#frameCollection span').textContent=t('collection');
     $('#frameStage').classList.add('is-loading');$('#frameStatus').textContent=t('loading');
     const image=new Image();image.decoding='async';
     const variants=manifest[p.src]?.variants||[];
@@ -191,7 +150,7 @@
     document.documentElement.classList.remove('menu-open');document.body.classList.remove('menu-open');
     document.body.style.removeProperty('top');
     $$('#main,.site-footer').forEach(el=>el.inert=false);
-    if(wasOpen){window.scrollTo({top:menuScroll,behavior:'instant'});scheduleHero()}
+    if(wasOpen){window.scrollTo({top:menuScroll,behavior:'instant'})}
   }
   $('#menuToggle').addEventListener('click',()=>{
     if(menuIsOpen()){closeMenu();return}
@@ -202,7 +161,7 @@
     $('#siteHeader').classList.add('menu-open');$('#siteNav').classList.add('open');$('#siteNav').inert=false;
     $('#menuToggle').setAttribute('aria-expanded','true');$('#menuToggle').setAttribute('aria-label',t('closeMenu'));
     $$('#main,.site-footer').forEach(el=>el.inert=true);
-    scheduleHero();$('.main-nav a').focus({preventScroll:true});
+$('.main-nav a').focus({preventScroll:true});
   });
   $$('.main-nav a,.site-header .brand').forEach(el=>el.addEventListener('click',()=>{
     if(!menuIsOpen())return;
@@ -222,16 +181,9 @@
   mobile.addEventListener('change',()=>{const wasOpen=menuIsOpen();closeMenu();if(wasOpen)(mobile.matches?$('#menuToggle'):$('.main-nav a')).focus({preventScroll:true})});
   $('#siteNav').inert=mobile.matches;
   $$('[data-lang]').forEach(el=>el.addEventListener('click',()=>{lang=el.dataset.lang;render()}));
-  $('#projectRail').addEventListener('click',e=>{
-    const link=e.target.closest('.card-link');
-    if(!link||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;
-    const id=link.closest('.portfolio-card').id.replace('chapter-','');
-    const image=matchMedia('(hover:hover)').matches?link.querySelector('.card-alternate img')||link.querySelector('.card-main img'):link.querySelector('.card-main img');
-    if(image&&!motion.matches){image.style.viewTransitionName=`project-${id}`;sessionStorage.setItem('fotodisogno-transition-project',id)}
-  });
   let scheduled=false;
-  function updateScroll(){scheduled=false;const max=document.documentElement.scrollHeight-innerHeight;$('#readingProgress').style.transform=`scaleX(${max>0?Math.min(1,scrollY/max):0})`;$('#siteHeader').classList.toggle('scrolled',scrollY>(mobile.matches?24:innerHeight*.65))}
+  function updateScroll(){scheduled=false;const hero=$('.cinema-hero');const progress=motion.matches?0:Math.max(0,Math.min(1,-hero.getBoundingClientRect().top/(hero.offsetHeight*.65)));hero.style.setProperty('--hero-scale',String(1-progress*.08));hero.style.setProperty('--hero-border',String(progress*.2));hero.style.setProperty('--hero-copy-opacity',String(1-progress*.55));const max=document.documentElement.scrollHeight-innerHeight;$('#readingProgress').style.transform=`scaleX(${max>0?Math.min(1,scrollY/max):0})`;$('#siteHeader').classList.toggle('scrolled',scrollY>(mobile.matches?24:innerHeight*.65))}
   addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateScroll)}},{passive:true});
   addEventListener('resize',()=>{updateScroll();updateFilm()},{passive:true});
-  $('#year').textContent=new Date().getFullYear();render();scheduleHero();updateScroll();
+  $('#year').textContent=new Date().getFullYear();render();updateScroll();
 })();

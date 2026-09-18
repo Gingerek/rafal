@@ -7,10 +7,13 @@
   const manifest = window.FOTODISOGNO_IMAGES || {};
   const title = project.title.en;
   const imagePath = file => `../../images/${file.split('/').map(encodeURIComponent).join('/')}`;
-  const meta = manifest[project.cover];
+  const requestedFrame = new URL(location.href).searchParams.get('frame');
+  const entryPhoto = project.photos.find(photo => photo.src === requestedFrame);
+  const entryFile = entryPhoto?.src || project.cover;
+  const meta = manifest[entryFile];
   const heroMarkup = meta?.variants?.length
     ? `<picture class="responsive-picture"><source type="image/avif" srcset="${meta.variants.map(item => `../../${item.avif} ${item.width}w`).join(',')}" sizes="(max-width:820px) 92vw, 62vw"><source type="image/webp" srcset="${meta.variants.map(item => `../../${item.webp} ${item.width}w`).join(',')}" sizes="(max-width:820px) 92vw, 62vw"><img id="projectHeroImage" src="../../${meta.variants[meta.variants.length - 1].webp}" width="${meta.width}" height="${meta.height}" alt="${title}" fetchpriority="high" decoding="async" data-preload></picture>`
-    : `<img id="projectHeroImage" src="${imagePath(project.cover)}" alt="${title}" fetchpriority="high" decoding="async" data-preload>`;
+    : `<img id="projectHeroImage" src="${imagePath(entryFile)}" alt="${title}" fetchpriority="high" decoding="async" data-preload>`;
 
   body.insertAdjacentHTML('afterbegin', `
     <a class="skip-link" href="#projectMain">Skip to content</a>

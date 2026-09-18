@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="studio.css?v=20260917-3">
   <link rel="stylesheet" href="portfolio.css?v=20260918-refined-2">
   <link rel="stylesheet" href="mobile.css?v=20260918-refined-2">
-</head>
+<link rel="stylesheet" href="exhibition.css?v=20260918-1"></head>
 <body class="home-page">
   <a class="skip-link" href="#main" data-studio="skip">Naar de inhoud</a>
   <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
@@ -52,7 +52,7 @@
   </header>
 
   <main id="main">
-    <section class="cinema-hero" id="top" aria-labelledby="heroTitle" aria-roledescription="slideshow">
+    <section class="cinema-hero" id="top" aria-labelledby="heroTitle">
       <figure class="cinema-frame" aria-label="Photography by Rafał Wilk">
         <div id="heroMedia">
           <div class="hero-slide is-current"><picture><source type="image/avif" srcset="images/responsive/A7408793-jpg-480.avif 480w, images/responsive/A7408793-jpg-800.avif 800w, images/responsive/A7408793-jpg-1200.avif 1200w, images/responsive/A7408793-jpg-1620.avif 1620w" sizes="(max-width:820px) 150vh, 100vw"><img src="images/responsive/A7408793-jpg-1200.webp" width="1620" height="1080" alt="Sunset over a coastal bay" fetchpriority="high" decoding="async"></picture></div>
@@ -66,13 +66,8 @@
         <a href="#selectedFrames" class="text-link hero-explore"><span data-studio="explore">Ontdek mijn fotografie</span><i aria-hidden="true">↓</i></a>
       </div>
       <div class="hero-bottom">
-        <div class="hero-credit"><span id="heroFrameNumber">01 / 03</span><b id="heroCaption">Het laatste licht</b></div>
-        <div class="hero-controls" role="group" aria-label="Photography slideshow">
-          <button type="button" data-frame="0" aria-pressed="true"><span>01</span><i aria-hidden="true"></i></button>
-          <button type="button" data-frame="1" aria-pressed="false"><span>02</span><i aria-hidden="true"></i></button>
-          <button type="button" data-frame="2" aria-pressed="false"><span>03</span><i aria-hidden="true"></i></button>
-          <button type="button" id="heroPause" aria-pressed="false" aria-label="Pause slideshow"><span aria-hidden="true">Ⅱ</span></button>
-        </div>
+        <div class="hero-credit"><span id="heroFrameNumber">01</span><b id="heroCaption">Het laatste licht</b></div>
+
       </div>
     </section>
 
@@ -82,8 +77,10 @@
         <div class="frames-navigation"><p data-studio="framesHint">Een selectie uit mijn collecties.</p><div class="film-buttons"><button id="filmPrevious" type="button" aria-label="Previous photographs">←</button><button id="filmNext" type="button" aria-label="Next photographs">→</button></div></div>
       </header>
       <div class="filmstrip" id="filmstrip" tabindex="0" aria-label="Selected photographs"></div>
-      <div class="filmstrip-bottom"><span data-studio="filmHint">Schuif om te ontdekken. Open een foto om meer te zien.</span><span id="filmCount">01 / 06</span></div>
+      <div class="filmstrip-bottom"><span data-studio="filmHint">Schuif om te ontdekken. Open een foto om meer te zien.</span><span id="filmCount">01 / 07</span></div>
     </section>
+
+    <section class="featured-project" id="featuredProject" aria-labelledby="featuredTitle"></section>
 
     <nav class="collection-index" id="heroProjectIndex" aria-label="Fotografiecollecties"></nav>
 
@@ -136,9 +133,9 @@
     <div class="frame-lightbox-bottom"><span id="frameCounter"></span><a id="frameCollection" href="#work"><span></span><i aria-hidden="true">↗</i></a></div>
   </dialog>
   <footer class="site-footer"><span>FotodiSogno © <b id="year"></b></span><span>Rafał Wilk · The Netherlands</span></footer>
-  <script src="responsive-image-data.js?v=20260905-1" defer></script>
-  <script src="project-data.js?v=20260918-gallery-3" defer></script>
+  <script src="responsive-image-data.js?v=20260918-gallery-3" defer></script>
+  <script src="exhibition-data.js?v=20260918-1" defer></script><script src="project-data.js?v=20260918-gallery-3" defer></script>
   <script src="eclipse-2026.js?v=20260905-3" defer></script>
-  <script src="studio.js?v=20260918-refined-1" defer></script>
-</body>
+  <script src="studio.js?v=20260918-exhibition-1" defer></script>
+<script src="exhibition-nav.js?v=20260918-1" defer></script></body>
 </html>

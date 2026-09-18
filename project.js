@@ -68,12 +68,7 @@
       sizes: '(max-width:760px) 100vw, 86vw',
       loading: 'lazy', fetchpriority: 'low'
     });
-    const link = $('#nextProject');
-    link.addEventListener('click', () => {
-      const image = $('.next-project-image', media);
-      if (image) image.style.viewTransitionName = `project-${next.id}`;
-      sessionStorage.setItem('fotodisogno-transition-project', next.id);
-    }, { once: true });
+
   }
 
   function applyLanguage() {
@@ -109,7 +104,8 @@
     const nextLink = $('#nextProject');
     previousLink.href = `../${previous.id}/?lang=${state.lang}`;
     previousLink.querySelector('strong').textContent = localized(previous.title);
-    nextLink.href = `../${next.id}/?lang=${state.lang}`;
+    nextLink.href = `../${next.id}/?lang=${state.lang}&frame=${encodeURIComponent(next.preview || next.cover)}`;
+    nextLink.dataset.projectLink = next.id;
     nextLink.querySelector('strong').textContent = localized(next.title);
     renderContinuation(next);
 
@@ -126,17 +122,21 @@
     project.photos.forEach((photo, index) => {
       const item = document.createElement('figure');
       item.className = `gallery-item reveal${photo.note ? ' has-note' : ''}`;
+      const span = window.FOTODISOGNO_EXHIBITION?.[project.id]?.spans[index] || 6;
+      item.dataset.frameSpan = String(span);
+      item.style.setProperty('--frame-span', String(span));
       const preload = index < (mobile.matches ? 1 : 4);
       const note = localized(photo.note);
       item.innerHTML = `
         <button class="gallery-card" type="button" data-photo-index="${index}" data-cursor="View" aria-label="${escapeHtml(t('viewImage'))} ${index + 1}">
           <span class="gallery-media">${responsivePicture(photo.src, photo.alt, {
             className: 'gallery-image is-loading',
-            sizes: '(max-width:820px) 92vw, (max-width:1100px) 46vw, 31vw',
+            sizes: span === 12 ? '(max-width:820px) 92vw, 90vw' : `(max-width:820px) 92vw, ${Math.ceil(span / 12 * 90)}vw`,
             loading: preload ? 'eager' : 'lazy', fetchpriority: 'auto', preload
           })}</span>
         </button>
-        ${note ? `<figcaption class="gallery-note">${escapeHtml(note)}</figcaption>` : ''}`;
+        <figcaption class="gallery-caption"><span class="frame-number">${String(index+1).padStart(2,'0')} / ${String(project.photos.length).padStart(2,'0')}</span><span class="gallery-note">${escapeHtml(note)}</span></figcaption>
+        ${localized(photo.story) ? `<details class="photo-story"><summary>${({nl:'Achter het beeld',en:'Behind the photograph',pl:'Historia zdjęcia'})[state.lang]}</summary><p>${escapeHtml(localized(photo.story))}</p></details>` : ''}`;
       gallery.appendChild(item);
     });
 
@@ -302,14 +302,8 @@
     if (!hero) return;
     hero.alt = localized(project.title);
     body.dataset.theme = project.theme || 'warm';
-    const stored = sessionStorage.getItem('fotodisogno-transition-project');
-    if (stored === project.id) {
-      hero.style.viewTransitionName = `project-${project.id}`;
-      setTimeout(() => {
-        hero.style.viewTransitionName = '';
-        sessionStorage.removeItem('fotodisogno-transition-project');
-      }, 1100);
-    }
+    const exhibition = window.FOTODISOGNO_EXHIBITION?.[project.id];
+    if(exhibition){body.style.setProperty('--series-accent',exhibition.accent);body.style.setProperty('--series-tint',exhibition.tint)}
   }
 
   const cursor = $('#cursor');
@@ -366,9 +360,6 @@
     setTimeout(() => body.classList.add('is-ready'), 260);
   }
 
-  function markReturnHome() {
-    sessionStorage.setItem('fotodisogno-return-home', '1');
-  }
 
   function init() {
     const requested = new URL(location.href).searchParams.get('lang');
@@ -387,8 +378,6 @@
       applyLanguage();
       renderGallery();
     }));
-    $('#backHome').addEventListener('click', markReturnHome);
-    $('#brandHome').addEventListener('click', markReturnHome);
     $('#story').addEventListener('click', event => {
       const button = event.target.closest('[data-photo-index]');
       if (button) openLightbox(Number(button.dataset.photoIndex));
