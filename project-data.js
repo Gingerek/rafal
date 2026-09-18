@@ -72,6 +72,7 @@ window.FOTODISOGNO = {
         { src: "DSC05317.avif", alt: "Singer with a guitar" },
         { src: "A7407666.jpg", alt: "Portrait in historical costume" },
         { src: "DSCF4051-2.jpg", alt: "Portrait with a cat" },
+        { src: "2026/people/DSCF4386-2.avif", alt: "Black and white portrait by the sea", year: "2026" },
         { src: "DSC_5379.avif", alt: "Black and white portrait of a smiling man", note: { nl: "De serie eindigt met een open, ongeforceerd gebaar.", en: "The series closes with an open, unforced gesture.", pl: "Serię zamyka otwarty, niewymuszony gest." } }
       ]
     },
@@ -149,9 +150,14 @@ window.FOTODISOGNO = {
       location: { nl: "Italië & Europa", en: "Italy & Europe", pl: "Włochy i Europa" },
       photos: [
         { src: "DJI_20260605013443_0005_D.jpg", alt: "Coastal tower photographed from the air", note: { nl: "Een landschap gelezen vanuit afstand en hoogte.", en: "A landscape read through distance and height.", pl: "Krajobraz odczytany z dystansu i wysokości." } },
+        { src: "2026/travel/DJI_20260604165338_0015_D.avif", alt: "Aerial view of a Mediterranean bay and coastal village", year: "2026" },
+        { src: "2026/travel/DSCF4389.avif", alt: "Italian harbour with colourful waterfront buildings", year: "2026" },
+        { src: "2026/travel/A7408639-2.avif", alt: "Rocky Mediterranean coastline and open sea", year: "2026" },
         { src: "A7406616.avif", alt: "Coastal landscape with sea and mountains" },
         { src: "A7406608.jpg", alt: "Blue boat by the coast" },
         { src: "2026/travel/A7408599-2.avif", alt: "Sailboats at sunset on a quiet bay", year: "2026" },
+        { src: "2026/travel/A7409306.avif", alt: "Mountain silhouettes at sunset above a lake", year: "2026" },
+        { src: "2026/travel/A7409225.avif", alt: "Italian clock tower with national flag", year: "2026" },
         { src: "A7406725.jpg", alt: "Ancient ruins" },
         { src: "A7408532.jpg", alt: "Italian interior" },
         { src: "A7406473.avif", alt: "Aperol drinks by a lake" },
@@ -175,6 +181,7 @@ window.FOTODISOGNO = {
         { src: "DSC_4824.avif", alt: "Grass silhouette at sunset" },
         { src: "A7406311-2.avif", alt: "Decorative lantern with warm lights" },
         { src: "A7406347.avif", alt: "Abstract warm city lights" },
+        { src: "2026/creative/A7408799.avif", alt: "Eyeglasses silhouetted against an orange sunset", year: "2026" },
         { src: "A7407223.jpg", alt: "Moon behind branches and clouds" },
         { src: "A7407366.jpg", alt: "Candles in a dark interior" },
         { src: "A7407810.jpg", alt: "Full moon against a black sky" },
