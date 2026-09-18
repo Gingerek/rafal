@@ -125,3 +125,17 @@
   .featured-images { width: 100%; max-width: 480px; }
   .featured-copy h2 { font-size: clamp(2.25rem, 9vw, 3.5rem); }
 }
+/* Collection opening follows the photograph's dimensions. */
+.project-page .project-opening { min-height: 0; align-items: center; padding-bottom: clamp(48px, 7vw, 100px); }
+.project-page .project-opening-media { height: auto !important; min-height: 0 !important; background: transparent !important; }
+.project-page .project-opening-media .responsive-picture { height: auto !important; min-height: 0 !important; }
+.project-page .project-opening-media #projectHeroImage { height: auto !important; max-height: 78svh !important; width: auto !important; max-width: 100% !important; margin: auto; }
+.project-page .project-opening h1,
+.project-page .project-opening h1.title-long,
+.project-page .project-opening h1.title-extra-long { font: 500 clamp(2.5rem, 4.1vw, 5rem)/1.1 var(--font-ui) !important; letter-spacing: -.05em !important; }
+@media (max-width: 820px), (max-width: 1000px) and (max-height: 520px) and (pointer: coarse) {
+  .project-page .project-opening-media #projectHeroImage { max-height: 58svh !important; }
+  .project-page .project-opening h1,
+  .project-page .project-opening h1.title-long,
+  .project-page .project-opening h1.title-extra-long { font-size: clamp(2.1rem, 9vw, 3.4rem) !important; }
+}
