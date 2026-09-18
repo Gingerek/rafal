@@ -1,0 +1,34 @@
+name: Import FotodiSogno photo batch 2
+on:
+  push:
+    paths:
+      - ".github/workflows/import-fotodisogno-batch2.yml"
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download optimized gallery images
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p images/2026/travel images/2026/creative images/2026/people
+          curl -L --fail --retry 3 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-98b4-81f4-bd0f-394f3a596ee3/raw?se=2026-09-18T08%3A57%3A45Z&sp=r&sv=2026-02-06&sr=b&scid=20791d20-ffc2-5d45-9af6-c4d40a32a596&skoid=a63e6f05-dc2f-4fa5-b0e3-b1cb9c0893bb&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T05%3A54%3A08Z&ske=2026-09-19T05%3A54%3A08Z&sks=b&skv=2026-02-06&sig=hVmArB3HUlyo31LhekaxIFHkhN1sfzIRM2AikT2CZUw%3D' -o images/2026/travel/A7409306.avif
+          curl -L --fail --retry 3 'https://sdmntpreastus2.oaiusercontent.com/files/00000000-82b0-81f6-8867-2775ad1c916a/raw?se=2026-09-18T08%3A57%3A47Z&sp=r&sv=2026-02-06&sr=b&scid=4dc8d4ac-81ff-560d-be42-a445cd2ad376&skoid=a63e6f05-dc2f-4fa5-b0e3-b1cb9c0893bb&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T02%3A07%3A44Z&ske=2026-09-19T02%3A07%3A44Z&sks=b&skv=2026-02-06&sig=K/QeMdJRA9fu8Cioto6/ai4OWECB2HmOHFIpSbLdoPo%3D' -o images/2026/travel/A7409225.avif
+          curl -L --fail --retry 3 'https://sdmntprukwest.oaiusercontent.com/files/00000000-5560-8243-9a97-cc6cd6d2be4e/raw?se=2026-09-18T08%3A57%3A49Z&sp=r&sv=2026-02-06&sr=b&scid=93afb6f0-b496-5fe9-9dc4-5ea6afa61e04&skoid=a63e6f05-dc2f-4fa5-b0e3-b1cb9c0893bb&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T08%3A01%3A08Z&ske=2026-09-19T08%3A01%3A08Z&sks=b&skv=2026-02-06&sig=Ai6BoMGssP45hyean7UgKxX1n%2B579nQvaZM6JDoPz/4%3D' -o images/2026/travel/DSCF4389.avif
+          curl -L --fail --retry 3 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-9f88-81f4-a0d8-9bf3f4cf4c74/raw?se=2026-09-18T08%3A57%3A51Z&sp=r&sv=2026-02-06&sr=b&scid=b4dec828-b998-556d-9371-8c80887812b2&skoid=a63e6f05-dc2f-4fa5-b0e3-b1cb9c0893bb&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T04%3A41%3A49Z&ske=2026-09-19T04%3A41%3A49Z&sks=b&skv=2026-02-06&sig=qltF55ZK0NCZZ9G6Iqv0b3lbXD7hGiX1SMboSM4MSc8%3D' -o images/2026/travel/A7408639-2.avif
+          curl -L --fail --retry 3 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-a658-8210-a95b-3e9108cc8a67/raw?se=2026-09-18T08%3A57%3A53Z&sp=r&sv=2026-02-06&sr=b&scid=5c010f20-45e7-5e23-853f-5bb7257bc920&skoid=a63e6f05-dc2f-4fa5-b0e3-b1cb9c0893bb&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T08%3A00%3A09Z&ske=2026-09-19T08%3A00%3A09Z&sks=b&skv=2026-02-06&sig=PFZ2ozMm8gRZBhyHXujYans6HLRcaouVCT6JLxm/Sqc%3D' -o images/2026/travel/DJI_20260604165338_0015_D.avif
+          curl -L --fail --retry 3 'https://sdmntprcacentral.oaiusercontent.com/files/00000000-031c-820d-b507-f28c7c69b0c7/raw?se=2026-09-18T08%3A57%3A55Z&sp=r&sv=2026-02-06&sr=b&scid=4af0960f-851c-5685-ac2c-fb9018775e93&skoid=a63e6f05-dc2f-4fa5-b0e3-b1cb9c0893bb&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-17T18%3A10%3A31Z&ske=2026-09-18T18%3A10%3A31Z&sks=b&skv=2026-02-06&sig=aeLulbRe5UU28nhidA1iFT7ewSSSJa3t1PZVHZ6nhiM%3D' -o images/2026/creative/A7408799.avif
+          curl -L --fail --retry 3 'https://sdmntprsoutheastus3.oaiusercontent.com/files/00000000-efc0-820c-bc1d-0f0080130d42/raw?se=2026-09-18T08%3A57%3A58Z&sp=r&sv=2026-02-06&sr=b&scid=62a022cf-a980-52bc-a99d-26fa9af855c4&skoid=a63e6f05-dc2f-4fa5-b0e3-b1cb9c0893bb&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-18T06%3A58%3A30Z&ske=2026-09-19T06%3A58%3A30Z&sks=b&skv=2026-02-06&sig=ggAAMLawVtRuCmLElaCCo9sXOqyLLyBuHwfobndyu50%3D' -o images/2026/people/DSCF4386-2.avif
+      - name: Commit imported photos
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/import-fotodisogno-batch2.yml
+          git config user.name "fotografie"
+          git config user.email "73024247+Gingerek@users.noreply.github.com"
+          git add images/2026 .github/workflows/import-fotodisogno-batch2.yml
+          git commit -m "Add second 2026 FotodiSogno photo batch"
+          git push
