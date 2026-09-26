@@ -126,6 +126,8 @@ window.FOTODISOGNO = {
       photos: [
         { src: "A7400567.png", alt: "Wildflowers in soft light", note: { nl: "Een klein landschap opgebouwd uit licht en zachte vormen.", en: "A small landscape built from light and soft forms.", pl: "Mały krajobraz zbudowany ze światła i miękkich form." } },
         { src: "A7403102.avif", alt: "Daisy close-up" },
+        { src: "2026/nature/DSC_0731.avif", alt: "Yellow flower macro in warm natural light", year: "2026" },
+        { src: "2026/nature/DSC_0723.avif", alt: "Forest mushrooms in warm natural light", year: "2026" },
         { src: "2026/nature/DSC06964.avif", alt: "Thistle flower in warm backlight", year: "2026" },
         { src: "2026/nature/DSCF4656.avif", alt: "Sunflower against a blue summer sky", year: "2026" },
         { src: "2026/nature/A7409516.avif", alt: "Yellow wildflowers with soft foreground bokeh", year: "2026" },
