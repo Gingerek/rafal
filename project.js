@@ -14,6 +14,7 @@
   };
   const mobile = matchMedia('(max-width:820px), (max-width:1000px) and (max-height:520px) and (pointer:coarse)');
   const state = { lang: 'nl', index: 0, touch: null, uiTimer: 0 };
+  const activePointers = new Set();
   let lightboxTrigger = null;
   let lightboxRequest = 0;
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -92,6 +93,7 @@
       $(`#${id}`).setAttribute('title', t(key));
     });
     $('#projectDescription').textContent = localized(project.description);
+    $('.skip-link').textContent = ({nl:'Naar de inhoud',en:'Skip to content',pl:'Przejdź do treści'})[state.lang];
     $('#projectLocation').textContent = localized(project.location);
     $('.project-opening .text-link span').textContent = localCopy[state.lang]?.view || localCopy.en.view;
 
@@ -226,6 +228,8 @@
     const request = ++lightboxRequest;
     const image = $('#lightboxImage');
     const photo = project.photos[state.index];
+    image.removeAttribute('src');
+    image.removeAttribute('style');
     if (animate) image.classList.add('is-changing');
     $('#lightboxStatus').textContent = localCopy[state.lang].loading;
     const next = new Image();
@@ -273,6 +277,7 @@
   function closeLightbox() {
     lightboxRequest += 1;
     state.touch = null;
+    activePointers.clear();
     $('#lightboxStatus').textContent = '';
     const lightbox = $('#projectLightbox');
     lightbox.classList.remove('open', 'ui-hidden');
@@ -389,10 +394,12 @@
     const stage = $('#lightboxStage');
     let suppressBackdropClick = false;
     stage.addEventListener('pointerdown', event => {
-      if (!event.isPrimary || event.target.closest('button')) { state.touch = null; return; }
+      activePointers.add(event.pointerId);
+      if (activePointers.size > 1 || !event.isPrimary || event.target.closest('button')) { state.touch = null; return; }
       state.touch = { x: event.clientX, y: event.clientY, id: event.pointerId };
     });
     stage.addEventListener('pointerup', event => {
+      activePointers.delete(event.pointerId);
       if (!state.touch || state.touch.id !== event.pointerId) return;
       const dx = event.clientX - state.touch.x;
       const dy = event.clientY - state.touch.y;
@@ -404,7 +411,7 @@
         setTimeout(() => { suppressBackdropClick = false; }, 350);
       }
     });
-    stage.addEventListener('pointercancel', () => { state.touch = null; });
+    stage.addEventListener('pointercancel', event => { activePointers.delete(event.pointerId); state.touch = null; });
     stage.addEventListener('pointermove', showLightboxUI, { passive: true });
 
     const lightbox = $('#projectLightbox');

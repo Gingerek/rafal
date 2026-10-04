@@ -30,7 +30,7 @@
   const t=key=>copy[lang][key]||data.translations[lang][key]||key;
   const local=value=>value?.[lang]||value?.en||'';
   const path=file=>`images/${file.split('/').map(encodeURIComponent).join('/')}`;
-  function picture(file,alt,{eager=false,sizes='(max-width:820px) 92vw, 50vw'}={}){
+  function picture(file,alt,{eager=false,sizes='(max-width:820px) 90vw, (max-width:1100px) 44vw, 29vw'}={}){
     const item=manifest[file];
     const attrs=`alt="${escape(alt)}" loading="${eager?'eager':'lazy'}" decoding="async" draggable="false"${eager?' fetchpriority="auto"':''}`;
     if(!item?.variants?.length)return `<img src="${path(file)}" ${attrs}>`;
@@ -67,7 +67,7 @@
     [['filmPrevious','previousFrames'],['filmNext','nextFrames'],['framePrevious','previous'],['frameNext','next'],['frameClose','close']].forEach(([id,key])=>$('#'+id).setAttribute('aria-label',t(key)));
     $('#heroCaption').textContent=t('heroFrame');updateFilm();
     const featured=data.projects.find(p=>p.id==='creative'),feature=featureCopy[lang];
-    $('#featuredProject').innerHTML=`<a class="featured-images reveal" data-project-link="creative" data-entry="${featured.cover}" href="projects/creative/?lang=${lang}&amp;frame=${encodeURIComponent(featured.cover)}" aria-label="${escape(t('openStory')+': '+local(featured.title))}"><span data-transition-image>${picture(featured.cover,local(featured.title),{sizes:'(max-width:820px) 60vw, 35vw'})}</span><span class="featured-secondary" aria-hidden="true">${picture('DSC_0007-2.jpg','',{sizes:'(max-width:820px) 30vw, 18vw'})}</span></a><div class="featured-copy reveal"><p class="section-kicker">${feature.eyebrow}</p><h2 id="featuredTitle">${escape(local(featured.title))}</h2><p>${feature.intro}</p><a class="text-link" data-project-link="creative" data-entry="${featured.cover}" href="projects/creative/?lang=${lang}&amp;frame=${encodeURIComponent(featured.cover)}"><span>${feature.open}</span><i aria-hidden="true">↗</i></a><div class="featured-meta"><span>${featured.photos.length} ${t('photos')}</span><span>${featured.year.replace('—','–')}</span></div></div>`;
+    $('#featuredProject').innerHTML=`<a class="featured-images reveal" data-project-link="creative" data-entry="${featured.cover}" href="projects/creative/?lang=${lang}&amp;frame=${encodeURIComponent(featured.cover)}" aria-label="${escape(t('openStory')+': '+local(featured.title))}"><span data-transition-image>${picture(featured.cover,local(featured.title),{sizes:'(max-width:820px) 90vw, 40vw'})}</span></a><div class="featured-copy reveal"><p class="section-kicker">${feature.eyebrow}</p><h2 id="featuredTitle">${escape(local(featured.title))}</h2><p>${feature.intro}</p><a class="text-link" data-project-link="creative" data-entry="${featured.cover}" href="projects/creative/?lang=${lang}&amp;frame=${encodeURIComponent(featured.cover)}"><span>${feature.open}</span><i aria-hidden="true">↗</i></a><div class="featured-meta"><span>${featured.photos.length} ${t('photos')}</span><span>${featured.year.replace('—','–')}</span></div></div>`;
     document.title=lang==='pl'?'FotodiSogno | Rafał Wilk, fotografia':lang==='nl'?'FotodiSogno | Rafał Wilk, fotograaf':'FotodiSogno | Rafał Wilk, photographer';
     const url=new URL(location.href);url.searchParams.set('lang',lang);history.replaceState(null,'',url.pathname+url.search+url.hash);
     observe();
@@ -106,9 +106,11 @@
   // Native dialog provides focus containment and Escape behaviour.
   const dialog=$('#frameLightbox');
   let selectionIndex=0,imageRequest=0,returnFocus=null,touchStart=null;
+  const framePointers=new Set();
   async function displayPhotograph(index){
     selectionIndex=(index+selection.length)%selection.length;
     const request=++imageRequest,p=selection[selectionIndex];
+    $('#frameImage').removeAttribute('src');
     const title=copy[lang].frameTitles[selectionIndex];
     $('#lightboxTitle').textContent=title;
     $('#frameCounter').textContent=`${String(selectionIndex+1).padStart(2,'0')} / ${String(selection.length).padStart(2,'0')}`;
@@ -133,12 +135,12 @@
     returnFocus=btn;dialog.showModal();document.documentElement.classList.add('frame-open');displayPhotograph(Number(btn.dataset.selection));$('#frameClose').focus();
   });
   $('#frameClose').addEventListener('click',()=>dialog.close());
-  dialog.addEventListener('close',()=>{imageRequest++;document.documentElement.classList.remove('frame-open');$('#frameImage').removeAttribute('src');returnFocus?.focus({preventScroll:true})});
+  dialog.addEventListener('close',()=>{framePointers.clear();touchStart=null;imageRequest++;document.documentElement.classList.remove('frame-open');$('#frameImage').removeAttribute('src');returnFocus?.focus({preventScroll:true})});
   $('#framePrevious').addEventListener('click',()=>displayPhotograph(selectionIndex-1));$('#frameNext').addEventListener('click',()=>displayPhotograph(selectionIndex+1));
   dialog.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();displayPhotograph(selectionIndex+(e.key==='ArrowRight'?1:-1))}});
-  $('#frameStage').addEventListener('pointerdown',e=>{if(e.pointerType==='touch'&&e.isPrimary&&!e.target.closest('button'))touchStart={x:e.clientX,y:e.clientY};else touchStart=null});
-  $('#frameStage').addEventListener('pointerup',e=>{if(!touchStart)return;const dx=e.clientX-touchStart.x,dy=e.clientY-touchStart.y;touchStart=null;if((window.visualViewport?.scale||1)>1.05)return;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2)displayPhotograph(selectionIndex+(dx<0?1:-1))});
-  $('#frameStage').addEventListener('pointercancel',()=>touchStart=null);
+  $('#frameStage').addEventListener('pointerdown',e=>{framePointers.add(e.pointerId);if(e.pointerType==='touch'&&e.isPrimary&&framePointers.size===1&&!e.target.closest('button'))touchStart={x:e.clientX,y:e.clientY,id:e.pointerId};else touchStart=null});
+  $('#frameStage').addEventListener('pointerup',e=>{framePointers.delete(e.pointerId);if(!touchStart||touchStart.id!==e.pointerId)return;const dx=e.clientX-touchStart.x,dy=e.clientY-touchStart.y;touchStart=null;if((window.visualViewport?.scale||1)>1.05)return;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2)displayPhotograph(selectionIndex+(dx<0?1:-1))});
+  $('#frameStage').addEventListener('pointercancel',e=>{framePointers.delete(e.pointerId);touchStart=null});
 
   let menuScroll=0;
   function menuIsOpen(){return $('#menuToggle').getAttribute('aria-expanded')==='true'}
@@ -166,6 +168,7 @@ $('.main-nav a').focus({preventScroll:true});
   $$('.main-nav a,.site-header .brand').forEach(el=>el.addEventListener('click',()=>{
     if(!menuIsOpen())return;
     const target=$(el.hash);closeMenu();
+    if(target){target.scrollIntoView({behavior:motion.matches?'instant':'smooth',block:'start'})}
     if(target){target.setAttribute('tabindex','-1');target.focus({preventScroll:true})}
   }));
   document.addEventListener('keydown',e=>{
@@ -180,7 +183,7 @@ $('.main-nav a').focus({preventScroll:true});
   });
   mobile.addEventListener('change',()=>{const wasOpen=menuIsOpen();closeMenu();if(wasOpen)(mobile.matches?$('#menuToggle'):$('.main-nav a')).focus({preventScroll:true})});
   $('#siteNav').inert=mobile.matches;
-  $$('[data-lang]').forEach(el=>el.addEventListener('click',()=>{lang=el.dataset.lang;render()}));
+  $$('[data-lang]').forEach(el=>el.addEventListener('click',()=>{lang=el.dataset.lang;render();if(menuIsOpen()){closeMenu();$('#menuToggle').focus({preventScroll:true})}}));
   let scheduled=false;
   function updateScroll(){scheduled=false;const hero=$('.cinema-hero');const progress=motion.matches?0:Math.max(0,Math.min(1,-hero.getBoundingClientRect().top/(hero.offsetHeight*.65)));hero.style.setProperty('--hero-scale',String(1-progress*.08));hero.style.setProperty('--hero-border',String(progress*.2));hero.style.setProperty('--hero-copy-opacity',String(1-progress*.55));const max=document.documentElement.scrollHeight-innerHeight;$('#readingProgress').style.transform=`scaleX(${max>0?Math.min(1,scrollY/max):0})`;$('#siteHeader').classList.toggle('scrolled',scrollY>(mobile.matches?24:innerHeight*.65))}
   addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateScroll)}},{passive:true});

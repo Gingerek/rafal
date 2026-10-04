@@ -24,7 +24,7 @@
     <header class="project-header" id="projectHeader">
       <a class="project-back" id="backHome" href="../../#work"><span aria-hidden="true">←</span><span data-i18n="backHome">Back to portfolio</span></a>
       <a class="brand" id="brandHome" href="../../" aria-label="FotodiSogno — home"><span><b>FotodiSogno</b><small>Rafał Wilk Photography</small></span></a>
-      <div class="language-switcher" aria-label="Language"><button type="button" data-lang="nl">NL</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="pl">PL</button></div>
+      <div class="project-header-actions"><a class="project-header-contact" href="#projectContact" data-i18n="navContact">Contact</a><div class="language-switcher" aria-label="Language"><button type="button" data-lang="nl">NL</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="pl">PL</button></div></div>
     </header>
 
     <main id="projectMain">
@@ -34,7 +34,7 @@
           <div class="project-meta"><span id="projectLocation">${project.location.en}</span><span id="projectYear">${project.year}</span></div>
           <h1 id="projectTitle">${title}</h1>
           <p id="projectDescription">${project.description.en}</p>
-          <a class="text-link" href="#story"><span>View photographs</span><i aria-hidden="true">↓</i></a>
+          <div class="project-opening-actions"><a class="text-link" href="#story"><span>View photographs</span><i aria-hidden="true">↓</i></a><a class="text-link" href="#projectContact"><span data-i18n="navContact">Contact</span></a></div>
         </div>
       </section>
 
@@ -54,7 +54,7 @@
         </a>
       </section>
 
-      <section class="project-contact reveal">
+      <section class="project-contact reveal" id="projectContact">
         <div class="project-contact-intro">
           <h2 data-i18n="projectContact">Have a project in mind?</h2>
           <p data-i18n="contactLead">Tell me briefly what you have in mind. I am easiest to reach by e-mail or WhatsApp.</p>
