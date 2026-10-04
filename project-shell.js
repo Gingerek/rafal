@@ -77,7 +77,6 @@
         <div class="lightbox-image-wrap"><img class="lightbox-image" id="lightboxImage" alt=""></div>
         <button class="lightbox-arrow lightbox-next lightbox-ui" id="nextPhoto" type="button" aria-label="Next photo">›</button>
       </div>
-      <span class="lightbox-status" id="lightboxStatus" role="status"></span>
       <span class="lightbox-counter lightbox-ui" id="lightboxCounter">01 / 01</span>
     </div>`);
 })();

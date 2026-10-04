@@ -8,9 +8,9 @@
 
   const imageManifest = window.FOTODISOGNO_IMAGES || {};
   const localCopy = {
-    nl: { view: 'Bekijk foto’s', loading: 'Foto laden…', failed: 'De foto kon niet worden geladen. Probeer de volgende foto.' },
-    en: { view: 'View photographs', loading: 'Loading photograph…', failed: 'This photograph could not load. Try the next photograph.' },
-    pl: { view: 'Zobacz fotografie', loading: 'Wczytywanie zdjęcia…', failed: 'Nie udało się wczytać zdjęcia. Spróbuj przejść do następnego.' }
+    nl: { view: 'Bekijk foto’s' },
+    en: { view: 'View photographs' },
+    pl: { view: 'Zobacz fotografie' }
   };
   const mobile = matchMedia('(max-width:820px), (max-width:1000px) and (max-height:520px) and (pointer:coarse)');
   const state = { lang: 'nl', index: 0, touch: null, uiTimer: 0 };
@@ -230,23 +230,23 @@
     const photo = project.photos[state.index];
     image.removeAttribute('src');
     image.removeAttribute('style');
+    image.alt = '';
+    image.style.visibility = 'hidden';
     if (animate) image.classList.add('is-changing');
-    $('#lightboxStatus').textContent = localCopy[state.lang].loading;
     const next = new Image();
     next.decoding = 'async';
     next.onload = () => {
       if (request !== lightboxRequest || !$('#projectLightbox').classList.contains('open')) return;
-      $('#lightboxStatus').textContent = '';
       image.src = next.src;
       image.alt = photo.alt;
       fitLightboxImage(image, next.naturalWidth, next.naturalHeight);
+      image.style.visibility = 'visible';
       requestAnimationFrame(() => image.classList.remove('is-changing'));
     };
     next.onerror = () => {
       if (request !== lightboxRequest || !$('#projectLightbox').classList.contains('open')) return;
       image.removeAttribute('src'); image.alt = '';
       image.classList.remove('is-changing');
-      $('#lightboxStatus').textContent = localCopy[state.lang].failed;
     };
     next.src = lightboxSource(photo.src);
     $('#lightboxCounter').textContent = `${String(state.index + 1).padStart(2, '0')} / ${String(project.photos.length).padStart(2, '0')}`;
@@ -278,7 +278,6 @@
     lightboxRequest += 1;
     state.touch = null;
     activePointers.clear();
-    $('#lightboxStatus').textContent = '';
     const lightbox = $('#projectLightbox');
     lightbox.classList.remove('open', 'ui-hidden');
     lightbox.setAttribute('aria-hidden', 'true');
