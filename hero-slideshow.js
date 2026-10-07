@@ -47,17 +47,12 @@
   const playbackButton = control('Ⅱ', () => { paused = !paused; labels(); schedule(); });
   const nextButton = control('→', () => show(index + 1));
   document.querySelector('.hero-bottom').append(controls);
-  const previews = document.createElement('div'); previews.className = 'hero-preview-strip';
-  document.querySelector('.cinema-frame').append(previews);
-  const progress = document.createElement('div'); progress.className = 'hero-slide-progress';
-  progress.setAttribute('aria-hidden', 'true'); progress.append(document.createElement('span'));
-  document.querySelector('.cinema-frame').append(progress);
-  function image(item, thumb = false) {
+  function image(item) {
     const meta = manifest[item.src], img = document.createElement('img');
     // The main image always uses the largest existing export. No crop or enlargement animation.
-    const variant = thumb ? meta.variants.find(v => v.width >= 480) || meta.variants[0] : meta.variants.at(-1);
+    const variant = meta.variants.at(-1);
     img.src = variant.webp; img.width = meta.width; img.height = meta.height;
-    img.alt = thumb ? '' : item.alt || local(item.title); img.decoding = 'async'; img.draggable = false;
+    img.alt = item.alt || local(item.title); img.decoding = 'async'; img.draggable = false;
     return img;
   }
   function prepare(next) {
@@ -79,22 +74,10 @@
       current.href = `projects/${item.project.id}/?lang=${document.documentElement.lang}&frame=${encodeURIComponent(item.src)}`;
       current.setAttribute('aria-label', `${local(words.open)}: ${local(item.title)}`);
     }
-    document.querySelector('.cinema-frame').style.setProperty('--slide-accent', window.FOTODISOGNO_EXHIBITION?.[item.project.id]?.accent || '#b5d6e6');
-    document.body.classList.toggle('hero-is-paused', paused || document.hidden);
-    previews.replaceChildren();
-    for (let offset = 1; offset <= Math.min(4, slides.length - 1); offset++) {
-      const target = (index + offset) % slides.length, next = slides[target];
-      const button = document.createElement('button'); button.type = 'button';
-      button.setAttribute('aria-label', `${local(words.next)}: ${local(next.title)}`);
-      button.append(image(next, true)); button.addEventListener('click', () => show(target)); previews.append(button);
-    }
   }
   function schedule() {
     clearTimeout(timer);
-    const bar = progress.firstElementChild;
-    bar.getAnimations().forEach(animation => animation.cancel());
     if (paused || document.hidden || slides.length < 2) return;
-    if (!reduced.matches) bar.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: interval, fill: 'forwards' });
     timer = setTimeout(() => show(index + 1), interval);
   }
   async function show(requested, initial = false) {
@@ -112,8 +95,8 @@
       old?.classList.remove('is-current'); old?.setAttribute('aria-hidden', 'true'); if (old) old.tabIndex = -1;
       if (old && !reduced.matches && !initial) {
         const direction = requested < index ? -1 : 1;
-        target.wrapper.animate([{ opacity: 0, transform: `translateX(${direction * 34}px) rotate(${direction * .6}deg)` }, { opacity: 1, transform: 'translateX(0) rotate(0deg)' }], { duration: 850, easing: 'cubic-bezier(.22,1,.36,1)' });
-        const outgoing = old.animate([{ opacity: 1, transform: 'translateX(0)' }, { opacity: 0, transform: `translateX(${-direction * 22}px)` }], { duration: 650, fill: 'forwards', easing: 'ease-out' });
+        target.wrapper.animate([{ opacity: 0, transform: `translateX(${direction * 16}px)` }, { opacity: 1, transform: 'translateX(0)' }], { duration: 850, easing: 'cubic-bezier(.22,1,.36,1)' });
+        const outgoing = old.animate([{ opacity: 1, transform: 'translateX(0)' }, { opacity: 0, transform: `translateX(${-direction * 12}px)` }], { duration: 650, fill: 'forwards', easing: 'ease-out' });
         outgoing.finished.then(() => old.remove(), () => old.remove());
       } else old?.remove();
       index = next; labels();
