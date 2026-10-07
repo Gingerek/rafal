@@ -152,3 +152,17 @@ body { background:var(--bg); }
 @media(prefers-reduced-motion:reduce) {
   .home-page .portfolio-card .card-image,.home-page .hero-actions .text-link,.home-page .collection-index a { transition:none; }
 }
+
+/* White photographic frames, on the images themselves at every screen size. */
+.home-page main img,
+.project-page main img,
+.project-page .project-lightbox img,
+.home-page .frame-lightbox img {
+  box-sizing:border-box;
+  border:1px solid #fff!important;
+}
+.lightbox-image-snapshot {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  padding:inherit; pointer-events:none;
+}
+.project-page .project-lightbox .lightbox-image { transition:none!important; }

@@ -224,29 +224,63 @@
     if ($('#projectLightbox')?.classList.contains('open') && image?.naturalWidth) fitLightboxImage(image);
   }
 
-  function updateLightboxPhoto(animate = true) {
+  function clearPhotoTransition() {
+    $('#lightboxImage').getAnimations().forEach(animation => animation.cancel());
+    $$('.lightbox-image-snapshot').forEach(node => node.remove());
+  }
+
+  function updateLightboxPhoto(animate = true, direction = 1) {
     const request = ++lightboxRequest;
     const image = $('#lightboxImage');
     const photo = project.photos[state.index];
-    image.removeAttribute('src');
-    image.removeAttribute('style');
-    image.alt = '';
-    image.style.visibility = 'hidden';
-    if (animate) image.classList.add('is-changing');
+    clearPhotoTransition();
+    image.classList.remove('is-changing');
+    // Keep the current frame until the next photo is decoded, then crossfade.
+    if (!animate) {
+      image.removeAttribute('src');
+      image.removeAttribute('style');
+      image.alt = '';
+      image.style.visibility = 'hidden';
+    }
     const next = new Image();
     next.decoding = 'async';
-    next.onload = () => {
+    next.onload = async () => {
+      try { await next.decode(); } catch (_) { /* A loaded image can still be displayed. */ }
       if (request !== lightboxRequest || !$('#projectLightbox').classList.contains('open')) return;
+      const shouldAnimate = animate && image.hasAttribute('src') && !matchMedia('(prefers-reduced-motion:reduce)').matches;
+      let snapshot;
+      if (shouldAnimate) {
+        snapshot = document.createElement('div');
+        snapshot.className = 'lightbox-image-snapshot';
+        snapshot.setAttribute('aria-hidden', 'true');
+        const outgoing = image.cloneNode(false);
+        outgoing.removeAttribute('id');
+        outgoing.alt = '';
+        snapshot.append(outgoing);
+        $('.lightbox-image-wrap').append(snapshot);
+      }
       image.src = next.src;
       image.alt = photo.alt;
       fitLightboxImage(image, next.naturalWidth, next.naturalHeight);
       image.style.visibility = 'visible';
-      requestAnimationFrame(() => image.classList.remove('is-changing'));
+      if (shouldAnimate) {
+        const offset = direction * 18;
+        const timing = { duration: 260, easing: 'cubic-bezier(.22,.61,.36,1)' };
+        const incoming = image.animate([
+          { opacity: 0, transform: `translateX(${offset}px)` },
+          { opacity: 1, transform: 'translateX(0)' }
+        ], timing);
+        snapshot.animate([
+          { opacity: 1, transform: 'translateX(0)' },
+          { opacity: 0, transform: `translateX(${-offset}px)` }
+        ], timing);
+        incoming.finished.then(() => snapshot.remove()).catch(() => snapshot.remove());
+      }
     };
     next.onerror = () => {
       if (request !== lightboxRequest || !$('#projectLightbox').classList.contains('open')) return;
       image.removeAttribute('src'); image.alt = '';
-      image.classList.remove('is-changing');
+      image.style.visibility = 'hidden';
     };
     next.src = lightboxSource(photo.src);
     $('#lightboxCounter').textContent = `${String(state.index + 1).padStart(2, '0')} / ${String(project.photos.length).padStart(2, '0')}`;
@@ -276,6 +310,7 @@
 
   function closeLightbox() {
     lightboxRequest += 1;
+    clearPhotoTransition();
     state.touch = null;
     activePointers.clear();
     const lightbox = $('#projectLightbox');
@@ -293,7 +328,7 @@
 
   function moveLightbox(direction) {
     state.index = (state.index + direction + project.photos.length) % project.photos.length;
-    updateLightboxPhoto();
+    updateLightboxPhoto(true, direction);
     showLightboxUI();
   }
 
@@ -414,7 +449,22 @@
     stage.addEventListener('pointermove', showLightboxUI, { passive: true });
 
     const lightbox = $('#projectLightbox');
-    lightbox.addEventListener('wheel', preventViewportScroll, { passive: false });
+    let wheelDistance = 0, wheelTime = 0, wheelCooldown = 0;
+    lightbox.addEventListener('wheel', event => {
+      preventViewportScroll(event);
+      if (!lightbox.classList.contains('open') || event.ctrlKey || (window.visualViewport?.scale || 1) > 1.05) return;
+      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+      const now = performance.now();
+      if (now < wheelCooldown) return;
+      if (now - wheelTime > 180 || Math.sign(wheelDistance) !== Math.sign(event.deltaX)) wheelDistance = 0;
+      wheelTime = now;
+      wheelDistance += event.deltaX * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerWidth : 1);
+      if (Math.abs(wheelDistance) >= 55) {
+        moveLightbox(wheelDistance > 0 ? 1 : -1);
+        wheelDistance = 0;
+        wheelCooldown = now + 320;
+      }
+    }, { passive: false });
     lightbox.addEventListener('click', event => {
       showLightboxUI();
       if (suppressBackdropClick || (mobile.matches || matchMedia('(pointer:coarse)').matches)) return;
