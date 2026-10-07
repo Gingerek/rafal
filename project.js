@@ -92,10 +92,7 @@
       $(`#${id}`).setAttribute('aria-label', t(key));
       $(`#${id}`).setAttribute('title', t(key));
     });
-    $('#projectDescription').textContent = localized(project.description);
     $('.skip-link').textContent = ({nl:'Naar de inhoud',en:'Skip to content',pl:'Przejdź do treści'})[state.lang];
-    $('#projectLocation').textContent = localized(project.location);
-    $('.project-opening .text-link span').textContent = localCopy[state.lang]?.view || localCopy.en.view;
 
     const home = `../../?lang=${state.lang}#work`;
     $('#backHome').href = home;
@@ -296,7 +293,8 @@
   }
 
   function openLightbox(index) {
-    lightboxTrigger = document.activeElement;
+    lightboxTrigger = document.activeElement === document.body
+      ? $(`[data-photo-index="${index}"]`) : document.activeElement;
     state.index = index;
     const lightbox = $('#projectLightbox');
     lightbox.classList.add('open');
@@ -404,7 +402,6 @@
   function init() {
     const requested = new URL(location.href).searchParams.get('lang');
     state.lang = data.translations[requested] ? requested : 'nl';
-    $('#projectYear').textContent = project.year;
     $('#year').textContent = new Date().getFullYear();
     setupHero();
     applyLanguage();
@@ -492,6 +489,10 @@
 
     updateScrollState();
     releaseLoadingScreen();
+    const requestedFrame = new URL(location.href).searchParams.get('frame');
+    const entryFile = requestedFrame || project.preview || project.cover;
+    const entryIndex = project.photos.findIndex(photo => photo.src === entryFile);
+    openLightbox(Math.max(0, entryIndex));
   }
 
   document.addEventListener('DOMContentLoaded', init);

@@ -25,17 +25,15 @@
     const sources=['avif','webp'].map(format=>`<source type="image/${format}" srcset="${item.variants.map(v=>`${v[format]} ${v.width}w`).join(',')}" sizes="${sizes}">`).join('');
     return `<picture>${sources}<img src="${item.variants.at(-1).webp}" width="${item.width}" height="${item.height}" ${attrs}></picture>`;
   }
-  let revealObserver,chapterObserver;
+  let revealObserver;
   function observe(){
-    revealObserver?.disconnect();chapterObserver?.disconnect();
+    revealObserver?.disconnect();
     if(!('IntersectionObserver' in window))return;
     if(!motion.matches){
       revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target)}}),{threshold:.06});
       $$('.reveal').forEach(el=>revealObserver.observe(el));
       document.body.classList.add('motion-ready');
     } else document.body.classList.remove('motion-ready');
-    chapterObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)$$('#heroProjectIndex a').forEach(a=>a.classList.toggle('is-active',a.hash===`#${e.target.id}`))}),{rootMargin:'-25% 0px -40% 0px',threshold:0});
-    $$('.portfolio-card').forEach(el=>chapterObserver.observe(el));
   }
   function render(){
     document.documentElement.lang=lang;
@@ -43,8 +41,6 @@
     $$('[data-studio]').forEach(el=>el.textContent=t(el.dataset.studio));
     $$('[data-lang]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.lang===lang)));
     $('#menuToggle').setAttribute('aria-label',t($('#menuToggle').getAttribute('aria-expanded')==='true'?'closeMenu':'menu'));
-    $('#heroProjectIndex').setAttribute('aria-label',t('collections'));
-    $('#heroProjectIndex').innerHTML=data.projects.map((p,i)=>`<a href="#chapter-${p.id}"><small>${String(i+1).padStart(2,'0')}</small>${escape(local(p.title))}</a>`).join('');
     $('#projectRail').innerHTML=data.projects.map((p,i)=>{
       const accent=window.FOTODISOGNO_EXHIBITION?.[p.id]?.accent||'#c2b395';
       return `<article class="portfolio-card reveal" id="chapter-${p.id}" style="--series-accent:${accent}"><a class="card-link" data-project-link="${p.id}" data-entry="${escape(p.preview||p.cover)}" href="projects/${p.id}/?lang=${lang}&amp;frame=${encodeURIComponent(p.preview||p.cover)}" aria-label="${escape(t('openStory')+': '+local(p.title))}"><span class="card-image"><span class="card-main">${picture(p.preview||p.cover,local(p.title))}</span><span class="card-count">${p.photos.length} ${t('photos')}</span><span class="card-open" aria-hidden="true">↗</span></span><div class="card-heading"><h3>${escape(local(p.title))}</h3><span aria-hidden="true">${String(i+1).padStart(2,'0')}</span></div></a><div class="card-details"><span>${escape(local(p.location))}</span><span>${p.year.replace('—','–')}</span></div><p>${escape(local(p.description).replaceAll(' — ',', '))}</p></article>`;

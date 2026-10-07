@@ -4,16 +4,7 @@
   const project = data?.projects.find(item => item.id === body.dataset.project);
   if (!project) return;
 
-  const manifest = window.FOTODISOGNO_IMAGES || {};
   const title = project.title.en;
-  const imagePath = file => `../../images/${file.split('/').map(encodeURIComponent).join('/')}`;
-  const requestedFrame = new URL(location.href).searchParams.get('frame');
-  const entryPhoto = project.photos.find(photo => photo.src === requestedFrame);
-  const entryFile = entryPhoto?.src || project.cover;
-  const meta = manifest[entryFile];
-  const heroMarkup = meta?.variants?.length
-    ? `<picture class="responsive-picture"><source type="image/avif" srcset="${meta.variants.map(item => `../../${item.avif} ${item.width}w`).join(',')}" sizes="(max-width:820px) 92vw, 62vw"><source type="image/webp" srcset="${meta.variants.map(item => `../../${item.webp} ${item.width}w`).join(',')}" sizes="(max-width:820px) 92vw, 62vw"><img id="projectHeroImage" src="../../${meta.variants[meta.variants.length - 1].webp}" width="${meta.width}" height="${meta.height}" alt="${title}" fetchpriority="high" decoding="async" data-preload></picture>`
-    : `<img id="projectHeroImage" src="${imagePath(entryFile)}" alt="${title}" fetchpriority="high" decoding="async" data-preload>`;
 
   body.insertAdjacentHTML('afterbegin', `
     <a class="skip-link" href="#projectMain">Skip to content</a>
@@ -28,18 +19,8 @@
     </header>
 
     <main id="projectMain">
-      <section class="project-opening" aria-labelledby="projectTitle">
-        <figure class="project-opening-media reveal-media">${heroMarkup}</figure>
-        <div class="project-opening-copy">
-          <div class="project-meta"><span id="projectLocation">${project.location.en}</span><span id="projectYear">${project.year}</span></div>
-          <h1 id="projectTitle">${title}</h1>
-          <p id="projectDescription">${project.description.en}</p>
-          <div class="project-opening-actions"><a class="text-link" href="#story"><span>View photographs</span><i aria-hidden="true">↓</i></a><a class="text-link" href="#projectContact"><span data-i18n="navContact">Contact</span></a></div>
-        </div>
-      </section>
-
       <section class="gallery-section" aria-label="${title} photography">
-        <header class="gallery-heading"><p class="section-kicker" data-i18n="selectedFrames">Selected photographs</p></header>
+        <header class="gallery-heading"><h1 id="projectTitle">${title}</h1></header>
         <div class="gallery-grid" id="story"></div>
       </section>
 
