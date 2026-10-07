@@ -239,3 +239,6 @@ body { background:var(--bg); }
 @media(prefers-reduced-motion:reduce) {
   .home-page .hero-preview-strip button,.home-page .cinema-frame { transition:none; }
 }
+/* Inset dimensions must override the older full-size slideshow rules. */
+.home-page #heroMedia,.home-page .hero-slide { width:auto!important;height:auto!important; }
+.home-page .cinema-hero { background:radial-gradient(ellipse at 80% 45%,#17212a70,transparent 70%),#090d11; }
