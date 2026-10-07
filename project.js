@@ -233,6 +233,7 @@
     const request = ++lightboxRequest;
     const image = $('#lightboxImage');
     const photo = project.photos[state.index];
+    image.draggable = false;
     clearPhotoTransition();
     image.classList.remove('is-changing');
     // Keep the current frame until the next photo is decoded, then crossfade.
