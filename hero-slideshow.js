@@ -51,7 +51,7 @@
     const meta = manifest[item.src], img = document.createElement('img');
     // The main image always uses the largest existing export. No crop or enlargement animation.
     const variant = meta.variants.at(-1);
-    img.src = variant.webp; img.width = meta.width; img.height = meta.height;
+    img.src = meta.original || variant.webp; img.width = meta.width; img.height = meta.height;
     img.alt = item.alt || local(item.title); img.decoding = 'async'; img.draggable = false;
     return img;
   }

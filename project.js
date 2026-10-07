@@ -180,6 +180,7 @@
 
   function lightboxSource(file) {
     const meta = imageManifest[file];
+    if (meta?.original) return `../../${meta.original}`;
     if (!meta?.variants?.length) return imagePath(file);
     const bounds = $('.lightbox-image-wrap').getBoundingClientRect();
     const style = getComputedStyle($('.lightbox-image-wrap'));
