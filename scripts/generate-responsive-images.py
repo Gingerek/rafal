@@ -45,6 +45,8 @@ def referenced_images() -> list[Path]:
 
 def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    previous = DATA_FILE.read_text(encoding="utf-8") if DATA_FILE.exists() else "{}"
+    previous_manifest = json.loads(previous[previous.index("{"):previous.rindex("}") + 1])
     manifest: dict[str, dict[str, object]] = {}
 
     for source in referenced_images():
@@ -74,11 +76,15 @@ def main() -> None:
                         "webp": webp_path.relative_to(ROOT).as_posix(),
                     })
 
-                manifest[source.name] = {
+                key = source.relative_to(SOURCE_DIR).as_posix()
+                manifest[key] = {
                     "width": original_width,
                     "height": original_height,
                     "variants": variants,
                 }
+                original = previous_manifest.get(key, {}).get("original")
+                if original and (ROOT / original).is_file():
+                    manifest[key]["original"] = original
         except Exception as exc:
             print(f"Skipping {source.name}: {exc}")
 
