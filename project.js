@@ -490,10 +490,7 @@
 
     updateScrollState();
     releaseLoadingScreen();
-    const requestedFrame = new URL(location.href).searchParams.get('frame');
-    const entryFile = requestedFrame || project.preview || project.cover;
-    const entryIndex = project.photos.findIndex(photo => photo.src === entryFile);
-    openLightbox(Math.max(0, entryIndex));
+    openLightbox(0);
   }
 
   document.addEventListener('DOMContentLoaded', init);
