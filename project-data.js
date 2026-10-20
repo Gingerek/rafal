@@ -179,7 +179,7 @@ window.FOTODISOGNO = {
         { src: "DSC_2985.avif", alt: "Coastal terrace and sea view", note: { nl: "De reis eindigt niet met een bestemming, maar met ruimte.", en: "The journey ends not with a destination, but with space.", pl: "Podróż kończy się nie celem, lecz przestrzenią." } },
         { src: "2026/travel/DSCF5315.jpg", alt: "Naples and Mount Vesuvius framed by flowers" },
         { src: "2026/travel/DSCF5331.jpg", alt: "Naples cityscape and Mount Vesuvius at dusk" },
-        { src: "2026/travel/DSCF5377.jpg", alt: "Naples waterfront at night with Mount Vesuvius and light trails" }
+        { src: "2026/travel/DSCF5377-sky-removed.png", alt: "Naples waterfront at night with Mount Vesuvius and light trails" }
       ]
     },
     {
