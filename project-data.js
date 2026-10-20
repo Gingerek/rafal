@@ -74,7 +74,7 @@ window.FOTODISOGNO = {
         { src: "DSCF4051-2.jpg", alt: "Portrait with a cat" },
         { src: "2026/people/DSCF4386-2.avif", alt: "Black and white portrait by the sea", year: "2026" },
         { src: "DSC_5379.avif", alt: "Black and white portrait of a smiling man", note: { nl: "De serie eindigt met een open, ongeforceerd gebaar.", en: "The series closes with an open, unforced gesture.", pl: "Serię zamyka otwarty, niewymuszony gest." } },
-        { src: "DSCF5223.jpg", alt: "Woman reading a newspaper in Naples" }
+        { src: "2026/people/DSCF5223.jpg", alt: "Woman reading a newspaper in Naples" }
       ]
     },
     {
@@ -175,7 +175,7 @@ window.FOTODISOGNO = {
         { src: "A7407252-2.jpg", alt: "Black and white winter landscape" },
         { src: "A7407409.jpg", alt: "Observation tower in winter" },
         { src: "DSC_2985.avif", alt: "Coastal terrace and sea view", note: { nl: "De reis eindigt niet met een bestemming, maar met ruimte.", en: "The journey ends not with a destination, but with space.", pl: "Podróż kończy się nie celem, lecz przestrzenią." } },
-        { src: "DSCF5315.jpg", alt: "Naples and Mount Vesuvius framed by flowers" }
+        { src: "2026/travel/DSCF5315.jpg", alt: "Naples and Mount Vesuvius framed by flowers" }
       ]
     },
     {
