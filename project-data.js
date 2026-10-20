@@ -94,7 +94,8 @@ window.FOTODISOGNO = {
         { src: "A7409276.jpg", alt: "Bus in an urban scene" },
         { src: "DSC_0372.jpg", alt: "Black and white waterside landscape" },
         { src: "A7407373.jpg", alt: "Snowy bicycle in the city" },
-        { src: "A7407402.jpg", alt: "Winter walkway with a figure", note: { nl: "Een stille afsluiting waarin richting belangrijker is dan bestemming.", en: "A quiet ending in which direction matters more than destination.", pl: "Ciche zakończenie, w którym kierunek jest ważniejszy niż cel." } }
+        { src: "A7407402.jpg", alt: "Winter walkway with a figure", note: { nl: "Een stille afsluiting waarin richting belangrijker is dan bestemming.", en: "A quiet ending in which direction matters more than destination.", pl: "Ciche zakończenie, w którym kierunek jest ważniejszy niż cel." } },
+        { src: "2026/street/DSCF5340.jpg", alt: "Nighttime street market in Naples with a passing scooter" }
       ]
     },
     {
@@ -175,7 +176,8 @@ window.FOTODISOGNO = {
         { src: "A7407252-2.jpg", alt: "Black and white winter landscape" },
         { src: "A7407409.jpg", alt: "Observation tower in winter" },
         { src: "DSC_2985.avif", alt: "Coastal terrace and sea view", note: { nl: "De reis eindigt niet met een bestemming, maar met ruimte.", en: "The journey ends not with a destination, but with space.", pl: "Podróż kończy się nie celem, lecz przestrzenią." } },
-        { src: "2026/travel/DSCF5315.jpg", alt: "Naples and Mount Vesuvius framed by flowers" }
+        { src: "2026/travel/DSCF5315.jpg", alt: "Naples and Mount Vesuvius framed by flowers" },
+        { src: "2026/travel/DSCF5331.jpg", alt: "Naples cityscape and Mount Vesuvius at dusk" }
       ]
     },
     {
