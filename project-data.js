@@ -100,7 +100,10 @@ window.FOTODISOGNO = {
         { src: "2026/street/DSCF5103.jpg", alt: "Diego Maradona portrait on a doorway in Naples", year: "2026" },
         { src: "2026/street/DSCF5250.jpg", alt: "Maradona mural on a graffiti-covered Naples wall", year: "2026" },
         { src: "2026/street/DSCF5274.jpg", alt: "A footballer in a narrow Naples alley at night", year: "2026" },
-        { src: "2026/street/DSCF5358.jpg", alt: "Napoli football shirts at a street stall", year: "2026" }
+        { src: "2026/street/DSCF5358.jpg", alt: "Napoli football shirts at a street stall", year: "2026" },
+        { src: "2026/street/DSCF5156.jpg", alt: "Narrow Naples street framed by historic buildings", year: "2026" },
+        { src: "2026/street/DSCF5176.jpg", alt: "Two motorcyclists on a Naples street seen from above", year: "2026" },
+        { src: "2026/street/DSCF5232.jpg", alt: "Cafe tables and signs in Quartieri Spagnoli, Naples", year: "2026" }
       ]
     },
     {
@@ -189,7 +192,8 @@ window.FOTODISOGNO = {
         { src: "2026/travel/DSCF5418.jpg", alt: "Naples apartment facade framed by a tree", year: "2026" },
         { src: "2026/travel/DSCF5438.jpg", alt: "Naples waterfront and Castel dell’Ovo from the promenade", year: "2026" },
         { src: "2026/travel/DSCF5452.jpg", alt: "Naples seafront framed by autumn leaves", year: "2026" },
-        { src: "2026/travel/DSCF5643.jpg", alt: "Aerial view of Naples and Mount Vesuvius from an airplane", year: "2026" }
+        { src: "2026/travel/DSCF5643.jpg", alt: "Aerial view of Naples and Mount Vesuvius from an airplane", year: "2026" },
+        { src: "2026/travel/DSCF5096.jpg", alt: "Aperol Spritz glasses at an outdoor cafe in Naples", year: "2026" }
       ]
     },
     {
