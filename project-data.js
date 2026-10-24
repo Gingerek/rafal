@@ -96,7 +96,11 @@ window.FOTODISOGNO = {
         { src: "A7407373.jpg", alt: "Snowy bicycle in the city" },
         { src: "A7407402.jpg", alt: "Winter walkway with a figure", note: { nl: "Een stille afsluiting waarin richting belangrijker is dan bestemming.", en: "A quiet ending in which direction matters more than destination.", pl: "Ciche zakończenie, w którym kierunek jest ważniejszy niż cel." } },
         { src: "2026/street/DSCF5340.jpg", alt: "Nighttime street market in Naples with a passing scooter" },
-        { src: "2026/street/DSCF5380.jpg", alt: "Heart-shaped sign reading Napoli è mille culture on a Naples street" }
+        { src: "2026/street/DSCF5380.jpg", alt: "Heart-shaped sign reading Napoli è mille culture on a Naples street" },
+        { src: "2026/street/DSCF5103.jpg", alt: "Diego Maradona portrait on a doorway in Naples", year: "2026" },
+        { src: "2026/street/DSCF5250.jpg", alt: "Maradona mural on a graffiti-covered Naples wall", year: "2026" },
+        { src: "2026/street/DSCF5274.jpg", alt: "A footballer in a narrow Naples alley at night", year: "2026" },
+        { src: "2026/street/DSCF5358.jpg", alt: "Napoli football shirts at a street stall", year: "2026" }
       ]
     },
     {
@@ -179,7 +183,13 @@ window.FOTODISOGNO = {
         { src: "DSC_2985.avif", alt: "Coastal terrace and sea view", note: { nl: "De reis eindigt niet met een bestemming, maar met ruimte.", en: "The journey ends not with a destination, but with space.", pl: "Podróż kończy się nie celem, lecz przestrzenią." } },
         { src: "2026/travel/DSCF5315.jpg", alt: "Naples and Mount Vesuvius framed by flowers" },
         { src: "2026/travel/DSCF5331.jpg", alt: "Naples cityscape and Mount Vesuvius at dusk" },
-        { src: "2026/travel/DSCF5377-sky-removed.png", alt: "Naples waterfront at night with Mount Vesuvius and light trails" }
+        { src: "2026/travel/DSCF5377-sky-removed.png", alt: "Naples waterfront at night with Mount Vesuvius and light trails" },
+        { src: "2026/travel/DSCF5109.jpg", alt: "Stone lion statue and church facade in a Naples square", year: "2026" },
+        { src: "2026/travel/DSCF5400.jpg", alt: "Neapolitan pastries on a plate in a cafe", year: "2026" },
+        { src: "2026/travel/DSCF5418.jpg", alt: "Naples apartment facade framed by a tree", year: "2026" },
+        { src: "2026/travel/DSCF5438.jpg", alt: "Naples waterfront and Castel dell’Ovo from the promenade", year: "2026" },
+        { src: "2026/travel/DSCF5452.jpg", alt: "Naples seafront framed by autumn leaves", year: "2026" },
+        { src: "2026/travel/DSCF5643.jpg", alt: "Aerial view of Naples and Mount Vesuvius from an airplane", year: "2026" }
       ]
     },
     {
