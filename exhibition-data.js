@@ -6,5 +6,6 @@ window.FOTODISOGNO_EXHIBITION = {
   nature: { accent: '#bbbc94', tint: '#15160f', spans: [7,5,6,6,12,5,7,12] },
   travel: { accent: '#9fbfc5', tint: '#101719', spans: [12,6,6,7,5,12,6,6,5,7] },
   creative: { accent: '#d3a778', tint: '#1a140f', spans: [12,5,7,6,6,12,5,7,12] },
+  'food-drink': { accent: '#c9a27a', tint: '#19130f', spans: [12,6,6,12] },
   'solar-eclipse-2026': { accent: '#cab58b', tint: '#17150f', spans: [12,6,6,6,6,12] }
 };

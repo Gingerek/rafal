@@ -171,7 +171,6 @@ window.FOTODISOGNO = {
         { src: "2026/travel/DSCF4413.avif", alt: "Mediterranean coastline framed by yellow flowers", year: "2026" },
         { src: "2026/travel/A7408676.avif", alt: "Beach umbrellas silhouetted at sunset", year: "2026" },
         { src: "2026/travel/A7408782.avif", alt: "Lemon tree in warm Italian evening light", year: "2026" },
-        { src: "2026/travel/A7408381.avif", alt: "Shared Mediterranean meal with flatbread and sushi", year: "2026" },
         { src: "A7406616.avif", alt: "Coastal landscape with sea and mountains" },
         { src: "A7406608.jpg", alt: "Blue boat by the coast" },
         { src: "2026/travel/A7408599-2.avif", alt: "Sailboats at sunset on a quiet bay", year: "2026" },
@@ -179,7 +178,6 @@ window.FOTODISOGNO = {
         { src: "2026/travel/A7409225.avif", alt: "Italian clock tower with national flag", year: "2026" },
         { src: "A7406725.jpg", alt: "Ancient ruins" },
         { src: "A7408532.jpg", alt: "Italian interior" },
-        { src: "A7406473.avif", alt: "Aperol drinks by a lake" },
         { src: "A7407232.jpg", alt: "Snowy forest in winter sunlight" },
         { src: "A7407252-2.jpg", alt: "Black and white winter landscape" },
         { src: "A7407409.jpg", alt: "Observation tower in winter" },
@@ -188,12 +186,27 @@ window.FOTODISOGNO = {
         { src: "2026/travel/DSCF5331.jpg", alt: "Naples cityscape and Mount Vesuvius at dusk" },
         { src: "2026/travel/DSCF5377-sky-removed.png", alt: "Naples waterfront at night with Mount Vesuvius and light trails" },
         { src: "2026/travel/DSCF5109.jpg", alt: "Stone lion statue and church facade in a Naples square", year: "2026" },
-        { src: "2026/travel/DSCF5400.jpg", alt: "Neapolitan pastries on a plate in a cafe", year: "2026" },
         { src: "2026/travel/DSCF5418.jpg", alt: "Naples apartment facade framed by a tree", year: "2026" },
         { src: "2026/travel/DSCF5438.jpg", alt: "Naples waterfront and Castel dell’Ovo from the promenade", year: "2026" },
         { src: "2026/travel/DSCF5452.jpg", alt: "Naples seafront framed by autumn leaves", year: "2026" },
         { src: "2026/travel/DSCF5643.jpg", alt: "Aerial view of Naples and Mount Vesuvius from an airplane", year: "2026" },
-        { src: "2026/travel/DSCF5096.jpg", alt: "Aperol Spritz glasses at an outdoor cafe in Naples", year: "2026" }
+      ]
+    },
+    {
+      id: "food-drink", theme: "warm", year: "2026",
+      cover: "2026/food-drink/DSCF5400.jpg", preview: "2026/food-drink/A7406473.avif",
+      title: { nl: "Eten & Drinken", en: "Food & Drink", pl: "Jedzenie i picie" },
+      description: {
+        nl: "Eten, drankjes en gedeelde momenten aan tafel, vastgelegd onderweg.",
+        en: "Food, drinks and shared moments at the table, photographed along the way.",
+        pl: "Jedzenie, napoje i wspólne chwile przy stole uchwycone w podróży."
+      },
+      location: { nl: "Italië", en: "Italy", pl: "Włochy" },
+      photos: [
+        { src: "2026/food-drink/DSCF5400.jpg", alt: "Neapolitan pastries on a plate in a cafe", year: "2026" },
+        { src: "2026/food-drink/DSCF5096.jpg", alt: "Aperol Spritz glasses at an outdoor cafe in Naples", year: "2026" },
+        { src: "2026/food-drink/A7406473.avif", alt: "Aperol drinks by a lake" },
+        { src: "2026/food-drink/A7408381.avif", alt: "Shared Mediterranean meal with flatbread and sushi", year: "2026" }
       ]
     },
     {

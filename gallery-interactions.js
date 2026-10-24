@@ -42,6 +42,7 @@
     animals: 'layout-portrait',
     nature: 'layout-classic',
     travel: 'layout-diptych',
+    'food-drink': 'layout-diptych',
     creative: 'layout-finale'
   };
   const $ = (selector, root = document) => root.querySelector(selector);
