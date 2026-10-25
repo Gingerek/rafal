@@ -97,13 +97,13 @@ window.FOTODISOGNO = {
         { src: "A7407402.jpg", alt: "Winter walkway with a figure", note: { nl: "Een stille afsluiting waarin richting belangrijker is dan bestemming.", en: "A quiet ending in which direction matters more than destination.", pl: "Ciche zakończenie, w którym kierunek jest ważniejszy niż cel." } },
         { src: "2026/street/DSCF5340.jpg", alt: "Nighttime street market in Naples with a passing scooter" },
         { src: "2026/street/DSCF5380.jpg", alt: "Heart-shaped sign reading Napoli è mille culture on a Naples street" },
-        { src: "2026/street/DSCF5103.jpg", alt: "Diego Maradona portrait on a doorway in Naples", year: "2026" },
-        { src: "2026/street/DSCF5250.jpg", alt: "Maradona mural on a graffiti-covered Naples wall", year: "2026" },
-        { src: "2026/street/DSCF5274.jpg", alt: "A footballer in a narrow Naples alley at night", year: "2026" },
-        { src: "2026/street/DSCF5358.jpg", alt: "Napoli football shirts at a street stall", year: "2026" },
-        { src: "2026/street/DSCF5156.jpg", alt: "Narrow Naples street framed by historic buildings", year: "2026" },
-        { src: "2026/street/DSCF5176.jpg", alt: "Two motorcyclists on a Naples street seen from above", year: "2026" },
-        { src: "2026/street/DSCF5232.jpg", alt: "Cafe tables and signs in Quartieri Spagnoli, Naples", year: "2026" }
+        { src: "2026/street/DSCF5103.jpg", alt: "Diego Maradona portrait on a doorway in Naples", year: "2026", added: "2026-10-24" },
+        { src: "2026/street/DSCF5250.jpg", alt: "Maradona mural on a graffiti-covered Naples wall", year: "2026", added: "2026-10-24" },
+        { src: "2026/street/DSCF5274.jpg", alt: "A footballer in a narrow Naples alley at night", year: "2026", added: "2026-10-24" },
+        { src: "2026/street/DSCF5358.jpg", alt: "Napoli football shirts at a street stall", year: "2026", added: "2026-10-24" },
+        { src: "2026/street/DSCF5156.jpg", alt: "Narrow Naples street framed by historic buildings", year: "2026", added: "2026-10-24" },
+        { src: "2026/street/DSCF5176.jpg", alt: "Two motorcyclists on a Naples street seen from above", year: "2026", added: "2026-10-24" },
+        { src: "2026/street/DSCF5232.jpg", alt: "Cafe tables and signs in Quartieri Spagnoli, Naples", year: "2026", added: "2026-10-24" }
       ]
     },
     {
@@ -134,6 +134,10 @@ window.FOTODISOGNO = {
       },
       location: { nl: "Nederland", en: "The Netherlands", pl: "Holandia" },
       photos: [
+        { src: "2026/nature/A7409870.jpg", alt: "Red and green oak leaves against warm autumn colours", year: "2026", added: "2026-10-25" },
+        { src: "2026/nature/A7409876.jpg", alt: "Red fly agaric mushroom among autumn leaves", year: "2026", added: "2026-10-25" },
+        { src: "2026/nature/A7409887.jpg", alt: "Red and yellow autumn leaf in close-up", year: "2026", added: "2026-10-25" },
+        { src: "2026/nature/A7409905.jpg", alt: "Golden autumn oak leaves in soft natural light", year: "2026", added: "2026-10-25" },
         { src: "A7400567.png", alt: "Wildflowers in soft light", note: { nl: "Een klein landschap opgebouwd uit licht en zachte vormen.", en: "A small landscape built from light and soft forms.", pl: "Mały krajobraz zbudowany ze światła i miękkich form." } },
         { src: "A7403102.avif", alt: "Daisy close-up" },
         { src: "2026/nature/DSC04815.jpg", alt: "Chamomile flowers in golden sunset light", year: "2026" },
@@ -164,6 +168,7 @@ window.FOTODISOGNO = {
       },
       location: { nl: "Italië & Europa", en: "Italy & Europe", pl: "Włochy i Europa" },
       photos: [
+        { src: "2026/travel/A7409882.jpg", alt: "Autumn landscape beneath a cloudy sky", year: "2026", added: "2026-10-25" },
         { src: "DJI_20260605013443_0005_D.jpg", alt: "Coastal tower photographed from the air", note: { nl: "Een landschap gelezen vanuit afstand en hoogte.", en: "A landscape read through distance and height.", pl: "Krajobraz odczytany z dystansu i wysokości." } },
         { src: "2026/travel/DJI_20260604165338_0015_D.avif", alt: "Aerial view of a Mediterranean bay and coastal village", year: "2026" },
         { src: "2026/travel/DSCF4389.avif", alt: "Italian harbour with colourful waterfront buildings", year: "2026" },
@@ -185,11 +190,11 @@ window.FOTODISOGNO = {
         { src: "2026/travel/DSCF5315.jpg", alt: "Naples and Mount Vesuvius framed by flowers" },
         { src: "2026/travel/DSCF5331.jpg", alt: "Naples cityscape and Mount Vesuvius at dusk" },
         { src: "2026/travel/DSCF5377-sky-removed.png", alt: "Naples waterfront at night with Mount Vesuvius and light trails" },
-        { src: "2026/travel/DSCF5109.jpg", alt: "Stone lion statue and church facade in a Naples square", year: "2026" },
-        { src: "2026/travel/DSCF5418.jpg", alt: "Naples apartment facade framed by a tree", year: "2026" },
-        { src: "2026/travel/DSCF5438.jpg", alt: "Naples waterfront and Castel dell’Ovo from the promenade", year: "2026" },
-        { src: "2026/travel/DSCF5452.jpg", alt: "Naples seafront framed by autumn leaves", year: "2026" },
-        { src: "2026/travel/DSCF5643.jpg", alt: "Aerial view of Naples and Mount Vesuvius from an airplane", year: "2026" },
+        { src: "2026/travel/DSCF5109.jpg", alt: "Stone lion statue and church facade in a Naples square", year: "2026", added: "2026-10-24" },
+        { src: "2026/travel/DSCF5418.jpg", alt: "Naples apartment facade framed by a tree", year: "2026", added: "2026-10-24" },
+        { src: "2026/travel/DSCF5438.jpg", alt: "Naples waterfront and Castel dell’Ovo from the promenade", year: "2026", added: "2026-10-24" },
+        { src: "2026/travel/DSCF5452.jpg", alt: "Naples seafront framed by autumn leaves", year: "2026", added: "2026-10-24" },
+        { src: "2026/travel/DSCF5643.jpg", alt: "Aerial view of Naples and Mount Vesuvius from an airplane", year: "2026", added: "2026-10-24" },
       ]
     },
     {
@@ -203,8 +208,8 @@ window.FOTODISOGNO = {
       },
       location: { nl: "Italië", en: "Italy", pl: "Włochy" },
       photos: [
-        { src: "2026/food-drink/DSCF5400.jpg", alt: "Neapolitan pastries on a plate in a cafe", year: "2026" },
-        { src: "2026/food-drink/DSCF5096.jpg", alt: "Aperol Spritz glasses at an outdoor cafe in Naples", year: "2026" },
+        { src: "2026/food-drink/DSCF5400.jpg", alt: "Neapolitan pastries on a plate in a cafe", year: "2026", added: "2026-10-24" },
+        { src: "2026/food-drink/DSCF5096.jpg", alt: "Aperol Spritz glasses at an outdoor cafe in Naples", year: "2026", added: "2026-10-24" },
         { src: "2026/food-drink/A7406473.avif", alt: "Aperol drinks by a lake" },
         { src: "2026/food-drink/A7408381.avif", alt: "Shared Mediterranean meal with flatbread and sushi", year: "2026" }
       ]

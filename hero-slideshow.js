@@ -8,9 +8,10 @@
   const slides = [], seen = new Set();
   // Alternate collections and formats instead of filtering mobile to portraits.
   const queues = projects.map(project => {
-    const photos = project.photos.filter(photo => manifest[photo.src]?.variants?.length);
-    const wide = photos.filter(photo => manifest[photo.src].width >= manifest[photo.src].height);
-    const tall = photos.filter(photo => manifest[photo.src].width < manifest[photo.src].height);
+    const photos = project.photos.filter(photo => photo.src);
+    const isTall = photo => (manifest[photo.src]?.width || 1) < (manifest[photo.src]?.height || 1);
+    const wide = photos.filter(photo => !isTall(photo));
+    const tall = photos.filter(isTall);
     const mixed = [];
     while (wide.length || tall.length) {
       if (wide.length) mixed.push(wide.shift());
@@ -26,6 +27,8 @@
       slides.push({ ...photo, project, title: project.title });
     }
   }
+  // Show recent additions first, preserving the collection/format mix within each date.
+  slides.sort((a, b) => (b.added || '').localeCompare(a.added || ''));
   if (!slides.length) return;
   const interval = 5500;
   let index = 0, timer, generation = 0, prepared, busy = false;
@@ -50,8 +53,9 @@
   function image(item) {
     const meta = manifest[item.src], img = document.createElement('img');
     // The main image always uses the largest existing export. No crop or enlargement animation.
-    const variant = meta.variants.at(-1);
-    img.src = meta.original || variant.webp; img.width = meta.width; img.height = meta.height;
+    const variant = meta?.variants?.at(-1);
+    img.src = meta?.original || variant?.webp || `images/${item.src}`;
+    if (meta?.width && meta?.height) { img.width = meta.width; img.height = meta.height; }
     img.alt = item.alt || local(item.title); img.decoding = 'async'; img.draggable = false;
     return img;
   }
