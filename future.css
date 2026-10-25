@@ -250,3 +250,47 @@ body { background:var(--bg); }
   .home-page .portfolio-card .card-main { position:absolute;inset:0;width:100%;height:100%; }
   .home-page .portfolio-card picture { height:100%;width:100%; }
 }
+
+/* Napoli azzurro — small editorial details, October 25, 2026. */
+:root {
+  --azzurro:#78b7df;
+  --azzurro-soft:#9bc7e2;
+  --azzurro-line:#78b7df59;
+  --azzurro-wash:#78b7df0d;
+}
+.home-page .brand b em,.project-page .brand b em { color:var(--azzurro-soft); }
+.home-page .section-kicker .section-number,
+.home-page #heroFrameNumber,
+.project-page .frame-number { color:var(--azzurro); }
+.home-page .main-nav a:is(:hover,:focus-visible) {
+  color:var(--paper); border-bottom-color:var(--azzurro);
+}
+.home-page .language-switcher button[aria-pressed=true],
+.project-page .language-switcher button[aria-pressed=true] {
+  color:var(--azzurro-soft); border-color:var(--azzurro-line); background:var(--azzurro-wash);
+}
+.home-page .hero-actions .hero-explore { border-color:var(--azzurro-line); }
+.home-page .hero-actions .text-link:is(:hover,:focus-visible),
+.home-page .hero-play-controls button:is(:hover,:focus-visible) {
+  border-color:var(--azzurro); background:#78b7df14;
+}
+.home-page .portfolio-card .card-heading {
+  border-image:linear-gradient(90deg,var(--azzurro-line) 0 28px,var(--line) 28px 100%) 1;
+}
+.home-page .portfolio-card .card-link:is(:hover,:focus-visible) .card-heading>span {
+  color:var(--azzurro-soft);
+}
+.home-page .about-copy .text-link,
+.project-page .project-header-contact { border-bottom-color:var(--azzurro-line); }
+.home-page .about-copy .text-link i,
+.home-page .contact-grid>a>i { color:var(--azzurro-soft); }
+.home-page .contact-grid>a:is(:hover,:focus-visible) {
+  border-color:var(--azzurro-line); background:var(--azzurro-wash);
+}
+.project-page .project-back:is(:hover,:focus-visible),
+.project-page .lightbox-arrow:is(:hover,:focus-visible),
+.project-page .lightbox-close:is(:hover,:focus-visible) { color:var(--azzurro-soft); }
+.home-page a:focus-visible,.home-page button:focus-visible,
+.project-page a:focus-visible,.project-page button:focus-visible {
+  outline-color:var(--azzurro);
+}
