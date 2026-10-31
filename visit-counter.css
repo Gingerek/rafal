@@ -1,0 +1,29 @@
+/* Shared page-view counter at the bottom of the portfolio. */
+.site-footer.has-visit-counter { flex-wrap: wrap; }
+.site-footer .visit-counter {
+  flex: 0 0 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  margin-top: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--azzurro-line, #78b7df29);
+  color: var(--muted, #b6b7b6);
+  font: 500 .75rem/1.5 var(--font-ui, system-ui, sans-serif);
+  letter-spacing: .04em;
+}
+.visit-counter .visit-counter-badge {
+  display: block;
+  width: auto;
+  height: 24px;
+  max-width: 50%;
+  object-fit: contain;
+}
+.visit-counter [hidden] { display: none !important; }
+.visit-counter .visit-counter-status { color: var(--faint, #999b9c); }
+@media (max-width: 760px) {
+  .site-footer .visit-counter { flex-basis: auto; margin-top: 12px; padding-top: 18px; }
+}
