@@ -124,14 +124,14 @@
       const span = window.FOTODISOGNO_EXHIBITION?.[project.id]?.spans[index] || 6;
       item.dataset.frameSpan = String(span);
       item.style.setProperty('--frame-span', String(span));
-      const preload = index === 0;
+      // The lightbox opens on photo one; defer gallery thumbnails underneath it.
       const note = localized(photo.note);
       item.innerHTML = `
         <button class="gallery-card" type="button" data-photo-index="${index}" data-cursor="View" aria-label="${escapeHtml(t('viewImage'))} ${index + 1}">
           <span class="gallery-media">${responsivePicture(photo.src, photo.alt, {
             className: 'gallery-image is-loading',
             sizes: span === 12 ? '(max-width:820px) 92vw, 90vw' : `(max-width:820px) 92vw, ${Math.ceil(span / 12 * 90)}vw`,
-            loading: preload ? 'eager' : 'lazy', fetchpriority: 'auto', preload
+            loading: 'lazy', fetchpriority: 'low', preload: false
           })}</span>
         </button>
         <figcaption class="gallery-caption"><span class="frame-number">${String(index+1).padStart(2,'0')} / ${String(project.photos.length).padStart(2,'0')}</span><span class="gallery-note">${escapeHtml(note)}</span></figcaption>
@@ -180,8 +180,8 @@
 
   function lightboxSource(file) {
     const meta = imageManifest[file];
-    if (meta?.original) return `../../${meta.original}`;
-    if (!meta?.variants?.length) return imagePath(file);
+    // Prefer screen-sized compressed exports over downloading the original file.
+    if (!meta?.variants?.length) return meta?.original ? `../../${meta.original}` : imagePath(file);
     const bounds = $('.lightbox-image-wrap').getBoundingClientRect();
     const style = getComputedStyle($('.lightbox-image-wrap'));
     const width = bounds.width - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
@@ -193,10 +193,11 @@
   }
 
   function preloadAround(index) {
-    if (navigator.connection?.saveData) return;
+    if (document.hidden || navigator.connection?.saveData) return;
     // Preload only the next photograph. Avoid downloading two full-resolution
     // files when a visitor may never navigate away from the current image.
-    if (navigator.connection?.effectiveType && /(?:^|-)2g$/.test(navigator.connection.effectiveType)) return;
+    if (navigator.connection?.effectiveType && /(?:slow-2g|2g|3g)/.test(navigator.connection.effectiveType)) return;
+    if (project.photos.length < 2) return;
     const photo = project.photos[(index + 1) % project.photos.length];
     if (!photo) return;
     const image = new Image();
@@ -264,6 +265,10 @@
       image.alt = photo.alt;
       fitLightboxImage(image, next.naturalWidth, next.naturalHeight);
       image.style.visibility = 'visible';
+      // Load one next image only after a deliberate navigation and current decode.
+      if (animate) setTimeout(() => {
+        if (request === lightboxRequest && $('#projectLightbox').classList.contains('open')) preloadAround(state.index);
+      }, 450);
       if (shouldAnimate) {
         const offset = direction * 18;
         const timing = { duration: 260, easing: 'cubic-bezier(.22,.61,.36,1)' };
@@ -285,7 +290,6 @@
     };
     next.src = lightboxSource(photo.src);
     $('#lightboxCounter').textContent = `${String(state.index + 1).padStart(2, '0')} / ${String(project.photos.length).padStart(2, '0')}`;
-    preloadAround(state.index);
   }
 
   function showLightboxUI() {
