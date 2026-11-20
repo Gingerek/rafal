@@ -124,7 +124,7 @@
       const span = window.FOTODISOGNO_EXHIBITION?.[project.id]?.spans[index] || 6;
       item.dataset.frameSpan = String(span);
       item.style.setProperty('--frame-span', String(span));
-      const preload = index < (mobile.matches ? 1 : 4);
+      const preload = index === 0;
       const note = localized(photo.note);
       item.innerHTML = `
         <button class="gallery-card" type="button" data-photo-index="${index}" data-cursor="View" aria-label="${escapeHtml(t('viewImage'))} ${index + 1}">
@@ -194,12 +194,14 @@
 
   function preloadAround(index) {
     if (navigator.connection?.saveData) return;
-    [-1, 1].forEach(offset => {
-      const photo = project.photos[(index + offset + project.photos.length) % project.photos.length];
-      const image = new Image();
-      image.decoding = 'async';
-      image.src = lightboxSource(photo.src);
-    });
+    // Preload only the next photograph. Avoid downloading two full-resolution
+    // files when a visitor may never navigate away from the current image.
+    if (navigator.connection?.effectiveType && /(?:^|-)2g$/.test(navigator.connection.effectiveType)) return;
+    const photo = project.photos[(index + 1) % project.photos.length];
+    if (!photo) return;
+    const image = new Image();
+    image.decoding = 'async';
+    image.src = lightboxSource(photo.src);
   }
 
   function fitLightboxImage(image, naturalWidth = image?.naturalWidth, naturalHeight = image?.naturalHeight) {
