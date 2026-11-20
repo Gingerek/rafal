@@ -52,18 +52,32 @@
   document.querySelector('.hero-bottom').append(controls);
   function image(item) {
     const meta = manifest[item.src], img = document.createElement('img');
-    // The main image always uses the largest existing export. No crop or enlargement animation.
-    const variant = meta?.variants?.at(-1);
-    img.src = meta?.original || variant?.webp || `images/${item.src}`;
+    const picture = document.createElement('picture');
+    const variants = meta?.variants;
+    // Let the browser select a cached, appropriately sized AVIF or WebP export.
+    // Keep the original file only as a fallback for photographs without exports.
+    if (variants?.length) {
+      for (const format of ['avif', 'webp']) {
+        const source = document.createElement('source');
+        source.type = `image/${format}`;
+        source.srcset = variants.map(v => `${v[format]} ${v.width}w`).join(', ');
+        source.sizes = '100vw';
+        picture.append(source);
+      }
+      img.src = variants.at(-1).webp;
+    } else {
+      img.src = meta?.original || `images/${item.src}`;
+    }
     if (meta?.width && meta?.height) { img.width = meta.width; img.height = meta.height; }
     img.alt = item.alt || local(item.title); img.decoding = 'async'; img.draggable = false;
-    return img;
+    picture.append(img);
+    return { picture, img };
   }
   function prepare(next) {
     const item = slides[next], wrapper = document.createElement('a');
     wrapper.className = 'hero-slide'; wrapper.setAttribute('aria-hidden', 'true'); wrapper.tabIndex = -1;
     wrapper.href = `projects/${item.project.id}/?lang=${document.documentElement.lang}&frame=${encodeURIComponent(item.src)}`;
-    const img = image(item); wrapper.append(img); host.append(wrapper);
+    const { picture, img } = image(item); wrapper.append(picture); host.append(wrapper);
     return { next, wrapper, ready: img.decode().then(() => true, () => false) };
   }
   function labels() {
@@ -105,7 +119,11 @@
       } else old?.remove();
       index = next; labels();
     } else target.wrapper.remove();
-    busy = false; prepared = prepare((next + 1) % slides.length); schedule();
+    busy = false;
+    if (!paused && !document.hidden && !navigator.connection?.saveData) {
+      prepared = prepare((next + 1) % slides.length);
+    }
+    schedule();
   }
   let touchStart, suppressClick = false;
   host.addEventListener('touchstart', event => { suppressClick = false; touchStart = event.touches[0]?.clientX; }, { passive: true });
